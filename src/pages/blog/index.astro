@@ -9,6 +9,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const tagStyles: Record<string, { background: string; color: string }> = {
+	'📙 Memoria': { background: '#1a365d', color: 'white' },
+	'🔥 Ahora': { background: '#e8825c', color: 'white' },
+	'🔮 Horizonte': { background: 'linear-gradient(135deg, #1a365d, #e8825c)', color: 'white' },
+	'🛠️ Taller': { background: '#a0aec0', color: 'white' },
+	'😂 Anécdota': { background: '#fbd38d', color: '#2d3748' },
+	'🎿 Vida': { background: '#48bb78', color: 'white' },
+	'⭐ Reseña': { background: '#d69e2e', color: 'white' },
+};
 ---
 
 <!doctype html>
@@ -45,6 +55,19 @@ const posts = (await getCollection('blog')).sort(
 				color: var(--gray);
 				font-size: 0.85em;
 			}
+			.tags {
+				margin: 0.4em 0 0;
+				display: flex;
+				gap: 0.4em;
+				flex-wrap: wrap;
+			}
+			.tag {
+				border-radius: 999px;
+				padding: 2px 10px;
+				font-size: 0.75em;
+				font-family: 'Bricolage Grotesque', sans-serif;
+				white-space: nowrap;
+			}
 			ul li a:hover .title {
 				color: var(--link);
 			}
@@ -63,6 +86,21 @@ const posts = (await getCollection('blog')).sort(
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									{post.data.tags && (
+										<div class="tags">
+											{post.data.tags.map((tag: string) => {
+												const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
+												return (
+													<span
+														class="tag"
+														style={`background: ${style.background}; color: ${style.color};`}
+													>
+														{tag}
+													</span>
+												);
+											})}
+										</div>
+									)}
 								</a>
 							</li>
 						))

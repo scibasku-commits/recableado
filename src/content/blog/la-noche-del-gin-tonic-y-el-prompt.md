@@ -3,6 +3,7 @@ title: "La noche del gin tonic y el prompt"
 description: "Cómo la diabetes me quitó las copas y me dio una obsesión mejor"
 pubDate: 2026-02-08
 heroImage: ""
+tags: ["📙 Memoria"]
 ---
 
 Tengo 72 años. Llevo 42 vendiendo viajes. He pisado más países que la mayoría de los pilotos que me llevaban a ellos. Tengo una agencia con licencia CICMA 2283, una bicicleta que uso más que el coche, una moto BMW K1200 que me hace sentir 30 años menos, y una diabetes que me cambió la vida.
