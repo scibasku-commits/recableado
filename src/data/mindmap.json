@@ -1,0 +1,82 @@
+{
+"name": "Giora Gilead Elenberg: Retrato de un Recableado",
+"children": [
+{
+"name": "Perfil Personal",
+"children": [
+{ "name": "Edad: 72 años" },
+{ "name": "Profesión: Agente de viajes (42 años)" },
+{ "name": "Agencia: Viajes Scibasku (Marbella)" },
+{ "name": "Especialidad: Esquí premium y buceo" },
+{ "name": "Aficiones: Ciclismo, motos BMW, tecnología" }
+]
+},
+{
+"name": "El Cambio: De Gin Tonics a la IA",
+"children": [
+{ "name": "Causa: Diabetes y abandono del alcohol" },
+{ "name": "Catalizador: Algoritmo de YouTube" },
+{ "name": "Punto de inflexión: Curso 'Domina ChatGPT' (Mayo 2025)" },
+{ "name": "Instructor: José Ródenas (Solo Agentes Academy)" },
+{ "name": "Resultado: Nota final 91.18 / 100" }
+]
+},
+{
+"name": "Evolución Tecnológica",
+"children": [
+{
+"name": "Fase 1: ChatGPT (ChatIta)",
+"children": [
+{ "name": "Sexteto Ideal de GPTs" },
+{ "name": "Miniyo Digital" }
+]
+},
+{
+"name": "Fase 2: Google & Gemini",
+"children": [
+{ "name": "NotebookLM (Biblioteca privada)" },
+{ "name": "Integración con Drive y Gmail" }
+]
+},
+{
+"name": "Fase 3: Claude & Anthropic",
+"children": [
+{ "name": "Claude Code y MCPs" },
+{ "name": "30+ Skills personalizados" },
+{ "name": "Mac Mini dedicado (ClawdBot)" },
+{ "name": "Método híbrido Ralph+Boris" }
+]
+}
+]
+},
+{
+"name": "Proyectos Digitales",
+"children": [
+{
+"name": "Blog 'Recableado'",
+"children": [
+{ "name": "Plataforma: Astro + Vercel" },
+{ "name": "Temas: IA, turismo y vida" }
+]
+},
+{
+"name": "Dive Cruise Hub (App)",
+"children": [
+{ "name": "Integración API Inseanq" },
+{ "name": "Mapas interactivos de buceo" },
+{ "name": "Modelo B2B y comisiones" }
+]
+}
+]
+},
+{
+"name": "Filosofía y Estrategia",
+"children": [
+{ "name": "Tecnología al servicio de la experiencia" },
+{ "name": "Competencia en calidad, no en descuentos" },
+{ "name": "Obsesión por el aprendizaje continuo" },
+{ "name": "Personalización boutique mediante IA" }
+]
+}
+]
+}

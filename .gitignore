@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.vercel
+
+# NotebookLM assets (videos 93MB)
+Recableado*/
+
+# logs y notas temporales
+mcp-logs.txt
+wa-logs.txt
+notebooklm-instrucciones.md

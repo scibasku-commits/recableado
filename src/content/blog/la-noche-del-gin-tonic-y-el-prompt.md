@@ -2,7 +2,7 @@
 title: "La noche del gin tonic y el prompt"
 description: "Cómo la diabetes me quitó las copas, un curso me enganchó a ChatGPT, y un tal José Ródenas no sabía lo que estaba desatando"
 pubDate: 2026-02-08
-tags: ["Memoria"]
+tags: ["📙 Memoria"]
 heroImage: ""
 ---
 
@@ -42,7 +42,9 @@ Estaba equivocado.
 
 El instructor se llamaba **José Ródenas Montes**. No sé si José sabía lo que estaba desatando cuando me corrigió el primer ejercicio. Probablemente pensó: "Otro alumno más, agente de viajes, sesenta y tantos, hará lo mínimo". Lo que no sabía es que yo tengo un defecto grave: cuando algo me engancha, no sé parar.
 
-Mi primer ejercicio fue sobre las diferencias entre ChatGPT gratis y la versión Plus. José me puso un 90 y escribió: *"Se nota que tienes experiencia en el sector turístico y que has comprendido perfectamente el potencial de ChatGPT como herramienta de trabajo."*
+Mi primer ejercicio fue sobre las diferencias entre ChatGPT gratis y la versión Plus. José me puso un 90 y escribió:
+
+> "Se nota que tienes experiencia en el sector turístico y que has comprendido perfectamente el potencial de ChatGPT como herramienta de trabajo."
 
 Un 90. A los 71 años. En un curso de inteligencia artificial.
 
@@ -54,7 +56,13 @@ Lo que pasó después fue culpa de José. O del algoritmo. O de la diabetes. O d
 
 Porque no hice lo mínimo. Hice lo máximo. Cada ejercicio era una excusa para meter mi agencia entera dentro de ChatGPT. ¿Que pedían un prompt básico? Yo entregaba un sistema completo de propuestas de esquí en Aspen con presupuestos, hoteles cinco estrellas y llamada a la acción incluida. ¿Que pedían crear un "miniyo digital"? Yo construía un ejército de seis GPTs especializados — el **"Sexteto Ideal de Viajes Scibasku"** — cada uno entrenado para una función distinta de mi agencia.
 
-José, el pobre, no daba abasto. En una corrección escribió: *"Has hecho mucho más que cumplir el objetivo del tema: has desplegado una visión avanzada, sistematizada y totalmente realista."* En otra: *"Tu energía... ya la quisieran muchos de 25 años."*
+José, el pobre, no daba abasto. En una corrección escribió:
+
+> "Has hecho mucho más que cumplir el objetivo del tema: has desplegado una visión avanzada, sistematizada y totalmente realista."
+
+En otra:
+
+> "Tu energía... ya la quisieran muchos de 25 años."
 
 José: si estás leyendo esto, lo siento. Pero también: gracias.
 
@@ -66,7 +74,9 @@ En septiembre de 2025 llegó la prueba final. El ejercicio se llamaba **"Tu Agen
 
 Saqué un **95 sobre 100**.
 
-José escribió: *"Si este trabajo lo leyera alguien fuera del contexto del curso, pensaría que estás diseñando el manual operativo de una agencia boutique de alto nivel. Y tendría razón."*
+José escribió:
+
+> "Si este trabajo lo leyera alguien fuera del contexto del curso, pensaría que estás diseñando el manual operativo de una agencia boutique de alto nivel. Y tendría razón."
 
 Nota final del curso: **91,18**.
 
@@ -115,3 +125,5 @@ Bueno, sí. Dormiría un poco más. Pero eso es un problema que ni la IA me ha r
 ---
 
 **Giora Gilead** · CICMA 2283 · Marbella · Pedaleando desde 1954
+
+[Ver mis 22 ejercicios del curso →](/ejercicios/)

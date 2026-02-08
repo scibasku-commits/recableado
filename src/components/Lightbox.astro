@@ -1,0 +1,25 @@
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelectorAll('img.zoomable').forEach(img => {
+		img.style.cursor = 'zoom-in';
+		img.addEventListener('click', () => {
+			const overlay = document.createElement('div');
+			overlay.className = 'lightbox-overlay';
+			const fullImg = document.createElement('img');
+			fullImg.src = img.src;
+			fullImg.alt = img.alt || '';
+			overlay.appendChild(fullImg);
+			document.body.appendChild(overlay);
+			requestAnimationFrame(() => overlay.classList.add('visible'));
+			const close = () => {
+				overlay.classList.remove('visible');
+				setTimeout(() => overlay.remove(), 300);
+			};
+			overlay.addEventListener('click', close);
+			document.addEventListener('keydown', function handler(e) {
+				if (e.key === 'Escape') { close(); document.removeEventListener('keydown', handler); }
+			});
+		});
+	});
+});
+</script>

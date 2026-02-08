@@ -1,12 +1,15 @@
 ---
+export const prerender = true;
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Lightbox from '../components/Lightbox.astro';
 import { SITE_TITLE } from '../consts';
+import mindmapData from '../data/mindmap.json';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={`Sobre mí - ${SITE_TITLE}`} description="Giora, 72 años, 42 vendiendo viajes, y una IA que no me deja dormir." />
 	</head>
@@ -24,10 +27,324 @@ import { SITE_TITLE } from '../consts';
 			<p>Aquí no voy en orden. Un día te cuento algo que descubrí ayer. Al siguiente te llevo a una noche de agosto de 2025 cuando escribí mi primer prompt sin saber lo que era un prompt. Y al otro te hablo de lo que creo que viene en el futuro.</p>
 			<p>Pasado, presente y futuro — mezclados como una buena conversación de terraza. Porque así es como funciona mi cabeza desde que la IA me la recableó: todo conectado, todo a la vez, todo a las 3 de la mañana.</p>
 
-			<h2>Contacto</h2>
-			<p>Si quieres hablar de IA, de viajes, o de por qué la diabetes fue lo mejor que me pasó, escríbeme. Si quieres que dé una charla en tu empresa o evento sobre cómo un señor de 72 años automatizó su negocio sin saber programar, también.</p>
-			<p><a href="mailto:giora@viajesscibasku.com">giora@viajesscibasku.com</a></p>
+			<hr />
+
+			<!-- Infografia portrait -->
+			<section class="infografia-section">
+				<h2 class="section-title">Mi recableado en imágenes</h2>
+				<div class="infografia-container">
+					<img
+						src="/images/recableado-portrait.webp"
+						alt="Recableado a los 72: IA - infografía completa de la transformación"
+						class="infografia-img zoomable"
+						loading="lazy"
+					/>
+				</div>
+				<div class="infografia-actions">
+					<a href="/images/recableado-portrait.webp" download="recableado-infografia.webp" class="btn-secondary">
+						Descargar infografía
+					</a>
+				</div>
+			</section>
+
+			<hr />
+
+			<!-- Mind map interactivo -->
+			<section class="mindmap-section">
+				<h2 class="section-title">Mi mapa mental</h2>
+				<div class="mindmap-container">
+					<div class="mindmap-root">
+						<span class="mindmap-root-label">{mindmapData.name}</span>
+					</div>
+					<div class="mindmap-branches">
+						{mindmapData.children.map((branch: any) => (
+							<details class="mindmap-branch">
+								<summary class="branch-title">{branch.name}</summary>
+								<ul class="branch-items">
+									{branch.children?.map((child: any) => (
+										<li class="branch-item">
+											{child.children ? (
+												<details class="mindmap-subbranch">
+													<summary class="subbranch-title">{child.name}</summary>
+													<ul class="subbranch-items">
+														{child.children.map((sub: any) => (
+															<li class="subbranch-item">{sub.name}</li>
+														))}
+													</ul>
+												</details>
+											) : (
+												<span>{child.name}</span>
+											)}
+										</li>
+									))}
+								</ul>
+							</details>
+						))}
+					</div>
+				</div>
+				<p class="mindmap-caption">Mapa mental generado por NotebookLM con 18 fuentes</p>
+			</section>
+
+			<hr />
+
+			<!-- Videos NotebookLM -->
+			<section class="media-section">
+				<h2 class="section-title">La película completa</h2>
+				<p class="media-intro">3 vídeos generados por NotebookLM a partir de 18 fuentes sobre mi recableado.</p>
+
+				<div class="video-grid">
+					<div class="video-card">
+						<video controls preload="metadata" playsinline>
+							<source src="https://res.cloudinary.com/drqgkirpy/video/upload/v1770579619/recableado/el-viaje-de-giora.mp4" type="video/mp4" />
+						</video>
+						<h3 class="video-title">El Viaje de Giora</h3>
+						<p class="video-desc">La historia completa: de los gin tonics a la IA</p>
+					</div>
+
+					<div class="video-card">
+						<video controls preload="metadata" playsinline>
+							<source src="https://res.cloudinary.com/drqgkirpy/video/upload/v1770579624/recableado/el-viajero-recableado.mp4" type="video/mp4" />
+						</video>
+						<h3 class="video-title">El Viajero Recableado</h3>
+						<p class="video-desc">Un agente de viajes que se reinventó a los 72</p>
+					</div>
+
+					<div class="video-card">
+						<video controls preload="metadata" playsinline>
+							<source src="https://res.cloudinary.com/drqgkirpy/video/upload/v1770579629/recableado/recableado-mental-ia-72.mp4" type="video/mp4" />
+						</video>
+						<h3 class="video-title">Recableado mental con IA a los 72</h3>
+						<p class="video-desc">Cómo la inteligencia artificial me rejuveneció la mente</p>
+					</div>
+				</div>
+			</section>
+
+			<hr />
+
+			<!-- Contacto mejorado -->
+			<section class="contact-section">
+				<h2 class="section-title">Contacto</h2>
+				<div class="contact-card">
+					<p class="contact-text">Si quieres hablar de IA, de viajes, o de por qué la diabetes fue lo mejor que me pasó, escríbeme. Si quieres que dé una charla en tu empresa o evento sobre cómo un señor de 72 años automatizó su negocio sin saber programar, también.</p>
+					<a href="mailto:giora@viajesscibasku.com" class="contact-email">
+						✉️ giora@viajesscibasku.com
+					</a>
+					<p class="contact-talks">También doy charlas → más info próximamente</p>
+				</div>
+			</section>
 		</main>
 		<Footer />
+		<Lightbox />
 	</body>
 </html>
+<style>
+	/* Infografia */
+	.infografia-section {
+		text-align: center;
+		margin: 2em 0;
+	}
+	.infografia-container {
+		display: flex;
+		justify-content: center;
+	}
+	.infografia-img {
+		max-width: 500px;
+		width: 100%;
+		border-radius: 12px;
+		box-shadow: 0 4px 20px rgba(26, 54, 93, 0.15);
+	}
+	.infografia-actions {
+		margin-top: 1.2em;
+	}
+
+	/* Mind map */
+	.mindmap-section {
+		margin: 2em 0;
+	}
+	.mindmap-container {
+		background: var(--heading);
+		border-radius: 12px;
+		padding: 2em;
+		color: white;
+	}
+	.mindmap-root {
+		text-align: center;
+		margin-bottom: 1.5em;
+	}
+	.mindmap-root-label {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.3em;
+		font-weight: 700;
+		color: var(--naranja);
+	}
+	.mindmap-branches {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6em;
+	}
+	.mindmap-branch {
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
+		border-left: 3px solid var(--naranja);
+		overflow: hidden;
+	}
+	.branch-title {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-weight: 600;
+		font-size: 1em;
+		padding: 0.8em 1em;
+		cursor: pointer;
+		list-style: none;
+		color: white;
+	}
+	.branch-title::-webkit-details-marker {
+		display: none;
+	}
+	.branch-title::before {
+		content: '▸ ';
+		color: var(--naranja);
+		transition: transform 0.2s;
+	}
+	.mindmap-branch[open] > .branch-title::before {
+		content: '▾ ';
+	}
+	.branch-items {
+		list-style: none;
+		padding: 0 1em 0.8em 2em;
+		margin: 0;
+	}
+	.branch-item {
+		padding: 0.3em 0;
+		font-size: 0.9em;
+		color: rgba(255, 255, 255, 0.85);
+		line-height: 1.5;
+	}
+	.mindmap-subbranch {
+		margin: 0.2em 0;
+	}
+	.subbranch-title {
+		cursor: pointer;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.95);
+		list-style: none;
+		font-size: 0.95em;
+	}
+	.subbranch-title::-webkit-details-marker {
+		display: none;
+	}
+	.subbranch-title::before {
+		content: '▸ ';
+		color: var(--naranja);
+		font-size: 0.8em;
+	}
+	.mindmap-subbranch[open] > .subbranch-title::before {
+		content: '▾ ';
+	}
+	.subbranch-items {
+		list-style: none;
+		padding: 0.2em 0 0 1.2em;
+		margin: 0;
+	}
+	.subbranch-item {
+		padding: 0.15em 0;
+		font-size: 0.88em;
+		color: rgba(255, 255, 255, 0.75);
+	}
+	.mindmap-caption {
+		text-align: center;
+		font-size: 0.85em;
+		color: var(--gray);
+		margin-top: 0.8em;
+		font-style: italic;
+	}
+
+	/* Videos */
+	.media-section {
+		margin: 2em 0;
+	}
+	.media-intro {
+		color: var(--gray);
+		font-size: 0.95em;
+		margin-bottom: 1.5em;
+	}
+	.video-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5em;
+	}
+	.video-card {
+		background: white;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		overflow: hidden;
+		transition: box-shadow 0.2s ease;
+	}
+	.video-card:hover {
+		box-shadow: 0 4px 16px rgba(26, 54, 93, 0.1);
+	}
+	.video-card video {
+		width: 100%;
+		display: block;
+		background: #000;
+		border-radius: 0;
+	}
+	.video-title {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.05em;
+		color: var(--heading);
+		margin: 0.8em 1em 0.2em;
+		font-weight: 600;
+	}
+	.video-desc {
+		font-size: 0.88em;
+		color: var(--gray);
+		margin: 0 1em 0.8em;
+		line-height: 1.5;
+	}
+
+	/* Contact card */
+	.contact-section {
+		margin: 2em 0;
+	}
+	.contact-card {
+		background: #fef5e7;
+		border-radius: 12px;
+		border-left: 4px solid var(--naranja);
+		padding: 1.5em 2em;
+	}
+	.contact-text {
+		margin-bottom: 1em;
+		line-height: 1.7;
+	}
+	.contact-email {
+		display: inline-block;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.1em;
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--heading);
+		margin-bottom: 0.5em;
+	}
+	.contact-email:hover {
+		color: var(--naranja);
+	}
+	.contact-talks {
+		font-size: 0.9em;
+		color: var(--gray);
+		margin: 0;
+		font-style: italic;
+	}
+
+	@media (max-width: 720px) {
+		.mindmap-container {
+			padding: 1.2em;
+		}
+		.mindmap-root-label {
+			font-size: 1.1em;
+		}
+		.contact-card {
+			padding: 1.2em;
+		}
+	}
+</style>
