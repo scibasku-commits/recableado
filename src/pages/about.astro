@@ -1,63 +1,33 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Sobre mí - ${SITE_TITLE}`} description="Giora, 72 años, 42 vendiendo viajes, y una IA que no me deja dormir." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Sobre mí</h1>
+			<p><strong>Soy Giora.</strong> Tengo 72 años y llevo 42 vendiendo viajes. Los otros 30 los pasé pedaleando, esquiando, buceando, trabajando, yéndome de juerga e intentando ligar. No necesariamente en ese orden.</p>
+			<p>Dirijo Viajes Scibasku desde Marbella — esquí, buceo, experiencias que no se encuentran en Google. CICMA 2283. Una agencia, un hombre, y ahora una inteligencia artificial que no me deja dormir.</p>
+			<p>Porque de repente todo cambió.</p>
+			<p>La diabetes me quitó los gin tonics nocturnos. Los cambié por YouTube. YouTube me llevó a la inteligencia artificial. Y la inteligencia artificial me rejuveneció la mente 30 años. Ahora automatizo lo que antes me llevaba un equipo entero, genero presupuestos premium en minutos, tengo un Mac Mini que trabaja mientras duermo, y sigo sin entender la mitad de lo que hago — pero funciona.</p>
+			<p>Este blog cuenta esa historia. Los descubrimientos, los desastres, las noches a las 3am peleando con tecnología que no existía cuando yo empecé a viajar. Si tienes más de 50 y crees que la IA no es para ti, quédate. Si tienes 25 y crees que lo sabes todo, también.</p>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+			<h2>Cómo funciona este blog</h2>
+			<p>Aquí no voy en orden. Un día te cuento algo que descubrí ayer. Al siguiente te llevo a una noche de agosto de 2025 cuando escribí mi primer prompt sin saber lo que era un prompt. Y al otro te hablo de lo que creo que viene en el futuro.</p>
+			<p>Pasado, presente y futuro — mezclados como una buena conversación de terraza. Porque así es como funciona mi cabeza desde que la IA me la recableó: todo conectado, todo a la vez, todo a las 3 de la mañana.</p>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+			<h2>Contacto</h2>
+			<p>Si quieres hablar de IA, de viajes, o de por qué la diabetes fue lo mejor que me pasó, escríbeme. Si quieres que dé una charla en tu empresa o evento sobre cómo un señor de 72 años automatizó su negocio sin saber programar, también.</p>
+			<p><a href="mailto:giora@viajesscibasku.com">giora@viajesscibasku.com</a></p>
+		</main>
+		<Footer />
+	</body>
+</html>
