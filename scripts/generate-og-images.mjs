@@ -1,37 +1,75 @@
 import sharp from 'sharp';
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { readFileSync, readdirSync, mkdirSync, existsSync } from 'fs';
+import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
 // Load fonts as base64 for SVG embedding
-const fontBoldPath = join(root, 'public/fonts/BricolageGrotesque-Bold.ttf');
-const fontRegularPath = join(root, 'public/fonts/BricolageGrotesque-Regular.ttf');
-const fontBoldB64 = readFileSync(fontBoldPath).toString('base64');
-const fontRegularB64 = readFileSync(fontRegularPath).toString('base64');
+const fontBoldB64 = readFileSync(join(root, 'public/fonts/BricolageGrotesque-Bold.ttf')).toString('base64');
+const fontRegularB64 = readFileSync(join(root, 'public/fonts/BricolageGrotesque-Regular.ttf')).toString('base64');
 
-const posts = [
-  {
-    slug: 'la-noche-del-gin-tonic-y-el-prompt',
-    tag: 'MEMORIA',
-    title: 'La noche del gin tonic y el prompt',
-    description: 'Como la diabetes me quito las copas, un curso me engancho a ChatGPT, y un tal Jose Rodenas no sabia lo que estaba desatando',
-  },
-  {
-    slug: '003-tiburones-y-bases-de-datos',
-    tag: 'AHORA',
-    title: 'He buceado con tiburones martillo. Hoy luche con una base de datos.',
-    description: 'O como un agente de viajes que perdio 20 kilos decidio tambien perder 2 bases de datos',
-  },
-  {
-    slug: '004-agentes-oficina',
-    tag: 'AHORA',
-    title: 'Hoy monte una propuesta de esqui en Japon para 5 personas. Me ayudaron 3 empleados. Ninguno es humano.',
-    description: 'Como 3 agentes IA se coordinaron (y se pelearon) para crear una propuesta de viaje completa en una manana.',
-  },
-];
+// Map emoji tags from frontmatter → uppercase label for OG image
+const TAG_MAP = {
+  'Memoria':  'MEMORIA',
+  'Ahora':    'AHORA',
+  'Horizonte':'HORIZONTE',
+  'Taller':   'TALLER',
+  'Anécdota': 'ANÉCDOTA',
+  'Vida':     'VIDA',
+  'Reseña':   'RESEÑA',
+};
+
+function parseTag(raw) {
+  // "📙 Memoria" → "Memoria" → "MEMORIA"
+  const cleaned = raw.replace(/^[\p{Emoji}\p{Emoji_Presentation}\s]+/u, '').trim();
+  return TAG_MAP[cleaned] || cleaned.toUpperCase();
+}
+
+function parseFrontmatter(content) {
+  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return null;
+  const block = match[1];
+
+  const title = block.match(/title:\s*"([^"]*)"/)?.[1] || '';
+  const description = block.match(/description:\s*"([^"]*)"/)?.[1] || '';
+  const tagsMatch = block.match(/tags:\s*\[([^\]]*)\]/);
+  const tags = tagsMatch
+    ? tagsMatch[1].match(/"([^"]*)"/g)?.map(t => t.replace(/"/g, '')) || []
+    : [];
+
+  return { title, description, tags };
+}
+
+// Strip accents for OG text (SVG/librsvg can't render all diacritics reliably)
+function stripAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function discoverPosts() {
+  const blogDir = join(root, 'src/content/blog');
+  const files = readdirSync(blogDir).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
+  const posts = [];
+
+  for (const file of files) {
+    const content = readFileSync(join(blogDir, file), 'utf-8');
+    const fm = parseFrontmatter(content);
+    if (!fm || !fm.title) continue;
+
+    const slug = basename(file, file.endsWith('.mdx') ? '.mdx' : '.md');
+    const tag = fm.tags.length > 0 ? parseTag(fm.tags[0]) : 'BLOG';
+
+    posts.push({
+      slug,
+      tag,
+      title: stripAccents(fm.title),
+      description: stripAccents(fm.description),
+    });
+  }
+
+  return posts;
+}
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -45,7 +83,6 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-// Simple word-wrap: split text into lines that fit within maxWidth chars
 function wrapText(text, maxCharsPerLine) {
   const words = text.split(' ');
   const lines = [];
@@ -70,7 +107,6 @@ function generateSvg(post) {
 
   const descLines = wrapText(post.description, 65);
 
-  // Layout positions
   const padLeft = 80;
   const tagY = 140;
   const lineY = tagY + 30;
@@ -111,7 +147,7 @@ function generateSvg(post) {
   <!-- Background -->
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg)"/>
 
-  <!-- Decorative quotes (right side) -->
+  <!-- Decorative quotes -->
   <text x="${WIDTH - 140}" y="${HEIGHT / 2 + 20}" font-family="Georgia, serif" font-size="220" fill="rgba(255,255,255,0.06)" font-weight="700">&quot;&quot;</text>
 
   <!-- Tag -->
@@ -130,7 +166,7 @@ function generateSvg(post) {
       ${descTspans}
   </text>
 
-  <!-- Footer: Author -->
+  <!-- Footer -->
   <text x="${padLeft}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="white">Giora Gilead, 72 anos</text>
   <text x="${padLeft + 218}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="400" font-size="18" fill="#a0aec0">  ·  </text>
   <text x="${padLeft + 252}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="#e8825c" font-style="italic">Recableado</text>
@@ -138,23 +174,32 @@ function generateSvg(post) {
 }
 
 async function main() {
-  console.log('Generating OG images...\n');
+  const outDir = join(root, 'public/og');
+  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
+  const posts = discoverPosts();
+  console.log(`OG: found ${posts.length} posts\n`);
+
+  let generated = 0;
   for (const post of posts) {
+    const outPath = join(outDir, `${post.slug}.png`);
+
+    // Skip if image already exists and --force not passed
+    if (existsSync(outPath) && !process.argv.includes('--force')) {
+      console.log(`  - ${post.slug}.png (exists, skipped)`);
+      continue;
+    }
+
     const svg = generateSvg(post);
-    const outPath = join(root, 'public/og', `${post.slug}.png`);
-
-    await sharp(Buffer.from(svg))
-      .png()
-      .toFile(outPath);
-
-    console.log(`  ✓ ${post.slug}.png`);
+    await sharp(Buffer.from(svg)).png().toFile(outPath);
+    console.log(`  + ${post.slug}.png`);
+    generated++;
   }
 
-  console.log('\nDone! Images saved to public/og/');
+  console.log(`\nDone: ${generated} generated, ${posts.length - generated} skipped`);
 }
 
 main().catch(err => {
-  console.error('Error:', err);
+  console.error('OG Error:', err);
   process.exit(1);
 });
