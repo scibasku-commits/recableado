@@ -28,7 +28,7 @@ const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
 
 <html lang="es">
 	<head>
-		<BaseHead title={title} description={description} ogImage="/og-gin-tonic.jpg" />
+		<BaseHead title={title} description={description} ogImage={`/og/${slug}.png`} />
 		<style>
 			main {
 				width: calc(100% - 2em);
