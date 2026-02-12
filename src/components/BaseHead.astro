@@ -3,20 +3,35 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
+import type { Lang } from '../i18n/languages';
+import { getAlternateUrl } from '../i18n/utils';
 const FallbackImage = { src: '/images/og-recableado.jpg' };
 import { SITE_TITLE } from '../consts';
+import SchemaMarkup from './SchemaMarkup.astro';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
 	ogImage?: string;
+	lang?: Lang;
+	type?: 'blogPost' | 'about' | 'home';
+	pubDate?: Date;
+	updatedDate?: Date;
+	tags?: string[];
+	slug?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description, image = FallbackImage, ogImage, lang = 'es', type = 'home', pubDate, updatedDate, tags, slug } = Astro.props;
 
-const { title, description, image = FallbackImage, ogImage } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL(image.src, Astro.url);
+
+const alternatePath = getAlternateUrl(lang, Astro.url.pathname);
+const alternateURL = new URL(alternatePath, Astro.site);
+const esURL = lang === 'es' ? canonicalURL : alternateURL;
+const enURL = lang === 'en' ? canonicalURL : alternateURL;
+const rssPath = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 ---
 
 <!-- Global Metadata -->
@@ -29,9 +44,14 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL(image.src, A
 	rel="alternate"
 	type="application/rss+xml"
 	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
+	href={new URL(rssPath, Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Hreflang -->
+<link rel="alternate" hreflang="es" href={esURL} />
+<link rel="alternate" hreflang="en" href={enURL} />
+<link rel="alternate" hreflang="x-default" href={esURL} />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,11 +67,12 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL(image.src, A
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type === 'blogPost' ? 'article' : 'website'} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -59,6 +80,9 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL(image.src, A
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImageUrl} />
+
+<!-- Schema JSON-LD -->
+<SchemaMarkup type={type} title={title} description={description} pubDate={pubDate} updatedDate={updatedDate} tags={tags} slug={slug} lang={lang as 'es' | 'en'} />
 
 <!-- Vercel Analytics -->
 <script>

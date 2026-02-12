@@ -1,0 +1,115 @@
+---
+interface Props {
+	type: 'blogPost' | 'about' | 'home';
+	title?: string;
+	description?: string;
+	pubDate?: Date;
+	updatedDate?: Date;
+	tags?: string[];
+	image?: string;
+	slug?: string;
+	lang?: 'es' | 'en';
+}
+
+const { type, title, description, pubDate, updatedDate, tags, image, slug, lang = 'es' } = Astro.props;
+
+const siteUrl = 'https://recableado.blog';
+const logoUrl = `${siteUrl}/favicon.svg`;
+const defaultImage = `${siteUrl}/images/og-recableado.jpg`;
+
+function buildBlogPostingSchema() {
+	const pageUrl = slug ? `${siteUrl}/${lang === 'en' ? 'en/' : ''}blog/${slug}/` : Astro.url.href;
+	const imageUrl = image ? `${siteUrl}${image}` : defaultImage;
+
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': pageUrl,
+		},
+		headline: title,
+		description: description,
+		image: [imageUrl],
+		datePublished: pubDate?.toISOString(),
+		dateModified: (updatedDate || pubDate)?.toISOString(),
+		author: {
+			'@type': 'Person',
+			name: 'Giora Gilead Elenberg',
+			url: `${siteUrl}/about/`,
+			jobTitle: 'Empresario Senior & Explorador de IA',
+			sameAs: [
+				'https://www.linkedin.com/in/giora-gilead/',
+				siteUrl,
+			],
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Recableado.blog',
+			logo: {
+				'@type': 'ImageObject',
+				url: logoUrl,
+			},
+		},
+		keywords: tags,
+		inLanguage: lang === 'en' ? 'en' : 'es-ES',
+		isAccessibleForFree: true,
+	};
+}
+
+function buildPersonSchema() {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		'@id': `${siteUrl}/#giora`,
+		name: 'Giora Gilead Elenberg',
+		alternateName: 'Giora Gilead',
+		nationality: 'Spanish',
+		birthDate: '1952',
+		jobTitle: 'Fundador & Autor',
+		worksFor: {
+			'@type': 'Organization',
+			name: 'Viajes Scibasku',
+		},
+		url: `${siteUrl}/about/`,
+		sameAs: [
+			'https://www.linkedin.com/in/giora-gilead/',
+			siteUrl,
+		],
+		knowsAbout: [
+			'Inteligencia Artificial para Seniors',
+			'Turismo de Lujo',
+			'Automatización de Negocios (No-Code)',
+			'Protocolos MCP',
+			'Silver Economy',
+		],
+		description: 'Empresario de viajes premium desde 1982 reconvertido en explorador digital. Ayudo a la generación Silver a perder el miedo a la tecnología mediante la experimentación práctica y el humor.',
+	};
+}
+
+function buildWebSiteSchema() {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Recableado.blog',
+		url: siteUrl,
+		description: 'Blog personal sobre la adopción de la Inteligencia Artificial por un empresario de 72 años.',
+		inLanguage: ['es', 'en'],
+		author: {
+			'@type': 'Person',
+			name: 'Giora Gilead Elenberg',
+			url: `${siteUrl}/about/`,
+		},
+	};
+}
+
+const schemaMap = {
+	blogPost: buildBlogPostingSchema,
+	about: buildPersonSchema,
+	home: buildWebSiteSchema,
+};
+
+const schema = schemaMap[type]();
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
