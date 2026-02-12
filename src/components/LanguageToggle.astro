@@ -1,0 +1,46 @@
+---
+import type { Lang } from '../i18n/languages';
+import { getAlternateUrl } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const alternateUrl = getAlternateUrl(lang, Astro.url.pathname);
+const label = lang === 'es' ? 'EN' : 'ES';
+const flag = lang === 'es' ? '🇬🇧' : '🇪🇸';
+---
+
+<a href={alternateUrl} class="lang-toggle" aria-label={`Switch to ${label}`}>
+	<span class="lang-flag">{flag}</span>
+	<span class="lang-label">{label}</span>
+</a>
+<style>
+	.lang-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3em;
+		padding: 0.2em 0.6em;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--bg);
+		text-decoration: none;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.8em;
+		font-weight: 600;
+		color: var(--text);
+		transition: border-color 0.2s, background 0.2s;
+	}
+	.lang-toggle:hover {
+		border-color: var(--naranja);
+		background: rgba(232, 130, 92, 0.08);
+	}
+	.lang-flag {
+		font-size: 1.1em;
+		line-height: 1;
+	}
+	.lang-label {
+		letter-spacing: 0.03em;
+	}
+</style>

@@ -1,19 +1,26 @@
 ---
 export const prerender = true;
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import { useTranslations } from '../../i18n/utils';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_TITLE } from '../../../consts';
+import { useTranslations } from '../../../i18n/utils';
 
-const lang = 'es' as const;
+const lang = 'en' as const;
 const t = useTranslations(lang);
 
-const posts = (await getCollection('blogEs')).sort(
+// Use EN posts if available, fallback to ES
+let posts = (await getCollection('blogEn')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const usingFallback = posts.length === 0;
+if (usingFallback) {
+	posts = (await getCollection('blogEs')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+}
 
 const tagStyles: Record<string, { background: string; color: string; emoji: string }> = {
 	'📙 Memoria': { background: '#1a365d', color: 'white', emoji: '📙' },
@@ -29,12 +36,14 @@ function getFirstTagStyle(tags?: string[]) {
 	if (!tags || tags.length === 0) return { background: '#a0aec0', color: 'white', emoji: '✍️' };
 	return tagStyles[tags[0]] || { background: '#a0aec0', color: 'white', emoji: '✍️' };
 }
+
+const blogBase = usingFallback ? '/blog' : '/en/blog';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 	<head>
-		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} lang={lang} />
+		<BaseHead title={`Blog - ${SITE_TITLE}`} description="A 72-year-old traveller discovering the last continent" lang={lang} />
 	</head>
 	<body>
 		<Header lang={lang} />
@@ -44,6 +53,12 @@ function getFirstTagStyle(tags?: string[]) {
 				<p class="post-count">{(t('blog.postCount') as Function)(posts.length)}</p>
 			</div>
 
+			{usingFallback && (
+				<div class="fallback-banner">
+					Posts are currently in Spanish. Translations coming soon.
+				</div>
+			)}
+
 			<div class="post-list">
 				{posts.map((post) => {
 					const tagStyle = getFirstTagStyle(post.data.tags);
@@ -52,7 +67,7 @@ function getFirstTagStyle(tags?: string[]) {
 						? post.data.description.slice(0, 120) + '...'
 						: post.data.description || '';
 					return (
-						<a href={`/blog/${post.id}/`} class="post-card">
+						<a href={`${blogBase}/${post.id}/`} class="post-card">
 							<div class="post-thumb">
 								{post.data.heroImage ? (
 									<img src={post.data.heroImage} alt="" loading="lazy" />
@@ -99,6 +114,15 @@ function getFirstTagStyle(tags?: string[]) {
 		font-size: 0.9em;
 		margin: -0.5em 0 0;
 	}
+	.fallback-banner {
+		background: #fef5e7;
+		border-left: 4px solid var(--naranja);
+		padding: 0.8em 1.2em;
+		margin-bottom: 1.5em;
+		border-radius: 0 8px 8px 0;
+		font-size: 0.9em;
+		color: var(--text);
+	}
 
 	.post-list {
 		display: flex;
@@ -144,7 +168,6 @@ function getFirstTagStyle(tags?: string[]) {
 	}
 	.thumb-emoji {
 		font-size: 3em;
-		filter: grayscale(0);
 	}
 
 	.post-content {

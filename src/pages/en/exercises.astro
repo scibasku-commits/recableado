@@ -1,0 +1,287 @@
+---
+export const prerender = true;
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Exercises - ${SITE_TITLE}`} description="22 exercises from the DOMINA ChatGPT course. Final grade: 91.18. At 71 years old." lang="en" />
+	</head>
+	<body>
+		<Header lang="en" />
+		<main>
+			<div class="hero">
+				<h1>22 exercises. 95/100.<br/>At 71 years old.</h1>
+				<p class="subtitle">DOMINA ChatGPT Course · Solo Agentes Academy · May—September 2025</p>
+			</div>
+
+			<p>For those who don't believe it — or think I'm exaggerating — here are my 22 exercises from the course, plus the final exam. Each PDF includes the instructor's complete annotations.</p>
+			<p>From June 11 to September 27, 2025. Without skipping a single one.</p>
+
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th class="col-num">#</th>
+							<th class="col-name">Exercise</th>
+							<th class="col-tema">Topic</th>
+							<th class="col-nota">Grade</th>
+							<th class="col-fecha">Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td>1</td><td><a href="/docs/curso-chatgpt/ejercicio-01.pdf">Exercise 01</a></td><td>T02 · ChatGPT from scratch</td><td>90</td><td>Jun 11</td></tr>
+						<tr><td>2</td><td><a href="/docs/curso-chatgpt/ejercicio-02.pdf">Exercise 02</a></td><td>T02 · ChatGPT from scratch</td><td>80</td><td>Jun 15</td></tr>
+						<tr><td>3</td><td><a href="/docs/curso-chatgpt/ejercicio-03.pdf">Exercise 01</a></td><td>T03 · Train ChatGPT</td><td>90</td><td>Jun 17</td></tr>
+						<tr><td>4</td><td><a href="/docs/curso-chatgpt/ejercicio-04.pdf">Exercise 02</a></td><td>T03 · Train ChatGPT</td><td>85</td><td>Jun 24</td></tr>
+						<tr><td>5</td><td><a href="/docs/curso-chatgpt/ejercicio-05.pdf">Exercise 02</a></td><td>T04 · Prompts that work</td><td>90</td><td>Jul 4</td></tr>
+						<tr><td>6</td><td><a href="/docs/curso-chatgpt/ejercicio-06.pdf">Exercise 01</a></td><td>T05 · Your digital mini-me</td><td>90</td><td>Jul 13</td></tr>
+						<tr><td>7</td><td><a href="/docs/curso-chatgpt/ejercicio-07.pdf">Exercise 02</a></td><td>T05 · Your digital mini-me</td><td>90</td><td>Jul 17</td></tr>
+						<tr><td>8</td><td><a href="/docs/curso-chatgpt/ejercicio-08.pdf">Exercise 01</a></td><td>T06 · Everyday AI in your agency</td><td>90</td><td>Aug 10</td></tr>
+						<tr><td>9</td><td><a href="/docs/curso-chatgpt/ejercicio-09.pdf">Exercise 01</a></td><td>T07 · Images with AI</td><td>85</td><td>Aug 27</td></tr>
+						<tr><td>10</td><td><a href="/docs/curso-chatgpt/ejercicio-10.pdf">Exercise 02</a></td><td>T07 · Images with AI</td><td>90</td><td>Sep 6</td></tr>
+						<tr><td>11</td><td><a href="/docs/curso-chatgpt/ejercicio-11.pdf">Exercise 03</a></td><td>T07 · Images with AI</td><td>85</td><td>Sep 7</td></tr>
+						<tr class="highlight"><td>12</td><td><a href="/docs/curso-chatgpt/ejercicio-12.pdf">Exercise 01</a></td><td>T08 · Build your own GPT</td><td><strong>95</strong></td><td>Sep 10</td></tr>
+						<tr><td>13</td><td><a href="/docs/curso-chatgpt/ejercicio-13.pdf">Exercise 02</a></td><td>T08 · Build your own GPT</td><td>90</td><td>Sep 11</td></tr>
+						<tr><td>14</td><td><a href="/docs/curso-chatgpt/ejercicio-14.pdf">Exercise 01</a></td><td>T09 · GPT ecosystem</td><td>90</td><td>Sep 13</td></tr>
+						<tr><td>15</td><td><a href="/docs/curso-chatgpt/ejercicio-15.pdf">Exercise 02</a></td><td>T09 · GPT ecosystem</td><td>85</td><td>Sep 13</td></tr>
+						<tr><td>16</td><td><a href="/docs/curso-chatgpt/ejercicio-16.pdf">Exercise 01</a></td><td>T10 · Common mistakes</td><td>85</td><td>Sep 14</td></tr>
+						<tr><td>17</td><td><a href="/docs/curso-chatgpt/ejercicio-17.pdf">Exercise 02</a></td><td>T10 · Common mistakes</td><td>85</td><td>Sep 14</td></tr>
+						<tr><td>18</td><td><a href="/docs/curso-chatgpt/ejercicio-18.pdf">Exercise 01</a></td><td>T11 · Research with AI</td><td>90</td><td>Sep 16</td></tr>
+						<tr><td>19</td><td><a href="/docs/curso-chatgpt/ejercicio-19.pdf">Exercise 02</a></td><td>T11 · Research with AI</td><td>85</td><td>Sep 16</td></tr>
+						<tr><td>20</td><td><a href="/docs/curso-chatgpt/ejercicio-20.pdf">Exercise 01</a></td><td>T12 · Automate and lead</td><td>90</td><td>Sep 16</td></tr>
+						<tr><td>21</td><td><a href="/docs/curso-chatgpt/ejercicio-21.pdf">Exercise 02</a></td><td>T12 · Automate and lead</td><td>90</td><td>Sep 24</td></tr>
+						<tr class="final"><td>22</td><td><a href="/docs/curso-chatgpt/ejercicio-22.pdf"><strong>Final Exam</strong></a></td><td>Your Intelligent Agency</td><td><strong>95</strong></td><td>Sep 24</td></tr>
+						<tr class="final total"><td></td><td><a href="/docs/curso-chatgpt/calificacion-final.pdf"><strong>Course Grade</strong></a></td><td></td><td><strong>91.18</strong></td><td>Sep 27</td></tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="stats">
+				<div class="stat">
+					<span class="stat-number">91.18</span>
+					<span class="stat-label">Final grade</span>
+				</div>
+				<div class="stat">
+					<span class="stat-number">22</span>
+					<span class="stat-label">Exercises</span>
+				</div>
+				<div class="stat">
+					<span class="stat-number">95</span>
+					<span class="stat-label">Highest grade</span>
+				</div>
+				<div class="stat">
+					<span class="stat-number">4 months</span>
+					<span class="stat-label">May — Sep 2025</span>
+				</div>
+			</div>
+
+			<h2>What Jose wrote</h2>
+
+			<p>Jose Rodenas Montes was the instructor who graded each one of my exercises. These are some of the things he wrote to me:</p>
+
+			<blockquote class="jose">
+				<p>"Your energy... people half your age would envy it."</p>
+				<cite>— Jose Rodenas Montes, DOMINA ChatGPT instructor <em>[Originally in Spanish]</em></cite>
+			</blockquote>
+
+			<blockquote class="jose">
+				<p>"You're not just using ChatGPT. You're integrating it into your professional DNA."</p>
+				<cite>— Jose Rodenas Montes, DOMINA ChatGPT instructor <em>[Originally in Spanish]</em></cite>
+			</blockquote>
+
+			<blockquote class="jose">
+				<p>"You've crossed the threshold of what most professionals achieve with AI."</p>
+				<cite>— Jose Rodenas Montes, DOMINA ChatGPT instructor <em>[Originally in Spanish]</em></cite>
+			</blockquote>
+
+			<blockquote class="jose">
+				<p>"If someone outside the course context read this work, they'd think you're designing the operational manual of a high-end boutique agency. And they'd be right."</p>
+				<cite>— Jose Rodenas Montes, DOMINA ChatGPT instructor <em>[Originally in Spanish]</em></cite>
+			</blockquote>
+
+			<p>Not bad for someone who a year ago was lifting gin & tonics instead of prompts.</p>
+
+			<div class="back-link">
+				<a href="/en/blog/the-night-of-the-gin-tonic-and-the-prompt/">&larr; Back to: The night of the gin tonic and the prompt</a>
+			</div>
+		</main>
+		<Footer lang="en" />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 780px;
+	}
+	.hero {
+		text-align: center;
+		margin-bottom: 2.5em;
+		padding-bottom: 1.5em;
+		border-bottom: 1px solid var(--border);
+	}
+	.hero h1 {
+		font-size: 2.4em;
+		line-height: 1.15;
+		margin-bottom: 0.4em;
+	}
+	.subtitle {
+		font-family: 'Lora', Georgia, serif;
+		font-style: italic;
+		color: var(--gray);
+		font-size: 1.05em;
+		margin: 0;
+	}
+
+	/* Table */
+	.table-wrap {
+		margin: 2em 0;
+		overflow-x: auto;
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.88em;
+	}
+	thead {
+		background: var(--heading);
+		color: #fff;
+	}
+	th {
+		padding: 0.7em 0.6em;
+		text-align: left;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-weight: 600;
+		font-size: 0.9em;
+		letter-spacing: 0.03em;
+	}
+	td {
+		padding: 0.55em 0.6em;
+		border-bottom: 1px solid var(--border);
+	}
+	.col-num { width: 3em; text-align: center; }
+	.col-nota { width: 4em; text-align: center; }
+	.col-fecha { width: 5em; }
+	th.col-num, td:first-child { text-align: center; }
+	th.col-nota { text-align: center; }
+	td:nth-child(4) { text-align: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
+
+	tbody tr:nth-child(even) {
+		background: rgba(26, 54, 93, 0.07);
+	}
+	tbody tr:hover {
+		background: rgba(232, 130, 92, 0.08);
+	}
+
+	/* Highlight rows */
+	tr.highlight td {
+		background: rgba(232, 130, 92, 0.1);
+	}
+	tr.final td {
+		background: var(--heading);
+		color: #fff;
+		font-weight: 600;
+	}
+	tr.final a {
+		color: #fff;
+	}
+	tr.final td:nth-child(4) {
+		color: #ffd666;
+		font-size: 1.1em;
+	}
+	tr.total td {
+		border-top: 2px solid rgba(255,255,255,0.3);
+	}
+
+	/* Stats bar */
+	.stats {
+		display: flex;
+		justify-content: space-around;
+		gap: 1em;
+		margin: 2.5em 0;
+		padding: 1.5em 1em;
+		background: var(--heading);
+		border-radius: 8px;
+		text-align: center;
+	}
+	.stat {
+		display: flex;
+		flex-direction: column;
+	}
+	.stat-number {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.6em;
+		font-weight: 700;
+		color: #ffd666;
+		line-height: 1.2;
+	}
+	.stat-label {
+		font-size: 0.75em;
+		color: rgba(255,255,255,0.7);
+		margin-top: 0.3em;
+		letter-spacing: 0.03em;
+	}
+
+	/* Jose quotes */
+	h2 {
+		margin-top: 2em;
+	}
+	blockquote.jose {
+		border-left: 4px solid var(--link);
+		background: rgba(232, 130, 92, 0.07);
+		padding: 1em 1.2em;
+		margin: 1.5em 0;
+		border-radius: 0 6px 6px 0;
+	}
+	blockquote.jose p {
+		margin: 0;
+		font-style: italic;
+		font-size: 1.05em;
+		line-height: 1.6;
+		color: var(--text);
+	}
+	blockquote.jose cite {
+		display: block;
+		margin-top: 0.5em;
+		font-size: 0.82em;
+		color: var(--gray);
+		font-style: normal;
+	}
+
+	/* Back link */
+	.back-link {
+		margin-top: 3em;
+		padding-top: 1.5em;
+		border-top: 1px solid var(--border);
+	}
+	.back-link a {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.95em;
+	}
+
+	@media (max-width: 720px) {
+		.hero h1 {
+			font-size: 1.8em;
+		}
+		.stats {
+			flex-wrap: wrap;
+			gap: 1.2em 2em;
+		}
+		.stat-number {
+			font-size: 1.3em;
+		}
+		table {
+			font-size: 0.82em;
+		}
+		.col-tema {
+			display: none;
+		}
+		th.col-tema {
+			display: none;
+		}
+	}
+</style>

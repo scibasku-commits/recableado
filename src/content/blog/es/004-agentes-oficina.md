@@ -4,6 +4,7 @@ description: "Cómo 3 agentes IA se coordinaron (y se pelearon) para crear una p
 pubDate: 2026-02-09
 tags: ["🔥 Ahora", "🛠️ Taller"]
 heroImage: ""
+translationKey: "agents-office"
 ---
 
 *Y se pelearon entre ellos.*

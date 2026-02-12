@@ -1,0 +1,82 @@
+{
+"name": "Giora Gilead Elenberg: Portrait of a Rewiring",
+"children": [
+{
+"name": "Personal Profile",
+"children": [
+{ "name": "Age: 72 years old" },
+{ "name": "Profession: Travel agent (42 years)" },
+{ "name": "Agency: Viajes Scibasku (Marbella)" },
+{ "name": "Specialty: Premium ski and diving" },
+{ "name": "Hobbies: Cycling, BMW motorcycles, technology" }
+]
+},
+{
+"name": "The Shift: From Gin & Tonics to AI",
+"children": [
+{ "name": "Cause: Diabetes and giving up alcohol" },
+{ "name": "Catalyst: YouTube algorithm" },
+{ "name": "Turning point: 'Master ChatGPT' course (May 2025)" },
+{ "name": "Instructor: Jose Rodenas (Solo Agentes Academy)" },
+{ "name": "Result: Final grade 91.18 / 100" }
+]
+},
+{
+"name": "Tech Evolution",
+"children": [
+{
+"name": "Phase 1: ChatGPT (ChatIta)",
+"children": [
+{ "name": "Ideal Sextet of GPTs" },
+{ "name": "Digital Mini-Me" }
+]
+},
+{
+"name": "Phase 2: Google & Gemini",
+"children": [
+{ "name": "NotebookLM (Private library)" },
+{ "name": "Integration with Drive and Gmail" }
+]
+},
+{
+"name": "Phase 3: Claude & Anthropic",
+"children": [
+{ "name": "Claude Code and MCPs" },
+{ "name": "30+ Custom Skills" },
+{ "name": "Dedicated Mac Mini (ClawdBot)" },
+{ "name": "Ralph+Boris hybrid method" }
+]
+}
+]
+},
+{
+"name": "Digital Projects",
+"children": [
+{
+"name": "Blog 'Recableado'",
+"children": [
+{ "name": "Platform: Astro + Vercel" },
+{ "name": "Topics: AI, tourism and life" }
+]
+},
+{
+"name": "Dive Cruise Hub (App)",
+"children": [
+{ "name": "Inseanq API integration" },
+{ "name": "Interactive dive maps" },
+{ "name": "B2B model and commissions" }
+]
+}
+]
+},
+{
+"name": "Philosophy & Strategy",
+"children": [
+{ "name": "Technology at the service of the experience" },
+{ "name": "Competing on quality, not discounts" },
+{ "name": "Obsession with continuous learning" },
+{ "name": "Boutique personalisation through AI" }
+]
+}
+]
+}

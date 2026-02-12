@@ -1,0 +1,1042 @@
+---
+export const prerender = true;
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Master Claude Code — Giora's Guide | ${SITE_TITLE}`} description="Complete cheat sheet: 20 Skills, 5 MCPs, Ralph+Boris method, multi-agent and everything a 72-year-old learned without knowing how to code." lang="en" />
+	</head>
+	<body>
+		<Header lang="en" />
+		<main class="cs-main">
+			<!-- HEADER -->
+			<header class="cs-header">
+				<div class="cs-header-left">
+					<div class="cs-logo">
+						<span class="cs-logo-icon">🧠</span>
+						<span class="cs-logo-text">v1.0<br/>Feb 2026</span>
+					</div>
+				</div>
+				<div class="cs-header-center">
+					<h1 class="cs-title">Master Claude Code</h1>
+					<p class="cs-subtitle">Giora's Guide</p>
+					<p class="cs-tagline">72 years old. 0 lines of code. 20 Skills. 5 MCPs.</p>
+				</div>
+				<div class="cs-header-right">
+					<span class="cs-badge">CHEAT SHEET</span>
+				</div>
+			</header>
+
+			<!-- GRID -->
+			<div class="cs-grid">
+
+				<!-- 1. CC vs Web -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">⚡</span> 1. Claude Code vs Claude Web</h2>
+					<table class="cs-table cs-table-compare">
+						<thead><tr><th>Claude Web</th><th>Claude Code</th></tr></thead>
+						<tbody>
+							<tr><td>Browser window</td><td>Lives on your computer</td></tr>
+							<tr><td>Doesn't touch your files</td><td>Reads, creates and modifies files</td></tr>
+							<tr><td>Doesn't run commands</td><td>Runs system commands</td></tr>
+							<tr><td>Sessions expire</td><td>Works for hours non-stop</td></tr>
+							<tr><td>You do the work</td><td>Does the work for you</td></tr>
+						</tbody>
+					</table>
+					<p class="cs-callout">"Like the difference between calling someone on the phone and having them sit next to you."</p>
+				</section>
+
+				<!-- 2. Essential Commands -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">⌨️</span> 2. Essential Commands</h2>
+					<table class="cs-table cs-table-compact">
+						<tbody>
+							<tr><td class="cs-cmd">/help</td><td>Show all commands</td></tr>
+							<tr><td class="cs-cmd">/clear</td><td>Clear context</td></tr>
+							<tr><td class="cs-cmd">/compact</td><td>Compress conversation</td></tr>
+							<tr><td class="cs-cmd">/model</td><td>Switch Opus/Sonnet/Haiku</td></tr>
+							<tr><td class="cs-cmd">/mcp</td><td>View active MCP connections</td></tr>
+							<tr><td class="cs-cmd">/doctor</td><td>Diagnose problems</td></tr>
+							<tr><td class="cs-cmd">/config</td><td>Open settings</td></tr>
+							<tr><td class="cs-cmd">/init</td><td>Read project's CLAUDE.md</td></tr>
+						</tbody>
+					</table>
+					<div class="cs-mini-section">
+						<strong>References:</strong>
+						<code>@file</code> <code>@folder/</code> <code>Tab</code> autocompletes
+					</div>
+				</section>
+
+				<!-- 3. Keyboard Shortcuts -->
+				<section class="cs-section cs-section-small">
+					<h2 class="cs-section-title"><span class="cs-icon">🎹</span> 3. Keyboard Shortcuts</h2>
+					<table class="cs-table cs-table-compact">
+						<tbody>
+							<tr><td class="cs-cmd">Esc</td><td>Stop execution</td></tr>
+							<tr><td class="cs-cmd">Esc ×2</td><td>Rewind (undo)</td></tr>
+							<tr><td class="cs-cmd">Ctrl+V</td><td>Paste image (NOT Cmd+V)</td></tr>
+							<tr><td class="cs-cmd">!</td><td>Direct shell execution</td></tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- 4. My 20 Skills -->
+				<section class="cs-section cs-section-span2">
+					<h2 class="cs-section-title"><span class="cs-icon">🛠️</span> 4. My 20 Skills</h2>
+					<div class="cs-skills-grid">
+						<div class="cs-skill-group">
+							<h3 class="cs-skill-group-title">Operations</h3>
+							<div class="cs-skill">📋 <strong>expediente-maestro</strong> — Full Airtable+Drive+Gmail management</div>
+							<div class="cs-skill">💎 <strong>presupuestos-premium</strong> — Proposals with professional templates</div>
+							<div class="cs-skill">🧾 <strong>registro-facturas</strong> — Extract PDF data → Obsidian</div>
+							<div class="cs-skill">📦 <strong>supplier-program</strong> — Supplier technical specs</div>
+							<div class="cs-skill">🎒 <strong>travel-wallet</strong> — Interactive wallets + AI chatbot</div>
+						</div>
+						<div class="cs-skill-group">
+							<h3 class="cs-skill-group-title">Sales</h3>
+							<div class="cs-skill">⛷️ <strong>sales-esqui</strong> — Premium ski playbook</div>
+							<div class="cs-skill">🤿 <strong>sales-buceo</strong> — Diving liveaboards playbook</div>
+							<div class="cs-skill">🕰️ <strong>ahora-philosophy</strong> — 20 elegant persuasion phrases</div>
+							<div class="cs-skill">🗺️ <strong>travel-collection</strong> — 40+ destinations catalog</div>
+						</div>
+						<div class="cs-skill-group">
+							<h3 class="cs-skill-group-title">Web</h3>
+							<div class="cs-skill">🌐 <strong>joomla-expert</strong> — viajesscibasku.com management</div>
+							<div class="cs-skill">🔍 <strong>seo-quick-actions</strong> — Audits, keywords, schemas</div>
+							<div class="cs-skill">🎨 <strong>brand-identity</strong> — Colors, typography, tone</div>
+							<div class="cs-skill">🚢 <strong>liveaboards-orchestrator</strong> — 47 boats multi-agent</div>
+						</div>
+						<div class="cs-skill-group">
+							<h3 class="cs-skill-group-title">Methodology</h3>
+							<div class="cs-skill">🔧 <strong>skill-creator</strong> — Create and validate Skills</div>
+							<div class="cs-skill">👨‍🏫 <strong>skill-maestro</strong> — Skills identity and tone</div>
+							<div class="cs-skill">🤖 <strong>gpt-builder</strong> — Branded GPT agents</div>
+							<div class="cs-skill">📊 <strong>effectiveness</strong> — Multi-phase plans + status</div>
+							<div class="cs-skill">🔌 <strong>mcp-perfeccion</strong> — 100% MCPs audit</div>
+							<div class="cs-skill">⚡ <strong>parallel-agents</strong> — Multi-agent local+cloud</div>
+							<div class="cs-skill">📌 <strong>vibe-kanban</strong> — Visual Kanban for agents</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 5. MCPs -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">🔌</span> 5. My 5 MCPs</h2>
+					<p class="cs-mcp-intro">MCP = universal USB-C cable for AI</p>
+					<div class="cs-mcp-list">
+						<div class="cs-mcp-item"><span class="cs-mcp-icon">📁</span><strong>Google Drive</strong><span class="cs-mcp-desc">Documents, files, organization</span></div>
+						<div class="cs-mcp-item"><span class="cs-mcp-icon">📧</span><strong>Gmail</strong><span class="cs-mcp-desc">Supplier emails, invoices</span></div>
+						<div class="cs-mcp-item"><span class="cs-mcp-icon">🌐</span><strong>Joomla</strong><span class="cs-mcp-desc">viajesscibasku.com, articles, SEO</span></div>
+						<div class="cs-mcp-item"><span class="cs-mcp-icon">📊</span><strong>Airtable</strong><span class="cs-mcp-desc">Case files, CRM, inventory</span></div>
+						<div class="cs-mcp-item"><span class="cs-mcp-icon">🐙</span><strong>GitHub</strong><span class="cs-mcp-desc">Repositories, versioning</span></div>
+					</div>
+					<div class="cs-mini-section">
+						<code>claude mcp add --transport http URL</code><br/>
+						<code>/mcp</code> → verify active
+					</div>
+				</section>
+
+				<!-- 6. Ralph + Boris Method -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">🧪</span> 6. Ralph + Boris Method</h2>
+					<div class="cs-method-steps">
+						<div class="cs-method-step">
+							<div class="cs-step-num">1</div>
+							<div class="cs-step-content">
+								<strong>Ralph Wiggum</strong>
+								<p>"Dumb" question that opens perspectives</p>
+								<p class="cs-example">"Why would someone search for ski at 3AM?"</p>
+							</div>
+						</div>
+						<div class="cs-method-arrow">→</div>
+						<div class="cs-method-step">
+							<div class="cs-step-num">2</div>
+							<div class="cs-step-content">
+								<strong>Boris Vanilla</strong>
+								<p>Implement the simplest way</p>
+								<p class="cs-example">Direct prompt, no complex frameworks</p>
+							</div>
+						</div>
+						<div class="cs-method-arrow">→</div>
+						<div class="cs-method-step">
+							<div class="cs-step-num">3</div>
+							<div class="cs-step-content">
+								<strong>Iterate</strong>
+								<p>If it doesn't work, back to Ralph</p>
+								<p class="cs-example">Continuous creative loop</p>
+							</div>
+						</div>
+					</div>
+					<p class="cs-note">Born January 7, 2026 — Project 1 MCPs audit</p>
+				</section>
+
+				<!-- 7. Multi-Agent -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">🖥️</span> 7. Multi-Agent: 5 Terminals</h2>
+					<div class="cs-terminals">
+						<div class="cs-terminal"><span class="cs-term-num">T1</span><span class="cs-term-role">🔎 Researcher</span><span class="cs-term-task">Availability + ski runs</span></div>
+						<div class="cs-terminal"><span class="cs-term-num">T2</span><span class="cs-term-role">✍️ Writer</span><span class="cs-term-task">Premium proposal</span></div>
+						<div class="cs-terminal"><span class="cs-term-num">T3</span><span class="cs-term-role">💰 Finance</span><span class="cs-term-task">Margins + budget</span></div>
+						<div class="cs-terminal"><span class="cs-term-num">T4</span><span class="cs-term-role">📋 Case Manager</span><span class="cs-term-task">Airtable + Drive</span></div>
+						<div class="cs-terminal cs-terminal-boss"><span class="cs-term-num">T5</span><span class="cs-term-role">👔 Coordinator</span><span class="cs-term-task">Supervises the 4</span></div>
+					</div>
+					<p class="cs-highlight">1 full day → <strong>45 minutes</strong></p>
+					<p class="cs-note">Each CC has its own context. They don't talk to each other. You are the director.</p>
+				</section>
+
+				<!-- 8. CLAUDE.md -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">📝</span> 8. CLAUDE.md</h2>
+					<p class="cs-intro">File Claude reads when entering a folder. The note on your employee's desk.</p>
+					<div class="cs-code-block">
+						<div class="cs-code-header">~/.claude/CLAUDE.md</div>
+						<pre class="cs-code"><code># My Project
+## Identity
+Bilingual blog, humor, Marbella terrace
+## Design rules
+Palette: blue #1a365d + orange #e8825c
+## Technical rules
+Astro, Vercel, Markdown, WebP</code></pre>
+					</div>
+					<div class="cs-mini-section">
+						<strong>Global:</strong> <code>~/.claude/CLAUDE.md</code><br/>
+						<strong>Project:</strong> <code>/your-project/CLAUDE.md</code>
+					</div>
+				</section>
+
+				<!-- 9. 7 Prompting Rules -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">🎯</span> 9. 7 Prompting Rules</h2>
+					<ol class="cs-rules">
+						<li><strong>Give it a role</strong> specific</li>
+						<li><strong>Provide context</strong> (who you are, who the client is)</li>
+						<li><strong>Be specific</strong> (dates, budget, people)</li>
+						<li><strong>Request format</strong> (table, email, PDF)</li>
+						<li><strong>Set constraints</strong> ("don't invent prices")</li>
+						<li><strong>Use Ralph</strong> when you're stuck</li>
+						<li><strong>Execute with Boris</strong> (simple wins)</li>
+					</ol>
+					<div class="cs-evolution">
+						<div class="cs-evo-item cs-evo-bad">
+							<span class="cs-evo-label">May 2025</span>
+							"Make me an itinerary for Morocco"
+						</div>
+						<div class="cs-evo-item cs-evo-good">
+							<span class="cs-evo-label">Feb 2026</span>
+							"Generate proposal exp. García-Aspen with skill presupuestos-premium-v2. Data in Airtable."
+						</div>
+					</div>
+				</section>
+
+				<!-- 10. Timeline -->
+				<section class="cs-section cs-section-full">
+					<h2 class="cs-section-title"><span class="cs-icon">📅</span> 10. Timeline: May 2025 → February 2026</h2>
+					<div class="cs-timeline">
+						<div class="cs-tl-item"><span class="cs-tl-date">May 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">"DOMINA ChatGPT" course</span></div>
+						<div class="cs-tl-item"><span class="cs-tl-date">Jun 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">First exercise (grade 90)</span></div>
+						<div class="cs-tl-item"><span class="cs-tl-date">Jul 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Professional agency prompts</span></div>
+						<div class="cs-tl-item"><span class="cs-tl-date">Aug 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Web with AI, liveaboards project</span></div>
+						<div class="cs-tl-item"><span class="cs-tl-date">Sep 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Final exam: 95/100. Botpress chatbot</span></div>
+						<div class="cs-tl-item cs-tl-highlight"><span class="cs-tl-date">Oct 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Discover Claude. Skills.</span></div>
+						<div class="cs-tl-item cs-tl-highlight"><span class="cs-tl-date">Nov 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">17-hour night. First MCP. Skills factory</span></div>
+						<div class="cs-tl-item"><span class="cs-tl-date">Dec 25</span><span class="cs-tl-dot"></span><span class="cs-tl-text">NotebookLM. New Year's Eve: Ralph technique</span></div>
+						<div class="cs-tl-item cs-tl-highlight"><span class="cs-tl-date">Jan 26</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Boris vanilla. Ralph+Boris. Mac Mini. 5 terminals</span></div>
+						<div class="cs-tl-item cs-tl-highlight"><span class="cs-tl-date">Feb 26</span><span class="cs-tl-dot"></span><span class="cs-tl-text">Recableado blog. 20 Skills. 5 MCPs. LinkedIn</span></div>
+					</div>
+				</section>
+
+				<!-- 11. Common Mistakes -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">⚠️</span> 11. Common Mistakes</h2>
+					<table class="cs-table cs-table-errors">
+						<thead><tr><th>Mistake</th><th>Solution</th></tr></thead>
+						<tbody>
+							<tr><td class="cs-err">Paste instructions in Terminal</td><td class="cs-fix">Terminal = commands. CC = conversation</td></tr>
+							<tr><td class="cs-err">Not using /clear between tasks</td><td class="cs-fix">Always /clear when changing topic</td></tr>
+							<tr><td class="cs-err">Everything in one session (17h)</td><td class="cs-fix">Split into short sessions</td></tr>
+							<tr><td class="cs-err">No CLAUDE.md</td><td class="cs-fix">Create one for each project</td></tr>
+							<tr><td class="cs-err">One CC for everything</td><td class="cs-fix">Multi-agent with 5 terminals</td></tr>
+							<tr><td class="cs-err">Vague prompts</td><td class="cs-fix">The 7 prompting rules</td></tr>
+							<tr><td class="cs-err">No Git</td><td class="cs-fix">Version EVERYTHING with GitHub</td></tr>
+							<tr><td class="cs-err">Ignoring Skills</td><td class="cs-fix">Automate the repetitive</td></tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- 12. Ecosystem Tools -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">🧰</span> 12. Ecosystem Tools</h2>
+					<div class="cs-tools-grid">
+						<div class="cs-tool"><strong>Claude Pro/Max</strong><span class="cs-cost">$20-200/mo</span><span class="cs-tool-desc">Main brain</span></div>
+						<div class="cs-tool"><strong>Claude Code</strong><span class="cs-cost">included</span><span class="cs-tool-desc">Run on Mac</span></div>
+						<div class="cs-tool"><strong>Astro</strong><span class="cs-cost">free</span><span class="cs-tool-desc">Blog framework</span></div>
+						<div class="cs-tool"><strong>Vercel</strong><span class="cs-cost">free</span><span class="cs-tool-desc">Blog hosting</span></div>
+						<div class="cs-tool"><strong>Airtable</strong><span class="cs-cost">freemium</span><span class="cs-tool-desc">Case files DB</span></div>
+						<div class="cs-tool"><strong>Google Drive</strong><span class="cs-cost">included</span><span class="cs-tool-desc">Documents</span></div>
+						<div class="cs-tool"><strong>Gmail</strong><span class="cs-cost">included</span><span class="cs-tool-desc">Communication</span></div>
+						<div class="cs-tool"><strong>Joomla</strong><span class="cs-cost">hosting</span><span class="cs-tool-desc">Agency web</span></div>
+						<div class="cs-tool"><strong>NotebookLM</strong><span class="cs-cost">free</span><span class="cs-tool-desc">Research</span></div>
+						<div class="cs-tool"><strong>Obsidian</strong><span class="cs-cost">free</span><span class="cs-tool-desc">Notes</span></div>
+						<div class="cs-tool"><strong>Mac Mini M4</strong><span class="cs-cost">699 EUR</span><span class="cs-tool-desc">ClawdBot 24/7</span></div>
+						<div class="cs-tool"><strong>Git/GitHub</strong><span class="cs-cost">free</span><span class="cs-tool-desc">Versioning</span></div>
+					</div>
+				</section>
+
+				<!-- 13. FAQs -->
+				<section class="cs-section">
+					<h2 class="cs-section-title"><span class="cs-icon">❓</span> 13. FAQs</h2>
+					<div class="cs-faqs">
+						<div class="cs-faq"><strong>"Do I need to know how to code?"</strong> No. 8 months without a single line of code.</div>
+						<div class="cs-faq"><strong>"How much does it cost?"</strong> $20/month. ROI in the first week.</div>
+						<div class="cs-faq"><strong>"Will AI take your job?"</strong> I'm scared that someone who DOES use AI will take my clients.</div>
+						<div class="cs-faq"><strong>"At your age?"</strong> 42 years of experience + AI = unbeatable advantage.</div>
+						<div class="cs-faq"><strong>"Claude or ChatGPT?"</strong> Claude thinks with you. ChatGPT gives answers.</div>
+						<div class="cs-faq"><strong>"How many hours a day?"</strong> I don't "use AI" anymore. I work with AI. All day.</div>
+					</div>
+				</section>
+
+				<!-- 14. Resources -->
+				<section class="cs-section cs-section-small">
+					<h2 class="cs-section-title"><span class="cs-icon">🔗</span> 14. Resources</h2>
+					<div class="cs-resources">
+						<div class="cs-resource">📖 <a href="https://recableado.blog">recableado.blog</a> — My blog</div>
+						<div class="cs-resource">✈️ <a href="https://viajesscibasku.com">viajesscibasku.com</a> — My agency</div>
+						<div class="cs-resource">📚 <a href="https://docs.claude.com">docs.claude.com</a> — Claude Code docs</div>
+						<div class="cs-resource">🎓 "DOMINA ChatGPT" course — Solo Agentes Academy (95/100)</div>
+					</div>
+					<div class="cs-mini-section">
+						<strong>Inspirations:</strong> Sid Bharath, Boris Cherny, Fireship, Ralph Wiggum, José Ródenas Montes
+					</div>
+				</section>
+
+				<!-- 15. Final Quote -->
+				<section class="cs-section cs-section-quote">
+					<blockquote class="cs-final-quote">
+						"I don't have an IT team. I have a partner who doesn't sleep, doesn't charge, and doesn't complain. His name is Claude."
+					</blockquote>
+					<p class="cs-quote-author">— Giora Gilead Elenberg, 72 years old, Marbella terrace, 3:00 AM</p>
+				</section>
+
+			</div>
+
+			<!-- FOOTER -->
+			<div class="cs-footer">
+				<p>Giora Gilead Elenberg | Viajes Scibasku CICMA 2283 | Marbella | <a href="https://recableado.blog">recableado.blog</a></p>
+			</div>
+		</main>
+		<Footer lang="en" />
+	</body>
+</html>
+<style>
+	/* ========================================
+	   CHEAT SHEET — Master Claude Code
+	   ======================================== */
+
+	/* Override main width for full-width cheat sheet */
+	.cs-main {
+		width: 100% !important;
+		max-width: 1400px !important;
+		padding: 1.5em 2em !important;
+	}
+
+	/* HEADER */
+	.cs-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: #1a365d;
+		color: white;
+		padding: 1.2em 2em;
+		border-radius: 12px;
+		margin-bottom: 1.5em;
+	}
+	.cs-header-left {
+		flex-shrink: 0;
+	}
+	.cs-logo {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+	.cs-logo-icon {
+		font-size: 2.5em;
+		line-height: 1;
+	}
+	.cs-logo-text {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-size: 0.7em;
+		opacity: 0.7;
+		line-height: 1.3;
+	}
+	.cs-header-center {
+		text-align: center;
+		flex: 1;
+	}
+	.cs-title {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-size: 2.2em;
+		margin: 0;
+		color: white;
+		letter-spacing: -0.02em;
+	}
+	.cs-subtitle {
+		font-family: 'Lora', Georgia, serif;
+		font-style: italic;
+		font-size: 1.1em;
+		margin: 0.2em 0 0;
+		color: #e8825c;
+	}
+	.cs-tagline {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-size: 0.8em;
+		margin: 0.3em 0 0;
+		opacity: 0.7;
+		letter-spacing: 0.05em;
+	}
+	.cs-header-right {
+		flex-shrink: 0;
+	}
+	.cs-badge {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		background: #e8825c;
+		color: white;
+		padding: 0.4em 1em;
+		border-radius: 6px;
+		font-size: 0.75em;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+	}
+
+	/* GRID */
+	.cs-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1em;
+		margin-bottom: 1.5em;
+	}
+
+	/* SECTIONS */
+	.cs-section {
+		background: white;
+		border: 1px solid #eee8dd;
+		border-radius: 8px;
+		padding: 1em 1.2em;
+		font-size: 11.5px;
+		line-height: 1.5;
+		overflow: hidden;
+	}
+	.cs-section-span2 {
+		grid-column: span 2;
+	}
+	.cs-section-full {
+		grid-column: 1 / -1;
+	}
+	.cs-section-title {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-size: 1.15em;
+		color: #1a365d;
+		margin: 0 0 0.6em;
+		padding-bottom: 0.4em;
+		border-bottom: 2px solid #e8825c;
+		line-height: 1.3;
+	}
+	.cs-icon {
+		margin-right: 0.3em;
+	}
+
+	/* TABLES */
+	.cs-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 1em;
+	}
+	.cs-table th {
+		background: #1a365d;
+		color: white;
+		padding: 0.4em 0.6em;
+		text-align: left;
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-weight: 600;
+		font-size: 0.95em;
+	}
+	.cs-table td {
+		padding: 0.35em 0.6em;
+		border-bottom: 1px solid #eee8dd;
+		vertical-align: top;
+	}
+	.cs-table tbody tr:nth-child(even) {
+		background: #faf6ee;
+	}
+	.cs-table-compact td:first-child {
+		width: 35%;
+	}
+	.cs-cmd {
+		font-family: 'SF Mono', 'Consolas', monospace;
+		background: #f0ebe0;
+		padding: 0.1em 0.4em;
+		border-radius: 3px;
+		font-weight: 600;
+		color: #1a365d;
+		white-space: nowrap;
+	}
+
+	/* Compare table */
+	.cs-table-compare th:first-child {
+		background: #718096;
+	}
+	.cs-table-compare th:last-child {
+		background: #e8825c;
+	}
+
+	/* Errors table */
+	.cs-table-errors .cs-err {
+		color: #c53030;
+		font-weight: 600;
+	}
+	.cs-table-errors .cs-fix {
+		color: #276749;
+		font-weight: 600;
+	}
+
+	/* CALLOUT */
+	.cs-callout {
+		background: #fef5e7;
+		border-left: 3px solid #e8825c;
+		padding: 0.4em 0.8em;
+		margin: 0.6em 0 0;
+		font-style: italic;
+		font-family: 'Lora', Georgia, serif;
+		font-size: 0.95em;
+		color: #2d3748;
+	}
+
+	/* MINI SECTION */
+	.cs-mini-section {
+		background: #f8f6f0;
+		padding: 0.5em 0.8em;
+		border-radius: 4px;
+		margin-top: 0.6em;
+		font-size: 0.95em;
+	}
+	.cs-mini-section code {
+		background: #eee8dd;
+		padding: 0.1em 0.3em;
+		border-radius: 2px;
+		font-size: 0.9em;
+	}
+
+	/* SKILLS GRID */
+	.cs-skills-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.8em;
+	}
+	.cs-skill-group-title {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-size: 1em;
+		color: #e8825c;
+		margin: 0 0 0.4em;
+		font-weight: 700;
+	}
+	.cs-skill {
+		padding: 0.2em 0;
+		line-height: 1.4;
+	}
+	.cs-skill strong {
+		color: #1a365d;
+	}
+
+	/* MCPs */
+	.cs-mcp-intro {
+		font-style: italic;
+		color: #718096;
+		margin: 0 0 0.5em;
+		font-size: 0.95em;
+	}
+	.cs-mcp-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+	.cs-mcp-item {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.35em 0.6em;
+		background: #f8f6f0;
+		border-radius: 4px;
+		border-left: 3px solid #e8825c;
+	}
+	.cs-mcp-icon {
+		font-size: 1.2em;
+		flex-shrink: 0;
+	}
+	.cs-mcp-item strong {
+		color: #1a365d;
+		min-width: 80px;
+	}
+	.cs-mcp-desc {
+		color: #718096;
+		font-size: 0.9em;
+	}
+
+	/* METHOD STEPS */
+	.cs-method-steps {
+		display: flex;
+		align-items: stretch;
+		gap: 0.3em;
+	}
+	.cs-method-step {
+		flex: 1;
+		background: #f8f6f0;
+		border-radius: 6px;
+		padding: 0.8em;
+		display: flex;
+		gap: 0.6em;
+		align-items: flex-start;
+	}
+	.cs-step-num {
+		background: #1a365d;
+		color: white;
+		width: 1.8em;
+		height: 1.8em;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		flex-shrink: 0;
+	}
+	.cs-step-content p {
+		margin: 0.2em 0;
+		line-height: 1.4;
+	}
+	.cs-step-content strong {
+		color: #1a365d;
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+	}
+	.cs-example {
+		font-style: italic;
+		color: #718096;
+		font-size: 0.9em;
+	}
+	.cs-method-arrow {
+		display: flex;
+		align-items: center;
+		color: #e8825c;
+		font-size: 1.5em;
+		font-weight: 700;
+	}
+	.cs-note {
+		font-size: 0.85em;
+		color: #718096;
+		font-style: italic;
+		margin: 0.5em 0 0;
+	}
+	.cs-intro {
+		margin: 0 0 0.5em;
+		color: #718096;
+		font-style: italic;
+	}
+
+	/* TERMINALS */
+	.cs-terminals {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+	.cs-terminal {
+		display: flex;
+		align-items: center;
+		gap: 0.6em;
+		background: #1a365d;
+		color: white;
+		padding: 0.4em 0.8em;
+		border-radius: 4px;
+		font-family: 'SF Mono', 'Consolas', monospace;
+		font-size: 0.95em;
+	}
+	.cs-terminal-boss {
+		background: #e8825c;
+	}
+	.cs-term-num {
+		font-weight: 700;
+		opacity: 0.6;
+		min-width: 1.8em;
+	}
+	.cs-term-role {
+		font-weight: 600;
+		min-width: 110px;
+	}
+	.cs-term-task {
+		opacity: 0.8;
+	}
+	.cs-highlight {
+		text-align: center;
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		color: #e8825c;
+		font-size: 1.1em;
+		margin: 0.6em 0 0.2em;
+	}
+
+	/* CODE BLOCK */
+	.cs-code-block {
+		border: 1px solid #eee8dd;
+		border-radius: 6px;
+		overflow: hidden;
+		margin: 0.5em 0;
+	}
+	.cs-code-header {
+		background: #1a365d;
+		color: rgba(255, 255, 255, 0.7);
+		padding: 0.3em 0.8em;
+		font-family: 'SF Mono', 'Consolas', monospace;
+		font-size: 0.85em;
+	}
+	.cs-code {
+		background: #2d3748;
+		color: #e2e8f0;
+		padding: 0.8em;
+		margin: 0;
+		font-family: 'SF Mono', 'Consolas', monospace;
+		font-size: 0.9em;
+		line-height: 1.5;
+		overflow-x: auto;
+	}
+	.cs-code code {
+		background: none;
+		padding: 0;
+		color: inherit;
+	}
+
+	/* RULES */
+	.cs-rules {
+		margin: 0;
+		padding-left: 1.5em;
+	}
+	.cs-rules li {
+		padding: 0.25em 0;
+		line-height: 1.4;
+	}
+	.cs-rules li strong {
+		color: #e8825c;
+	}
+
+	/* EVOLUTION */
+	.cs-evolution {
+		margin-top: 0.8em;
+	}
+	.cs-evo-item {
+		padding: 0.5em 0.8em;
+		border-radius: 4px;
+		margin-bottom: 0.3em;
+		font-family: 'Lora', Georgia, serif;
+		font-style: italic;
+		font-size: 0.95em;
+	}
+	.cs-evo-bad {
+		background: #fed7d7;
+		border-left: 3px solid #c53030;
+	}
+	.cs-evo-good {
+		background: #c6f6d5;
+		border-left: 3px solid #276749;
+	}
+	.cs-evo-label {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-weight: 700;
+		font-style: normal;
+		font-size: 0.9em;
+		margin-right: 0.5em;
+		color: #1a365d;
+	}
+
+	/* TIMELINE */
+	.cs-timeline {
+		display: flex;
+		align-items: flex-start;
+		gap: 0;
+		overflow-x: auto;
+		padding: 0.5em 0;
+		position: relative;
+	}
+	.cs-timeline::before {
+		content: '';
+		position: absolute;
+		top: 1.4em;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: #eee8dd;
+		z-index: 0;
+	}
+	.cs-tl-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1;
+		min-width: 100px;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+	}
+	.cs-tl-date {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 0.85em;
+		color: #1a365d;
+		margin-bottom: 0.3em;
+	}
+	.cs-tl-dot {
+		width: 10px;
+		height: 10px;
+		background: #718096;
+		border-radius: 50%;
+		margin-bottom: 0.4em;
+		border: 2px solid white;
+	}
+	.cs-tl-highlight .cs-tl-dot {
+		background: #e8825c;
+		width: 12px;
+		height: 12px;
+	}
+	.cs-tl-text {
+		font-size: 0.85em;
+		line-height: 1.3;
+		color: #2d3748;
+		padding: 0 0.3em;
+	}
+	.cs-tl-highlight .cs-tl-text {
+		font-weight: 600;
+		color: #1a365d;
+	}
+
+	/* TOOLS GRID */
+	.cs-tools-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.3em;
+	}
+	.cs-tool {
+		display: flex;
+		align-items: baseline;
+		gap: 0.3em;
+		padding: 0.3em 0;
+		border-bottom: 1px solid #f0ebe0;
+		flex-wrap: wrap;
+	}
+	.cs-tool strong {
+		color: #1a365d;
+	}
+	.cs-cost {
+		font-family: 'SF Mono', 'Consolas', monospace;
+		background: #e8825c;
+		color: white;
+		padding: 0.05em 0.4em;
+		border-radius: 3px;
+		font-size: 0.8em;
+		font-weight: 600;
+	}
+	.cs-tool-desc {
+		color: #718096;
+		font-size: 0.9em;
+	}
+
+	/* FAQS */
+	.cs-faqs {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4em;
+	}
+	.cs-faq {
+		padding: 0.4em 0;
+		border-bottom: 1px solid #f0ebe0;
+		line-height: 1.4;
+	}
+	.cs-faq strong {
+		color: #1a365d;
+	}
+
+	/* RESOURCES */
+	.cs-resources {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+	}
+	.cs-resource {
+		line-height: 1.4;
+	}
+	.cs-resource a {
+		color: #2b6cb0;
+		font-weight: 600;
+	}
+
+	/* QUOTE */
+	.cs-section-quote {
+		grid-column: 1 / -1;
+		background: #1a365d;
+		text-align: center;
+		padding: 1.5em 2em;
+	}
+	.cs-final-quote {
+		font-family: 'Lora', Georgia, serif;
+		font-size: 1.3em;
+		color: white;
+		font-style: italic;
+		border: none;
+		background: none;
+		padding: 0;
+		margin: 0;
+		line-height: 1.6;
+	}
+	.cs-quote-author {
+		font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+		color: #e8825c;
+		font-size: 0.9em;
+		margin: 0.5em 0 0;
+	}
+
+	/* FOOTER */
+	.cs-footer {
+		text-align: center;
+		padding: 0.8em;
+		border-top: 2px solid #eee8dd;
+		font-size: 0.85em;
+		color: #718096;
+	}
+	.cs-footer a {
+		color: #2b6cb0;
+	}
+	.cs-footer p {
+		margin: 0;
+	}
+
+	/* ========================================
+	   RESPONSIVE
+	   ======================================== */
+	@media (max-width: 1100px) {
+		.cs-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.cs-skills-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.cs-section-span2 {
+			grid-column: span 2;
+		}
+	}
+	@media (max-width: 720px) {
+		.cs-main {
+			padding: 0.5em !important;
+		}
+		.cs-grid {
+			grid-template-columns: 1fr;
+		}
+		.cs-section-span2,
+		.cs-section-full {
+			grid-column: span 1;
+		}
+		.cs-header {
+			flex-direction: column;
+			text-align: center;
+			gap: 0.8em;
+			padding: 1em;
+		}
+		.cs-title {
+			font-size: 1.6em;
+		}
+		.cs-skills-grid {
+			grid-template-columns: 1fr;
+		}
+		.cs-method-steps {
+			flex-direction: column;
+		}
+		.cs-method-arrow {
+			justify-content: center;
+			transform: rotate(90deg);
+		}
+		.cs-tools-grid {
+			grid-template-columns: 1fr;
+		}
+		.cs-timeline {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.cs-timeline::before {
+			display: none;
+		}
+		.cs-tl-item {
+			flex-direction: row;
+			gap: 0.5em;
+			min-width: auto;
+			text-align: left;
+		}
+	}
+
+	/* ========================================
+	   PRINT STYLES
+	   ======================================== */
+	@media print {
+		body {
+			font-size: 10px !important;
+			background: white !important;
+		}
+		.cs-main {
+			padding: 0 !important;
+			max-width: none !important;
+			width: 100% !important;
+		}
+		.cs-header {
+			border-radius: 0;
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-section {
+			break-inside: avoid;
+			box-shadow: none;
+			border: 1px solid #ccc;
+		}
+		.cs-section-quote {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-grid {
+			gap: 0.5em;
+		}
+		.cs-table th {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-terminal {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-tl-dot, .cs-tl-highlight .cs-tl-dot {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-cost {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		.cs-badge {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		/* Hide site header/footer for clean print */
+		header, footer:not(.cs-footer) {
+			display: none !important;
+		}
+	}
+</style>

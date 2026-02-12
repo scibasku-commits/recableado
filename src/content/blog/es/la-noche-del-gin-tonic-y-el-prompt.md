@@ -4,6 +4,7 @@ description: "Cómo la diabetes me quitó las copas, un curso me enganchó a Cha
 pubDate: 2026-02-08
 tags: ["📙 Memoria"]
 heroImage: ""
+translationKey: "gin-tonic-prompt"
 ---
 
 Tengo 72 años. Llevo 42 vendiendo viajes. He pisado más países que la mayoría de los pilotos que me llevaban a ellos. Tengo una agencia con licencia CICMA 2283, una bicicleta que uso más que el coche, una moto BMW K1200 que me hace sentir 30 años menos, y una diabetes que me cambió la vida.

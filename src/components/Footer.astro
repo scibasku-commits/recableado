@@ -1,9 +1,18 @@
 ---
+import type { Lang } from '../i18n/languages';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+	lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer>
 	<div class="footer-inner">
-		<p>CICMA 2283 | Marbella | En ruta desde 1954</p>
+		<p>{t('footer.tagline') as string}</p>
 	</div>
 </footer>
 <style>

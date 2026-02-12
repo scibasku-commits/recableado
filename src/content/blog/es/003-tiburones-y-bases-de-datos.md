@@ -4,6 +4,7 @@ description: "O cómo un agente de viajes que perdió 20 kilos decidió también
 pubDate: 2026-02-09
 tags: ["🔥 Ahora", "🛠️ Taller", "😂 Anécdota"]
 heroImage: ""
+translationKey: "sharks-databases"
 ---
 
 Hay una cosa que no te cuentan cuando decides reinventarte a los 72: que despegar se parece mucho a soltar lastre.

@@ -1,20 +1,27 @@
 ---
 export const prerender = true;
 import { getCollection } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
-import Lightbox from '../components/Lightbox.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { useTranslations } from '../i18n/utils';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { SITE_TITLE } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
 
-const lang = 'es' as const;
+const lang = 'en' as const;
 const t = useTranslations(lang);
+const SITE_DESCRIPTION_EN = 'A 72-year-old traveller discovering the last continent';
 
-const posts = (await getCollection('blogEs')).sort(
+// Use EN posts if available, fallback to ES
+let posts = (await getCollection('blogEn')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+if (posts.length === 0) {
+	posts = (await getCollection('blogEs')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+}
 const latestPost = posts[0];
 const readingTime = latestPost?.body ? Math.max(1, Math.ceil(latestPost.body.split(/\s+/).length / 200)) : 5;
 
@@ -30,9 +37,9 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={lang} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION_EN} lang={lang} />
 	</head>
 	<body>
 		<Header lang={lang} />
@@ -41,7 +48,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 			<section class="hero">
 				<img
 					src="/images/odisea-landscape.webp"
-					alt="Giora Gilead: La Odisea Recableado - infografia completa"
+					alt="Giora Gilead: The Rewired Odyssey - complete infographic"
 					class="hero-img zoomable"
 					loading="eager"
 				/>
@@ -68,11 +75,11 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 				</div>
 			</section>
 
-			<!-- Ultimo post -->
+			<!-- Latest post -->
 			{latestPost && (
 				<section class="latest-post">
 					<h2 class="section-title">{t('blog.latest') as string}</h2>
-					<a href={`/blog/${latestPost.id}/`} class="post-card">
+					<a href={`/en/blog/${latestPost.id}/`} class="post-card">
 						<div class="post-thumb">
 							{latestPost.data.heroImage ? (
 								<img src={latestPost.data.heroImage} alt="" />
@@ -111,14 +118,14 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 			<section class="quote-section">
 				<blockquote>
 					<p>{t('home.quote') as string}</p>
-					<footer class="quote-attribution">&mdash; {(t('home.quoteAttribution') as string).replace('— ', '')}</footer>
+					<footer class="quote-attribution">{t('home.quoteAttribution') as string}</footer>
 				</blockquote>
 			</section>
 
 			<!-- CTA -->
 			<section class="cta-section">
 				<p class="cta-text">{t('home.cta') as string}</p>
-				<a href="/blog/la-noche-del-gin-tonic-y-el-prompt/" class="btn-primary">{t('home.ctaButton') as string}</a>
+				<a href="/en/blog/the-night-of-the-gin-tonic-and-the-prompt/" class="btn-primary">{t('home.ctaButton') as string}</a>
 			</section>
 		</main>
 		<Footer lang={lang} />

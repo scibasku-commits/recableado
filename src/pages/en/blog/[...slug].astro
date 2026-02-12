@@ -1,16 +1,16 @@
 ---
 export const prerender = true;
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blogEs');
+	const posts = await getCollection('blogEn');
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'blogEs'>;
+type Props = CollectionEntry<'blogEn'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
@@ -18,6 +18,6 @@ const words = post.body?.split(/\s+/).length || 0;
 const readingTime = Math.max(1, Math.ceil(words / 200));
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} lang="es">
+<BlogPost {...post.data} readingTime={readingTime} lang="en">
 	<Content />
 </BlogPost>

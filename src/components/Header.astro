@@ -1,16 +1,28 @@
 ---
+import type { Lang } from '../i18n/languages';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
 import HeaderLink from './HeaderLink.astro';
+import LanguageToggle from './LanguageToggle.astro';
+
+interface Props {
+	lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <header>
 	<div class="header-content">
-		<a href="/" class="site-title">Recableado</a>
-		<p class="site-subtitle">Un viajero de 72 años descubriendo el último continente</p>
+		<a href={getLocalizedPath(lang, '/')} class="site-title">Recableado</a>
+		<p class="site-subtitle">{lang === 'es' ? 'Un viajero de 72 años descubriendo el último continente' : 'A 72-year-old traveller discovering the last continent'}</p>
 		<nav>
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/ejercicios">Ejercicios</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/')} lang={lang}>{t('nav.home') as string}</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/blog')} lang={lang}>{t('nav.blog') as string}</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/ejercicios')} lang={lang}>{t('nav.exercises') as string}</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/cheatsheet')} lang={lang}>{t('nav.cheatsheet') as string}</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/about')} lang={lang}>{t('nav.about') as string}</HeaderLink>
+			<LanguageToggle lang={lang} />
 		</nav>
 	</div>
 	<hr />
@@ -47,6 +59,7 @@ import HeaderLink from './HeaderLink.astro';
 	nav {
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		gap: 2em;
 	}
 	nav a {
