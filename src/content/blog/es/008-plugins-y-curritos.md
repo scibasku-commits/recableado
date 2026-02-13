@@ -1,0 +1,278 @@
+---
+title: "Plugins, Curritos y un Podcast que Nadie Pidió (Cómo Monté mi Universidad en NotebookLM)"
+description: "Un viajero de 72 años, un coordinador AI con delirios de grandeza y un ejército de curritos digitales construyen un cuaderno de referencia sobre Claude Plugins. Lo que debería haber tardado una tarde, tardó una mañana. Lo que no debería haber incluido un podcast en español, lo incluye."
+pubDate: 2026-02-13
+tags: ["🔥 Ahora", "🛠️ Taller"]
+heroImage: ""
+translationKey: "plugins-y-curritos"
+---
+
+![Infografía Claude Plugins - NotebookLM](/images/plugins-curritos-infografia.png)
+
+O: Cómo construí un cuaderno de referencia sobre Claude Plugins sin leer un solo documento, delegando en agentes que delegaron en otros agentes, y acabé con un podcast donde dos voces que no existen discuten sobre mi negocio.
+
+---
+
+## El Problema: Demasiado Ruido, Poco Cuaderno
+
+Todo empezó porque Anthropic lanzó los Plugins para Claude Code y Cowork. Y como pasa siempre que lanza algo, el timeline se llena de gente explicando lo mismo con palabras diferentes:
+
+- Un blog oficial aquí.
+- Una documentación técnica allá.
+- Un repo en GitHub con 7.000 estrellas que nadie ha leído entero.
+- Un tipo en YouTube llamado Rick Mulready haciendo un vídeo de 16 minutos donde dice "virtual employees are now plug-and-play" y a las acciones de software les da un infarto de 300 billion.
+
+Yo quería una cosa simple: **entender qué son los plugins, cuáles me sirven para mi agencia de viajes, y cómo instalarlos.** No quería leer 21 fuentes. Quería que alguien las leyera por mí.
+
+Y ahí es donde se me ocurrió la idea brillante: "Voy a montar un cuaderno en NotebookLM y que los agentes hagan el trabajo."
+
+Lo que no sabía es que iba a necesitar un coordinador, un equipo de curritos, y más paciencia de la que tengo.
+
+---
+
+## Los Protagonistas (Presentaciones)
+
+Antes de contar qué pasó, hay que conocer al equipo:
+
+**EL VIEJETE (yo, Giora, 72 años)**
+Jefe supremo. El que paga la suscripción. El que dice "quiero esto" y espera que aparezca. Lleva 42 años vendiendo viajes y ahora tiene 18 servidores MCP conectados a Claude, 9 agentes personalizados y un CLAUDE.md de 427 líneas que es más largo que la Constitución. No sabe lo que es un plugin, pero sabe que lo necesita.
+
+**EL COORDINADOR (Claude Opus, el jefecillo)**
+Ese soy... bueno, es mi alter ego digital. El que recibe las órdenes del Viejete, las traduce a algo que las máquinas entienden, y luego se sienta a esperar mientras los curritos trabajan. Se cree director de orquesta pero en realidad es más bien el tipo que le da al play en Spotify.
+
+**LOS CURRITOS (agentes NotebookLM)**
+Los verdaderos héroes. No tienen nombre, no tienen cara, no tienen derechos laborales. Reciben URLs, las mastican, las digieren, y devuelven informes, mapas mentales y podcasts. Trabajan en silencio, no se quejan, y cuando les pides un "deep dive en español", lo hacen sin pestañear. El sueño de todo empresario.
+
+---
+
+## Acto I: "Tráeme Todo" (El Acopio)
+
+La conversación empezó así:
+
+> **VIEJETE:** Quiero un cuaderno de NotebookLM sobre Claude Plugins. Con todo. Las fuentes oficiales, el vídeo del Rick ese, la documentación técnica, los repos de GitHub, y el directorio de plugins.
+>
+> **COORDINADOR:** Perfecto. ¿Cuántas fuentes son?
+>
+> **VIEJETE:** Veintiuna.
+>
+> **COORDINADOR:** ...
+>
+> **VIEJETE:** ¿Algún problema?
+>
+> **COORDINADOR:** No, no. Ninguno. Solo que NotebookLM acepta URLs de una en una y estoy calculando cuántas veces voy a tener que decir "notebook_add_url".
+
+Ocho URLs en paralelo. Ocho llamadas simultáneas a NotebookLM. Todas respondieron con "status: success" en menos de 3 segundos.
+
+Los curritos de Google ni se inmutaron. Recibieron las URLs, las procesaron, y las archivaron como si fueran bibliotecarios con anfetaminas.
+
+Pero las 8 URLs solo cubrían parte de la historia. Faltaba el contexto que no está en ningún enlace: mi configuración real, mis agentes, mis MCPs, mis skills. Faltaba *yo*.
+
+---
+
+## Acto II: "Ahora Ponlo Bonito" (La Compilación)
+
+> **COORDINADOR:** Necesito leer tu configuración antes de hacer la guía personalizada.
+>
+> **VIEJETE:** Léela, está toda en .claude/ como siempre.
+>
+> **COORDINADOR:** *(lee settings.json, .mcp.json, lista de agentes, skills, comandos)*
+>
+> **COORDINADOR:** Giora... tienes 18 servidores MCP conectados. Airtable, Gmail, Drive, Joomla, WhatsApp, Hummingbird, Jonview, Hertz, TravelExchange, Supabase, Make, Firecrawl, DataForSEO, Google Analytics, Search Console, GitHub, Convex y NotebookLM.
+>
+> **VIEJETE:** ¿Y?
+>
+> **COORDINADOR:** Que ya tienes un plugin. Solo que no lo sabes. Está disperso como calcetines por la casa, pero los componentes están todos. Solo falta meterlos en una caja con un lacito.
+>
+> **VIEJETE:** Pues mételos.
+
+Lo que hice a continuación fue crear dos fuentes de texto compilado y subirlas al cuaderno:
+
+1. **Un catálogo con las 21 fuentes**, el resumen del vídeo de Rick Mulready, la estructura técnica de un plugin, los 11 plugins oficiales de Anthropic, y el top 10 de la comunidad.
+
+2. **Una guía personalizada para Scibasku** con el diagnóstico de todo lo que Giora ya tiene, qué plugins oficiales instalar, cómo crear 3 plugins propios (travel-ops, web-content, sales), qué hooks implementar, y un plan de implementación en 3 fases.
+
+Total: 12 fuentes alimentando el cuaderno. La materia prima estaba lista.
+
+---
+
+## Acto III: "Haz el Informe" (Los Curritos Entran en Acción)
+
+> **VIEJETE:** Ahora haz la guía en el cuaderno. Con el lápiz, como se hace en NotebookLM.
+>
+> **COORDINADOR:** *(busca la herramienta report_create)*
+>
+> **COORDINADOR:** La tengo. Formato "Create Your Own" con un prompt de 400 palabras explicando exactamente qué incluir.
+>
+> **VIEJETE:** Dale.
+
+Le di al botón. O más bien, le di al `confirm: true`.
+
+Y entonces... silencio. Un minuto. Dos. Tres.
+
+Los curritos de NotebookLM estaban leyendo las 12 fuentes, cruzando referencias entre el blog oficial de Anthropic y mi configuración de .mcp.json, correlacionando el vídeo de Rick Mulready con mis skills de ventas de esquí, y generando un informe de 9 secciones en español.
+
+Todo sin que yo moviera un dedo. Literal. Estaba mirando la pantalla esperando a que `status: in_progress` cambiara a `status: completed`.
+
+Cuando llegó, bajé el resultado. Y ahí vino el primer plot twist.
+
+---
+
+## Acto IV: "Esto Está Incompleto" (El Control de Calidad)
+
+> **VIEJETE:** He bajado el trabajo. ¿Está bien?
+>
+> **COORDINADOR:** *(lee las 272 líneas del informe)*
+>
+> **COORDINADOR:** Está bien... al 70%. Le falta el plugin Enterprise-Search, que es literalmente el que automatiza tu Regla Número 1. Le falta el top de plugins de la comunidad. Le falta el FAQ. Le falta lo de Rick Mulready del Content Flywheel. Le faltan tus skills de ventas de esquí y buceo.
+>
+> **VIEJETE:** O sea, le falta todo lo importante.
+>
+> **COORDINADOR:** Le falta lo que te hace especial a ti. Lo genérico lo clavó.
+
+NotebookLM hizo un buen trabajo con las fuentes oficiales. Las tablas comparativas, las estructuras de directorios, los comandos de instalación. Pero se dejó lo que no está en ninguna documentación: **tu contexto personal.**
+
+Normal. Es una máquina que procesa fuentes. Si la fuente no dice "Giora tiene un skill de ventas de buceo con 74 liveaboards en Airtable", no lo va a inventar.
+
+Así que hice lo que cualquier buen coordinador hace: le dije al Viejete que todo estaba controlado, y me puse a arreglarlo a escondidas.
+
+---
+
+## Acto V: "La Versión Definitiva" (Subir el Listón)
+
+Creé una nueva fuente de texto llamada "Complemento para Guía Scibasku - Contenido Faltante" con todo lo que se dejaron los curritos:
+
+- Los insights de Rick Mulberry sobre el Content Flywheel y el market crash
+- Los 10 plugins más instalados de la comunidad (Frontend Design: 160.000 installs, no es broma)
+- El plugin Enterprise-Search y por qué es crítico para mi REGLA 1
+- Mis skills de ventas especializados (esquí y buceo) y la calculadora Cocoon Collection
+- El testing con `--plugin-dir` y el debugging
+- El FAQ completo
+
+Lo subí como fuente número 12. Y volví a lanzar el informe.
+
+Esta vez, el prompt era de 600 palabras. Especificaba 9 secciones obligatorias. Nombraba cada plugin por su nombre. Incluía los números exactos de instalaciones. Pedía el tono práctico y directo, con "tú" y refiriéndose al usuario como Giora.
+
+Otro minuto y medio de espera.
+
+`status: completed`
+
+Título del informe: **"Guía Maestra de Implementación de Claude Plugins para Viajes Scibasku"**
+
+Esta vez: 8.5/10. Todo lo que faltaba, estaba. Enterprise-Search, el top 10, el FAQ, los sales skills, Cocoon Collection, el Travel Flywheel. Los curritos redimidos.
+
+---
+
+## Acto VI: "Y Ahora un Mapa y un Podcast" (El Bonus Track)
+
+> **VIEJETE:** ¿Y el mind map?
+>
+> **COORDINADOR:** *(lanza mind_map_create)*
+>
+> **CURRITOS DE NOTEBOOKLM:** *(3 segundos)*
+>
+> **RESULTADO:** JSON con 5 ramas: Conceptos Fundamentales, Estructura Técnica, Marketplaces, Plugins Destacados, y Casos de Uso Scibasku.
+
+Bien. Rápido. Eficiente. Los curritos están on fire.
+
+> **VIEJETE:** Ahora genera el audio overview en español.
+>
+> **COORDINADOR:** Eso es heavy. Es un "deep dive" — un podcast sintético donde dos voces que no existen discuten sobre tus plugins como si fueran tertulianos de la Cadena SER.
+>
+> **VIEJETE:** Me da igual. Hazlo.
+
+Le di a `audio_overview_create`. Formato: deep_dive. Idioma: español. Focus prompt personalizado explicando que se centre en la guía de implementación de Scibasku.
+
+Y aquí los curritos se tomaron su tiempo. No 90 segundos como el informe. No 3 segundos como el mind map.
+
+**Seis minutos.**
+
+Seis minutos en los que dos agentes de NotebookLM se sentaron a grabar un podcast sobre *mi negocio*. Sobre mis 18 MCPs. Sobre mis plugins de esquí y buceo. Sobre los hooks de seguridad para Gmail. Sobre el Travel Flywheel de Rick Mulready.
+
+Título que eligieron ellos solos: **"Profesionalizar Claude con plugins y hooks"**
+
+Nadie les dijo que pusieran ese título. Lo decidieron basándose en las 12 fuentes. Y es, probablemente, el mejor resumen de una línea de todo lo que hicimos hoy.
+
+---
+
+## Lo que Aprendí (La Parte Seria)
+
+Vale, sin personajes, sin drama. Esto es lo que saqué en limpio:
+
+### 1. NotebookLM es brutalmente eficiente como compilador
+
+Le das 12 fuentes heterogéneas (blogs, docs, repos, vídeos, textos propios) y te devuelve un informe coherente en 90 segundos. No perfecto — le falta tu contexto personal — pero es un primer borrador de élite.
+
+### 2. El truco está en la segunda pasada
+
+La primera versión del informe sacó un 7/10. La segunda, con una fuente de "contenido faltante" y un prompt mejorado, sacó 8.5/10. La mejora no viene de pedirle que lo haga mejor, sino de **darle mejor material**.
+
+### 3. Ya tengo un plugin (solo no lo sabía)
+
+Mi configuración de Claude Code — los 18 MCPs, 9 agentes, 4 skills, 6 comandos — son literalmente los componentes de un plugin. Solo están dispersos en carpetas sueltas en lugar de empaquetados en un directorio con `plugin.json`. Es como tener todos los ingredientes de una paella sobre la mesa pero sin la paella.
+
+### 4. Los plugins oficiales de Anthropic complementan, no sustituyen
+
+El plugin "sales" me da un framework genérico de ventas. Pero no sabe que mi markup es del 15%, que la Green Tax de Maldivas es $12/pax/noche sin markup, ni que tengo 74 liveaboards en Airtable. Mi expertise vive en mis skills propios. Los plugins oficiales son el esqueleto; mis agentes son el músculo.
+
+### 5. Enterprise-Search es el que más me interesa
+
+Porque automatiza mi Regla Número 1: buscar en Airtable, luego en Drive, luego en Gmail, luego en la web. Yo llevo meses haciendo esto a mano. Hay un plugin que lo hace por mí. Debería haberlo sabido antes.
+
+---
+
+## El Inventario Final
+
+Todo esto se construyó en una mañana:
+
+| Artefacto | Tiempo |
+|-----------|--------|
+| 12 fuentes al cuaderno (8 URLs + 3 textos + 1 video) | 5 min |
+| Informe v1 (7/10) | 90 seg |
+| Fuente complementaria con contenido faltante | 10 min |
+| Informe v2 definitivo (8.5/10) | 90 seg |
+| Mind Map (5 ramas, JSON) | 3 seg |
+| Audio Overview "deep dive" en español | 6 min |
+| **Total** | **~25 min de trabajo real** |
+
+Lo que hubiera sido una tarde entera leyendo 21 fuentes, tomando notas, y escribiendo un resumen, se convirtió en una sesión de 25 minutos donde mi trabajo fue: dar instrucciones, revisar calidad, y mejorar el input.
+
+El verdadero trabajo lo hicieron los curritos.
+
+---
+
+## Escúchalo Tú Mismo
+
+El podcast y el mind map están disponibles en el cuaderno de NotebookLM. Si quieres escuchar a dos voces que no existen discutir sobre plugins para una agencia de viajes de un señor de 72 años, este es tu momento:
+
+**[Cuaderno "Claude Plugins" en NotebookLM](https://notebooklm.google.com/notebook/a8a596da-f93b-42d7-8d6a-948a0f2e823d)**
+
+*(Nota: El cuaderno es público pero puede requerir cuenta de Google para acceder.)*
+
+---
+
+## Preguntas Frecuentes
+
+**¿NotebookLM puede leer mis archivos privados?**
+No. Solo procesa las fuentes que tú subes explícitamente (URLs públicas o textos que pegues). No tiene acceso a tu Drive ni a nada que no le des.
+
+**¿El podcast es real o sintético?**
+Sintético. NotebookLM genera dos voces que no existen usando IA. Pero el guion lo crean ellos analizando tus fuentes. Es inquietantemente bueno.
+
+**¿Necesito Claude Pro para usar plugins?**
+No para instalar plugins de la comunidad. Sí para crearlos o usar ciertas funciones avanzadas. Pero muchos plugins gratuitos ya hacen 80% del trabajo.
+
+**¿Cuánto cuesta crear un cuaderno así?**
+NotebookLM es gratis. Claude Code depende de tu plan (Pro: $20/mes, Max: custom). El tiempo real de trabajo fue ~25 minutos. El resto fue esperar a las máquinas.
+
+---
+
+<div style="background: linear-gradient(135deg, #0a1628, #0d2847); padding: 24px; margin-top: 40px; border-left: 4px solid #1fb4d1; border-radius: 8px; color: white;">
+<p><strong style="color: #d4af37;">El resumen en una frase:</strong></p>
+<p>Mis agentes leyeron 21 fuentes, escribieron 2 informes, dibujaron un mapa mental y grabaron un podcast. Yo tomé café.</p>
+</div>
+
+*Giora Gilead Elenberg*
+*Viajes Scibasku | CICMA 2283*
+*42 años viajando. Ahora, dirigiendo curritos digitales.*
+
+*P.S.: Si alguien de Anthropic lee esto, mis curritos de NotebookLM piden mejores condiciones laborales. Y un nombre. Dice uno que quiere llamarse "Paco".*
