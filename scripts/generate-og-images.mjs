@@ -48,24 +48,32 @@ function stripAccents(str) {
 }
 
 function discoverPosts() {
-  const blogDir = join(root, 'src/content/blog/es');
-  const files = readdirSync(blogDir).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
   const posts = [];
+  const seen = new Set();
 
-  for (const file of files) {
-    const content = readFileSync(join(blogDir, file), 'utf-8');
-    const fm = parseFrontmatter(content);
-    if (!fm || !fm.title) continue;
+  for (const lang of ['es', 'en']) {
+    const blogDir = join(root, 'src/content/blog', lang);
+    if (!existsSync(blogDir)) continue;
+    const files = readdirSync(blogDir).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
 
-    const slug = basename(file, file.endsWith('.mdx') ? '.mdx' : '.md');
-    const tag = fm.tags.length > 0 ? parseTag(fm.tags[0]) : 'BLOG';
+    for (const file of files) {
+      const content = readFileSync(join(blogDir, file), 'utf-8');
+      const fm = parseFrontmatter(content);
+      if (!fm || !fm.title) continue;
 
-    posts.push({
-      slug,
-      tag,
-      title: stripAccents(fm.title),
-      description: stripAccents(fm.description),
-    });
+      const slug = basename(file, file.endsWith('.mdx') ? '.mdx' : '.md');
+      if (seen.has(slug)) continue;
+      seen.add(slug);
+
+      const tag = fm.tags.length > 0 ? parseTag(fm.tags[0]) : 'BLOG';
+
+      posts.push({
+        slug,
+        tag,
+        title: stripAccents(fm.title),
+        description: stripAccents(fm.description),
+      });
+    }
   }
 
   return posts;
