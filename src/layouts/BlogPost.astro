@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n/languages';
 import { useTranslations } from '../i18n/utils';
 import BaseHead from '../components/BaseHead.astro';
+import FloatingShare from '../components/FloatingShare.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
@@ -228,6 +229,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 
 	<body>
 		<Header lang={lang} />
+		<FloatingShare url={pageUrl} title={title} lang={lang} />
 		<main>
 			<article>
 				<div class="hero-image">
@@ -238,6 +240,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 						<div class="date-line">
 							<FormattedDate date={pubDate} lang={lang} />
 							{readingTime && <span class="reading-time"> · {readingTime} {t('blog.minRead') as string}</span>}
+							<span class="view-count" style="display:none"> · <svg style="width:14px;height:14px;vertical-align:-2px;fill:currentColor;display:inline" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg> <span class="view-number">0</span> {t('post.views') as string}</span>
 							{
 								updatedDate && (
 									<div class="last-updated-on">
@@ -344,6 +347,28 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 		</main>
 		<Footer lang={lang} />
 		<script>
+			// View counter
+			(function() {
+				const slug = window.location.pathname.replace(/^\/(?:en\/)?blog\//, '').replace(/\/$/, '');
+				fetch('/api/views', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ slug }),
+				})
+				.then(r => r.json())
+				.then(data => {
+					if (data.views > 0) {
+						const el = document.querySelector('.view-count') as HTMLElement;
+						const num = document.querySelector('.view-number');
+						if (el && num) {
+							num.textContent = String(data.views);
+							el.style.display = 'inline';
+						}
+					}
+				})
+				.catch(() => {});
+			})();
+
 			document.querySelectorAll('.copy-btn').forEach(btn => {
 				btn.addEventListener('click', async () => {
 					const url = btn.getAttribute('data-url');
