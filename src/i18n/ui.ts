@@ -27,6 +27,8 @@ export const ui = {
 		'post.copied': 'Copiado',
 		'post.whatDidYouThink': '¿Qué te ha parecido?',
 		'post.updated': 'Actualizado',
+		'post.views': 'visitas',
+		'cta.inline': '¿Te está gustando? Compártelo',
 
 		// Home
 		'home.heroCaption': 'De los gin tonics a la inteligencia artificial — la odisea de un recableado',
@@ -70,6 +72,8 @@ export const ui = {
 		'post.copied': 'Copied',
 		'post.whatDidYouThink': 'What did you think?',
 		'post.updated': 'Updated',
+		'post.views': 'views',
+		'cta.inline': 'Enjoying this? Share it',
 
 		// Home
 		'home.heroCaption': 'From gin & tonics to artificial intelligence — the odyssey of a rewired mind',
