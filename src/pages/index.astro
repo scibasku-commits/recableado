@@ -75,13 +75,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 					<h2 class="section-title">{t('blog.latest') as string}</h2>
 					<a href={`/blog/${latestPost.id}/`} class="post-card" data-slug={latestPost.id}>
 						<div class="post-thumb">
-							{latestPost.data.heroImage ? (
-								<img src={latestPost.data.heroImage} alt="" />
-							) : (
-								<div class="post-thumb-fallback">
-									<img src="/og-gin-tonic.jpg" alt="" />
-								</div>
-							)}
+							<img src={`/og/${latestPost.id}.png`} alt="" />
 						</div>
 						<div class="post-content">
 							{latestPost.data.tags && (

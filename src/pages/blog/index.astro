@@ -55,13 +55,7 @@ function getFirstTagStyle(tags?: string[]) {
 					return (
 						<a href={`/blog/${post.id}/`} class="post-card" data-slug={post.id}>
 							<div class="post-thumb">
-								{post.data.heroImage ? (
-									<img src={post.data.heroImage} alt="" loading="lazy" />
-								) : (
-									<div class="post-thumb-fallback" style={`background: ${tagStyle.background};`}>
-										<span class="thumb-emoji">{tagStyle.emoji}</span>
-									</div>
-								)}
+								<img src={`/og/${post.id}.png`} alt="" loading="lazy" />
 							</div>
 							<div class="post-content">
 								{post.data.tags && (
