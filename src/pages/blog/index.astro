@@ -5,6 +5,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import PostStatsLoader from '../../components/PostStatsLoader.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { useTranslations } from '../../i18n/utils';
 
@@ -52,7 +53,7 @@ function getFirstTagStyle(tags?: string[]) {
 						? post.data.description.slice(0, 120) + '...'
 						: post.data.description || '';
 					return (
-						<a href={`/blog/${post.id}/`} class="post-card">
+						<a href={`/blog/${post.id}/`} class="post-card" data-slug={post.id}>
 							<div class="post-thumb">
 								{post.data.heroImage ? (
 									<img src={post.data.heroImage} alt="" loading="lazy" />
@@ -79,6 +80,7 @@ function getFirstTagStyle(tags?: string[]) {
 								<div class="post-meta">
 									<FormattedDate date={post.data.pubDate} lang={lang} />
 									<span>&middot; {readingTime} {t('blog.minRead') as string}</span>
+									<span class="post-stats" style="display:none"></span>
 								</div>
 								{excerpt && <p class="post-excerpt">{excerpt}</p>}
 							</div>
@@ -88,6 +90,7 @@ function getFirstTagStyle(tags?: string[]) {
 			</div>
 		</main>
 		<Footer lang={lang} />
+		<PostStatsLoader />
 	</body>
 </html>
 <style>

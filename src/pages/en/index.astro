@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import Lightbox from '../../components/Lightbox.astro';
+import PostStatsLoader from '../../components/PostStatsLoader.astro';
 import { SITE_TITLE } from '../../consts';
 import { useTranslations } from '../../i18n/utils';
 
@@ -79,7 +80,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 			{latestPost && (
 				<section class="latest-post">
 					<h2 class="section-title">{t('blog.latest') as string}</h2>
-					<a href={`/en/blog/${latestPost.id}/`} class="post-card">
+					<a href={`/en/blog/${latestPost.id}/`} class="post-card" data-slug={latestPost.id}>
 						<div class="post-thumb">
 							{latestPost.data.heroImage ? (
 								<img src={latestPost.data.heroImage} alt="" />
@@ -107,6 +108,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 							<div class="post-meta">
 								<FormattedDate date={latestPost.data.pubDate} lang={lang} />
 								<span class="post-reading">&middot; {readingTime} {t('blog.minRead') as string}</span>
+								<span class="post-stats" style="display:none"></span>
 							</div>
 							<span class="post-link">{t('blog.read') as string} &rarr;</span>
 						</div>
@@ -130,6 +132,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		</main>
 		<Footer lang={lang} />
 		<Lightbox />
+		<PostStatsLoader />
 	</body>
 </html>
 <style>

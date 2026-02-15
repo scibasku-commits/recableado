@@ -1,0 +1,41 @@
+---
+// PostStatsLoader: client-side island that fetches view+reaction stats
+// and fills placeholder elements with data-slug attributes.
+// Include once per listing page, after all post cards.
+---
+
+<script>
+	function loadPostStats() {
+		const cards = document.querySelectorAll('[data-slug]');
+		if (cards.length === 0) return;
+
+		const slugs = Array.from(cards).map(el => (el as HTMLElement).dataset.slug).filter(Boolean);
+		if (slugs.length === 0) return;
+
+		fetch(`/api/post-stats?slugs=${slugs.join(',')}`)
+			.then(r => r.json())
+			.then((stats: Record<string, { views: number; reactions: number }>) => {
+				cards.forEach(card => {
+					const slug = (card as HTMLElement).dataset.slug!;
+					const data = stats[slug];
+					if (!data) return;
+
+					const statsEl = card.querySelector('.post-stats') as HTMLElement;
+					if (!statsEl) return;
+
+					const parts: string[] = [];
+					if (data.views > 0) parts.push(`\u{1F441} ${data.views}`);
+					if (data.reactions > 0) parts.push(`\u{2764} ${data.reactions}`);
+
+					if (parts.length > 0) {
+						statsEl.textContent = parts.join(' \u00B7 ');
+						statsEl.style.display = 'inline';
+					}
+				});
+			})
+			.catch(() => {});
+	}
+
+	loadPostStats();
+	document.addEventListener('astro:after-swap', loadPostStats);
+</script>
