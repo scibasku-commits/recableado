@@ -1,0 +1,281 @@
+---
+title: "Plugins, Interns and a Podcast Nobody Asked For (How I Built My University in NotebookLM)"
+description: "A 72-year-old traveller, an AI coordinator with delusions of grandeur, and an army of digital interns build a reference notebook about Claude Plugins. What should have taken an afternoon took a morning. What shouldn't have included a podcast in Spanish, does."
+pubDate: 2026-02-13
+tags: ["🔥 Ahora", "🛠️ Taller"]
+heroImage: ""
+translationKey: "plugins-y-curritos"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+![Claude Plugins Infographic - NotebookLM](/images/plugins-curritos-infografia.png)
+
+Or: How I built a reference notebook about Claude Plugins without reading a single document, delegating to agents who delegated to other agents, and ended up with a podcast where two voices that don't exist discuss my business.
+
+---
+
+## The Problem: Too Much Noise, Not Enough Notebook
+
+It all started because Anthropic launched Plugins for Claude Code and Cowork. And as always happens when they launch something, the timeline fills up with people explaining the same thing in different words:
+
+- An official blog here.
+- Some technical documentation there.
+- A GitHub repo with 7,000 stars that nobody has read end to end.
+- A guy on YouTube called Rick Mulready doing a 16-minute video where he says "virtual employees are now plug-and-play" and software stocks have a 300-billion heart attack.
+
+I wanted something simple: **understand what plugins are, which ones are useful for my travel agency, and how to install them.** I didn't want to read 21 sources. I wanted someone to read them for me.
+
+And that's when I had the brilliant idea: "I'll set up a notebook in NotebookLM and let the agents do the work."
+
+What I didn't know was that I'd need a coordinator, a team of interns, and more patience than I possess.
+
+---
+
+## The Cast (Introductions)
+
+Before I tell you what happened, you need to meet the team:
+
+**THE OLD-TIMER (me, Giora, 72 years old)**
+Supreme boss. The one who pays the subscription. The one who says "I want this" and expects it to appear. Has been selling trips for 42 years and now has 18 MCP servers connected to Claude, 9 custom agents, and a CLAUDE.md file of 427 lines that's longer than the Constitution. Doesn't know what a plugin is, but knows he needs it.
+
+**THE COORDINATOR (Claude Opus, the little boss)**
+That's me... well, my digital alter ego. The one who receives orders from the Old-Timer, translates them into something machines understand, and then sits back while the interns work. Thinks he's a conductor but is really more like the guy who presses play on Spotify.
+
+**THE INTERNS (NotebookLM agents)**
+The real heroes. They have no name, no face, no labour rights. They receive URLs, chew them up, digest them, and deliver reports, mind maps and podcasts. They work in silence, never complain, and when you ask for a "deep dive in Spanish", they do it without blinking. Every employer's dream.
+
+---
+
+## Act I: "Bring Me Everything" (The Gathering)
+
+The conversation started like this:
+
+> **OLD-TIMER:** I want a NotebookLM notebook about Claude Plugins. With everything. The official sources, Rick's video, the technical docs, the GitHub repos, and the plugin directory.
+>
+> **COORDINATOR:** Perfect. How many sources?
+>
+> **OLD-TIMER:** Twenty-one.
+>
+> **COORDINATOR:** ...
+>
+> **OLD-TIMER:** Problem?
+>
+> **COORDINATOR:** No, no. None at all. I'm just calculating how many times I'm going to have to say "notebook_add_url".
+
+Eight URLs in parallel. Eight simultaneous calls to NotebookLM. All responded with "status: success" in under 3 seconds.
+
+Google's interns didn't even flinch. They received the URLs, processed them, and filed them like librarians on amphetamines.
+
+But the 8 URLs only covered part of the story. What was missing was the context that isn't in any link: my real configuration, my agents, my MCPs, my skills. What was missing was *me*.
+
+---
+
+## Act II: "Now Make It Pretty" (The Compilation)
+
+> **COORDINATOR:** I need to read your configuration before building the personalised guide.
+>
+> **OLD-TIMER:** Read it, it's all in .claude/ as usual.
+>
+> **COORDINATOR:** *(reads settings.json, .mcp.json, agent list, skills, commands)*
+>
+> **COORDINATOR:** Giora... you have 18 MCP servers connected. Airtable, Gmail, Drive, Joomla, WhatsApp, Hummingbird, Jonview, Hertz, TravelExchange, Supabase, Make, Firecrawl, DataForSEO, Google Analytics, Search Console, GitHub, Convex and NotebookLM.
+>
+> **OLD-TIMER:** And?
+>
+> **COORDINATOR:** You already have a plugin. You just don't know it. It's scattered like socks around the house, but all the components are there. You just need to put them in a box with a ribbon.
+>
+> **OLD-TIMER:** Then put them.
+
+What I did next was create two compiled text sources and upload them to the notebook:
+
+1. **A catalogue with all 21 sources**, the summary of Rick Mulready's video, the technical structure of a plugin, the 11 official Anthropic plugins, and the community top 10.
+
+2. **A personalised guide for Scibasku** with the diagnostics of everything Giora already has, which official plugins to install, how to create 3 custom plugins (travel-ops, web-content, sales), which hooks to implement, and a 3-phase implementation plan.
+
+Total: 12 sources feeding the notebook. The raw material was ready.
+
+---
+
+## Act III: "Write the Report" (The Interns Spring Into Action)
+
+> **OLD-TIMER:** Now make the guide in the notebook. With the pencil, like you do in NotebookLM.
+>
+> **COORDINATOR:** *(looks for report_create tool)*
+>
+> **COORDINATOR:** Got it. "Create Your Own" format with a 400-word prompt explaining exactly what to include.
+>
+> **OLD-TIMER:** Go.
+
+I pressed the button. Or rather, I set `confirm: true`.
+
+And then... silence. One minute. Two. Three.
+
+NotebookLM's interns were reading the 12 sources, cross-referencing the official Anthropic blog with my .mcp.json configuration, correlating Rick Mulready's video with my ski sales skills, and generating a 9-section report in Spanish.
+
+All without me lifting a finger. Literally. I was staring at the screen waiting for `status: in_progress` to change to `status: completed`.
+
+When it arrived, I downloaded the result. And that's when the first plot twist hit.
+
+---
+
+<InlineCTA />
+
+## Act IV: "This Is Incomplete" (Quality Control)
+
+> **OLD-TIMER:** I've downloaded the work. Is it any good?
+>
+> **COORDINATOR:** *(reads the 272-line report)*
+>
+> **COORDINATOR:** It's good... at 70%. It's missing the Enterprise-Search plugin, which is literally the one that automates your Rule Number 1. It's missing the community plugin top 10. It's missing the FAQ. It's missing Rick Mulready's Content Flywheel stuff. It's missing your ski and diving sales skills.
+>
+> **OLD-TIMER:** So it's missing everything important.
+>
+> **COORDINATOR:** It's missing what makes *you* special. The generic stuff it nailed.
+
+NotebookLM did a good job with the official sources. The comparison tables, directory structures, installation commands. But it left out what isn't in any documentation: **your personal context.**
+
+Fair enough. It's a machine that processes sources. If the source doesn't say "Giora has a scuba sales skill with 74 liveaboards in Airtable", it's not going to make it up.
+
+So I did what any good coordinator does: I told the Old-Timer everything was under control, and quietly set about fixing it.
+
+---
+
+## Act V: "The Definitive Version" (Raising the Bar)
+
+I created a new text source called "Supplement for Scibasku Guide - Missing Content" with everything the interns had left out:
+
+- Rick Mulready's insights on the Content Flywheel and the market crash
+- The 10 most installed community plugins (Frontend Design: 160,000 installs, no joke)
+- The Enterprise-Search plugin and why it's critical for my RULE 1
+- My specialised sales skills (skiing and diving) and the Cocoon Collection calculator
+- Testing with `--plugin-dir` and debugging
+- The complete FAQ
+
+I uploaded it as source number 12. And launched the report again.
+
+This time, the prompt was 600 words. It specified 9 mandatory sections. Named each plugin by name. Included exact installation numbers. Asked for a practical, direct tone, using "you" and referring to the user as Giora.
+
+Another ninety seconds of waiting.
+
+`status: completed`
+
+Report title: **"Master Implementation Guide for Claude Plugins at Viajes Scibasku"**
+
+This time: 8.5/10. Everything that was missing was there. Enterprise-Search, the top 10, the FAQ, the sales skills, Cocoon Collection, the Travel Flywheel. The interns, redeemed.
+
+---
+
+## Act VI: "And Now a Map and a Podcast" (The Bonus Track)
+
+> **OLD-TIMER:** What about the mind map?
+>
+> **COORDINATOR:** *(launches mind_map_create)*
+>
+> **NOTEBOOKLM INTERNS:** *(3 seconds)*
+>
+> **RESULT:** JSON with 5 branches: Core Concepts, Technical Structure, Marketplaces, Featured Plugins, and Scibasku Use Cases.
+
+Good. Fast. Efficient. The interns are on fire.
+
+> **OLD-TIMER:** Now generate the audio overview in Spanish.
+>
+> **COORDINATOR:** That's heavy. It's a "deep dive" — a synthetic podcast where two voices that don't exist discuss your plugins as if they were talk-show pundits.
+>
+> **OLD-TIMER:** I don't care. Do it.
+
+I triggered `audio_overview_create`. Format: deep_dive. Language: Spanish. Custom focus prompt explaining to centre on the Scibasku implementation guide.
+
+And here the interns took their time. Not 90 seconds like the report. Not 3 seconds like the mind map.
+
+**Six minutes.**
+
+Six minutes in which two NotebookLM agents sat down and recorded a podcast about *my business*. About my 18 MCPs. About my ski and diving plugins. About the security hooks for Gmail. About Rick Mulready's Travel Flywheel.
+
+Title they chose on their own: **"Professionalising Claude with plugins and hooks"**
+
+Nobody told them to use that title. They decided based on the 12 sources. And it is, probably, the best one-line summary of everything we did today.
+
+---
+
+## What I Learned (The Serious Part)
+
+OK, no characters, no drama. Here's what I took away:
+
+### 1. NotebookLM is brutally efficient as a compiler
+
+Give it 12 heterogeneous sources (blogs, docs, repos, videos, your own texts) and it returns a coherent report in 90 seconds. Not perfect — it misses your personal context — but it's an elite first draft.
+
+### 2. The trick is in the second pass
+
+The first version of the report scored 7/10. The second, with a "missing content" source and an improved prompt, scored 8.5/10. The improvement doesn't come from asking it to do better, but from **giving it better material**.
+
+### 3. I already had a plugin (I just didn't know)
+
+My Claude Code configuration — the 18 MCPs, 9 agents, 4 skills, 6 commands — are literally the components of a plugin. They're just scattered across loose folders instead of packaged in a directory with a `plugin.json`. It's like having all the ingredients for a paella on the table but without the paella.
+
+### 4. Anthropic's official plugins complement, they don't replace
+
+The "sales" plugin gives me a generic sales framework. But it doesn't know that my markup is 15%, that the Maldives Green Tax is $12/person/night with no markup, or that I have 74 liveaboards in Airtable. My expertise lives in my custom skills. The official plugins are the skeleton; my agents are the muscle.
+
+### 5. Enterprise-Search is the one I want most
+
+Because it automates my Rule Number 1: search Airtable, then Drive, then Gmail, then the web. I've been doing this manually for months. There's a plugin that does it for me. I should have known sooner.
+
+---
+
+## The Final Inventory
+
+All of this was built in one morning:
+
+| Artefact | Time |
+|----------|------|
+| 12 sources into the notebook (8 URLs + 3 texts + 1 video) | 5 min |
+| Report v1 (7/10) | 90 sec |
+| Supplementary source with missing content | 10 min |
+| Report v2 definitive (8.5/10) | 90 sec |
+| Mind Map (5 branches, JSON) | 3 sec |
+| Audio Overview "deep dive" in Spanish | 6 min |
+| **Total** | **~25 min of actual work** |
+
+What would have been an entire afternoon reading 21 sources, taking notes, and writing a summary became a 25-minute session where my job was: give instructions, review quality, and improve the input.
+
+The real work was done by the interns.
+
+---
+
+## Listen to It Yourself
+
+The podcast and mind map are available in the NotebookLM notebook. If you want to hear two voices that don't exist discuss plugins for a travel agency run by a 72-year-old, this is your moment:
+
+**[Notebook "Claude Plugins" on NotebookLM](https://notebooklm.google.com/notebook/a8a596da-f93b-42d7-8d6a-948a0f2e823d)**
+
+*(Note: The notebook is public but may require a Google account to access.)*
+
+---
+
+## Frequently Asked Questions
+
+**Can NotebookLM read my private files?**
+No. It only processes the sources you explicitly upload (public URLs or text you paste). It has no access to your Drive or anything you don't give it.
+
+**Is the podcast real or synthetic?**
+Synthetic. NotebookLM generates two voices that don't exist using AI. But the script is created by them analysing your sources. It's disturbingly good.
+
+**Do I need Claude Pro to use plugins?**
+Not to install community plugins. Yes to create them or use certain advanced features. But many free plugins already do 80% of the job.
+
+**How much does it cost to create a notebook like this?**
+NotebookLM is free. Claude Code depends on your plan (Pro: $20/month, Max: custom). The actual work time was ~25 minutes. The rest was waiting for the machines.
+
+---
+
+<div style="background: linear-gradient(135deg, #0a1628, #0d2847); padding: 24px; margin-top: 40px; border-left: 4px solid #1fb4d1; border-radius: 8px; color: white;">
+<p><strong style="color: #d4af37;">The one-line summary:</strong></p>
+<p>My agents read 21 sources, wrote 2 reports, drew a mind map and recorded a podcast. I drank coffee.</p>
+</div>
+
+*Giora Gilead Elenberg*
+*Viajes Scibasku | CICMA 2283*
+*42 years travelling. Now, managing digital interns.*
+
+*P.S.: If anyone from Anthropic reads this, my NotebookLM interns are requesting better working conditions. And a name. One of them says he wants to be called "Paco".*
