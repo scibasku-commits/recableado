@@ -48,7 +48,7 @@ function stripAccents(str) {
 }
 
 function discoverPosts() {
-  const blogDir = join(root, 'src/content/blog');
+  const blogDir = join(root, 'src/content/blog/es');
   const files = readdirSync(blogDir).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
   const posts = [];
 

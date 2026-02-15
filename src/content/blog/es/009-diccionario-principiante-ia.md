@@ -131,7 +131,7 @@ Y un buen diccionario.
 
 **¿Te sirvió este diccionario?** Compártelo con alguien que esté donde tú estabas hace 8 meses. A veces lo único que hace falta es que alguien te traduzca los palabros.
 
-[Compartir en LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https://recableado.blog/es/blog/009-diccionario-principiante-ia/)
+[Compartir en LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https://recableado.blog/blog/009-diccionario-principiante-ia/)
 
 ---
 
