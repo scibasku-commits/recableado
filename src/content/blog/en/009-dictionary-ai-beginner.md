@@ -3,7 +3,7 @@ title: "The Dictionary I Wish I Had When I Started"
 description: "June 2025. 72 years old. 42 years selling travel. And I had zero clue what a 'prompt' was. These are the 5 terms that saved my life."
 pubDate: 2026-02-15
 tags: ["📙 Memoria", "🛠️ Taller"]
-heroImage: ""
+heroImage: "../../../assets/diccionario-ia-hero.webp"
 translationKey: "diccionario-ia"
 ---
 

@@ -3,7 +3,7 @@ title: "El Diccionario que Hubiera Necesitado Cuando Empecé"
 description: "Junio 2025. 72 años. 42 años vendiendo viajes. Y no tenía NPI de qué era un 'prompt'. Estos son los 5 términos que me salvaron la vida."
 pubDate: 2026-02-15
 tags: ["📙 Memoria", "🛠️ Taller"]
-heroImage: ""
+heroImage: "../../../assets/diccionario-ia-hero.webp"
 translationKey: "diccionario-ia"
 ---
 
