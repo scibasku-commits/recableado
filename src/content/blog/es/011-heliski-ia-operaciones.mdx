@@ -1,0 +1,207 @@
+---
+title: "Cinco proveedores, tres zonas horarias y un agente de 72 años con IA"
+description: "Cómo organicé un viaje de heli-ski en Canadá para 4 esquiadores coordinando 5 proveedores en 3 zonas horarias. Sin equipo. Sin Excel. Con inteligencia artificial."
+pubDate: 2026-02-16
+tags: ["🔥 Ahora", "🛠️ Taller"]
+heroImage: ""
+translationKey: "heliski-ia-operations"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+Usé IA para organizar un viaje de heli-ski en Canadá. Cinco proveedores, tres zonas horarias, 16 días, siete documentos PDF. Lo que antes me costaba una semana, lo resolví en una tarde. Tengo 72 años y no tengo equipo informático.
+
+Imagina coordinar un viaje donde el helicóptero sale de las Selkirk Mountains a las 7am hora de Vancouver, el hotel de Calgary te confirma a mediodía hora de las Rocosas, la aerolínea opera desde Ámsterdam, y tú estás sentado en Marbella a las 9 de la noche mirando un email con "joining instructions" de 14 páginas en inglés. Multiplicado por cuatro esquiadores, cinco proveedores, y un cliente que te escribe a las once de la noche preguntando si el coche de alquiler lleva neumáticos de invierno.
+
+Ese viaje existió. Lo organicé. Y lo hice con una herramienta que hace tres años no existía.
+
+---
+
+## ¿Qué pinta tiene un viaje que necesita centro de operaciones?
+
+Esto no era un vuelo más hotel más forfait. Esto era una expedición.
+
+**Los proveedores:**
+- **Selkirk Tangiers Heli-Skiing** — Rogers Pass, British Columbia. Helicóptero Eurocopter A-Star B3. 2.250 km² de terreno virgen. Ratio 4:1 guía-esquiador. Joining instructions con requisitos de equipamiento, niveles de esquí, y protocolo de seguridad antialudes.
+- **CMH Purcell** — Purcell Mountains. Otro operador de heli-ski para la segunda fase. Otra montaña, otra base, otras instrucciones.
+- **Jonview** — Receptivo canadiense. Dos hoteles: Palliser Lodge en Kicking Horse y Sandman en Revelstoke. Confirmaciones en CAD, condiciones de cancelación diferentes por hotel.
+- **Alamo** — Alquiler de vehículo. Chevy Colorado 4WD con neumáticos de invierno obligatorios. Recogida en Calgary, devolución en Calgary. 600 km entre estaciones por la Trans-Canada Highway en febrero.
+- **KLM** — Barcelona → Ámsterdam → Calgary. Business class. Cuatro viajeros, dos localizadores, un menor que necesita autorización.
+
+**Las zonas horarias:**
+- Barcelona: CET (UTC+1)
+- Ámsterdam: CET (misma que Barcelona, pero el hub de KLM opera con horarios propios)
+- Vancouver / Rogers Pass / Revelstoke: PST (UTC-8). Nueve horas de diferencia con España.
+- Calgary: MST (UTC-7). Ocho horas.
+
+Cuando el cliente — le llamaremos **Ignasi** — me escribía a las 23:00 hora de Barcelona, en Revelstoke eran las 14:00. Cuando yo respondía a las 9:00 de la mañana, allí eran las 12 de la noche. Y cuando Selkirk Tangiers enviaba la confirmación a las 10:00 PST, en mi bandeja llegaba a las 19:00.
+
+Presupuesto de cinco cifras. Cuatro viajeros. Dieciséis días. Sin margen de error.
+
+---
+
+## ¿Cómo organizaba yo esto antes de la IA?
+
+En 2019 hice un viaje parecido. Cuatro esquiadores a Whistler, con heli-ski incluido. Lo organicé a la antigua: Excel con 14 pestañas, emails clasificados por colores, post-its en la pantalla del ordenador, y un cuaderno de tapas duras donde apuntaba lo que no me cabía en la cabeza.
+
+El Excel tenía una pestaña por proveedor, una por viajero, una por fecha, una para vuelos, una para seguros, y tres que nunca supe para qué servían pero tenían fórmulas que no me atrevía a borrar.
+
+Los emails de confirmación llegaban a cualquier hora. Los guardaba en una carpeta de Outlook que se llamaba "Whistler 2019 DEFINITIVO" — que, como cualquiera que haya trabajado con archivos sabe, significa que había al menos un "Whistler 2019 DEFINITIVO (2)" y un "Whistler 2019 ÚLTIMO DE VERDAD".
+
+Las llamadas eran la peor parte. Cuando necesitaba confirmar algo con el receptivo de Vancouver, tenía que esperar a las 18:00 hora española para que fueran las 9:00 allí. Y si no me cogían, al día siguiente otra vez.
+
+El viaje salió bien. Pero yo acabé destrozado.
+
+| Tarea | Antes (2019) | Ahora (con IA) |
+|-------|-------------|-----------------|
+| Buscar datos de vuelos | 2h en Amadeus | 3 min: Claude lee confirmación KLM |
+| Crear 7 bonos PDF | 1 día (Word + imprimir) | 20 min: HTML + Chrome headless |
+| Coordinar 5 proveedores | Llamadas a deshora + post-its | Centralizado: Airtable + emails parseados |
+| Documentación cliente | Medio día copiando | Travel wallet HTML con chatbot |
+| Dudas del cliente a las 23h | "Mañana te contesto" | Chatbot responde en 10 seg |
+
+---
+
+## ¿Qué momento te hizo cambiar?
+
+Febrero de 2024. Tenía un expediente de Maldivas con ocho liveaboards, cuatro operadores de buceo diferentes, conexiones aéreas con escala en Doha, y un cliente que quería comparar precios por noche, por inmersión, por transferencia en hidroavión.
+
+Hice un Excel que ocupaba más que la declaración de la renta. Le puse fórmulas condicionales. Le puse colores. Le puse desplegables. A la tercera hora, la fórmula de la celda F47 me devolvió #REF! y supe que había dos opciones: o encontraba una forma mejor, o me jubilaba antes de tiempo.
+
+Elegí la primera.
+
+Un colega me dijo: "Prueba Claude." Yo le dije: "¿Claude qué?" Me explicó que era una IA que podía leer documentos, extraer datos y generar informes. Le dije que sonaba a ciencia ficción. Me dijo que sonaba a lo que yo necesitaba.
+
+Tenía razón.
+
+---
+
+<InlineCTA />
+
+## ¿Qué hace exactamente la IA cuando le dices "organízame un viaje"?
+
+No le dices eso. Le das contexto. Le das datos. Y ella trabaja. Cuatro capacidades concretas, con ejemplos reales de este viaje de heli-ski.
+
+### 1. Lee emails de proveedores
+
+Me llegaron 42 emails durante la preparación de este viaje. Confirmaciones de KLM con horarios y localizadores. Confirmaciones de Jonview con nombres de hotel, fechas de check-in/check-out, y condiciones en letra pequeña. Joining instructions de Selkirk Tangiers con 14 páginas de requisitos. Póliza de Intermundial con cobertura en zona remota.
+
+Claude leyó cada uno. Extrajo fechas, precios, códigos de reserva, condiciones de cancelación, y requisitos especiales. Sin que yo le dijera dónde buscar — tiene una regla interna que le obliga a buscar primero en la base de datos, luego en los documentos, luego en los emails, y solo si no encuentra nada, en la web pública. Si no lo encuentra en ningún sitio, escribe [PENDIENTE]. No inventa.
+
+### 2. Crea documentos
+
+Siete bonos PDF para este viaje: dos billetes de avión KLM, bono de hoteles Jonview, bono de vehículo Alamo, bono de heli-ski Selkirk, bono de forfaits para dos estaciones, y bono de seguro Intermundial.
+
+Cada bono es un HTML diseñado con los colores de mi agencia (navy, dorado, turquesa). Claude los genera, yo los reviso, y Chrome headless los convierte a PDF en 3 segundos. Lo que antes era un día entero copiando datos de emails a plantillas de Word, ahora son 20 minutos.
+
+### 3. Coordina zonas horarias
+
+No es que la IA "piense" en zonas horarias. Es que cuando lee un email de Selkirk Tangiers que dice "Pick-up at Revelstoke helipad, 7:00 AM PST", lo traduce al contexto del viajero: "Recogida a las 7:00 hora local — son las 16:00 en Barcelona, conviene que Ignasi se acueste temprano la noche anterior."
+
+Pequeño detalle. Pero cuando tienes cinco proveedores en tres husos horarios y un viajero que no sabe si 7:00 AM PST es antes o después de su desayuno en el hotel, ese detalle vale oro.
+
+### 4. Monta un asistente 24/7
+
+Esto es la parte que más les impresiona a los clientes, aunque no saben que existe.
+
+Cada viaje que preparo tiene una página web privada — la llamo "travel wallet" — con todo: itinerario visual, bonos descargables, datos de emergencia, mapas. Y dentro de esa página hay un chatbot.
+
+El chatbot usa Claude Haiku (el modelo rápido y barato). Tiene instrucciones estrictas: solo puede responder con datos que yo he puesto en su prompt. Si no lo sabe, dice "contacta con Giora". Si le preguntan por precios, dice "eso lo gestiona Giora directamente". No inventa restaurantes. No inventa horarios. No inventa nada.
+
+Y responde en 10 segundos. A las 3 de la mañana, si hace falta.
+
+---
+
+## ¿Y si la IA comete errores que me cuestan dinero?
+
+Los comete. O más bien, los detecta antes de que los cometa yo.
+
+En este viaje, había puesto el check-in del hotel Golden para el 12 de marzo. El heli-ski en Selkirk terminaba el 13. Un día antes. Significa que Ignasi y sus amigos habrían llegado al hotel y no tendrían habitación, porque la reserva empezaba al día siguiente.
+
+Claude lo detectó. Me avisó. Corregí.
+
+¿Cuánto habría costado ese error? Un cambio de reserva en temporada alta, con cuatro habitaciones en un pueblo de montaña con 3.000 habitantes. Mínimo 200 dólares canadienses. Probablemente más.
+
+Pero aquí viene lo importante: Claude no lo detectó porque sea "inteligente". Lo detectó porque tiene una regla que le obliga a verificar las fechas de cada servicio contra el itinerario general. Si la fecha de check-in no coincide con la fecha prevista de llegada, avisa. Mecánico. Sistemático. Infalible.
+
+Yo, con mi Excel de 14 pestañas, no lo habría pillado hasta que el cliente estuviera en el mostrador del hotel.
+
+---
+
+## ¿Mis clientes van a pensar que soy un vago?
+
+Ignasi me escribió a las 23:15 un domingo. Preguntaba si el coche de alquiler de Alamo venía con neumáticos de invierno o si tenía que pedir cadenas.
+
+No me enteré hasta las 7 de la mañana del lunes. Pero Ignasi sí tuvo respuesta. El chatbot le contestó en 10 segundos con los datos exactos del contrato: "Sí, el Chevy Colorado 4WD viene equipado con neumáticos de invierno de serie. No necesitas cadenas para la Trans-Canada Highway."
+
+A las 7 de la mañana, cuando abrí el panel de administración del chatbot, vi la conversación. Ignasi había preguntado, el chatbot había respondido correctamente, e Ignasi se había ido a dormir tranquilo.
+
+¿Quién es el vago aquí? ¿El agente de viajes cuyo asistente trabaja a las 23:15 de un domingo? ¿O el agente que no tiene asistente y habría contestado el lunes a las 10?
+
+---
+
+## ¿Y si la IA me sustituye?
+
+La IA no sabe que Ignasi tiene miedo a las alturas pero no lo va a admitir delante de sus amigos.
+
+La IA no sabe que hay que reservar la mesa del restaurante de Golden donde el dueño habla castellano, porque Ignasi lo agradecerá después de 16 días hablando inglés.
+
+La IA no sabe que el tercer esquiador del grupo tiene una rodilla recién operada y hay que avisar discretamente al guía de Selkirk para que ajuste el terreno sin que el grupo se entere.
+
+La IA procesa datos. Yo proceso personas. Y eso no lo automatiza nadie.
+
+¿Podría un algoritmo detectar que a Ignasi le cambia la cara cuando mencionas "helicóptero" y "altitud" en la misma frase? ¿Podría una máquina saber que ese silencio de dos segundos en la llamada significa que tiene miedo pero no quiere decirlo? Yo llevo 42 años leyendo esos silencios.
+
+En [otro post](/blog/es/006-claude-viaje-criminal) conté cómo Claude inventó un criminal en Jackson Hole. Un tipo que robaba billetes del Million Dollar Cowboy Bar y acababa en la cárcel del sheriff. Historia inventada, datos reales. Eso fue ANTES de que yo pusiera barreras anti-alucinación.
+
+Hoy, el chatbot de este viaje de heli-ski tiene instrucciones explícitas: "Si el dato no está en este prompt, NO existe." Y funciona. Pero la barrera la puse yo. La decisión de qué datos incluir y cuáles omitir es mía. La IA es la herramienta. El criterio sigue siendo humano.
+
+---
+
+## ¿Cuánto tiempo me ahorro en números reales?
+
+Estos son los tiempos reales de producción de los documentos de este viaje. No son estimaciones — son lo que tardé.
+
+| Artefacto | Sin IA | Con IA |
+|-----------|--------|--------|
+| 2 billetes KLM (PDF) | 30 min | 3 min |
+| Bono hoteles Jonview | 45 min | 5 min |
+| Bono vehículo Alamo | 20 min | 3 min |
+| Bono heli-ski Selkirk | 30 min | 5 min |
+| Bono forfaits (2 estaciones) | 20 min | 3 min |
+| Bono seguro Intermundial | 20 min | 3 min |
+| Travel Wallet HTML completo | 4 horas | 45 min |
+| Chatbot anti-alucinaciones | No existía | 20 min |
+| **Total** | **~8 horas** | **~1.5 horas** |
+
+De 8 horas a 1 hora y media. Y la diferencia no es solo el tiempo. Es la calidad: cada bono tiene el mismo diseño, los mismos colores, la misma tipografía. El travel wallet es interactivo, con navegación, galería de fotos, y chatbot integrado. Los bonos son PDFs profesionales que el cliente puede enseñar en el mostrador del hotel.
+
+En 2019, mis bonos eran un Word con el logo de la agencia arriba a la izquierda y Comic Sans que se me olvidó cambiar. No me enorgullezco.
+
+---
+
+## Preguntas Frecuentes
+
+**¿Puede la IA organizar un viaje internacional complejo?**
+Sí, pero no sola. La IA procesa datos, crea documentos y coordina información. El agente de viajes aporta el criterio, las relaciones con proveedores y el conocimiento del cliente. La combinación es lo que funciona.
+
+**¿Es seguro darle datos de clientes a una IA?**
+Uso Claude de Anthropic con API privada. Los datos no se usan para entrenar el modelo. Cada viaje tiene su propio chatbot con datos aislados. El cliente nunca interactúa directamente con mi base de datos, solo con un asistente que tiene acceso limitado a la información de su viaje.
+
+**¿Cuánto cuesta usar IA para gestionar viajes?**
+La suscripción a Claude cuesta 20 dólares al mes. El chatbot usa Claude Haiku, que procesa cada respuesta por fracciones de céntimo. El hosting es gratuito con Vercel. En total, menos de 30 euros al mes para una herramienta que me ahorra 6 horas por expediente complejo.
+
+**¿Necesito saber programar para usar IA en mi agencia?**
+No. Yo no sé programar. Lo que sé es dar instrucciones claras. La IA escribe el código, genera los documentos, y monta la infraestructura. Yo reviso y apruebo. Lleva una curva de aprendizaje de unas semanas, pero no necesitas saber qué es una función o un array.
+
+---
+
+<div style="background: linear-gradient(135deg, #0a1628, #0d2847); padding: 24px; margin-top: 40px; border-left: 4px solid #1fb4d1; border-radius: 8px; color: white;">
+<p><strong style="color: #d4af37;">El resumen en una frase:</strong></p>
+<p>Cinco proveedores, tres zonas horarias, siete documentos, un chatbot que no duerme. Y yo pedaleando por el paseo marítimo de Barcelona mientras Ignasi pregunta a las 3am si necesita cadenas para el coche.</p>
+</div>
+
+*Giora Gilead Elenberg*
+*Viajes Scibasku | CICMA 2283*
+*42 años viajando. Ahora, con copiloto.*
+
+*P.S.: Si alguien de Selkirk Tangiers lee esto, sepan que mis agentes de IA llevan semanas hablando de Rogers Pass en cada conversación. Les he dicho que no pueden ir a esquiar. Pero me miran raro. Creo que están tramando algo.*
