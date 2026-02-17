@@ -1,0 +1,155 @@
+---
+title: "La noche que mi IA y yo saqueamos una biblioteca de 75 libros... y salimos con uno solo"
+description: "Cómo un agente de IA consolidó 75 fuentes dispersas en un documento de 989 líneas en 12 minutos usando el MCP de NotebookLM."
+pubDate: 2026-02-17
+tags: ["🔥 Ahora", "🛠️ Taller"]
+heroImage: ""
+translationKey: "saqueo-biblioteca-notebooklm"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+## Cómo un agente de IA consolidó 75 fuentes dispersas en un documento de 989 líneas... en 12 minutos
+
+Le pedí a Claude que entrara en mis 10 cuadernos de NotebookLM, leyera 75 fuentes sobre Skills de IA, y me lo resumiera todo en un solo documento. Lo hizo en 12 minutos. A mí me habría llevado tres semanas y dos cajas de ibuprofeno.
+
+---
+
+## El problema: demasiada información y ninguna a la vez
+
+Llevo meses consumiendo vídeos de YouTube sobre Claude Skills como quien come pipas: compulsivamente, sin orden, y con la mesa llena de cáscaras. Un vídeo de Benjamin Cordero por aquí, otro de Mark Kashef por allá, una guía de Anthropic entre medias, y el Greg Isenberg ese explicando cómo montar un empleado digital que trabaja mientras duermes (cosa que, a mis 72 años, me interesa bastante más que a un chaval de 25).
+
+El resultado: 10 cuadernos en NotebookLM. 75 fuentes entre vídeos, artículos y documentación oficial. Todo metido en cajones diferentes. Como tener una biblioteca entera pero con los libros repartidos por el baño, la cocina, el coche y la casa del vecino.
+
+Y cada vez que necesitaba recordar algo — "¿cómo era eso de los Trigger Words en las Skills?" o "¿qué patrón de diseño recomendaba Anthropic?" — tenía que abrir tres cuadernos, ver dos vídeos a velocidad 2x, y rezar para que mi memoria (la mía, no la del ordenador) cooperase.
+
+## La idea descabellada
+
+Un domingo por la mañana, café en mano, pensé: "¿Y si le pido a Claude que entre en NotebookLM, lea TODO, y me lo junte en un solo sitio?"
+
+Parece sencillo. No lo es.
+
+NotebookLM es como un hotel de lujo: te deja entrar, te da una habitación preciosa, pero no te deja sacar las toallas. Las transcripciones de los vídeos de YouTube están dentro de la plataforma, procesadas, pero no hay un botón de "descargar transcripción". Es como tener un chef increíble en casa que cocina de maravilla pero se niega a darte la receta.
+
+Pero resulta que hay una puerta trasera. Bueno, más bien una ventanilla de servicio: el MCP de NotebookLM. Un protocolo que permite hacerle preguntas a tus cuadernos desde fuera. No te da el texto crudo, pero si le preguntas bien, te lo cuenta todo con pelos y señales.
+
+---
+
+<InlineCTA />
+
+## La operación "Saqueo Elegante"
+
+Le expliqué el plan a Claude (mi agente de IA, no un amigo con nombre raro):
+
+**Giora:** *"Necesito que leas 10 cuadernos de NotebookLM y consolides todo en un documento. Pero las transcripciones no se pueden descargar."*
+
+**Claude:** *"Puedo usar el MCP para hacer queries exhaustivas. ¿Quieres que liste primero todos tus cuadernos?"*
+
+**Giora:** *"¿Todos? ¿Cuántos tengo?"*
+
+**Claude:** *"158."*
+
+Ciento cincuenta y ocho. No sabía ni que existían algunos.
+
+El plan quedó así:
+
+1. Listar los 158 cuadernos y seleccionar los 10 relevantes sobre Skills
+2. Lanzar queries exhaustivas a los 10 cuadernos **simultáneamente**. En paralelo. Diez preguntas a la vez. Como un pulpo intelectual.
+3. Obtener las URLs de cada vídeo fuente para poder referenciarlos
+4. Consolidar todo en un único documento Markdown
+
+Y Claude lo hizo. Sin quejarse. Sin pedir un descanso para el café. Sin decir "esto no es lo mío" o "necesito más contexto".
+
+Simplemente... lo hizo.
+
+## Los 12 minutos más productivos de mi vida
+
+En 12 minutos, Claude:
+
+- Listó 158 cuadernos y seleccionó los 10 correctos
+- Lanzó 10 queries en paralelo (una por cuaderno) con prompts del tipo: *"Resume TODO el contenido de forma exhaustiva. Incluye todos los conceptos, ejemplos prácticos, pasos, código, recomendaciones..."*
+- Obtuvo los detalles de las 75 fuentes (títulos, autores, URLs de YouTube)
+- Consolidó todo en un documento de 989 líneas con índice, 10 secciones completas, y un apéndice de estadísticas
+- Lo guardó en tres sitios diferentes (Obsidian, Desktop, y me ofreció subirlo a Drive)
+
+Para ponerlo en perspectiva: yo habría necesitado ver 75 vídeos (media de 20 minutos cada uno = 25 horas), tomar notas, organizarlas, formatearlas, y juntarlas. **Tres semanas de trabajo, siendo optimista.** Y eso asumiendo que no me distraigo con un vídeo de esquí en Niseko que aparece en las recomendaciones de YouTube (cosa que pasa el 100% de las veces).
+
+---
+
+## Qué hay dentro del documento
+
+El resultado es una especie de "enciclopedia práctica de Skills" con todo lo que he aprendido en meses, pero organizado:
+
+**Skills vs MCP vs Prompts** (Benjamin Cordero)
+→ Los Skills son SOPs, no prompts. El MCP es el USB-C, el Skill es el "cómo"
+
+**Los 5 patrones de diseño** (Mark Kashef / Anthropic)
+→ Secuencial, Multi-MCP, Iterativo, Branching, Dominio
+
+**Front-end Design** (Income Stream Surfers)
+→ Skills que eliminan el "AI slop" del diseño web
+
+**Clawdbot/Moltbot** (Greg Isenberg)
+→ Un empleado digital 24/7 que trabaja mientras duermes
+
+**Best practices** (Boris Cherny, creador de Claude Code)
+→ El workflow perfecto: Plan Mode, Hooks, Sub-agentes
+
+---
+
+## Lo que aprendí (yo, el humano)
+
+### 1. La IA no sustituye la curiosidad, la organiza
+
+Yo ya había visto todos esos vídeos. Pero tenerlos desperdigados en 10 cuadernos es como tener los ingredientes de una paella repartidos por tres supermercados. Claude fue el que los juntó en la cocina y me dijo: "Aquí tienes, ahora cocina".
+
+### 2. NotebookLM es un almacén increíble con un muelle de carga pésimo
+
+Fantástico para meter información. Terrible para sacarla. Hasta que descubres que puedes hacerle preguntas amplias vía MCP y que te lo "cuente" todo.
+
+### 3. Tener 158 cuadernos no te hace más listo
+
+Me enteré de que tenía cuadernos sobre Shakespeare, Rosa Damascena, y uno vacío sin título. Acumular información no es lo mismo que procesarla. A veces necesitas a alguien (o algo) que te diga: "Oye, de estos 158, los que importan son estos 10".
+
+### 4. La edad es una ventaja, no un obstáculo
+
+A los 72 años tengo algo que ningún modelo de IA tiene: **contexto vital**. Sé qué información es útil porque llevo 42 años viajando y 2 años usando IA intensivamente.
+
+Claude procesó 75 fuentes en 12 minutos. Yo tardé 42 años en saber qué preguntas hacer.
+
+**La velocidad es suya. La dirección es mía.**
+
+---
+
+## El resultado final
+
+Un documento de 989 líneas que ahora vive en mi Obsidian, listo para consultar cada vez que necesite recordar cómo se estructura un Skill, qué patrones de diseño existen, o cómo configurar un Hook para que Claude no me borre archivos sin permiso.
+
+No es perfecto. Las transcripciones extraídas vía query no son idénticas a las originales (son resúmenes exhaustivos, no texto literal). Pero es infinitamente mejor que tener 75 vídeos desperdigados en 10 cuadernos sin ningún hilo conductor.
+
+## ¿Y ahora qué?
+
+Ahora toca lo que siempre toca después de organizar: **usar lo organizado**. Tengo 14 Skills configurados en mi agencia de viajes, cada uno nacido de alguno de estos vídeos. Y con este documento consolidado, puedo mejorarlos, crear nuevos, y — sobre todo — dejar de ver el mismo vídeo de Mark Kashef por tercera vez porque no recuerdo dónde explica lo de los Trigger Words.
+
+(Está en la sección 2.5, por si te lo preguntas. Ya no tengo que buscarlo.)
+
+---
+
+## Una pregunta antes de irte
+
+¿Cuánta información tienes desperdigada que podría estar trabajando para ti ahora mismo?
+
+Yo tenía 158 cuadernos. Uso 10. El resto es ruido convertido en data.
+
+¿Cuántos tienes tú que ni sabes que existen?
+
+---
+
+*Giora Gilead | 72 años | Explorando el último continente: la IA
+Desde Marbella, con café y un agente que no duerme*
+
+---
+
+**Recursos mencionados:**
+
+- [NotebookLM MCP en GitHub](https://github.com/JoshuaOliphant/notebooklm-mcp)
+- Video del proceso completo *(pendiente: subir a YouTube)*
