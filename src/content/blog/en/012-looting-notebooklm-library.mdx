@@ -1,0 +1,154 @@
+---
+title: "The night my AI and I looted a library of 75 books... and walked out with just one"
+description: "How an AI agent consolidated 75 scattered sources into a 989-line document in 12 minutes using the NotebookLM MCP."
+pubDate: 2026-02-17
+tags: ["🔥 Ahora", "🛠️ Taller"]
+translationKey: "saqueo-biblioteca-notebooklm"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+## How an AI agent consolidated 75 scattered sources into a 989-line document... in 12 minutes
+
+I asked Claude to enter my 10 NotebookLM notebooks, read 75 sources about AI Skills, and summarize everything into a single document. It did it in 12 minutes. It would have taken me three weeks and two boxes of ibuprofen.
+
+---
+
+## The problem: too much information and none at all
+
+I've been consuming YouTube videos about Claude Skills the way you eat sunflower seeds: compulsively, with no order, and with the table covered in shells. A Benjamin Cordero video here, a Mark Kashef one there, an Anthropic guide in between, and that Greg Isenberg guy explaining how to set up a digital employee that works while you sleep (which, at 72 years old, interests me considerably more than it would a 25-year-old).
+
+The result: 10 notebooks in NotebookLM. 75 sources including videos, articles, and official documentation. All stuffed into different drawers. Like having an entire library but with the books scattered across the bathroom, kitchen, car, and the neighbor's house.
+
+And every time I needed to remember something — "how did that Trigger Words thing in Skills work?" or "what design pattern did Anthropic recommend?" — I had to open three notebooks, watch two videos at 2x speed, and pray that my memory (mine, not the computer's) would cooperate.
+
+## The wild idea
+
+One Sunday morning, coffee in hand, I thought: "What if I ask Claude to go into NotebookLM, read EVERYTHING, and put it all in one place?"
+
+Sounds simple. It's not.
+
+NotebookLM is like a luxury hotel: it lets you in, gives you a beautiful room, but won't let you take the towels. YouTube video transcriptions are inside the platform, processed, but there's no "download transcription" button. It's like having an incredible chef at home who cooks wonderfully but refuses to give you the recipe.
+
+But it turns out there's a back door. Well, more like a service window: the NotebookLM MCP. A protocol that lets you query your notebooks from outside. It doesn't give you the raw text, but if you ask the right way, it tells you everything in detail.
+
+---
+
+<InlineCTA />
+
+## Operation "Elegant Heist"
+
+I explained the plan to Claude (my AI agent, not a friend with a weird name):
+
+**Giora:** *"I need you to read 10 NotebookLM notebooks and consolidate everything into one document. But the transcriptions can't be downloaded."*
+
+**Claude:** *"I can use the MCP to run exhaustive queries. Want me to list all your notebooks first?"*
+
+**Giora:** *"All of them? How many do I have?"*
+
+**Claude:** *"158."*
+
+One hundred and fifty-eight. I didn't even know some of them existed.
+
+The plan was:
+
+1. List all 158 notebooks and select the 10 relevant ones about Skills
+2. Launch exhaustive queries to all 10 notebooks **simultaneously**. In parallel. Ten questions at once. Like an intellectual octopus.
+3. Get the URLs for each source video for references
+4. Consolidate everything into a single Markdown document
+
+And Claude did it. Without complaining. Without asking for a coffee break. Without saying "this isn't my thing" or "I need more context."
+
+It just... did it.
+
+## The 12 most productive minutes of my life
+
+In 12 minutes, Claude:
+
+- Listed 158 notebooks and selected the right 10
+- Launched 10 queries in parallel (one per notebook) with prompts like: *"Summarize ALL content exhaustively. Include all concepts, practical examples, steps, code, recommendations..."*
+- Retrieved details for all 75 sources (titles, authors, YouTube URLs)
+- Consolidated everything into a 989-line document with an index, 10 complete sections, and a statistics appendix
+- Saved it in three different places (Obsidian, Desktop, and offered to upload it to Drive)
+
+For perspective: I would have needed to watch 75 videos (average 20 minutes each = 25 hours), take notes, organize them, format them, and combine them. **Three weeks of work, being optimistic.** And that's assuming I don't get distracted by a ski video from Niseko popping up in YouTube recommendations (which happens 100% of the time).
+
+---
+
+## What's inside the document
+
+The result is a kind of "practical Skills encyclopedia" with everything I've learned over months, but organized:
+
+**Skills vs MCP vs Prompts** (Benjamin Cordero)
+→ Skills are SOPs, not prompts. MCP is the USB-C, the Skill is the "how"
+
+**The 5 design patterns** (Mark Kashef / Anthropic)
+→ Sequential, Multi-MCP, Iterative, Branching, Domain
+
+**Front-end Design** (Income Stream Surfers)
+→ Skills that eliminate "AI slop" from web design
+
+**Clawdbot/Moltbot** (Greg Isenberg)
+→ A 24/7 digital employee that works while you sleep
+
+**Best practices** (Boris Cherny, Claude Code creator)
+→ The perfect workflow: Plan Mode, Hooks, Sub-agents
+
+---
+
+## What I learned (me, the human)
+
+### 1. AI doesn't replace curiosity, it organizes it
+
+I had already watched all those videos. But having them scattered across 10 notebooks is like having paella ingredients spread across three supermarkets. Claude was the one who gathered them in the kitchen and said: "Here you go, now cook."
+
+### 2. NotebookLM is an incredible warehouse with a terrible loading dock
+
+Fantastic for storing information. Terrible for getting it out. Until you discover you can ask it broad questions via MCP and have it "tell" you everything.
+
+### 3. Having 158 notebooks doesn't make you smarter
+
+I found out I had notebooks about Shakespeare, Damascus Rose, and an empty untitled one. Accumulating information isn't the same as processing it. Sometimes you need someone (or something) to tell you: "Hey, out of these 158, the ones that matter are these 10."
+
+### 4. Age is an advantage, not an obstacle
+
+At 72, I have something no AI model has: **life context**. I know what information is useful because I've been traveling for 42 years and using AI intensively for 2 years.
+
+Claude processed 75 sources in 12 minutes. It took me 42 years to know what questions to ask.
+
+**The speed is its. The direction is mine.**
+
+---
+
+## The final result
+
+A 989-line document that now lives in my Obsidian, ready to consult whenever I need to remember how a Skill is structured, what design patterns exist, or how to configure a Hook so Claude doesn't delete files without permission.
+
+It's not perfect. The transcriptions extracted via query aren't identical to the originals (they're exhaustive summaries, not literal text). But it's infinitely better than having 75 videos scattered across 10 notebooks with no connecting thread.
+
+## What now?
+
+Now comes what always comes after organizing: **using what you organized**. I have 14 Skills configured in my travel agency, each born from one of these videos. And with this consolidated document, I can improve them, create new ones, and — above all — stop watching the same Mark Kashef video for the third time because I can't remember where he explains the Trigger Words thing.
+
+(It's in section 2.5, in case you're wondering. I don't have to search anymore.)
+
+---
+
+## A question before you go
+
+How much information do you have scattered around that could be working for you right now?
+
+I had 158 notebooks. I use 10. The rest is noise converted into data.
+
+How many do you have that you don't even know exist?
+
+---
+
+*Giora Gilead | 72 years old | Exploring the last continent: AI
+From Marbella, with coffee and an agent that never sleeps*
+
+---
+
+**Resources mentioned:**
+
+- <a href="https://github.com/JoshuaOliphant/notebooklm-mcp" target="_blank">NotebookLM MCP on GitHub</a> — the connector that made the heist possible
+- Full process video *(coming soon on YouTube)*
