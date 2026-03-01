@@ -1,11 +1,23 @@
 ---
 title: "La noche que mi IA y yo saqueamos una biblioteca de 75 libros... y salimos con uno solo"
-description: "Cómo un agente de IA consolidó 75 fuentes dispersas en un documento de 989 líneas en 12 minutos usando el MCP de NotebookLM."
+description: "75 fuentes dispersas convertidas en 989 líneas en 12 minutos. Cómo saqueé una biblioteca digital con NotebookLM MCP y Claude Code trabajando en paralelo."
 pubDate: 2026-02-17
 tags: ["🔥 Ahora", "🛠️ Taller"]
 translationKey: "saqueo-biblioteca-notebooklm"
 ---
 import InlineCTA from '../../../components/InlineCTA.astro';
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "¿Qué es el MCP de NotebookLM?", "acceptedAnswer": {"@type": "Answer", "text": "Es un protocolo (Model Context Protocol) que permite a agentes de IA como Claude hacer preguntas a tus cuadernos de NotebookLM desde fuera de la plataforma."}},
+    {"@type": "Question", "name": "¿Necesito saber programar para usar NotebookLM MCP?", "acceptedAnswer": {"@type": "Answer", "text": "No. Solo necesitas tener Claude Code instalado y el MCP configurado. Le das instrucciones en lenguaje natural y él ejecuta las queries técnicas."}},
+    {"@type": "Question", "name": "¿Es gratis usar NotebookLM con MCP?", "acceptedAnswer": {"@type": "Answer", "text": "NotebookLM es gratuito. Claude Code requiere suscripción ($20/mes). Las queries al MCP consumen tokens de la API, pero 75 fuentes costaron aproximadamente $0.50."}},
+    {"@type": "Question", "name": "¿Funciona con cualquier contenido en NotebookLM?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Vídeos de YouTube, PDFs, artículos web, texto pegado. Todo lo que hayas añadido como fuente a un cuaderno es consultable vía MCP."}},
+    {"@type": "Question", "name": "¿El documento resultante es una copia exacta de las fuentes?", "acceptedAnswer": {"@type": "Answer", "text": "No. Son resúmenes exhaustivos generados por la IA a partir de queries. Capturan conceptos, ejemplos y recomendaciones, pero no son transcripciones literales."}}
+  ]
+})}</script>
 
 Le pedí a Claude que leyera 75 fuentes repartidas en 10 cuadernos de NotebookLM y me lo consolidara todo en un único documento. Lo hizo en 12 minutos. A mí me habría llevado tres semanas. Tengo 72 años, llevo 2 usando IA intensivamente, y este fue el momento en que entendí para qué sirve de verdad un agente.
 
@@ -182,6 +194,9 @@ No. Son resúmenes exhaustivos generados por la IA a partir de queries. Capturan
 - <a href="https://github.com/alfredang/notebooklm-mcp" target="_blank">NotebookLM MCP en GitHub</a> — el conector que hizo posible el saqueo
 
 ---
+
+
+**Sigue leyendo:** Todo empezó cuando monté mi universidad personal: [plugins, curritos y un podcast que nadie pidió](/blog/008-plugins-y-curritos/). Y hoy NotebookLM es uno de [mis cinco cerebros](/blog/016-cinco-cerebros/).
 
 <div style="background: linear-gradient(135deg, #f8f9fa, #e2e8f0); padding: 24px; border-radius: 12px; border-left: 4px solid #d4af37;">
 

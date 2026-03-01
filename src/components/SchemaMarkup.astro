@@ -57,6 +57,36 @@ function buildBlogPostingSchema() {
 	};
 }
 
+function buildBreadcrumbSchema() {
+	const blogPath = lang === 'en' ? '/en/blog/' : '/blog/';
+	const pageUrl = slug ? `${siteUrl}${blogPath}${slug}/` : Astro.url.href;
+
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Recableado',
+				item: siteUrl,
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Blog',
+				item: `${siteUrl}${blogPath}`,
+			},
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: title,
+				item: pageUrl,
+			},
+		],
+	};
+}
+
 function buildPersonSchema() {
 	return {
 		'@context': 'https://schema.org',
@@ -110,6 +140,8 @@ const schemaMap = {
 };
 
 const schema = schemaMap[type]();
+const breadcrumb = type === 'blogPost' ? buildBreadcrumbSchema() : null;
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+{breadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />}
