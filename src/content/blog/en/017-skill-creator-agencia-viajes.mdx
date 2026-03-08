@@ -1,0 +1,300 @@
+---
+title: "15 Specialized Brains: How I Taught Claude to Sell Diving, Skiing, and Honeymoon Trips"
+description: "72 years old, 15 skills installed, 1 meta-skill orchestrator. How I built a system where Claude knows when to talk about sharks and when to talk about ski passes. No coding. No manual. No excuses."
+pubDate: 2026-03-08
+tags: ["🧠 Process", "🛠️ Workshop"]
+translationKey: "skill-creator-agencia-viajes"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is a Claude Code skill?", "acceptedAnswer": {"@type": "Answer", "text": "An instruction file (.md) that activates automatically when it detects keywords in your request. Like an employee who knows exactly when to step in and what to do, without being called."}},
+    {"@type": "Question", "name": "Do I need to know how to code to create skills?", "acceptedAnswer": {"@type": "Answer", "text": "No. Skills are Markdown text files with business rules, data, and procedures. If you can write an email with clear instructions, you can create a skill."}},
+    {"@type": "Question", "name": "How many skills can Claude Code have?", "acceptedAnswer": {"@type": "Answer", "text": "There's no technical limit, but with more than 10-12, the risk of misfires (incorrect activations) increases. The key is that each skill has a precise trigger that doesn't overlap with the others."}},
+    {"@type": "Question", "name": "What is a meta-skill or orchestrator skill?", "acceptedAnswer": {"@type": "Answer", "text": "A skill that doesn't do tasks directly but coordinates the others: decides which one to activate, audits their health, and makes sure they don't step on each other's toes. Like a floor manager in a factory."}}
+  ]
+})}</script>
+
+*I have 15 digital specialists who know more about my business than most of my human employees. None of them earn a salary, none of them ask for vacation, and the smartest one of all is a 269-line text file.*
+
+---
+
+## The Problem: A Genius Who Knows Nothing About You
+
+Imagine you hire a brilliant consultant. IQ of 180. Speaks six languages. Reads 500 pages an hour. Knows everything: quantum physics, business law, marine biology, art history.
+
+You tell him: "Make me a quote for a diving trip to the Maldives."
+
+And he generates a gorgeous document. With an Unsplash stock photo. With a made-up phone number. With the supplier's net price visible (your commission exposed for the client to see). And with the logo of an agency that doesn't exist.
+
+That's Claude without skills. **A genius with amnesia who starts from zero every morning.**
+
+I've been working with him for two years. Two years teaching him things he's forgotten by the next day. Two years repeating: "No, the phone number is +34 619 40 10 41, don't make one up." "No, the commission is never shown to the client." "No, that photo isn't from the Maldives, it's from Cancun."
+
+Until I discovered skills. And everything changed.
+
+---
+
+## What Is a Skill? (For Those Who, Like Me, Don't Code)
+
+A skill is a text file that tells Claude: "When someone talks to you about THIS, do THIS OTHER THING."
+
+That simple. It's not code. It's not an app. It's a document with instructions, like the ones you'd leave for a new employee on their first day:
+
+> "When a client asks about diving in the Maldives, use these rates, these discounts, these boats. Never show the commission. Always include the Green Tax. The emergency phone number is this one."
+
+The magic is that Claude **reads these instructions automatically** when it detects the conversation is about that topic. You don't have to say "activate the diving skill." You just say "I have a client who wants to dive in the Red Sea" and Claude thinks: *"Ah, diving. Let me read my diving instructions before responding."*
+
+It's like having specialized employees who appear when you need them and disappear when you don't.
+
+---
+
+## My Real Problem: I Had the Knowledge, But It Was Scattered
+
+After months working with Claude, I'd accumulated instructions everywhere:
+
+- A CLAUDE.md file of 400+ lines with general rules (don't touch DNS, don't invent phone numbers, don't use stock photos)
+- Notes in Obsidian with procedures for each supplier
+- HTML templates for quotes
+- Cocoon Collection calculation rules scattered across documents
+- An old 607-line skill that tried to do everything and did nothing well
+
+It was like having a massive library but without shelves, without an index, and without a librarian. Claude had access to everything but didn't know what to look for or when.
+
+The result: **misfires**. You'd say "make me a ski quote" and sometimes it would activate the diving skill. You'd ask "edit the Joomla website" and it would activate the marketing one. Chaos.
+
+---
+
+## The Revelation: Anthropic's Skill Creator 2.0
+
+Two weeks ago, Anthropic quietly launched an update to their skills system. They called it Skill Creator 2.0, though they didn't make much fanfare about the name. The key changes:
+
+| Before | Now |
+|--------|-----|
+| Loose skills without verification | **Evals**: automated tests that verify if the skill works |
+| Generic description | **Trigger Tuning**: optimization of when each skill activates |
+| No comparison | **A/B Benchmarks**: blind competition between versions |
+| No metrics | **Health Checks**: audit of the entire ecosystem |
+
+This was exactly what I needed. Not just having skills, but **knowing if they work**, **when they activate**, and **if they step on each other**.
+
+I set up a notebook in NotebookLM with the three official videos, the technical documentation, and my two months of notes. I asked it strategic questions. And with that foundation, I built my personalized version.
+
+---
+
+<InlineCTA />
+
+---
+
+## What I Built: 15 Skills + 1 Maestro
+
+### The Maestro: scibasku-maestro-2
+
+It's the floor manager. A 269-line file that doesn't sell trips, doesn't edit websites, and doesn't calculate quotes. Its job is to **coordinate the other 14**.
+
+What does it do exactly?
+
+1. **Create new skills**: When I need a skill for a new supplier, the Maestro knows what structure to use, what data is mandatory, and how to avoid conflicts with existing skills
+2. **Audit existing skills**: Reviews whether each skill has the correct structure, whether its description is precise, whether it activates when it should and only when it should
+3. **Health checks**: A quick diagnostic of the entire ecosystem — "are there skills without YAML? Are there overlapping triggers? Are there skills nobody uses?"
+
+Most importantly: the Maestro works **alongside Anthropic's official plugin**, not against it. It's like a translator between Anthropic's generic tools and my agency's specific needs.
+
+### The 14 Specialists
+
+I organized them into 4 batches by priority:
+
+**Batch 1 — Critical Operations** (the ones I use daily)
+| Skill | What it does | Lines |
+|-------|-------------|-------|
+| scibasku-expediente-maestro | Manages case files: searches Airtable, Gmail, Drive | 213 |
+| joomla-expert | Edits the website when the API fails (direct MySQL access) | 358 |
+| travel-wallet-builder | Generates premium HTML quotes with AI chatbot | 268 |
+
+**Batch 2 — Sales and Product**
+| Skill | What it does | Lines |
+|-------|-------------|-------|
+| scibasku-sales-buceo | Diving sales playbook (objections, comparisons) | 391 |
+| scibasku-sales-esqui | Skiing sales playbook (resorts, ski passes) | 404 |
+| scibasku-presupuestos-premium-v2 | HTML proposals with category-based color palette | 210 |
+| cocoon-calculator-rules | Cocoon resort calculator (Maldives, Zanzibar) | 225 |
+
+**Batch 3 — Content and SEO**
+| Skill | What it does | Lines |
+|-------|-------------|-------|
+| seo-quick-actions-scibasku | Quick SEO audits, JSON-LD schemas | 271 |
+| llm-visibility-scibasku | Positioning in ChatGPT, Perplexity, Gemini | 232 |
+| recableado-blog-strategy | Strategy for this blog (AEO, keywords, distribution) | 266 |
+| scibasku-brand-identity | Colors, logos, corporate typography | 455 |
+
+**Batch 4 — Specialized**
+| Skill | What it does | Lines |
+|-------|-------------|-------|
+| liveaboards-orchestrator | Technical specs for 47 diving boats | 195 |
+| scibasku-supplier-program | Standardizes supplier files | 277 |
+| scibasku-marketing | Complete CRO system (10 chained sub-skills) | 135 |
+
+**Total: 4,379 lines of specialized knowledge.** All in text files that Claude reads automatically when it detects the right context.
+
+---
+
+## The Process: From Chaos to System in 4 Hours
+
+### Step 1: Inventory (The Disaster)
+
+The first thing was to look at what I actually had installed. Depressing result:
+
+- **Actually installed**: 1 (travel-wallet-builder)
+- **Existed in Obsidian but weren't installed**: 12
+- **Lost in a temporary folder that could be deleted**: 1 (joomla-expert)
+- **Without valid YAML format**: 2
+- **Old 607-line skill trying to do everything**: 1
+
+That is: out of 15 skills I thought I had, only 1 was working. The rest were like employees who'd been hired but never showed up for work.
+
+### Step 2: Rescue and Normalization
+
+Each skill needed:
+
+1. **Correct YAML frontmatter** — the skill's ID card:
+```yaml
+---
+name: scibasku-sales-buceo
+description: "Sales intelligence for diving trips..."
+---
+```
+
+2. **A "pushy" description** — with keywords that force activation:
+> "Activates when user mentions diving, scuba, liveaboard, certifications PADI/SSI, or underwater destinations (Maldives, Red Sea, Indonesia)"
+
+3. **Correct location** — in `~/.claude/skills/skill-name/SKILL.md`
+
+The most dramatic case was joomla-expert. It was sitting in `~/Library/Application Support/Claude/local-agent-mode-sessions/` — a temporary session folder. If Claude had cleared its cache, 358 lines of knowledge about how to hack Joomla when its API decides not to cooperate would have been lost.
+
+I rescued it. Changed its internal name (it said "new-joomla" instead of "joomla-expert"). Installed it in its proper place.
+
+### Step 3: The Orchestrator
+
+With 15 active skills, the risk of confusion is real. You tell Claude "quote for the Maldives" and potentially four skills could activate:
+- scibasku-sales-buceo (because Maldives = diving)
+- cocoon-calculator-rules (because Maldives = Cocoon Collection)
+- travel-wallet-builder (because quote = wallet)
+- scibasku-presupuestos-premium-v2 (because quote = proposal)
+
+Four skills fighting for the same job. That's a guaranteed misfire.
+
+The Maestro solves this with **precise triggers**. Each skill has unique keywords that don't overlap with the others. And if there's ambiguity, the Maestro defines priority.
+
+### Step 4: Mock Data (The Smartest Trick)
+
+Evals (automated tests) need data to work. But you can't run tests against your real Airtable, your real Gmail, your real Joomla. You might delete a case file, send an email to a client, or break a web page.
+
+The solution: **mock data**. Fake but realistic data that simulates each system's responses:
+
+```json
+{
+  "record_id": "recTEST001",
+  "fields": {
+    "Case Number": "29999",
+    "Client": "Maria Garcia Test",
+    "Main Destination": "Maldives - South Ari Atoll",
+    "Status": "Quote"
+  }
+}
+```
+
+It looks like a real case file. It has the structure of a real case file. But if something goes wrong, nothing happens. No angry client, no email sent, no broken page.
+
+---
+
+## What I Learned (And What I Didn't Know I Didn't Know)
+
+### 1. The trigger is more important than the content
+
+You can have the most complete skill in the world, but if it doesn't activate when it should, it's wasted paper. The skill description is like a shop sign: if it doesn't clearly say what you sell, nobody walks in.
+
+**Before**: `description: "Diving management"` — too generic, never activated.
+
+**After**: `description: "Complete sales intelligence for diving trips. Activates when user mentions diving, scuba, liveaboard, certifications PADI/SSI"` — activates exactly when it should.
+
+### 2. Skills are "encoded preferences," not patches
+
+There are two types of skills:
+- **Capability Uplift**: Teach Claude something it doesn't know (process PDFs, use a new API)
+- **Encoded Preferences**: Encode YOUR business decisions, YOUR data, YOUR procedures
+
+Mine are 100% the second type. Claude already knows how to make quotes. What it doesn't know is that MY quote never shows the commission, that MY phone number is +34 619 40 10 41, and that MY agency is called Scibasku with license CICMA 2283.
+
+That distinction is crucial. I'm not patching Claude's shortcomings. I'm encoding my 42 years of experience selling trips.
+
+### 3. 15 skills is the practical limit
+
+Beyond 15, triggers inevitably start to overlap. It's like having 15 employees in a small office: it works, but if you squeeze in a sixteenth, someone's left without a desk.
+
+The solution when you need more: sub-skills. My marketing skill has 10 sub-skills inside a single coordinator file. They occupy one "desk" but do the work of 10.
+
+### 4. An old 607-line skill is worse than none
+
+My original skill tried to cover EVERYTHING: case files, website, quotes, SEO, marketing, suppliers. It was a Frankenstein. Claude would read it, get confused, and end up applying the wrong rule at the wrong time.
+
+I replaced it with 15 specialized files totaling 4,379 lines that **never get confused with each other**. More code, less chaos.
+
+---
+
+## Does This Apply If You Don't Have a Travel Agency?
+
+Absolutely. The pattern is universal:
+
+**If you have a business** (any business), you have:
+- Rules you repeat constantly
+- Data Claude always forgets
+- Procedures that vary by context
+- Errors that repeat because Claude doesn't remember the last one
+
+All of that is a skill waiting to be written.
+
+A lawyer could have skills for each type of contract. A doctor, for each protocol. A restaurant, for each supplier. A teacher, for each subject.
+
+The question isn't "do I need skills?" but **"how many times have I repeated the same instruction to Claude?"** If the answer is more than three, that's a skill.
+
+---
+
+## The Infographics
+
+For this article I prepared three visual versions of the system:
+
+<img src="/infografias/017/landscape-skill-creator.png" alt="Complete infographic: 15 specialized skills for Viajes Scibasku organized in 4 batches with meta-skill orchestrator" style="width: 100%; max-width: 680px; margin: 2rem auto; display: block; border-radius: 12px;" />
+
+---
+
+## FAQ
+
+### How long did it take to install the 15 skills?
+About 4 hours. Most of it was inventory and rescuing lost skills. The installation itself is just copying files to a folder.
+
+### Do skills work with the free version of Claude?
+Skills are a Claude Code (terminal) feature, not claude.ai (web). You need Claude Code, which requires a Pro subscription or higher.
+
+### Can skills be shared with other users?
+Yes. They're text files. You can copy them, upload them to GitHub, send them by email. Another user just needs to put them in their `~/.claude/skills/` folder.
+
+### What happens if a skill has an error?
+Claude applies incorrect instructions. That's why evals are important: they're automated tests that verify the skill produces the expected result. Like quality control before opening the shop.
+
+### How often should skills be updated?
+When business rules change. If you switch suppliers, update rates, or add a new destination. Skills that aren't updated rot like fruit.
+
+---
+
+<div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-left: 4px solid #d4af37; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+
+**Giora Gilead** — 72 years old. Founder of Viajes Scibasku (2006). CICMA 2283. 42 years selling trips, 2 years teaching machines to sell them with me. 15 skills installed, 18 MCP servers, and a CLAUDE.md file longer than the Constitution. He writes at [recableado.blog](https://recableado.blog) about what happens when a man his age decides not to sit still.
+
+</div>
+
+---
+
+*P.S.: While writing this article, the recableado-blog-strategy skill activated automatically to remind me to use BLUF format, make H2s into questions, and include JSON-LD schema. It works. All 15 little workers work.*
