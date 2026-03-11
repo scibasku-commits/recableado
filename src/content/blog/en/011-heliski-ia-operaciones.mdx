@@ -1,0 +1,222 @@
+---
+title: "Five Suppliers, Three Time Zones, and a 72-Year-Old Travel Agent with AI"
+description: "Heli-skiing in Canada: 5 suppliers, 3 time zones, a 72-year-old agent and zero staff. How AI became my travel operations center."
+pubDate: 2026-02-16
+tags: ["🔥 Now", "🛠️ Workshop"]
+translationKey: "heliski-ia-operations"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can AI organize a complex international trip?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but not alone. AI processes data, creates documents, and coordinates information. The travel agent provides judgment, supplier relationships, and client knowledge."}},
+    {"@type": "Question", "name": "Is it safe to give client data to an AI?", "acceptedAnswer": {"@type": "Answer", "text": "I use Anthropic's Claude with a private API. Data isn't used to train the model. Each trip has its own chatbot with isolated data."}},
+    {"@type": "Question", "name": "How much does it cost to use AI for travel management?", "acceptedAnswer": {"@type": "Answer", "text": "Claude subscription costs $20/month. The chatbot uses Claude Haiku. Hosting is free with Vercel. Total: under €30/month."}},
+    {"@type": "Question", "name": "Do I need to know how to code to use AI in my agency?", "acceptedAnswer": {"@type": "Answer", "text": "No. I can't code. What I know is how to give clear instructions. AI writes the code, generates documents, and builds the infrastructure. I review and approve."}}
+  ]
+})}</script>
+
+I used AI to organize a heli-skiing trip in Canada. Five suppliers, three time zones, 16 days, seven PDF documents. What used to take me a week, I solved in an afternoon. I'm 72 years old and I have zero IT staff.
+
+Imagine coordinating a trip where the helicopter departs from the Selkirk Mountains at 7 AM Vancouver time, the Calgary hotel confirms at noon Mountain time, the airline operates from Amsterdam, and you're sitting in Marbella at 9 PM staring at an email with 14-page "joining instructions" in English. Multiply that by four skiers, five suppliers, and a client who texts you at eleven at night asking whether the rental car comes with winter tires.
+
+That trip existed. I organized it. And I did it with a tool that didn't exist three years ago.
+
+---
+
+## What Does a Trip That Needs an Operations Center Look Like?
+
+This wasn't a flight-plus-hotel-plus-ski-pass. This was an expedition.
+
+**The suppliers:**
+- **Selkirk Tangiers Heli-Skiing** — Rogers Pass, British Columbia. Eurocopter A-Star B3 helicopter. 2,250 km² of untouched terrain. 4:1 guide-to-skier ratio. Joining instructions with equipment requirements, skiing levels, and avalanche safety protocol.
+- **CMH Purcell** — Purcell Mountains. Another heli-ski operator for the second phase. Different mountain, different base, different instructions.
+- **Jonview** — Canadian DMC. Two hotels: Palliser Lodge in Kicking Horse and Sandman in Revelstoke. Confirmations in CAD, different cancellation policies per hotel.
+- **Alamo** — Vehicle rental. Chevy Colorado 4WD with mandatory winter tires. Pickup in Calgary, drop-off in Calgary. 600 km between stations along the Trans-Canada Highway in February.
+- **KLM** — Barcelona → Amsterdam → Calgary. Business class. Four travelers, two booking references, one minor requiring authorization.
+
+**The time zones:**
+- Barcelona: CET (UTC+1)
+- Amsterdam: CET (same as Barcelona, but KLM's hub runs on its own schedule)
+- Vancouver / Rogers Pass / Revelstoke: PST (UTC-8). Nine hours behind Spain.
+- Calgary: MST (UTC-7). Eight hours.
+
+When the client — let's call him **Ignasi** — texted me at 11 PM Barcelona time, it was 2 PM in Revelstoke. When I replied at 9 AM, it was midnight there. And when Selkirk Tangiers sent a confirmation at 10 AM PST, it hit my inbox at 7 PM.
+
+Five-figure budget. Four travelers. Sixteen days. Zero margin for error.
+
+---
+
+## How Did I Organize This Before AI?
+
+In 2019, I did a similar trip. Four skiers to Whistler, heli-skiing included. I organized it the old way: Excel with 14 tabs, color-coded emails, sticky notes on the screen, and a hardcover notebook for whatever didn't fit in my head.
+
+The Excel had one tab per supplier, one per traveler, one per date, one for flights, one for insurance, and three whose purpose I never figured out but had formulas I didn't dare delete.
+
+Confirmation emails arrived at all hours. I saved them in an Outlook folder called "Whistler 2019 FINAL" — which, as anyone who's worked with files knows, means there was at least a "Whistler 2019 FINAL (2)" and a "Whistler 2019 TRULY THE LAST ONE."
+
+Phone calls were the worst part. When I needed to confirm something with the Vancouver DMC, I had to wait until 6 PM Spanish time for it to be 9 AM there. And if they didn't pick up, try again the next day.
+
+The trip went well. But I was wrecked.
+
+| Task | Before (2019) | Now (with AI) |
+|------|--------------|----------------|
+| Find flight data | 2h in Amadeus | 3 min: Claude reads KLM confirmation |
+| Create 7 PDF vouchers | 1 day (Word + print) | 20 min: HTML + Chrome headless |
+| Coordinate 5 suppliers | Calls at odd hours + sticky notes | Centralized: Airtable + parsed emails |
+| Client documentation | Half a day copying | HTML travel wallet with chatbot |
+| Client questions at 11 PM | "I'll get back to you tomorrow" | Chatbot responds in 10 sec |
+
+---
+
+## What Was the Moment That Made You Switch?
+
+February 2024. I had a Maldives file with eight liveaboards, four different dive operators, connecting flights through Doha, and a client who wanted to compare prices per night, per dive, per seaplane transfer.
+
+I made an Excel spreadsheet bigger than a tax return. I added conditional formulas. Colors. Dropdowns. By the third hour, cell F47 returned #REF! and I knew I had two options: find a better way, or retire early.
+
+I chose the first.
+
+A colleague told me: "Try Claude." I said: "Claude what?" He explained it was an AI that could read documents, extract data, and generate reports. I said it sounded like science fiction. He said it sounded like what I needed.
+
+He was right.
+
+---
+
+<InlineCTA />
+
+## What Exactly Does AI Do When You Say "Organize a Trip"?
+
+You don't say that. You give it context. You give it data. And it works. Four specific capabilities, with real examples from this heli-ski trip.
+
+### 1. It Reads Supplier Emails
+
+I received 42 emails during the preparation of this trip. KLM confirmations with schedules and booking codes. Jonview confirmations with hotel names, check-in/check-out dates, and fine print. Selkirk Tangiers joining instructions with 14 pages of requirements. Intermundial insurance policy with remote area coverage.
+
+Claude read every one. It extracted dates, prices, booking codes, cancellation conditions, and special requirements. Without me telling it where to look — it has an internal rule that forces it to search the database first, then documents, then emails, and only if it finds nothing, the public web. If it can't find it anywhere, it writes [PENDING]. It doesn't make things up.
+
+### 2. It Creates Documents
+
+Seven PDF vouchers for this trip: two KLM flight tickets, Jonview hotel voucher, Alamo vehicle voucher, Selkirk heli-ski voucher, ski pass voucher for two resorts, and Intermundial insurance voucher.
+
+Each voucher is an HTML designed with my agency's colors (navy, gold, turquoise). Claude generates them, I review them, and Chrome headless converts them to PDF in 3 seconds. What used to be an entire day copying data from emails to Word templates is now 20 minutes.
+
+### 3. It Coordinates Time Zones
+
+The AI doesn't "think" about time zones. But when it reads an email from Selkirk Tangiers that says "Pick-up at Revelstoke helipad, 7:00 AM PST," it translates to the traveler's context: "Pickup at 7:00 AM local time — that's 4:00 PM in Barcelona, Ignasi should get to bed early the night before."
+
+Small detail. But when you have five suppliers across three time zones and a traveler who doesn't know if 7:00 AM PST is before or after his hotel breakfast, that detail is worth gold.
+
+### 4. It Sets Up a 24/7 Assistant
+
+This is the part that impresses clients the most, even though they don't know it exists.
+
+Every trip I prepare has a private web page — I call it a "travel wallet" — with everything: visual itinerary, downloadable vouchers, emergency contacts, maps. And inside that page, there's a chatbot.
+
+The chatbot uses Claude Haiku (the fast, cheap model). It has strict instructions: it can only answer with data I've put in its prompt. If it doesn't know, it says "contact Giora." If asked about prices, it says "Giora handles that directly." It doesn't invent restaurants. It doesn't invent schedules. It doesn't invent anything.
+
+And it responds in 10 seconds. At 3 AM, if needed.
+
+---
+
+## What If the AI Makes Mistakes That Cost Me Money?
+
+It does. Or rather, it catches them before I make them myself.
+
+On this trip, I had set the hotel check-in at Golden for March 12. The heli-ski at Selkirk ended on the 13th. One day before. That meant Ignasi and his friends would have arrived at the hotel with no room, because the reservation started the following day.
+
+Claude caught it. Alerted me. I corrected it.
+
+How much would that error have cost? A last-minute rebooking in peak season, four rooms in a mountain town of 3,000 people. Minimum 200 Canadian dollars. Probably more.
+
+But here's the important part: Claude didn't catch it because it's "smart." It caught it because it has a rule that forces it to verify every service date against the overall itinerary. If the check-in date doesn't match the expected arrival date, it flags it. Mechanical. Systematic. Reliable.
+
+With my 14-tab Excel, I wouldn't have caught it until the client was standing at the hotel front desk.
+
+---
+
+## Won't My Clients Think I'm Lazy?
+
+Ignasi texted me at 11:15 PM on a Sunday. He wanted to know if the Alamo rental car came with winter tires or if he needed to request chains.
+
+I didn't see it until 7 AM Monday. But Ignasi got an answer. The chatbot responded in 10 seconds with the exact contract details: "Yes, the Chevy Colorado 4WD comes equipped with winter tires as standard. You don't need chains for the Trans-Canada Highway."
+
+At 7 AM, when I opened the chatbot admin panel, I saw the conversation. Ignasi had asked, the chatbot had answered correctly, and Ignasi had gone to sleep reassured.
+
+Who's lazy here? The travel agent whose assistant works at 11:15 PM on a Sunday? Or the agent who doesn't have an assistant and would have replied Monday at 10?
+
+---
+
+## What If AI Replaces Me?
+
+AI doesn't know that Ignasi is afraid of heights but won't admit it in front of his friends.
+
+AI doesn't know to book the table at the restaurant in Golden where the owner speaks Spanish, because Ignasi will appreciate it after 16 days speaking English.
+
+AI doesn't know that the third skier in the group just had knee surgery and the Selkirk guide needs to be discreetly warned to adjust the terrain without the group noticing.
+
+AI processes data. I process people. And nobody automates that.
+
+Could an algorithm detect that Ignasi's face changes when you mention "helicopter" and "altitude" in the same sentence? Could a machine know that a two-second silence on the call means he's scared but won't say it? I've been reading those silences for 42 years.
+
+In [another post](/en/blog/006-claude-viaje-criminal) I told how Claude invented a criminal in Jackson Hole. A guy who stole bills from the Million Dollar Cowboy Bar and ended up in the sheriff's jail. Invented story, real data. That was BEFORE I put up anti-hallucination guardrails.
+
+Today, the chatbot for this heli-ski trip has explicit instructions: "If the data isn't in this prompt, it DOESN'T exist." And it works. But I built the guardrail. The decision of what data to include and what to leave out is mine. AI is the tool. Judgment is still human.
+
+---
+
+## How Much Time Do I Actually Save?
+
+These are the real production times for this trip's documents. Not estimates — actual times.
+
+| Document | Without AI | With AI |
+|----------|-----------|---------|
+| 2 KLM tickets (PDF) | 30 min | 3 min |
+| Jonview hotel voucher | 45 min | 5 min |
+| Alamo vehicle voucher | 20 min | 3 min |
+| Selkirk heli-ski voucher | 30 min | 5 min |
+| Ski pass voucher (2 resorts) | 20 min | 3 min |
+| Intermundial insurance voucher | 20 min | 3 min |
+| Full HTML travel wallet | 4 hours | 45 min |
+| Anti-hallucination chatbot | Didn't exist | 20 min |
+| **Total** | **~8 hours** | **~1.5 hours** |
+
+From 8 hours to 1.5 hours. And the difference isn't just time. It's quality: every voucher has the same design, same colors, same typography. The travel wallet is interactive, with navigation, photo gallery, and integrated chatbot. The vouchers are professional PDFs the client can show at the hotel front desk.
+
+In 2019, my vouchers were a Word doc with the agency logo top-left and Comic Sans I'd forgotten to change. I'm not proud.
+
+---
+
+## Frequently Asked Questions
+
+**Can AI organize a complex international trip?**
+Yes, but not alone. AI processes data, creates documents, and coordinates information. The travel agent provides judgment, supplier relationships, and client knowledge. The combination is what works.
+
+**Is it safe to give client data to an AI?**
+I use Anthropic's Claude with a private API. Data isn't used to train the model. Each trip has its own chatbot with isolated data. The client never interacts directly with my database — only with an assistant that has limited access to their trip information.
+
+**How much does it cost to use AI for travel management?**
+Claude subscription costs $20 a month. The chatbot uses Claude Haiku, which processes each response for fractions of a cent. Hosting is free with Vercel. Total: under €30 per month for a tool that saves me 6 hours per complex file.
+
+**Do I need to know how to code to use AI in my agency?**
+No. I can't code. What I know is how to give clear instructions. AI writes the code, generates documents, and builds the infrastructure. I review and approve. There's a learning curve of a few weeks, but you don't need to know what a function or an array is.
+
+---
+
+<div style="background: linear-gradient(135deg, #0a1628, #0d2847); padding: 24px; margin-top: 40px; border-left: 4px solid #1fb4d1; border-radius: 8px; color: white;">
+<p><strong style="color: #d4af37;">The one-sentence summary:</strong></p>
+<p>Five suppliers, three time zones, seven documents, a chatbot that never sleeps. And me cycling along the Barcelona seafront while Ignasi asks at 3 AM whether he needs snow chains.</p>
+<p style="margin-top: 16px;"><strong style="color: #d4af37;">Want to see the result?</strong> The heli-ski product page my agents built is here:
+<a href="https://viajes-scibasku-heli-skiing-canada.vercel.app" style="color: #1fb4d1; text-decoration: underline;" target="_blank">Heli-Ski in Canada — CMH Purcell + Selkirk Tangiers 2026</a></p>
+</div>
+
+---
+
+*Giora Gilead Elenberg — Founder of [Viajes Scibasku](https://viajesscibasku.com). Digital explorer at 72. I write at [recableado.blog](https://recableado.blog) about AI, work, and real life.*
+
+
+**Keep reading:** To see another trip where AI was my copilot, read [skiing in Japan for 12 people](/en/blog/013-viaje-esqui-japon-ia/). And if you want a laugh, [the day Claude included a criminal in the itinerary](/en/blog/006-claude-viaje-criminal/).
+
+*P.S.: If anyone from Selkirk Tangiers is reading this, know that my AI agents have been talking about Rogers Pass in every conversation for weeks. I told them they can't go skiing. But they keep giving me funny looks. I think they're plotting something.*
