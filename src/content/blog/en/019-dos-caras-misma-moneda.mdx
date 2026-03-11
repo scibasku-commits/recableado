@@ -1,0 +1,136 @@
+---
+title: "Two Sides of the Same Coin: When AI Learns Alone and When Someone Asks Who's Watching"
+description: "Karpathy released agents that run 100 experiments while you sleep. Anthropic launched an institute to ask affected communities. Both stories need each other. And the most important file isn't code — it's a prompt."
+pubDate: 2026-03-11
+tags: ["🧠 Process", "🌍 Reflection"]
+translationKey: "dos-caras-misma-moneda"
+---
+import InlineCTA from '../../../components/InlineCTA.astro';
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is Karpathy's autoresearch?", "acceptedAnswer": {"@type": "Answer", "text": "An open source project where AI agents run language model training experiments autonomously, in a loop, without human intervention. Each experiment lasts exactly 5 minutes and the agent accumulates improvements via Git commits."}},
+    {"@type": "Question", "name": "What is The Anthropic Institute?", "acceptedAnswer": {"@type": "Answer", "text": "An institute created by Anthropic to establish real feedback loops with workers, industries, and communities affected by AI. Its mission is to build accountability architecture around the technology."}},
+    {"@type": "Question", "name": "What is program.md in autoresearch?", "acceptedAnswer": {"@type": "Answer", "text": "The file where the human defines objectives, boundaries, and strategy for the autonomous agent. It's governance in miniature: a contract between human and machine written in natural language."}},
+    {"@type": "Question", "name": "Can an AI agent do scientific research on its own?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Karpathy's autoresearch demonstrates that an agent can modify training code, run experiments, evaluate results, and accumulate improvements — all without human intervention. ~12 experiments per hour."}}
+  ]
+})}</script>
+
+*Artificial intelligence took two steps this week. One forward. One sideways, to see who it's knocking over. And for the first time in a long while, I believe both are equally important.*
+
+---
+
+## What Happened This Week?
+
+Two announcements that, on the surface, have nothing to do with each other.
+
+**On March 7th**, Andrej Karpathy — former head of AI at Tesla, OpenAI co-founder, one of the most influential minds in the field — open-sourced a project called **autoresearch**. A system where AI agents run research experiments *alone*, *in a loop*, *without human intervention*. You go to sleep and wake up with 100 completed experiments.
+
+**That same week**, Anthropic — the company behind Claude, the AI I work with every day — launched **The Anthropic Institute**. Its mission: to create a space for real dialogue with workers, industries, and communities affected by AI.
+
+One story is about speed. The other is about direction. And you can't understand one without the other.
+
+<img src="/infografias/019-dos-caras-misma-moneda.png" alt="Infographic: Accelerate and be responsible — AI: Two Sides of the Same Coin. Side A (Karpathy): Radical Acceleration. Side B (Anthropic): Systemic Responsibility." style="max-width: 100%; border-radius: 12px; margin: 2rem auto; display: block;" />
+
+---
+
+## What Is Autoresearch and Why Does It Matter?
+
+Karpathy condensed the core of a language model (LLM) training system into **630 lines of Python code**. One file. One GPU. No million-dollar infrastructure.
+
+The project has three pieces:
+
+| File | Who touches it | What it does |
+|------|---------------|-------------|
+| `prepare.py` | Nobody (fixed) | Downloads data, prepares the tokenizer |
+| `train.py` | The AI agent | Modifies architecture, optimizer, hyperparameters |
+| `program.md` | The human | Defines objectives, boundaries, and strategy for the agent |
+
+The flow is simple and brutal:
+
+1. The agent modifies the training code
+2. Runs a training session of exactly **5 minutes**
+3. Measures whether the result improved (a metric called *validation bits-per-byte*)
+4. If it improved → saves the change as a Git commit. If not → discards it
+5. Repeats. Alone. Non-stop.
+
+**The pace: ~12 experiments per hour. ~100 experiments while you sleep.**
+
+In the chart Karpathy posted on X, each dot is a complete language model training run. Hundreds of dots accumulated in a single night. The post racked up 8.6 million views in two days.
+
+The community has already created versions for macOS and Windows. The project has forks for more modest GPUs. You don't need a data center. You need a graphics card and curiosity.
+
+---
+
+## What Is The Anthropic Institute?
+
+Diana Szyperska, an AI educator and critical thinker, summarized on LinkedIn what resonated most with her about the announcement:
+
+> *"What strikes me most is the bidirectional design: real feedback loops with workers, industries, and communities facing real disruption. Not just building the technology, but building the accountability architecture around it."*
+
+The institute isn't a technical lab. It's a space for **listening**. So that the people who will live with the consequences of AI have a voice *before* it's too late, not after.
+
+Anthropic has long differentiated itself through its focus on safety. But an institute dedicated to *accountability* with real communities is something else entirely. It's admitting, from inside the industry, that building the technology isn't enough.
+
+---
+
+## Why These Two Stories Need Each Other
+
+This is where I want us to pause for a moment.
+
+**Autoresearch proves that autonomous agents are no longer a concept.** They're a GitHub repository you can clone today. An agent that improves on its own, accumulates knowledge, and doesn't need anyone to tell it when to stop.
+
+This won't stay in Silicon Valley labs. If an agent can iterate on AI training code, it can iterate on anything measurable and improvable: marketing strategies, network configurations, supply chains, medical diagnostics.
+
+Now think: **who defines the boundaries?**
+
+In autoresearch, the answer is elegant: a file called `program.md`. A human-written document that establishes what the agent can do, what it should optimize, and what it must not touch. It is, in essence, **governance in miniature**. A contract between human and machine, written in natural language.
+
+It works because the system is small: one file, one GPU, one researcher. But what happens when you scale that to an entire industry? To millions of workers? To communities that don't write `.md` files?
+
+**That's where Anthropic Institute comes in.** It's the attempt to create the equivalent of `program.md` at societal scale. Not a file, but an architecture. Not technical instructions, but real conversations with real people.
+
+<InlineCTA />
+
+---
+
+## What I See From My Trench
+
+I'm 72 years old. I run a travel agency. I use AI every day: for budgets, for web content, for managing trip files, for writing this blog. I'm not a machine learning engineer. I'm a power user trying to understand where this is heading.
+
+And what I see is a fork in the road.
+
+On one hand, the speed at which autonomous agents are maturing is hard to process. A year ago, an agent that iterated on code was science fiction accessible only to major labs. Today it's a weekend project on a single GPU.
+
+On the other hand, the conversation about *what we do with this* is still too slow, too abstract, too distant from the people who will actually live the consequences.
+
+My industry — tourism — doesn't appear in any whitepaper on responsible AI. But when an agent can plan a complete trip without human intervention (and we're not far), the question won't be technical. It will be: who answers when something goes wrong? Who listens to the traveler with a problem at 3 AM in Tokyo?
+
+**Technology already knows how to accelerate. The pending question is who writes society's `program.md`.**
+
+---
+
+## Three Takeaways
+
+1. **The most important file in autoresearch isn't the code. It's the prompt.** `program.md` is where the human draws the boundaries. Without that file, the agent has no direction. Governance starts by defining what the machine must NOT do.
+
+2. **Speed without direction is just noise.** 100 experiments per night is impressive. But the right question isn't *how many*, it's *where to*. And that requires human judgment.
+
+3. **Listening is a technology.** What Anthropic Institute proposes — real feedback loops with communities — isn't PR. It's acknowledging that AI doesn't deploy in a vacuum. It deploys onto people, jobs, and lives.
+
+---
+
+## Sources
+
+- Karpathy, A. (March 7, 2026). [Post on X about autoresearch](https://x.com/karpathy/status/2030371219518931079)
+- Karpathy, A. (2026). [autoresearch — GitHub](https://github.com/karpathy/autoresearch)
+- Szyperska, D. (March 2026). [LinkedIn post about The Anthropic Institute](https://www.linkedin.com/in/dianaszyperska/)
+- Razzaq, A. (March 8, 2026). [Andrej Karpathy Open-Sources 'Autoresearch'](https://www.marktechpost.com/2026/03/08/andrej-karpathy-open-sources-autoresearch-a-630-line-python-tool-letting-ai-agents-run-autonomous-ml-experiments-on-single-gpus/) — MarkTechPost
+- VentureBeat (March 2026). [Karpathy's new open source 'autoresearch'](https://venturebeat.com/technology/andrej-karpathys-new-open-source-autoresearch-lets-you-run-hundreds-of-ai)
+- Kingy AI (March 2026). [Autoresearch: Karpathy's Minimal "Agent Loop"](https://kingy.ai/ai/autoresearch-karpathys-minimal-agent-loop-for-autonomous-llm-experimentation/)
+
+---
+
+*Giora Gilead Elenberg — Founder of [Viajes Scibasku](https://viajesscibasku.com), digital explorer at 72. I write at [recableado.blog](https://recableado.blog) about AI, work, and real life.*
