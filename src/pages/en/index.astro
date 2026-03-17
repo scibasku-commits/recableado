@@ -12,7 +12,7 @@ import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
-const SITE_DESCRIPTION_EN = 'A 72-year-old traveller discovering the last continent';
+const SITE_DESCRIPTION_EN = 'A 72-year-old travel agent discovers AI and rewires his mind. Real stories, real mistakes, real automation. No tech degree required.';
 
 // Use EN posts if available, fallback to ES
 let posts = (await getCollection('blogEn')).sort(
@@ -55,7 +55,7 @@ const stats = [
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION_EN} lang={lang} />
+		<BaseHead title="Rewired at 72: A Travel Agent Learning AI | Recableado" description={SITE_DESCRIPTION_EN} lang={lang} />
 	</head>
 	<body>
 		<Header lang={lang} />

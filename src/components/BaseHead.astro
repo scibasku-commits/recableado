@@ -51,7 +51,7 @@ const rssPath = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 <!-- Hreflang -->
 <link rel="alternate" hreflang="es" href={esURL} />
 <link rel="alternate" hreflang="en" href={enURL} />
-<link rel="alternate" hreflang="x-default" href={esURL} />
+<link rel="alternate" hreflang="x-default" href={enURL} />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -83,6 +83,13 @@ const rssPath = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 
 <!-- Schema JSON-LD -->
 <SchemaMarkup type={type} title={title} description={description} pubDate={pubDate} updatedDate={updatedDate} tags={tags} slug={slug} lang={lang as 'es' | 'en'} />
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-ZzXM_z6yyvH85LdWn8pnU.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
 
 <!-- Vercel Analytics -->
 <script>

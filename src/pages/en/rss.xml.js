@@ -11,7 +11,7 @@ export async function GET(context) {
 	}
 	return rss({
 		title: `${SITE_TITLE} (English)`,
-		description: 'A 72-year-old traveller discovering the last continent',
+		description: 'A 72-year-old traveler discovering the last continent',
 		site: context.site,
 		items: posts.map((post) => ({
 			...post.data,
