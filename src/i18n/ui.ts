@@ -40,6 +40,8 @@ export const ui = {
 		'home.quoteAttribution': '— José Ródenas Montes, instructor DOMINA ChatGPT',
 		'home.cta': '¿Tienes más de 50 y piensas que la IA no va contigo?',
 		'home.ctaButton': 'Leer mi historia →',
+		'home.latestStories': 'Últimas historias',
+		'home.viewAll': 'Ver todos los posts →',
 
 		// Language toggle
 		'lang.switchTo': 'English',
@@ -85,6 +87,8 @@ export const ui = {
 		'home.quoteAttribution': '— José Ródenas Montes, DOMINA ChatGPT instructor',
 		'home.cta': 'Over 50 and think AI isn\'t for you?',
 		'home.ctaButton': 'Read my story →',
+		'home.latestStories': 'Latest stories',
+		'home.viewAll': 'View all posts →',
 
 		// Language toggle
 		'lang.switchTo': 'Español',

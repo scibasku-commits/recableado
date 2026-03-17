@@ -16,8 +16,12 @@ const t = useTranslations(lang);
 const posts = (await getCollection('blogEs')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-const latestPost = posts[0];
-const readingTime = latestPost?.body ? Math.max(1, Math.ceil(latestPost.body.split(/\s+/).length / 200)) : 5;
+const featuredPost = posts[0];
+const gridPosts = posts.slice(1, 4);
+
+function getReadingTime(body: string | undefined): number {
+	return body ? Math.max(1, Math.ceil(body.split(/\s+/).length / 200)) : 5;
+}
 
 const tagStyles: Record<string, { background: string; color: string }> = {
 	'📙 Memoria': { background: '#1a365d', color: 'white' },
@@ -29,7 +33,16 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	'⭐ Reseña': { background: '#d69e2e', color: 'white' },
 	'🧠 Proceso': { background: '#319795', color: 'white' },
 	'🧠 Process': { background: '#319795', color: 'white' },
+	'🌍 Reflexión': { background: '#5a67d8', color: 'white' },
+	'🔧 Herramientas': { background: '#718096', color: 'white' },
 };
+
+const stats = [
+	{ value: 72, label: t('home.years') as string },
+	{ value: 42, label: t('home.sellingTrips') as string },
+	{ value: 95, label: t('home.finalGrade') as string },
+	{ value: 0, label: t('home.itEmployees') as string },
+];
 ---
 
 <!doctype html>
@@ -40,7 +53,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	<body>
 		<Header lang={lang} />
 		<main>
-			<!-- Hero: Infografia landscape -->
+			<!-- Hero -->
 			<section class="hero">
 				<img
 					src="/images/odisea-landscape.webp"
@@ -51,38 +64,29 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 				<p class="hero-caption">{t('home.heroCaption') as string}</p>
 			</section>
 
-			<!-- Stats grid -->
+			<!-- Stats -->
 			<section class="stats-grid">
-				<div class="stat-card">
-					<span class="stat-number">72</span>
-					<span class="stat-label">{t('home.years') as string}</span>
-				</div>
-				<div class="stat-card">
-					<span class="stat-number">42</span>
-					<span class="stat-label">{t('home.sellingTrips') as string}</span>
-				</div>
-				<div class="stat-card">
-					<span class="stat-number">95</span>
-					<span class="stat-label">{t('home.finalGrade') as string}</span>
-				</div>
-				<div class="stat-card">
-					<span class="stat-number">0</span>
-					<span class="stat-label">{t('home.itEmployees') as string}</span>
-				</div>
+				{stats.map((s) => (
+					<div class="stat-card">
+						<span class="stat-number" data-target={s.value}>{s.value}</span>
+						<span class="stat-label">{s.label}</span>
+					</div>
+				))}
 			</section>
 
-			<!-- Ultimo post -->
-			{latestPost && (
-				<section class="latest-post">
-					<h2 class="section-title">{t('blog.latest') as string}</h2>
-					<a href={`/blog/${latestPost.id}/`} class="post-card" data-slug={latestPost.id}>
-						<div class="post-thumb">
-							<img src={`/og/${latestPost.id}.png`} alt="" />
+			<!-- Posts grid -->
+			<section class="posts-section">
+				<h2 class="section-title">{t('home.latestStories') as string}</h2>
+
+				{featuredPost && (
+					<a href={`/blog/${featuredPost.id}/`} class="featured-card" data-slug={featuredPost.id}>
+						<div class="featured-thumb">
+							<img src={`/og/${featuredPost.id}.png`} alt="" loading="lazy" />
 						</div>
-						<div class="post-content">
-							{latestPost.data.tags && (
+						<div class="featured-content">
+							{featuredPost.data.tags && (
 								<div class="post-tags">
-									{latestPost.data.tags.map((tag: string) => {
+									{featuredPost.data.tags.map((tag: string) => {
 										const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
 										return (
 											<span class="tag" style={`background: ${style.background}; color: ${style.color};`}>
@@ -92,18 +96,50 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 									})}
 								</div>
 							)}
-							<h3 class="post-title">{latestPost.data.title}</h3>
-							<p class="post-excerpt">{latestPost.data.description}</p>
+							<h3 class="featured-title">{featuredPost.data.title}</h3>
+							<p class="featured-excerpt">{featuredPost.data.description}</p>
 							<div class="post-meta">
-								<FormattedDate date={latestPost.data.pubDate} lang={lang} />
-								<span class="post-reading">&middot; {readingTime} {t('blog.minRead') as string}</span>
-								<span class="post-stats" style="display:none"></span>
+								<FormattedDate date={featuredPost.data.pubDate} lang={lang} />
+								<span class="post-reading">&middot; {getReadingTime(featuredPost.body)} {t('blog.minRead') as string}</span>
 							</div>
 							<span class="post-link">{t('blog.read') as string} &rarr;</span>
 						</div>
 					</a>
-				</section>
-			)}
+				)}
+
+				<div class="posts-grid">
+					{gridPosts.map((post) => (
+						<a href={`/blog/${post.id}/`} class="grid-card" data-slug={post.id}>
+							<div class="grid-thumb">
+								<img src={`/og/${post.id}.png`} alt="" loading="lazy" />
+							</div>
+							<div class="grid-content">
+								{post.data.tags && (
+									<div class="post-tags">
+										{post.data.tags.slice(0, 2).map((tag: string) => {
+											const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
+											return (
+												<span class="tag" style={`background: ${style.background}; color: ${style.color};`}>
+													{tag}
+												</span>
+											);
+										})}
+									</div>
+								)}
+								<h3 class="grid-title">{post.data.title}</h3>
+								<div class="post-meta">
+									<FormattedDate date={post.data.pubDate} lang={lang} />
+									<span class="post-reading">&middot; {getReadingTime(post.body)} {t('blog.minRead') as string}</span>
+								</div>
+							</div>
+						</a>
+					))}
+				</div>
+
+				<div class="view-all">
+					<a href="/blog/" class="btn-secondary">{t('home.viewAll') as string}</a>
+				</div>
+			</section>
 
 			<!-- Quote -->
 			<section class="quote-section">
@@ -122,6 +158,40 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		<Footer lang={lang} />
 		<Lightbox />
 		<PostStatsLoader />
+
+		<script>
+			// Counter animation on scroll
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const numbers = entry.target.querySelectorAll('.stat-number');
+						numbers.forEach((el) => {
+							const target = parseInt(el.getAttribute('data-target') || '0');
+							if (target === 0) {
+								el.textContent = '0';
+								el.classList.add('counted');
+								return;
+							}
+							let current = 0;
+							const step = Math.max(1, Math.floor(target / 40));
+							const interval = setInterval(() => {
+								current += step;
+								if (current >= target) {
+									current = target;
+									clearInterval(interval);
+								}
+								el.textContent = String(current);
+							}, 30);
+							el.classList.add('counted');
+						});
+						observer.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.3 });
+
+			const statsGrid = document.querySelector('.stats-grid');
+			if (statsGrid) observer.observe(statsGrid);
+		</script>
 	</body>
 </html>
 <style>
@@ -163,6 +233,22 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		display: flex;
 		flex-direction: column;
 		gap: 0.3em;
+		position: relative;
+		overflow: hidden;
+	}
+	.stat-card::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: var(--naranja);
+		transform: scaleX(0);
+		transition: transform 0.6s ease;
+	}
+	.stat-card:hover::after {
+		transform: scaleX(1);
 	}
 	.stat-number {
 		font-family: 'Bricolage Grotesque', sans-serif;
@@ -170,6 +256,10 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		font-weight: 700;
 		color: var(--naranja);
 		line-height: 1;
+		transition: transform 0.3s ease;
+	}
+	.stat-card:hover .stat-number {
+		transform: scale(1.1);
 	}
 	.stat-label {
 		font-size: 0.8em;
@@ -177,12 +267,15 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		line-height: 1.3;
 	}
 
-	/* Latest post card */
-	.latest-post {
+	/* Posts section */
+	.posts-section {
 		margin-bottom: 3em;
 	}
-	.post-card {
-		display: flex;
+
+	/* Featured card */
+	.featured-card {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 		gap: 1.5em;
 		text-decoration: none;
 		padding: 1.2em;
@@ -190,36 +283,101 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		border: 1px solid var(--border);
 		background: white;
 		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+		margin-bottom: 1em;
 	}
-	.post-card:hover {
+	.featured-card:hover {
 		transform: translateY(-2px);
 		box-shadow: 0 4px 16px rgba(26, 54, 93, 0.1);
 		border-color: var(--naranja);
 	}
-	.post-thumb {
-		flex-shrink: 0;
-		width: 200px;
-		height: 140px;
+	.featured-thumb {
 		border-radius: 8px;
 		overflow: hidden;
+		aspect-ratio: 16/9;
 	}
-	.post-thumb img,
-	.post-thumb-fallback img {
+	.featured-thumb img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-radius: 8px;
 	}
-	.post-content {
+	.featured-content {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		min-width: 0;
 	}
+	.featured-title {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		color: var(--heading);
+		font-size: 1.35em;
+		margin: 0 0 0.5em;
+		line-height: 1.3;
+	}
+	.featured-excerpt {
+		color: var(--text);
+		font-size: 0.9em;
+		margin: 0 0 0.6em;
+		line-height: 1.6;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	/* Grid cards */
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1em;
+		margin-bottom: 1.5em;
+	}
+	.grid-card {
+		text-decoration: none;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: white;
+		overflow: hidden;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+	}
+	.grid-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 16px rgba(26, 54, 93, 0.1);
+		border-color: var(--naranja);
+	}
+	.grid-thumb {
+		aspect-ratio: 16/9;
+		overflow: hidden;
+	}
+	.grid-thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+	.grid-card:hover .grid-thumb img {
+		transform: scale(1.05);
+	}
+	.grid-content {
+		padding: 0.8em 1em 1em;
+	}
+	.grid-title {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		color: var(--heading);
+		font-size: 0.95em;
+		margin: 0 0 0.4em;
+		line-height: 1.3;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	/* Shared post styles */
 	.post-tags {
 		display: flex;
 		gap: 0.4em;
 		margin-bottom: 0.5em;
+		flex-wrap: wrap;
 	}
 	.post-tags .tag {
 		border-radius: 999px;
@@ -227,23 +385,6 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		font-size: 0.72em;
 		font-family: 'Bricolage Grotesque', sans-serif;
 		white-space: nowrap;
-	}
-	.post-title {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--heading);
-		font-size: 1.2em;
-		margin: 0 0 0.4em;
-		line-height: 1.3;
-	}
-	.post-excerpt {
-		color: var(--text);
-		font-size: 0.9em;
-		margin: 0 0 0.5em;
-		line-height: 1.6;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
 	}
 	.post-meta {
 		font-size: 0.8em;
@@ -259,8 +400,13 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		font-weight: 600;
 		font-size: 0.9em;
 	}
-	.post-card:hover .post-link {
+	.featured-card:hover .post-link {
 		color: var(--naranja);
+	}
+
+	/* View all */
+	.view-all {
+		text-align: center;
 	}
 
 	/* Quote */
@@ -300,12 +446,11 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		.stat-number {
 			font-size: 2em;
 		}
-		.post-card {
-			flex-direction: column;
+		.featured-card {
+			grid-template-columns: 1fr;
 		}
-		.post-thumb {
-			width: 100%;
-			height: 180px;
+		.posts-grid {
+			grid-template-columns: 1fr;
 		}
 		.cta-text {
 			font-size: 1.2em;
