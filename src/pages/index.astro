@@ -41,7 +41,7 @@ const timeline = [
 	{ year: '1954', place: 'Ginebra, Suiza', desc: 'Nacido donde el agua es diplomática. Y el chocolate, serio.' },
 	{ year: '1960s', place: 'New York · Buenos Aires · Tel Aviv', desc: 'Infancia en tres continentes. El mundo como aula.' },
 	{ year: '1966', place: 'Madrid, 12 años', desc: 'Mi madre me mandaba a campamentos en Suiza. Ahí nació todo: Zermatt, Gstaad, St. Moritz. Y las suizas.' },
-	{ year: '1970s', place: 'Discotrenca a Sierra Nevada', desc: 'Primer forfait. Primer descenso. Primera adicción. Después Les Arcs, Val d\'Isère. Sin parar.' },
+	{ year: '1970s', place: 'Discotrenca a Sierra Nevada', desc: "Primer forfait. Primer descenso. Primera adicción. Después Les Arcs, Val d'Isère. Sin parar." },
 	{ year: '1970s', place: 'De tour líder con Rostropovich y Cela', desc: 'Músicos y escritores por Israel. Nadie me llamaba guía. Todos me preguntaban qué ver.' },
 	{ year: '1980s', place: 'Mar Rojo: Sharm · Dahab', desc: 'Primer regulador. Primera inmersión. Segunda adicción.' },
 	{ year: '1990s', place: 'Sipadan, Borneo', desc: 'El primer viaje importante de buceo. El que lo cambió todo.' },
@@ -49,6 +49,7 @@ const timeline = [
 	{ year: '2006', place: 'Scibasku HQ · Marbella', desc: 'Agencia propia. CICMA 2283. Lujo sin artificios.' },
 	{ year: '2024', place: 'Layover forzoso', desc: 'La diabetes cancela los gin tonics. Empieza YouTube.' },
 	{ year: '2025', place: 'Boarding AI', desc: 'Primer prompt. Con emojis. Estaba orgulloso.' },
+	{ year: '2025', place: 'Recableado completo', desc: 'Mac Mini, 15 Skills, recableado.blog. Un señor de 72 años que no programaba.' },
 	{ year: '2026', place: 'En ruta', desc: 'recableado.blog · 20 posts · 2 idiomas · 6 meses' },
 ];
 ---
@@ -61,10 +62,63 @@ const timeline = [
 	<body>
 		<Header lang={lang} />
 		<main>
-			<!-- Hero dark island -->
-			<section class="hero-dark">
 
-				<!-- PART A: Boarding Pass -->
+			<!-- ══ BLOQUE 1: HERO RECABLEADO ══ -->
+			<section class="hero-dark">
+				<div class="hero-grid">
+					<div class="hero-card">
+						<div class="hero-card-icon">&#127864;</div>
+						<div class="hero-card-date">Primavera 2025</div>
+						<div class="hero-card-title">El catalizador</div>
+						<div class="hero-card-desc">La diabetes cancela los gin tonics. YouTube &rarr; IA.</div>
+					</div>
+					<div class="hero-card">
+						<div class="hero-card-icon">&#128218;</div>
+						<div class="hero-card-date">Verano 2025</div>
+						<div class="hero-card-title">La inmersión</div>
+						<div class="hero-card-desc">Curso DOMINA ChatGPT. Nota: 95/100. &laquo;Nativo digital de 30.&raquo;</div>
+					</div>
+					<div class="hero-card">
+						<div class="hero-card-icon">&#129302;</div>
+						<div class="hero-card-date">Otoño 2025</div>
+						<div class="hero-card-title">El gran hito</div>
+						<div class="hero-card-desc">Mac Mini trabajando mientras duerme. 15 Skills de Claude.</div>
+					</div>
+					<div class="hero-card">
+						<div class="hero-card-icon">&#128640;</div>
+						<div class="hero-card-date">2025–2026</div>
+						<div class="hero-card-title">El presente</div>
+						<div class="hero-card-desc">recableado.blog &middot; 20 posts &middot; 2 idiomas &middot; 0 empleados IT</div>
+					</div>
+				</div>
+				<div class="hero-headline">
+					<div class="hero-headline-main">De los gin tonics a la inteligencia artificial</div>
+					<div class="hero-headline-sub">La odisea de un recableado — 2025</div>
+				</div>
+
+				<!-- ══ BLOQUE 2: STATS ══ -->
+				<div class="stats-board">
+					<div class="stat-flip">
+						<div class="stat-num">72</div>
+						<div class="stat-lbl">{t('home.years') as string}</div>
+					</div>
+					<div class="stat-flip">
+						<div class="stat-num">42</div>
+						<div class="stat-lbl">{t('home.sellingTrips') as string}</div>
+					</div>
+					<div class="stat-flip">
+						<div class="stat-num">95</div>
+						<div class="stat-lbl">{t('home.finalGrade') as string}</div>
+					</div>
+					<div class="stat-flip">
+						<div class="stat-num">0</div>
+						<div class="stat-lbl">{t('home.itEmployees') as string}</div>
+					</div>
+				</div>
+
+				<!-- ══ BLOQUE 3: BOARDING PASS + TIMELINE ══ -->
+				<h2 class="section-label">El itinerario</h2>
+
 				<div class="boarding-pass">
 					<div class="bp-main">
 						<div class="bp-top-row">
@@ -102,29 +156,6 @@ const timeline = [
 					</div>
 				</div>
 
-				<p class="hero-caption">{t('home.heroCaption') as string}</p>
-
-				<!-- Stats: Departure Board -->
-				<div class="stats-board">
-					<div class="stat-flip">
-						<div class="stat-num">72</div>
-						<div class="stat-lbl">{t('home.years') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num">42</div>
-						<div class="stat-lbl">{t('home.sellingTrips') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num">95</div>
-						<div class="stat-lbl">{t('home.finalGrade') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num">0</div>
-						<div class="stat-lbl">{t('home.itEmployees') as string}</div>
-					</div>
-				</div>
-
-				<!-- PART B: Timeline -->
 				<div class="timeline">
 					{timeline.map((item, i) => (
 						<div class={`tl-item${i === timeline.length - 1 ? ' tl-last' : ''}`}>
@@ -141,10 +172,9 @@ const timeline = [
 				</div>
 			</section>
 
-			<!-- Posts grid -->
+			<!-- ══ BLOQUE 4: POSTS ══ -->
 			<section class="posts-section">
 				<h2 class="section-title">{t('home.latestStories') as string}</h2>
-
 				{featuredPost && (
 					<a href={`/blog/${featuredPost.id}/`} class="featured-card" data-slug={featuredPost.id}>
 						<div class="featured-thumb">
@@ -155,11 +185,7 @@ const timeline = [
 								<div class="post-tags">
 									{featuredPost.data.tags.map((tag: string) => {
 										const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
-										return (
-											<span class="tag" style={`background: ${style.background}; color: ${style.color};`}>
-												{tag}
-											</span>
-										);
+										return <span class="tag" style={`background:${style.background};color:${style.color};`}>{tag}</span>;
 									})}
 								</div>
 							)}
@@ -173,7 +199,6 @@ const timeline = [
 						</div>
 					</a>
 				)}
-
 				<div class="posts-grid">
 					{gridPosts.map((post) => (
 						<a href={`/blog/${post.id}/`} class="grid-card" data-slug={post.id}>
@@ -185,11 +210,7 @@ const timeline = [
 									<div class="post-tags">
 										{post.data.tags.slice(0, 2).map((tag: string) => {
 											const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
-											return (
-												<span class="tag" style={`background: ${style.background}; color: ${style.color};`}>
-													{tag}
-												</span>
-											);
+											return <span class="tag" style={`background:${style.background};color:${style.color};`}>{tag}</span>;
 										})}
 									</div>
 								)}
@@ -202,21 +223,18 @@ const timeline = [
 						</a>
 					))}
 				</div>
-
 				<div class="view-all">
 					<a href="/blog/" class="btn-secondary">{t('home.viewAll') as string}</a>
 				</div>
 			</section>
 
-			<!-- Quote -->
+			<!-- ══ BLOQUE 5: QUOTE + CTA ══ -->
 			<section class="quote-section">
 				<blockquote>
 					<p>{t('home.quote') as string}</p>
 					<footer class="quote-attribution">&mdash; {(t('home.quoteAttribution') as string).replace('— ', '')}</footer>
 				</blockquote>
 			</section>
-
-			<!-- CTA -->
 			<section class="cta-section">
 				<p class="cta-text">{t('home.cta') as string}</p>
 				<a href="/blog/la-noche-del-gin-tonic-y-el-prompt/" class="btn-primary">{t('home.ctaButton') as string}</a>
@@ -230,291 +248,208 @@ const timeline = [
 <style>
 	main { padding-top: 2em; }
 
-	/* ====== HERO DARK ISLAND ====== */
+	/* ══════ HERO DARK ISLAND ══════ */
 	.hero-dark {
 		background: #0a0a1a;
 		border-radius: 16px;
 		padding: 32px 28px 36px;
 		margin-bottom: 3em;
 	}
-	.hero-caption {
+
+	/* ── BLOQUE 1: HERO GRID 2×2 ── */
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-bottom: 28px;
+	}
+	.hero-card {
+		background: #181828;
+		border: 1px solid rgba(255,255,255,0.08);
+		border-radius: 12px;
+		padding: 20px;
+		transition: border-color 0.2s ease;
+	}
+	.hero-card:hover { border-color: rgba(255,107,53,0.3); }
+	.hero-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+	.hero-card-date {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		color: #8b8a99;
-		font-size: 0.9em;
-		text-align: center;
-		font-style: italic;
-		margin: 20px 0 24px;
+		font-size: 0.65rem; font-weight: 700; color: #ff6b35;
+		letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+	}
+	.hero-card-title {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.05rem; font-weight: 700; color: #f0ede6;
+		margin-bottom: 6px; line-height: 1.2;
+	}
+	.hero-card-desc {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.8rem; color: #8b8a99; line-height: 1.5;
 	}
 
-	/* ── PART A: BOARDING PASS ── */
+	/* Headline */
+	.hero-headline { text-align: center; margin-bottom: 28px; }
+	.hero-headline-main {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 1.5rem; font-weight: 700; color: #f0ede6;
+		line-height: 1.2; margin-bottom: 6px;
+	}
+	.hero-headline-sub {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.85rem; color: #d4a843; font-style: italic;
+		letter-spacing: 1px;
+	}
+
+	/* ── BLOQUE 2: STATS ── */
+	.stats-board {
+		display: grid; grid-template-columns: repeat(4, 1fr);
+		gap: 10px; margin-bottom: 36px;
+	}
+	.stat-flip {
+		background: #181828; border: 1px solid rgba(255,255,255,0.08);
+		border-radius: 10px; padding: 18px 8px; text-align: center;
+		position: relative; overflow: hidden;
+	}
+	.stat-flip::before {
+		content: ''; position: absolute; top: 50%; left: 0; right: 0;
+		height: 1px; background: rgba(255,255,255,0.06);
+	}
+	.stat-num {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 2.4rem; font-weight: 700; color: #ff6b35;
+		line-height: 1; position: relative; z-index: 1;
+	}
+	.stat-lbl {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.6rem; color: #d4a843; letter-spacing: 1.5px;
+		text-transform: uppercase; margin-top: 8px; position: relative; z-index: 1;
+	}
+
+	/* ── BLOQUE 3: BOARDING PASS + TIMELINE ── */
+	.section-label {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.7rem; font-weight: 700; color: #d4a843;
+		letter-spacing: 3px; text-transform: uppercase;
+		margin-bottom: 16px;
+	}
+
 	.boarding-pass {
-		display: flex;
-		background: #181828;
+		display: flex; background: #181828;
 		border: 1px solid rgba(255,107,53,0.2);
-		border-radius: 16px;
-		overflow: hidden;
+		border-radius: 16px; overflow: hidden; margin-bottom: 28px;
 	}
-	.bp-main {
-		flex: 1;
-		padding: 28px 32px 20px;
-	}
+	.bp-main { flex: 1; padding: 28px 32px 20px; }
 	.bp-top-row {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		margin-bottom: 4px;
+		display: flex; justify-content: space-between;
+		align-items: baseline; margin-bottom: 4px;
 	}
 	.bp-label {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.6rem;
-		color: #8b8a99;
-		letter-spacing: 3px;
-		text-transform: uppercase;
+		font-size: 0.6rem; color: #8b8a99; letter-spacing: 3px; text-transform: uppercase;
 	}
 	.bp-flight {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.7rem;
-		font-weight: 700;
-		color: #ff6b35;
-		letter-spacing: 2px;
+		font-size: 0.7rem; font-weight: 700; color: #ff6b35; letter-spacing: 2px;
 	}
 	.bp-name {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 2.2rem;
-		font-weight: 800;
-		color: #f0ede6;
-		line-height: 1.05;
-		margin-bottom: 24px;
+		font-size: 2.2rem; font-weight: 800; color: #f0ede6;
+		line-height: 1.05; margin-bottom: 24px;
 	}
-	.bp-route {
-		display: flex;
-		gap: 36px;
-		margin-bottom: 20px;
-		align-items: flex-end;
-	}
+	.bp-route { display: flex; gap: 36px; margin-bottom: 20px; align-items: flex-end; }
 	.bp-route-label {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.55rem;
-		color: #8b8a99;
-		letter-spacing: 3px;
-		text-transform: uppercase;
-		margin-bottom: 2px;
+		font-size: 0.55rem; color: #8b8a99; letter-spacing: 3px;
+		text-transform: uppercase; margin-bottom: 2px;
 	}
 	.bp-route-city {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1rem;
-		font-weight: 700;
-		color: #f0ede6;
-		letter-spacing: 1px;
+		font-size: 1rem; font-weight: 700; color: #f0ede6; letter-spacing: 1px;
 	}
 	.bp-route-year {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.8rem;
-		color: #d4a843;
+		font-size: 0.8rem; color: #d4a843;
 	}
-	.bp-arrow {
-		font-size: 1.3rem;
-		color: #ff6b35;
-		padding-bottom: 4px;
-	}
+	.bp-arrow { font-size: 1.3rem; color: #ff6b35; padding-bottom: 4px; }
 	.bp-class {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.65rem;
-		color: #d4a843;
-		letter-spacing: 2px;
-		text-transform: uppercase;
-		padding-top: 14px;
+		font-size: 0.65rem; color: #d4a843; letter-spacing: 2px;
+		text-transform: uppercase; padding-top: 14px;
 		border-top: 1px solid rgba(255,255,255,0.08);
 	}
-
-	/* Barcode */
 	.bp-barcode {
-		display: flex;
-		gap: 2px;
-		margin-top: 16px;
-		height: 24px;
-		align-items: flex-end;
-		opacity: 0.25;
+		display: flex; gap: 2px; margin-top: 16px; height: 24px;
+		align-items: flex-end; opacity: 0.25;
 	}
-	.bp-barcode span {
-		display: block;
-		width: 2px;
-		background: #f0ede6;
-		border-radius: 1px;
-	}
+	.bp-barcode span { display: block; width: 2px; background: #f0ede6; border-radius: 1px; }
 	.bp-barcode span:nth-child(odd) { height: 100%; }
 	.bp-barcode span:nth-child(even) { height: 60%; }
 	.bp-barcode span:nth-child(3n) { height: 80%; width: 3px; }
 	.bp-barcode span:nth-child(5n) { height: 45%; }
 	.bp-barcode span:nth-child(7n) { height: 90%; width: 1px; }
-
-	/* Perforation */
 	.bp-perf {
-		width: 1px;
-		border-left: 2px dashed rgba(255,255,255,0.12);
-		position: relative;
+		width: 1px; border-left: 2px dashed rgba(255,255,255,0.12); position: relative;
 	}
-	.bp-perf::before,
-	.bp-perf::after {
-		content: '';
-		position: absolute;
-		left: -11px;
-		width: 20px;
-		height: 20px;
-		background: #0a0a1a;
-		border-radius: 50%;
+	.bp-perf::before, .bp-perf::after {
+		content: ''; position: absolute; left: -11px;
+		width: 20px; height: 20px; background: #0a0a1a; border-radius: 50%;
 	}
 	.bp-perf::before { top: -10px; }
 	.bp-perf::after { bottom: -10px; }
-
-	/* Strip */
 	.bp-strip {
-		width: 72px;
-		background: #11111f;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 20px 0;
+		width: 72px; background: #11111f; display: flex;
+		flex-direction: column; align-items: center; justify-content: center; padding: 20px 0;
 	}
 	.bp-strip-text {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		writing-mode: vertical-rl;
-		text-orientation: mixed;
-		letter-spacing: 3px;
-		font-size: 0.6rem;
-		font-weight: 700;
-		color: #ff6b35;
-		text-transform: uppercase;
+		writing-mode: vertical-rl; text-orientation: mixed;
+		letter-spacing: 3px; font-size: 0.6rem; font-weight: 700;
+		color: #ff6b35; text-transform: uppercase;
 	}
 	.bp-strip-seat {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.4rem;
-		font-weight: 700;
-		color: #f0ede6;
-		margin-top: 12px;
-		writing-mode: vertical-rl;
+		font-size: 1.4rem; font-weight: 700; color: #f0ede6;
+		margin-top: 12px; writing-mode: vertical-rl;
 	}
 	.bp-strip-seat-label {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.5rem;
-		color: #8b8a99;
-		letter-spacing: 2px;
-		writing-mode: vertical-rl;
-		margin-top: 6px;
+		font-size: 0.5rem; color: #8b8a99; letter-spacing: 2px;
+		writing-mode: vertical-rl; margin-top: 6px;
 	}
 
-	/* ── STATS: DEPARTURE BOARD ── */
-	.stats-board {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 10px;
-		margin-bottom: 32px;
-	}
-	.stat-flip {
-		background: #181828;
-		border: 1px solid rgba(255,255,255,0.08);
-		border-radius: 10px;
-		padding: 18px 8px;
-		text-align: center;
-		position: relative;
-		overflow: hidden;
-	}
-	.stat-flip::before {
-		content: '';
-		position: absolute;
-		top: 50%; left: 0; right: 0;
-		height: 1px;
-		background: rgba(255,255,255,0.06);
-	}
-	.stat-num {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 2.4rem;
-		font-weight: 700;
-		color: #ff6b35;
-		line-height: 1;
-		position: relative;
-		z-index: 1;
-	}
-	.stat-lbl {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.6rem;
-		color: #d4a843;
-		letter-spacing: 1.5px;
-		text-transform: uppercase;
-		margin-top: 8px;
-		position: relative;
-		z-index: 1;
-	}
-
-	/* ── PART B: TIMELINE ── */
-	.timeline {
-		position: relative;
-		padding-left: 28px;
-	}
+	/* Timeline */
+	.timeline { position: relative; padding-left: 28px; }
 	.timeline::before {
-		content: '';
-		position: absolute;
-		top: 6px;
-		left: 5px;
-		bottom: 6px;
-		width: 2px;
-		background: linear-gradient(180deg, #ff6b35, #d4a843);
-		opacity: 0.4;
+		content: ''; position: absolute; top: 6px; left: 5px; bottom: 6px;
+		width: 2px; background: linear-gradient(180deg, #ff6b35, #d4a843); opacity: 0.4;
 	}
 	.tl-item {
-		position: relative;
-		padding: 10px 12px 10px 0;
-		border-radius: 8px;
-		transition: background 0.2s ease;
+		position: relative; padding: 10px 12px 10px 0;
+		border-radius: 8px; transition: background 0.2s ease;
 	}
-	.tl-item:hover {
-		background: rgba(24,24,40,0.6);
-	}
+	.tl-item:hover { background: rgba(24,24,40,0.6); }
 	.tl-dot {
-		position: absolute;
-		left: -28px;
-		top: 16px;
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-		background: #0a0a1a;
-		border: 2px solid #ff6b35;
+		position: absolute; left: -28px; top: 16px;
+		width: 12px; height: 12px; border-radius: 50%;
+		background: #0a0a1a; border: 2px solid #ff6b35;
 	}
 	.tl-last .tl-dot {
-		background: #ff6b35;
-		animation: pulse 2s ease infinite;
+		background: #ff6b35; animation: pulse 2s ease infinite;
 	}
-	.tl-content {
-		padding-left: 4px;
-	}
-	.tl-head {
-		display: flex;
-		align-items: baseline;
-		gap: 10px;
-		flex-wrap: wrap;
-	}
+	.tl-content { padding-left: 4px; }
+	.tl-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 	.tl-year {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.8rem;
-		font-weight: 700;
-		color: #d4a843;
-		letter-spacing: 1px;
+		font-size: 0.8rem; font-weight: 700; color: #d4a843; letter-spacing: 1px;
 	}
 	.tl-place {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: #f0ede6;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
+		font-size: 0.85rem; font-weight: 600; color: #f0ede6;
+		text-transform: uppercase; letter-spacing: 0.5px;
 	}
 	.tl-desc {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.82rem;
-		color: #8b8a99;
-		margin-top: 3px;
-		line-height: 1.5;
+		font-size: 0.82rem; color: #8b8a99; margin-top: 3px; line-height: 1.5;
 	}
 
 	@keyframes pulse {
@@ -522,30 +457,22 @@ const timeline = [
 		50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); }
 	}
 
-	/* ====== POSTS SECTION ====== */
+	/* ══════ POSTS ══════ */
 	.posts-section { margin-bottom: 3em; }
 	.featured-card {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5em;
-		text-decoration: none;
-		padding: 1.2em;
-		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: white;
+		display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em;
+		text-decoration: none; padding: 1.2em; border-radius: 12px;
+		border: 1px solid var(--border); background: white;
 		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 		margin-bottom: 1em;
 	}
 	.featured-card:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 16px rgba(26,54,93,0.1);
+		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
 	.featured-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; }
 	.featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
-	.featured-content {
-		display: flex; flex-direction: column; justify-content: center; min-width: 0;
-	}
+	.featured-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
 	.featured-title {
 		font-family: 'Bricolage Grotesque', sans-serif;
 		color: var(--heading); font-size: 1.35em; margin: 0 0 0.5em; line-height: 1.3;
@@ -563,14 +490,11 @@ const timeline = [
 		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 	}
 	.grid-card:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 16px rgba(26,54,93,0.1);
+		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
 	.grid-thumb { aspect-ratio: 16/9; overflow: hidden; }
-	.grid-thumb img {
-		width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;
-	}
+	.grid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
 	.grid-card:hover .grid-thumb img { transform: scale(1.05); }
 	.grid-content { padding: 0.8em 1em 1em; }
 	.grid-title {
@@ -592,24 +516,30 @@ const timeline = [
 	.featured-card:hover .post-link { color: var(--naranja); }
 	.view-all { text-align: center; }
 
-	/* Quote */
+	/* Quote + CTA */
 	.quote-section { margin-bottom: 3em; }
 	.quote-attribution {
 		display: block; font-size: 0.85em; color: var(--gray); margin-top: 0.8em; font-style: normal;
 	}
-
-	/* CTA */
 	.cta-section {
 		text-align: center; padding: 2.5em 1em; background: white;
 		border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2em;
 	}
 	.cta-text {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.4em; color: var(--heading); font-weight: 600; margin-bottom: 1em; line-height: 1.3;
+		font-size: 1.4em; color: var(--heading); font-weight: 600;
+		margin-bottom: 1em; line-height: 1.3;
 	}
 
+	/* ══════ RESPONSIVE ══════ */
 	@media (max-width: 720px) {
 		.hero-dark { padding: 20px 16px 24px; }
+		.hero-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+		.hero-card { padding: 14px; }
+		.hero-card-icon { font-size: 1.3rem; }
+		.hero-card-title { font-size: 0.9rem; }
+		.hero-card-desc { font-size: 0.75rem; }
+		.hero-headline-main { font-size: 1.2rem; }
 		.boarding-pass { flex-direction: column; }
 		.bp-main { padding: 20px; }
 		.bp-name { font-size: 1.6rem; }
