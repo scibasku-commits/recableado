@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rewired Odyssey — Infographic</title>
+<meta name="description" content="Giora Gilead Elenberg: 72 years old, 42 selling trips, 0 IT employees. The odyssey of a rewired mind.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a1a;
+    --surface: #11111f;
+    --card: #181828;
+    --orange: #ff6b35;
+    --gold: #d4a843;
+    --white: #f0ede6;
+    --muted: #8b8a99;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeIn 0.8s ease;
+  }
+  .header-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+  .header-logo .dot { color: var(--orange); }
+  .header-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .boarding-pass {
+    display: flex;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 48px;
+    animation: fadeIn 1s ease 0.2s both;
+  }
+  .bp-main {
+    flex: 1;
+    padding: 36px 40px;
+  }
+  .bp-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .bp-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+  .bp-route {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 24px;
+    align-items: flex-end;
+  }
+  .bp-route-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .bp-route-city {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .bp-route-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+  }
+  .bp-arrow {
+    font-size: 1.4rem;
+    color: var(--orange);
+    padding-bottom: 4px;
+  }
+  .bp-class {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .bp-perf {
+    width: 1px;
+    border-left: 2px dashed rgba(255,255,255,0.12);
+    position: relative;
+  }
+  .bp-perf::before,
+  .bp-perf::after {
+    content: '';
+    position: absolute;
+    left: -11px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg);
+    border-radius: 50%;
+  }
+  .bp-perf::before { top: -10px; }
+  .bp-perf::after { bottom: -10px; }
+  .bp-strip {
+    width: 80px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+  }
+  .bp-strip-text {
+    font-family: 'Space Mono', monospace;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+  }
+  .bp-strip-seat {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 16px;
+    writing-mode: vertical-rl;
+  }
+  .bp-strip-seat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    writing-mode: vertical-rl;
+    margin-top: 8px;
+  }
+
+  .stats-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+    animation: fadeIn 1s ease 0.4s both;
+  }
+  .stat-flip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-flip::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    animation: flipIn 0.6s ease both;
+  }
+  .stat-flip:nth-child(1) .stat-num { animation-delay: 0.6s; }
+  .stat-flip:nth-child(2) .stat-num { animation-delay: 0.8s; }
+  .stat-flip:nth-child(3) .stat-num { animation-delay: 1.0s; }
+  .stat-flip:nth-child(4) .stat-num { animation-delay: 1.2s; }
+  .stat-lbl {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 48px;
+    animation: fadeIn 1s ease 0.6s both;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 7px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--orange), var(--gold));
+    opacity: 0.4;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--orange);
+  }
+  .tl-item:last-child .tl-dot {
+    background: var(--orange);
+    animation: pulse 2s ease infinite;
+  }
+  .tl-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 2px;
+  }
+  .tl-place {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+  .tl-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .tl-highlight {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .luggage-tags {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 48px;
+    animation: fadeIn 1s ease 0.8s both;
+  }
+  .luggage-tag {
+    background: var(--card);
+    border: 1px solid var(--orange);
+    border-radius: 8px 8px 8px 0;
+    padding: 20px 28px;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .luggage-tag::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+    opacity: 0.5;
+  }
+  .lt-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .lt-unit {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .lt-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .quote-section {
+    text-align: center;
+    padding: 40px 24px;
+    margin-bottom: 48px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 1s ease 1s both;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--white);
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  .quote-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    animation: fadeIn 1s ease 1.2s both;
+  }
+  .footer-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes flipIn {
+    0% { transform: rotateX(90deg); opacity: 0; }
+    100% { transform: rotateX(0); opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 16px; }
+    .boarding-pass { flex-direction: column; }
+    .bp-main { padding: 24px; }
+    .bp-route { flex-wrap: wrap; gap: 16px; }
+    .bp-perf {
+      width: 100%; height: 1px;
+      border-left: none;
+      border-top: 2px dashed rgba(255,255,255,0.12);
+    }
+    .bp-perf::before { top: -10px; left: -10px; }
+    .bp-perf::after { top: -10px; left: auto; right: -10px; bottom: auto; }
+    .bp-strip {
+      width: 100%; height: 48px;
+      flex-direction: row; gap: 16px;
+    }
+    .bp-strip-text,
+    .bp-strip-seat,
+    .bp-strip-seat-label {
+      writing-mode: horizontal-tb;
+    }
+    .bp-strip-seat { margin-top: 0; }
+    .bp-strip-seat-label { margin-top: 0; }
+    .bp-name { font-size: 1.5rem; }
+    .stats-board { grid-template-columns: repeat(2, 1fr); }
+    .stat-num { font-size: 2.2rem; }
+    .luggage-tags { flex-direction: column; align-items: center; }
+    .quote-text { font-size: 1.15rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="header">
+    <div class="header-logo">recableado<span class="dot">.</span>blog</div>
+    <div class="header-tagline">A 72-year-old traveler discovering the last continent</div>
+  </header>
+
+  <section class="boarding-pass">
+    <div class="bp-main">
+      <div class="bp-label">Passenger</div>
+      <div class="bp-name">Giora Gilead Elenberg</div>
+      <div class="bp-route">
+        <div class="bp-route-block">
+          <div class="bp-route-label">Origin</div>
+          <div class="bp-route-city">Marbella</div>
+          <div class="bp-route-year">1954</div>
+        </div>
+        <div class="bp-arrow">→</div>
+        <div class="bp-route-block">
+          <div class="bp-route-label">Destination</div>
+          <div class="bp-route-city">The Last</div>
+          <div class="bp-route-year">Continent</div>
+        </div>
+      </div>
+      <div class="bp-class">Class: Luxury without artifice</div>
+    </div>
+    <div class="bp-perf"></div>
+    <div class="bp-strip">
+      <span class="bp-strip-text">Rewired · Boarding Pass</span>
+      <span class="bp-strip-seat">72A</span>
+      <span class="bp-strip-seat-label">Seat</span>
+    </div>
+  </section>
+
+  <section class="stats-board">
+    <div class="stat-flip">
+      <div class="stat-num">72</div>
+      <div class="stat-lbl">Years old</div>
+    </div>
+    <div class="stat-flip">
+      <div class="stat-num">42</div>
+      <div class="stat-lbl">Selling trips</div>
+    </div>
+    <div class="stat-flip">
+      <div class="stat-num">95</div>
+      <div class="stat-lbl">Course grade</div>
+    </div>
+    <div class="stat-flip">
+      <div class="stat-num">0</div>
+      <div class="stat-lbl">IT employees</div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">1954</span><span class="tl-place">— Geneva, Switzerland</span></div>
+      <div class="tl-desc">Departure point. Born where water is diplomatic.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">1982</span><span class="tl-place">— First destination</span></div>
+      <div class="tl-desc">42 years of trips. No map. No GPS. Pure instinct.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">2006</span><span class="tl-place">— Scibasku HQ</span></div>
+      <div class="tl-desc">Own agency. Marbella. CICMA 2283. Luxury without artifice.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">2024</span><span class="tl-place">— Forced layover</span></div>
+      <div class="tl-desc">Diabetes cancels the gin &amp; tonics. YouTube begins.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">2025</span><span class="tl-place">— Boarding AI</span></div>
+      <div class="tl-desc">First prompt. With emojis. Proud of it.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div><span class="tl-year">2026</span><span class="tl-place">— In transit</span></div>
+      <div class="tl-desc"><span class="tl-highlight">recableado.blog</span> · 20 posts · 2 languages · 6 months</div>
+    </div>
+  </section>
+
+  <section class="luggage-tags">
+    <div class="luggage-tag">
+      <div class="lt-num">20</div>
+      <div class="lt-unit">Posts</div>
+      <div class="lt-sub">published</div>
+    </div>
+    <div class="luggage-tag">
+      <div class="lt-num">2</div>
+      <div class="lt-unit">Languages</div>
+      <div class="lt-sub">ES + EN</div>
+    </div>
+    <div class="luggage-tag">
+      <div class="lt-num">6</div>
+      <div class="lt-unit">Months</div>
+      <div class="lt-sub">of odyssey</div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="quote-text">"If someone outside the course read this, they'd think it was written by a 30-year-old digital native, not a 72-year-old man."</div>
+    <div class="quote-attr">— José Ródenas Montes, DOMINA ChatGPT instructor</div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-text">recableado.blog · CICMA 2283 · Marbella · On the road since 1954</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
