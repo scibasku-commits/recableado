@@ -37,20 +37,6 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	'🔧 Herramientas': { background: '#718096', color: 'white' },
 };
 
-const timeline = [
-	{ year: '1954', place: 'Ginebra, Suiza', desc: 'Nacido donde el agua es diplomática. Y el chocolate, serio.' },
-	{ year: '1960s', place: 'New York · Buenos Aires · Tel Aviv', desc: 'Infancia en tres continentes. El mundo como aula.' },
-	{ year: '1966', place: 'Madrid, 12 años', desc: 'Mi madre me mandaba a campamentos en Suiza. Ahí nació todo: Zermatt, Gstaad, St. Moritz. Y las suizas.' },
-	{ year: '1970s', place: 'Discotrenca a Sierra Nevada', desc: "Primer forfait. Primer descenso. Primera adicción. Después Les Arcs, Val d'Isère. Sin parar." },
-	{ year: '1970s', place: 'Tour líder con Rostropovich y Cela', desc: 'Músicos y escritores por Israel. Nadie me llamaba guía. Todos me preguntaban qué ver.' },
-	{ year: '1980s', place: 'Mar Rojo: Sharm · Dahab', desc: 'Primer regulador. Primera inmersión. Segunda adicción.' },
-	{ year: '1990s', place: 'Sipadan, Borneo', desc: 'El primer viaje importante de buceo. El que lo cambió todo.' },
-	{ year: '1990s', place: 'Polinesia: Rangiroa · Fakarava', desc: 'Tiburones en el paso. Silencio absoluto. Punto de no retorno.' },
-	{ year: '2006', place: 'Scibasku HQ · Marbella', desc: 'Agencia propia. CICMA 2283. Lujo sin artificios.' },
-	{ year: '2024', place: 'Layover forzoso', desc: 'La diabetes cancela los gin tonics. Empieza YouTube.' },
-	{ year: '2025', place: 'Boarding AI', desc: 'Primer prompt. Con emojis. Estaba orgulloso.' },
-	{ year: '2026', place: 'En ruta', desc: 'recableado.blog · 20 posts · 2 idiomas · 6 meses' },
-];
 ---
 
 <!doctype html>
@@ -167,20 +153,7 @@ const timeline = [
 					</div>
 				</div>
 
-				<div class="timeline">
-					{timeline.map((item, i) => (
-						<div class={`tl-item${i === timeline.length - 1 ? ' tl-last' : ''}`}>
-							<div class="tl-dot"></div>
-							<div class="tl-content">
-								<div class="tl-head">
-									<span class="tl-year">{item.year}</span>
-									<span class="tl-place">{item.place}</span>
-								</div>
-								<div class="tl-desc">{item.desc}</div>
-							</div>
-						</div>
-					))}
-				</div>
+
 			</section>
 
 			<!-- ══ BLOQUE 5: POSTS ══ -->

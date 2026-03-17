@@ -43,20 +43,6 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	'🔧 Herramientas': { background: '#718096', color: 'white' },
 };
 
-const timeline = [
-	{ year: '1954', place: 'Geneva, Switzerland', desc: 'Born where water is diplomatic. And chocolate, serious.' },
-	{ year: '1960s', place: 'New York · Buenos Aires · Tel Aviv', desc: 'Childhood across three continents. The world as classroom.' },
-	{ year: '1966', place: 'Madrid, age 12', desc: "My mother sent me to camps in Switzerland. That's where it all started: Zermatt, Gstaad, St. Moritz. And the Swiss girls." },
-	{ year: '1970s', place: 'Disco bus to Sierra Nevada', desc: "First ski pass. First descent. First addiction. Then Les Arcs, Val d'Isère. Non-stop." },
-	{ year: '1970s', place: 'Tour leader with Rostropovich & Cela', desc: 'Musicians and writers across Israel. Nobody called me a guide. Everyone asked me what to see.' },
-	{ year: '1980s', place: 'Red Sea: Sharm · Dahab', desc: 'First regulator. First dive. Second addiction.' },
-	{ year: '1990s', place: 'Sipadan, Borneo', desc: 'The first major dive trip. The one that changed everything.' },
-	{ year: '1990s', place: 'Polynesia: Rangiroa · Fakarava', desc: 'Sharks in the channel. Absolute silence. Point of no return.' },
-	{ year: '2006', place: 'Scibasku HQ · Marbella', desc: 'Own agency. CICMA 2283. Luxury without artifice.' },
-	{ year: '2024', place: 'Forced layover', desc: 'Diabetes cancels the gin & tonics. YouTube begins.' },
-	{ year: '2025', place: 'Boarding AI', desc: 'First prompt. With emojis. Proud of it.' },
-	{ year: '2026', place: 'In transit', desc: 'recableado.blog · 20 posts · 2 languages · 6 months' },
-];
 ---
 
 <!doctype html>
@@ -173,20 +159,7 @@ const timeline = [
 					</div>
 				</div>
 
-				<div class="timeline">
-					{timeline.map((item, i) => (
-						<div class={`tl-item${i === timeline.length - 1 ? ' tl-last' : ''}`}>
-							<div class="tl-dot"></div>
-							<div class="tl-content">
-								<div class="tl-head">
-									<span class="tl-year">{item.year}</span>
-									<span class="tl-place">{item.place}</span>
-								</div>
-								<div class="tl-desc">{item.desc}</div>
-							</div>
-						</div>
-					))}
-				</div>
+
 			</section>
 
 			<!-- ══ BLOQUE 5: POSTS ══ -->
