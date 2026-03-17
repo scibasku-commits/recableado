@@ -36,6 +36,21 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	'🌍 Reflexión': { background: '#5a67d8', color: 'white' },
 	'🔧 Herramientas': { background: '#718096', color: 'white' },
 };
+
+const timeline = [
+	{ year: '1954', place: 'Ginebra, Suiza', desc: 'Nacido donde el agua es diplomática. Y el chocolate, serio.' },
+	{ year: '1960s', place: 'New York · Buenos Aires · Tel Aviv', desc: 'Infancia en tres continentes. El mundo como aula.' },
+	{ year: '1966', place: 'Madrid, 12 años', desc: 'Mi madre me mandaba a campamentos en Suiza. Ahí nació todo: Zermatt, Gstaad, St. Moritz. Y las suizas.' },
+	{ year: '1970s', place: 'Discotrenca a Sierra Nevada', desc: 'Primer forfait. Primer descenso. Primera adicción. Después Les Arcs, Val d\'Isère. Sin parar.' },
+	{ year: '1970s', place: 'De tour líder con Rostropovich y Cela', desc: 'Músicos y escritores por Israel. Nadie me llamaba guía. Todos me preguntaban qué ver.' },
+	{ year: '1980s', place: 'Mar Rojo: Sharm · Dahab', desc: 'Primer regulador. Primera inmersión. Segunda adicción.' },
+	{ year: '1990s', place: 'Sipadan, Borneo', desc: 'El primer viaje importante de buceo. El que lo cambió todo.' },
+	{ year: '1990s', place: 'Polinesia: Rangiroa · Fakarava', desc: 'Tiburones en el paso. Silencio absoluto. Punto de no retorno.' },
+	{ year: '2006', place: 'Scibasku HQ · Marbella', desc: 'Agencia propia. CICMA 2283. Lujo sin artificios.' },
+	{ year: '2024', place: 'Layover forzoso', desc: 'La diabetes cancela los gin tonics. Empieza YouTube.' },
+	{ year: '2025', place: 'Boarding AI', desc: 'Primer prompt. Con emojis. Estaba orgulloso.' },
+	{ year: '2026', place: 'En ruta', desc: 'recableado.blog · 20 posts · 2 idiomas · 6 meses' },
+];
 ---
 
 <!doctype html>
@@ -46,12 +61,17 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	<body>
 		<Header lang={lang} />
 		<main>
-			<!-- Hero: Boarding Pass -->
-			<section class="hero-bp-wrapper">
+			<!-- Hero dark island -->
+			<section class="hero-dark">
+
+				<!-- PART A: Boarding Pass -->
 				<div class="boarding-pass">
 					<div class="bp-main">
-						<div class="bp-label">Pasajero</div>
-						<div class="bp-name">Giora Gilead Elenberg</div>
+						<div class="bp-top-row">
+							<div class="bp-label">Pasajero</div>
+							<div class="bp-flight">SC-1954</div>
+						</div>
+						<div class="bp-name">Giora Gilead<br/>Elenberg</div>
 						<div class="bp-route">
 							<div class="bp-route-block">
 								<div class="bp-route-label">Origen</div>
@@ -66,6 +86,13 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 							</div>
 						</div>
 						<div class="bp-class">Clase: Premium sin artificios</div>
+						<div class="bp-barcode" aria-hidden="true">
+							<span></span><span></span><span></span><span></span><span></span><span></span>
+							<span></span><span></span><span></span><span></span><span></span><span></span>
+							<span></span><span></span><span></span><span></span><span></span><span></span>
+							<span></span><span></span><span></span><span></span><span></span><span></span>
+							<span></span><span></span><span></span><span></span><span></span><span></span>
+						</div>
 					</div>
 					<div class="bp-perf"></div>
 					<div class="bp-strip">
@@ -95,6 +122,22 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 						<div class="stat-num">0</div>
 						<div class="stat-lbl">{t('home.itEmployees') as string}</div>
 					</div>
+				</div>
+
+				<!-- PART B: Timeline -->
+				<div class="timeline">
+					{timeline.map((item, i) => (
+						<div class={`tl-item${i === timeline.length - 1 ? ' tl-last' : ''}`}>
+							<div class="tl-dot"></div>
+							<div class="tl-content">
+								<div class="tl-head">
+									<span class="tl-year">{item.year}</span>
+									<span class="tl-place">{item.place}</span>
+								</div>
+								<div class="tl-desc">{item.desc}</div>
+							</div>
+						</div>
+					))}
 				</div>
 			</section>
 
@@ -185,15 +228,13 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	</body>
 </html>
 <style>
-	main {
-		padding-top: 2em;
-	}
+	main { padding-top: 2em; }
 
-	/* ====== HERO: BOARDING PASS ====== */
-	.hero-bp-wrapper {
+	/* ====== HERO DARK ISLAND ====== */
+	.hero-dark {
 		background: #0a0a1a;
 		border-radius: 16px;
-		padding: 32px 28px 28px;
+		padding: 32px 28px 36px;
 		margin-bottom: 3em;
 	}
 	.hero-caption {
@@ -205,17 +246,23 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		margin: 20px 0 24px;
 	}
 
-	/* Boarding pass */
+	/* ── PART A: BOARDING PASS ── */
 	.boarding-pass {
 		display: flex;
 		background: #181828;
-		border: 1px solid rgba(255,255,255,0.08);
+		border: 1px solid rgba(255,107,53,0.2);
 		border-radius: 16px;
 		overflow: hidden;
 	}
 	.bp-main {
 		flex: 1;
-		padding: 28px 32px;
+		padding: 28px 32px 20px;
+	}
+	.bp-top-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 4px;
 	}
 	.bp-label {
 		font-family: 'Bricolage Grotesque', sans-serif;
@@ -223,14 +270,20 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		color: #8b8a99;
 		letter-spacing: 3px;
 		text-transform: uppercase;
-		margin-bottom: 4px;
+	}
+	.bp-flight {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.7rem;
+		font-weight: 700;
+		color: #ff6b35;
+		letter-spacing: 2px;
 	}
 	.bp-name {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.8rem;
-		font-weight: 700;
+		font-size: 2.2rem;
+		font-weight: 800;
 		color: #f0ede6;
-		line-height: 1.1;
+		line-height: 1.05;
 		margin-bottom: 24px;
 	}
 	.bp-route {
@@ -261,7 +314,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	}
 	.bp-arrow {
 		font-size: 1.3rem;
-		color: var(--naranja);
+		color: #ff6b35;
 		padding-bottom: 4px;
 	}
 	.bp-class {
@@ -273,6 +326,27 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		padding-top: 14px;
 		border-top: 1px solid rgba(255,255,255,0.08);
 	}
+
+	/* Barcode */
+	.bp-barcode {
+		display: flex;
+		gap: 2px;
+		margin-top: 16px;
+		height: 24px;
+		align-items: flex-end;
+		opacity: 0.25;
+	}
+	.bp-barcode span {
+		display: block;
+		width: 2px;
+		background: #f0ede6;
+		border-radius: 1px;
+	}
+	.bp-barcode span:nth-child(odd) { height: 100%; }
+	.bp-barcode span:nth-child(even) { height: 60%; }
+	.bp-barcode span:nth-child(3n) { height: 80%; width: 3px; }
+	.bp-barcode span:nth-child(5n) { height: 45%; }
+	.bp-barcode span:nth-child(7n) { height: 90%; width: 1px; }
 
 	/* Perforation */
 	.bp-perf {
@@ -310,7 +384,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		letter-spacing: 3px;
 		font-size: 0.6rem;
 		font-weight: 700;
-		color: var(--naranja);
+		color: #ff6b35;
 		text-transform: uppercase;
 	}
 	.bp-strip-seat {
@@ -330,11 +404,12 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		margin-top: 6px;
 	}
 
-	/* Stats: Departure Board */
+	/* ── STATS: DEPARTURE BOARD ── */
 	.stats-board {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 10px;
+		margin-bottom: 32px;
 	}
 	.stat-flip {
 		background: #181828;
@@ -348,9 +423,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	.stat-flip::before {
 		content: '';
 		position: absolute;
-		top: 50%;
-		left: 0;
-		right: 0;
+		top: 50%; left: 0; right: 0;
 		height: 1px;
 		background: rgba(255,255,255,0.06);
 	}
@@ -358,7 +431,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		font-family: 'Bricolage Grotesque', sans-serif;
 		font-size: 2.4rem;
 		font-weight: 700;
-		color: var(--naranja);
+		color: #ff6b35;
 		line-height: 1;
 		position: relative;
 		z-index: 1;
@@ -374,10 +447,83 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		z-index: 1;
 	}
 
-	/* ====== POSTS SECTION ====== */
-	.posts-section {
-		margin-bottom: 3em;
+	/* ── PART B: TIMELINE ── */
+	.timeline {
+		position: relative;
+		padding-left: 28px;
 	}
+	.timeline::before {
+		content: '';
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		bottom: 6px;
+		width: 2px;
+		background: linear-gradient(180deg, #ff6b35, #d4a843);
+		opacity: 0.4;
+	}
+	.tl-item {
+		position: relative;
+		padding: 10px 12px 10px 0;
+		border-radius: 8px;
+		transition: background 0.2s ease;
+	}
+	.tl-item:hover {
+		background: rgba(24,24,40,0.6);
+	}
+	.tl-dot {
+		position: absolute;
+		left: -28px;
+		top: 16px;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #0a0a1a;
+		border: 2px solid #ff6b35;
+	}
+	.tl-last .tl-dot {
+		background: #ff6b35;
+		animation: pulse 2s ease infinite;
+	}
+	.tl-content {
+		padding-left: 4px;
+	}
+	.tl-head {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+	.tl-year {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: #d4a843;
+		letter-spacing: 1px;
+	}
+	.tl-place {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #f0ede6;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+	.tl-desc {
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.82rem;
+		color: #8b8a99;
+		margin-top: 3px;
+		line-height: 1.5;
+	}
+
+	@keyframes pulse {
+		0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); }
+		50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); }
+	}
+
+	/* ====== POSTS SECTION ====== */
+	.posts-section { margin-bottom: 3em; }
 	.featured-card {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -392,174 +538,92 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 	}
 	.featured-card:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 4px 16px rgba(26, 54, 93, 0.1);
+		box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
-	.featured-thumb {
-		border-radius: 8px;
-		overflow: hidden;
-		aspect-ratio: 16/9;
-	}
-	.featured-thumb img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+	.featured-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; }
+	.featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
 	.featured-content {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		min-width: 0;
+		display: flex; flex-direction: column; justify-content: center; min-width: 0;
 	}
 	.featured-title {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--heading);
-		font-size: 1.35em;
-		margin: 0 0 0.5em;
-		line-height: 1.3;
+		color: var(--heading); font-size: 1.35em; margin: 0 0 0.5em; line-height: 1.3;
 	}
 	.featured-excerpt {
-		color: var(--text);
-		font-size: 0.9em;
-		margin: 0 0 0.6em;
-		line-height: 1.6;
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
+		color: var(--text); font-size: 0.9em; margin: 0 0 0.6em; line-height: 1.6;
+		display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 	}
 	.posts-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1em;
-		margin-bottom: 1.5em;
+		display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; margin-bottom: 1.5em;
 	}
 	.grid-card {
-		text-decoration: none;
-		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: white;
-		overflow: hidden;
+		text-decoration: none; border-radius: 12px; border: 1px solid var(--border);
+		background: white; overflow: hidden;
 		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 	}
 	.grid-card:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 4px 16px rgba(26, 54, 93, 0.1);
+		box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
-	.grid-thumb {
-		aspect-ratio: 16/9;
-		overflow: hidden;
-	}
+	.grid-thumb { aspect-ratio: 16/9; overflow: hidden; }
 	.grid-thumb img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.3s ease;
+		width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;
 	}
-	.grid-card:hover .grid-thumb img {
-		transform: scale(1.05);
-	}
-	.grid-content {
-		padding: 0.8em 1em 1em;
-	}
+	.grid-card:hover .grid-thumb img { transform: scale(1.05); }
+	.grid-content { padding: 0.8em 1em 1em; }
 	.grid-title {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--heading);
-		font-size: 0.95em;
-		margin: 0 0 0.4em;
-		line-height: 1.3;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
+		color: var(--heading); font-size: 0.95em; margin: 0 0 0.4em; line-height: 1.3;
+		display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 	}
-	.post-tags {
-		display: flex;
-		gap: 0.4em;
-		margin-bottom: 0.5em;
-		flex-wrap: wrap;
-	}
+	.post-tags { display: flex; gap: 0.4em; margin-bottom: 0.5em; flex-wrap: wrap; }
 	.post-tags .tag {
-		border-radius: 999px;
-		padding: 2px 10px;
-		font-size: 0.72em;
-		font-family: 'Bricolage Grotesque', sans-serif;
-		white-space: nowrap;
+		border-radius: 999px; padding: 2px 10px; font-size: 0.72em;
+		font-family: 'Bricolage Grotesque', sans-serif; white-space: nowrap;
 	}
-	.post-meta {
-		font-size: 0.8em;
-		color: var(--gray);
-		margin-bottom: 0.5em;
-	}
-	.post-reading {
-		margin-left: 0.2em;
-	}
+	.post-meta { font-size: 0.8em; color: var(--gray); margin-bottom: 0.5em; }
+	.post-reading { margin-left: 0.2em; }
 	.post-link {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--link);
-		font-weight: 600;
-		font-size: 0.9em;
+		color: var(--link); font-weight: 600; font-size: 0.9em;
 	}
-	.featured-card:hover .post-link {
-		color: var(--naranja);
-	}
-	.view-all {
-		text-align: center;
-	}
+	.featured-card:hover .post-link { color: var(--naranja); }
+	.view-all { text-align: center; }
 
 	/* Quote */
-	.quote-section {
-		margin-bottom: 3em;
-	}
+	.quote-section { margin-bottom: 3em; }
 	.quote-attribution {
-		display: block;
-		font-size: 0.85em;
-		color: var(--gray);
-		margin-top: 0.8em;
-		font-style: normal;
+		display: block; font-size: 0.85em; color: var(--gray); margin-top: 0.8em; font-style: normal;
 	}
 
 	/* CTA */
 	.cta-section {
-		text-align: center;
-		padding: 2.5em 1em;
-		background: white;
-		border-radius: 12px;
-		border: 1px solid var(--border);
-		margin-bottom: 2em;
+		text-align: center; padding: 2.5em 1em; background: white;
+		border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2em;
 	}
 	.cta-text {
 		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.4em;
-		color: var(--heading);
-		font-weight: 600;
-		margin-bottom: 1em;
-		line-height: 1.3;
+		font-size: 1.4em; color: var(--heading); font-weight: 600; margin-bottom: 1em; line-height: 1.3;
 	}
 
 	@media (max-width: 720px) {
-		.hero-bp-wrapper { padding: 20px 16px 16px; }
+		.hero-dark { padding: 20px 16px 24px; }
 		.boarding-pass { flex-direction: column; }
 		.bp-main { padding: 20px; }
-		.bp-name { font-size: 1.4rem; }
+		.bp-name { font-size: 1.6rem; }
 		.bp-route { flex-wrap: wrap; gap: 12px; }
 		.bp-perf {
 			width: 100%; height: 1px;
-			border-left: none;
-			border-top: 2px dashed rgba(255,255,255,0.12);
+			border-left: none; border-top: 2px dashed rgba(255,255,255,0.12);
 		}
 		.bp-perf::before { top: -10px; left: -10px; }
 		.bp-perf::after { top: -10px; left: auto; right: -10px; bottom: auto; }
 		.bp-strip {
-			width: 100%; height: 44px;
-			flex-direction: row; gap: 12px;
+			width: 100%; height: 44px; flex-direction: row; gap: 12px;
 		}
-		.bp-strip-text,
-		.bp-strip-seat,
-		.bp-strip-seat-label {
-			writing-mode: horizontal-tb;
-		}
+		.bp-strip-text, .bp-strip-seat, .bp-strip-seat-label { writing-mode: horizontal-tb; }
 		.bp-strip-seat { margin-top: 0; }
 		.bp-strip-seat-label { margin-top: 0; }
 		.stats-board { grid-template-columns: repeat(2, 1fr); }
