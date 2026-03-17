@@ -42,14 +42,13 @@ const timeline = [
 	{ year: '1960s', place: 'New York · Buenos Aires · Tel Aviv', desc: 'Infancia en tres continentes. El mundo como aula.' },
 	{ year: '1966', place: 'Madrid, 12 años', desc: 'Mi madre me mandaba a campamentos en Suiza. Ahí nació todo: Zermatt, Gstaad, St. Moritz. Y las suizas.' },
 	{ year: '1970s', place: 'Discotrenca a Sierra Nevada', desc: "Primer forfait. Primer descenso. Primera adicción. Después Les Arcs, Val d'Isère. Sin parar." },
-	{ year: '1970s', place: 'De tour líder con Rostropovich y Cela', desc: 'Músicos y escritores por Israel. Nadie me llamaba guía. Todos me preguntaban qué ver.' },
+	{ year: '1970s', place: 'Tour líder con Rostropovich y Cela', desc: 'Músicos y escritores por Israel. Nadie me llamaba guía. Todos me preguntaban qué ver.' },
 	{ year: '1980s', place: 'Mar Rojo: Sharm · Dahab', desc: 'Primer regulador. Primera inmersión. Segunda adicción.' },
 	{ year: '1990s', place: 'Sipadan, Borneo', desc: 'El primer viaje importante de buceo. El que lo cambió todo.' },
 	{ year: '1990s', place: 'Polinesia: Rangiroa · Fakarava', desc: 'Tiburones en el paso. Silencio absoluto. Punto de no retorno.' },
 	{ year: '2006', place: 'Scibasku HQ · Marbella', desc: 'Agencia propia. CICMA 2283. Lujo sin artificios.' },
 	{ year: '2024', place: 'Layover forzoso', desc: 'La diabetes cancela los gin tonics. Empieza YouTube.' },
 	{ year: '2025', place: 'Boarding AI', desc: 'Primer prompt. Con emojis. Estaba orgulloso.' },
-	{ year: '2025', place: 'Recableado completo', desc: 'Mac Mini, 15 Skills, recableado.blog. Un señor de 72 años que no programaba.' },
 	{ year: '2026', place: 'En ruta', desc: 'recableado.blog · 20 posts · 2 idiomas · 6 meses' },
 ];
 ---
@@ -58,66 +57,78 @@ const timeline = [
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={lang} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 	</head>
 	<body>
 		<Header lang={lang} />
 		<main>
 
-			<!-- ══ BLOQUE 1: HERO RECABLEADO ══ -->
-			<section class="hero-dark">
-				<div class="hero-grid">
-					<div class="hero-card">
-						<div class="hero-card-icon">&#127864;</div>
-						<div class="hero-card-date">Primavera 2025</div>
-						<div class="hero-card-title">El catalizador</div>
-						<div class="hero-card-desc">La diabetes cancela los gin tonics. YouTube &rarr; IA.</div>
-					</div>
-					<div class="hero-card">
-						<div class="hero-card-icon">&#128218;</div>
-						<div class="hero-card-date">Verano 2025</div>
-						<div class="hero-card-title">La inmersión</div>
-						<div class="hero-card-desc">Curso DOMINA ChatGPT. Nota: 95/100. &laquo;Nativo digital de 30.&raquo;</div>
-					</div>
-					<div class="hero-card">
-						<div class="hero-card-icon">&#129302;</div>
-						<div class="hero-card-date">Otoño 2025</div>
-						<div class="hero-card-title">El gran hito</div>
-						<div class="hero-card-desc">Mac Mini trabajando mientras duerme. 15 Skills de Claude.</div>
-					</div>
-					<div class="hero-card">
-						<div class="hero-card-icon">&#128640;</div>
-						<div class="hero-card-date">2025–2026</div>
-						<div class="hero-card-title">El presente</div>
-						<div class="hero-card-desc">recableado.blog &middot; 20 posts &middot; 2 idiomas &middot; 0 empleados IT</div>
-					</div>
-				</div>
-				<div class="hero-headline">
-					<div class="hero-headline-main">De los gin tonics a la inteligencia artificial</div>
-					<div class="hero-headline-sub">La odisea de un recableado — 2025</div>
-				</div>
+			<!-- ══ BLOQUE 1: HERO OSCURO ══ -->
+			<section class="blk-hero">
+				<h1 class="hero-title">Recableado<br/>a los 72</h1>
+				<p class="hero-sub">De los gin tonics a la inteligencia artificial</p>
+				<div class="blk-hero-wave"></div>
+			</section>
 
-				<!-- ══ BLOQUE 2: STATS ══ -->
+			<!-- ══ BLOQUE 2: CARDS CLARO ══ -->
+			<section class="blk-cards">
+				<div class="cards-grid">
+					<div class="milestone-card">
+						<div class="mc-icon">&#127864;</div>
+						<div class="mc-date">Primavera 2025</div>
+						<div class="mc-title">El Catalizador</div>
+						<div class="mc-desc">La diabetes cancela los gin tonics. YouTube &rarr; IA.</div>
+					</div>
+					<div class="milestone-card">
+						<div class="mc-icon">&#128218;</div>
+						<div class="mc-date">Verano 2025</div>
+						<div class="mc-title">La Inmersión</div>
+						<div class="mc-desc">Curso DOMINA ChatGPT. Nota: 95/100. &laquo;Nativo digital de 30 años.&raquo;</div>
+					</div>
+					<div class="milestone-card">
+						<div class="mc-icon">&#129302;</div>
+						<div class="mc-date">Otoño 2025</div>
+						<div class="mc-title">El Gran Hito</div>
+						<div class="mc-desc">ClawdBot: Mac Mini 24/7 + 5 agentes IA trabajando mientras duerme.</div>
+					</div>
+					<div class="milestone-card">
+						<div class="mc-icon">&#128640;</div>
+						<div class="mc-date">2025–2026</div>
+						<div class="mc-title">El Presente</div>
+						<div class="mc-desc">recableado.blog &middot; 20 posts &middot; 2 idiomas &middot; 0 empleados IT &middot; 0 gin tonics</div>
+					</div>
+				</div>
+				<div class="blk-cards-wave"></div>
+			</section>
+
+			<!-- ══ BLOQUE 3: STATS OSCURO ══ -->
+			<section class="blk-stats">
 				<div class="stats-board">
 					<div class="stat-flip">
-						<div class="stat-num">72</div>
+						<div class="stat-num" data-target="72">0</div>
 						<div class="stat-lbl">{t('home.years') as string}</div>
 					</div>
 					<div class="stat-flip">
-						<div class="stat-num">42</div>
+						<div class="stat-num" data-target="42">0</div>
 						<div class="stat-lbl">{t('home.sellingTrips') as string}</div>
 					</div>
 					<div class="stat-flip">
-						<div class="stat-num">95</div>
+						<div class="stat-num" data-target="95">0</div>
 						<div class="stat-lbl">{t('home.finalGrade') as string}</div>
 					</div>
 					<div class="stat-flip">
-						<div class="stat-num">0</div>
+						<div class="stat-num" data-target="0">0</div>
 						<div class="stat-lbl">{t('home.itEmployees') as string}</div>
 					</div>
 				</div>
+				<div class="blk-stats-wave"></div>
+			</section>
 
-				<!-- ══ BLOQUE 3: BOARDING PASS + TIMELINE ══ -->
-				<h2 class="section-label">El itinerario</h2>
+			<!-- ══ BLOQUE 4: BOARDING PASS + TIMELINE CLARO ══ -->
+			<section class="blk-itinerary">
+				<div class="itinerary-label">El itinerario</div>
 
 				<div class="boarding-pass">
 					<div class="bp-main">
@@ -172,7 +183,7 @@ const timeline = [
 				</div>
 			</section>
 
-			<!-- ══ BLOQUE 4: POSTS ══ -->
+			<!-- ══ BLOQUE 5: POSTS ══ -->
 			<section class="posts-section">
 				<h2 class="section-title">{t('home.latestStories') as string}</h2>
 				{featuredPost && (
@@ -228,7 +239,7 @@ const timeline = [
 				</div>
 			</section>
 
-			<!-- ══ BLOQUE 5: QUOTE + CTA ══ -->
+			<!-- ══ BLOQUE 6: QUOTE + CTA ══ -->
 			<section class="quote-section">
 				<blockquote>
 					<p>{t('home.quote') as string}</p>
@@ -243,71 +254,133 @@ const timeline = [
 		<Footer lang={lang} />
 		<Lightbox />
 		<PostStatsLoader />
+
+		<script>
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.querySelectorAll('.stat-num').forEach((el) => {
+							const target = parseInt(el.getAttribute('data-target') || '0');
+							if (target === 0) { el.textContent = '0'; return; }
+							let current = 0;
+							const step = Math.max(1, Math.floor(target / 40));
+							const interval = setInterval(() => {
+								current += step;
+								if (current >= target) { current = target; clearInterval(interval); }
+								el.textContent = String(current);
+							}, 30);
+						});
+						observer.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.3 });
+			const sb = document.querySelector('.stats-board');
+			if (sb) observer.observe(sb);
+		</script>
 	</body>
 </html>
-<style>
-	main { padding-top: 2em; }
+<style is:global>
+	/* ══════ BLOCK SYSTEM: alternating dark/light ══════ */
 
-	/* ══════ HERO DARK ISLAND ══════ */
-	.hero-dark {
+	/* ── BLOQUE 1: HERO OSCURO ── */
+	.blk-hero {
 		background: #0a0a1a;
-		border-radius: 16px;
-		padding: 32px 28px 36px;
-		margin-bottom: 3em;
+		padding: 80px 28px 100px;
+		text-align: center;
+		position: relative;
+		animation: fadeIn 0.8s ease;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
+		margin-top: -2em;
+	}
+	.hero-title {
+		font-family: 'Playfair Display', serif;
+		font-size: 4.5rem;
+		font-weight: 700;
+		color: #f0ede6;
+		line-height: 1.0;
+		margin: 0 0 20px;
+	}
+	.hero-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 1.15rem;
+		color: #ff6b35;
+		font-style: italic;
+		margin: 0;
+		letter-spacing: 0.5px;
+	}
+	.blk-hero-wave {
+		position: absolute;
+		bottom: 0; left: 0; right: 0;
+		height: 40px;
+		background: #f5f0e8;
+		clip-path: ellipse(55% 100% at 50% 100%);
 	}
 
-	/* ── BLOQUE 1: HERO GRID 2×2 ── */
-	.hero-grid {
+	/* ── BLOQUE 2: CARDS CLARO ── */
+	.blk-cards {
+		background: #f5f0e8;
+		padding: 48px 28px 80px;
+		position: relative;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
+	}
+	.cards-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 12px;
-		margin-bottom: 28px;
+		gap: 16px;
+		max-width: 680px;
+		margin: 0 auto;
 	}
-	.hero-card {
-		background: #181828;
-		border: 1px solid rgba(255,255,255,0.08);
-		border-radius: 12px;
-		padding: 20px;
-		transition: border-color 0.2s ease;
+	.milestone-card {
+		background: #fffdf7;
+		border: 1px solid rgba(212,168,67,0.2);
+		border-radius: 14px;
+		padding: 24px;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
-	.hero-card:hover { border-color: rgba(255,107,53,0.3); }
-	.hero-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
-	.hero-card-date {
-		font-family: 'Bricolage Grotesque', sans-serif;
+	.milestone-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+	}
+	.mc-icon { font-size: 2.4rem; margin-bottom: 10px; }
+	.mc-date {
+		font-family: 'Space Mono', monospace;
 		font-size: 0.65rem; font-weight: 700; color: #ff6b35;
 		letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
 	}
-	.hero-card-title {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.05rem; font-weight: 700; color: #f0ede6;
-		margin-bottom: 6px; line-height: 1.2;
+	.mc-title {
+		font-family: 'Playfair Display', serif;
+		font-size: 1.15rem; font-weight: 700; color: #1a1a2e;
+		margin-bottom: 8px; line-height: 1.2;
 	}
-	.hero-card-desc {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.8rem; color: #8b8a99; line-height: 1.5;
+	.mc-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 0.85rem; color: #555; line-height: 1.55;
 	}
-
-	/* Headline */
-	.hero-headline { text-align: center; margin-bottom: 28px; }
-	.hero-headline-main {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.5rem; font-weight: 700; color: #f0ede6;
-		line-height: 1.2; margin-bottom: 6px;
-	}
-	.hero-headline-sub {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.85rem; color: #d4a843; font-style: italic;
-		letter-spacing: 1px;
+	.blk-cards-wave {
+		position: absolute;
+		bottom: 0; left: 0; right: 0;
+		height: 40px;
+		background: #11111f;
+		clip-path: ellipse(55% 100% at 50% 100%);
 	}
 
-	/* ── BLOQUE 2: STATS ── */
+	/* ── BLOQUE 3: STATS OSCURO ── */
+	.blk-stats {
+		background: #11111f;
+		padding: 48px 28px 80px;
+		position: relative;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
+	}
 	.stats-board {
 		display: grid; grid-template-columns: repeat(4, 1fr);
-		gap: 10px; margin-bottom: 36px;
+		gap: 12px; max-width: 680px; margin: 0 auto;
 	}
 	.stat-flip {
 		background: #181828; border: 1px solid rgba(255,255,255,0.08);
-		border-radius: 10px; padding: 18px 8px; text-align: center;
+		border-radius: 10px; padding: 22px 8px; text-align: center;
 		position: relative; overflow: hidden;
 	}
 	.stat-flip::before {
@@ -315,123 +388,142 @@ const timeline = [
 		height: 1px; background: rgba(255,255,255,0.06);
 	}
 	.stat-num {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 2.4rem; font-weight: 700; color: #ff6b35;
+		font-family: 'Playfair Display', serif;
+		font-size: 2.8rem; font-weight: 700; color: #ff6b35;
 		line-height: 1; position: relative; z-index: 1;
 	}
 	.stat-lbl {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.6rem; color: #d4a843; letter-spacing: 1.5px;
-		text-transform: uppercase; margin-top: 8px; position: relative; z-index: 1;
+		text-transform: uppercase; margin-top: 10px; position: relative; z-index: 1;
+	}
+	.blk-stats-wave {
+		position: absolute;
+		bottom: 0; left: 0; right: 0;
+		height: 40px;
+		background: #f5f0e8;
+		clip-path: ellipse(55% 100% at 50% 100%);
 	}
 
-	/* ── BLOQUE 3: BOARDING PASS + TIMELINE ── */
-	.section-label {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.7rem; font-weight: 700; color: #d4a843;
+	/* ── BLOQUE 4: ITINERARY CLARO ── */
+	.blk-itinerary {
+		background: #f5f0e8;
+		padding: 48px 28px 56px;
+		margin-left: calc(-50vw + 50%);
+		margin-right: calc(-50vw + 50%);
+	}
+	.blk-itinerary > * {
+		max-width: 680px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.itinerary-label {
+		font-family: 'Space Mono', monospace;
+		font-size: 0.7rem; font-weight: 700; color: #ff6b35;
 		letter-spacing: 3px; text-transform: uppercase;
-		margin-bottom: 16px;
+		margin-bottom: 20px;
 	}
 
+	/* Boarding pass — paper style */
 	.boarding-pass {
-		display: flex; background: #181828;
-		border: 1px solid rgba(255,107,53,0.2);
-		border-radius: 16px; overflow: hidden; margin-bottom: 28px;
+		display: flex; background: #fffdf7;
+		border: 1px solid #d4a843;
+		border-radius: 16px; overflow: hidden; margin-bottom: 32px;
+		box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 	}
 	.bp-main { flex: 1; padding: 28px 32px 20px; }
 	.bp-top-row {
-		display: flex; justify-content: space-between;
-		align-items: baseline; margin-bottom: 4px;
+		display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;
 	}
 	.bp-label {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.6rem; color: #8b8a99; letter-spacing: 3px; text-transform: uppercase;
 	}
 	.bp-flight {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.7rem; font-weight: 700; color: #ff6b35; letter-spacing: 2px;
 	}
 	.bp-name {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 2.2rem; font-weight: 800; color: #f0ede6;
+		font-family: 'Playfair Display', serif;
+		font-size: 2.2rem; font-weight: 700; color: #1a1a2e;
 		line-height: 1.05; margin-bottom: 24px;
 	}
 	.bp-route { display: flex; gap: 36px; margin-bottom: 20px; align-items: flex-end; }
 	.bp-route-label {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.55rem; color: #8b8a99; letter-spacing: 3px;
 		text-transform: uppercase; margin-bottom: 2px;
 	}
 	.bp-route-city {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1rem; font-weight: 700; color: #f0ede6; letter-spacing: 1px;
+		font-family: 'Space Mono', monospace;
+		font-size: 1rem; font-weight: 700; color: #1a1a2e; letter-spacing: 1px;
 	}
 	.bp-route-year {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.8rem; color: #d4a843;
 	}
 	.bp-arrow { font-size: 1.3rem; color: #ff6b35; padding-bottom: 4px; }
 	.bp-class {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.65rem; color: #d4a843; letter-spacing: 2px;
 		text-transform: uppercase; padding-top: 14px;
-		border-top: 1px solid rgba(255,255,255,0.08);
+		border-top: 1px solid rgba(0,0,0,0.08);
 	}
 	.bp-barcode {
 		display: flex; gap: 2px; margin-top: 16px; height: 24px;
-		align-items: flex-end; opacity: 0.25;
+		align-items: flex-end; opacity: 0.15;
 	}
-	.bp-barcode span { display: block; width: 2px; background: #f0ede6; border-radius: 1px; }
+	.bp-barcode span { display: block; width: 2px; background: #1a1a2e; border-radius: 1px; }
 	.bp-barcode span:nth-child(odd) { height: 100%; }
 	.bp-barcode span:nth-child(even) { height: 60%; }
 	.bp-barcode span:nth-child(3n) { height: 80%; width: 3px; }
 	.bp-barcode span:nth-child(5n) { height: 45%; }
 	.bp-barcode span:nth-child(7n) { height: 90%; width: 1px; }
 	.bp-perf {
-		width: 1px; border-left: 2px dashed rgba(255,255,255,0.12); position: relative;
+		width: 1px; border-left: 2px dashed rgba(0,0,0,0.12); position: relative;
 	}
 	.bp-perf::before, .bp-perf::after {
 		content: ''; position: absolute; left: -11px;
-		width: 20px; height: 20px; background: #0a0a1a; border-radius: 50%;
+		width: 20px; height: 20px; background: #f5f0e8; border-radius: 50%;
 	}
 	.bp-perf::before { top: -10px; }
 	.bp-perf::after { bottom: -10px; }
 	.bp-strip {
-		width: 72px; background: #11111f; display: flex;
+		width: 72px; background: #f0ebe0; display: flex;
 		flex-direction: column; align-items: center; justify-content: center; padding: 20px 0;
 	}
 	.bp-strip-text {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		writing-mode: vertical-rl; text-orientation: mixed;
 		letter-spacing: 3px; font-size: 0.6rem; font-weight: 700;
 		color: #ff6b35; text-transform: uppercase;
 	}
 	.bp-strip-seat {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.4rem; font-weight: 700; color: #f0ede6;
+		font-family: 'Space Mono', monospace;
+		font-size: 1.4rem; font-weight: 700; color: #1a1a2e;
 		margin-top: 12px; writing-mode: vertical-rl;
 	}
 	.bp-strip-seat-label {
-		font-family: 'Bricolage Grotesque', sans-serif;
+		font-family: 'Space Mono', monospace;
 		font-size: 0.5rem; color: #8b8a99; letter-spacing: 2px;
 		writing-mode: vertical-rl; margin-top: 6px;
 	}
 
-	/* Timeline */
+	/* Timeline — light version */
 	.timeline { position: relative; padding-left: 28px; }
 	.timeline::before {
 		content: ''; position: absolute; top: 6px; left: 5px; bottom: 6px;
-		width: 2px; background: linear-gradient(180deg, #ff6b35, #d4a843); opacity: 0.4;
+		width: 2px; background: #ff6b35; opacity: 0.35;
 	}
 	.tl-item {
 		position: relative; padding: 10px 12px 10px 0;
 		border-radius: 8px; transition: background 0.2s ease;
 	}
-	.tl-item:hover { background: rgba(24,24,40,0.6); }
+	.tl-item:hover { background: #fff3e8; }
 	.tl-dot {
 		position: absolute; left: -28px; top: 16px;
 		width: 12px; height: 12px; border-radius: 50%;
-		background: #0a0a1a; border: 2px solid #ff6b35;
+		background: #f5f0e8; border: 2px solid #ff6b35;
 	}
 	.tl-last .tl-dot {
 		background: #ff6b35; animation: pulse 2s ease infinite;
@@ -439,25 +531,29 @@ const timeline = [
 	.tl-content { padding-left: 4px; }
 	.tl-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 	.tl-year {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.8rem; font-weight: 700; color: #d4a843; letter-spacing: 1px;
+		font-family: 'Space Mono', monospace;
+		font-size: 0.8rem; font-weight: 700; color: #ff6b35; letter-spacing: 1px;
 	}
 	.tl-place {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.85rem; font-weight: 600; color: #f0ede6;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.85rem; font-weight: 600; color: #1a1a2e;
 		text-transform: uppercase; letter-spacing: 0.5px;
 	}
 	.tl-desc {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 0.82rem; color: #8b8a99; margin-top: 3px; line-height: 1.5;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.82rem; color: #555; margin-top: 3px; line-height: 1.5;
 	}
 
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(16px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
 	@keyframes pulse {
 		0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); }
 		50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); }
 	}
 
-	/* ══════ POSTS ══════ */
+	/* ══════ POSTS (unchanged) ══════ */
 	.posts-section { margin-bottom: 3em; }
 	.featured-card {
 		display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em;
@@ -515,8 +611,6 @@ const timeline = [
 	}
 	.featured-card:hover .post-link { color: var(--naranja); }
 	.view-all { text-align: center; }
-
-	/* Quote + CTA */
 	.quote-section { margin-bottom: 3em; }
 	.quote-attribution {
 		display: block; font-size: 0.85em; color: var(--gray); margin-top: 0.8em; font-style: normal;
@@ -533,20 +627,26 @@ const timeline = [
 
 	/* ══════ RESPONSIVE ══════ */
 	@media (max-width: 720px) {
-		.hero-dark { padding: 20px 16px 24px; }
-		.hero-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-		.hero-card { padding: 14px; }
-		.hero-card-icon { font-size: 1.3rem; }
-		.hero-card-title { font-size: 0.9rem; }
-		.hero-card-desc { font-size: 0.75rem; }
-		.hero-headline-main { font-size: 1.2rem; }
+		.blk-hero { padding: 48px 20px 72px; }
+		.hero-title { font-size: 3rem; }
+		.hero-sub { font-size: 0.95rem; }
+		.blk-cards { padding: 36px 20px 64px; }
+		.cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+		.milestone-card { padding: 16px; }
+		.mc-icon { font-size: 1.8rem; }
+		.mc-title { font-size: 1rem; }
+		.mc-desc { font-size: 0.78rem; }
+		.blk-stats { padding: 36px 20px 64px; }
+		.stats-board { grid-template-columns: repeat(2, 1fr); }
+		.stat-num { font-size: 2rem; }
+		.blk-itinerary { padding: 36px 20px 40px; }
 		.boarding-pass { flex-direction: column; }
 		.bp-main { padding: 20px; }
 		.bp-name { font-size: 1.6rem; }
 		.bp-route { flex-wrap: wrap; gap: 12px; }
 		.bp-perf {
 			width: 100%; height: 1px;
-			border-left: none; border-top: 2px dashed rgba(255,255,255,0.12);
+			border-left: none; border-top: 2px dashed rgba(0,0,0,0.12);
 		}
 		.bp-perf::before { top: -10px; left: -10px; }
 		.bp-perf::after { top: -10px; left: auto; right: -10px; bottom: auto; }
@@ -556,8 +656,6 @@ const timeline = [
 		.bp-strip-text, .bp-strip-seat, .bp-strip-seat-label { writing-mode: horizontal-tb; }
 		.bp-strip-seat { margin-top: 0; }
 		.bp-strip-seat-label { margin-top: 0; }
-		.stats-board { grid-template-columns: repeat(2, 1fr); }
-		.stat-num { font-size: 1.8rem; }
 		.featured-card { grid-template-columns: 1fr; }
 		.posts-grid { grid-template-columns: 1fr; }
 		.cta-text { font-size: 1.2em; }
