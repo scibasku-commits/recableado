@@ -37,8 +37,9 @@ export const POST: APIRoute = async ({ request }) => {
 			return new Response(JSON.stringify({ error: 'Mensaje demasiado largo' }), { status: 400 });
 		}
 
-		const envKey = 'ANTHROPIC_API_KEY';
-		const apiKey = import.meta.env[envKey] || process.env[envKey];
+		// globalThis.process avoids Vite static replacement
+		const _proc = globalThis.process || { env: {} };
+		const apiKey = _proc.env.ANTHROPIC_API_KEY;
 		if (!apiKey) {
 			return new Response(JSON.stringify({ error: 'API key not configured' }), { status: 500 });
 		}
