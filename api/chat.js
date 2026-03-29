@@ -39,6 +39,7 @@ REGLAS:
 		}
 
 		const apiKey = process.env.ANTHROPIC_API_KEY;
+	console.log('CHAT_JS_HANDLER: apiKey present =', !!apiKey, 'env keys =', Object.keys(process.env).filter(k => k.includes('ANTHRO')));
 		if (!apiKey) {
 			return res.status(500).json({ error: 'API key not configured' });
 		}
