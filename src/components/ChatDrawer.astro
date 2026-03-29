@@ -1,0 +1,305 @@
+---
+// ChatDrawer — Recableado blog chatbot
+// Giora's personal AI assistant for the blog
+---
+
+<!-- Trigger button — fixed bottom right -->
+<button
+  id="chat-toggle"
+  class="fixed bottom-6 right-6 z-[55] w-14 h-14 rounded-full
+         bg-[#1a365d] hover:bg-[#e8825c] text-white
+         shadow-lg hover:shadow-xl transition-all duration-200
+         flex items-center justify-center cursor-pointer
+         border-2 border-[#e8825c]/30 hover:border-[#e8825c]"
+  aria-label="Pregunta a Giora"
+>
+  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+  </svg>
+</button>
+
+<!-- Backdrop -->
+<div id="chat-backdrop" class="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm hidden"></div>
+
+<!-- Chat panel -->
+<div
+  id="chat-panel"
+  class="fixed z-[70] bottom-0 right-0 sm:bottom-6 sm:right-6
+         w-full sm:w-[400px] sm:max-w-[calc(100vw-2rem)]
+         translate-y-full opacity-0 pointer-events-none
+         transition-all duration-300 ease-out"
+>
+  <div class="bg-[#fffaf0] sm:rounded-2xl shadow-2xl flex flex-col border border-[#eee8dd]"
+       style="max-height: min(550px, 80vh);">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-3 bg-[#1a365d] sm:rounded-t-2xl">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-[#e8825c] flex items-center justify-center text-white font-bold text-sm" style="font-family:'Bricolage Grotesque',sans-serif">G</div>
+        <div>
+          <p class="text-white font-semibold text-sm leading-tight" style="font-family:'Bricolage Grotesque',sans-serif">Giora</p>
+          <p class="text-[#e8825c] text-[0.6rem] tracking-wider uppercase leading-tight">Recableado</p>
+        </div>
+      </div>
+      <button id="chat-close" class="text-white/70 hover:text-white transition-colors cursor-pointer p-1.5 rounded-lg hover:bg-white/10" aria-label="Cerrar chat">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Messages area -->
+    <div id="chat-messages" class="flex-grow overflow-y-auto px-5 py-4 space-y-3" style="min-height: 120px;">
+      <div class="chat-msg-assistant">
+        <div class="bg-[#1a365d]/5 rounded-2xl rounded-tl-md px-4 py-3 max-w-[85%] text-[0.88rem] leading-relaxed text-[#2d3748]" style="font-family:'Lora',Georgia,serif">
+          Hola, soy Giora. 72 años, 42 vendiendo viajes, y ahora con una IA que no me deja dormir. Pregúntame lo que quieras sobre el blog, mi historia, o la tecnología que me ha recableado el cerebro.
+        </div>
+      </div>
+
+      <!-- Suggestion chips -->
+      <div id="chat-suggestions" class="flex flex-wrap gap-2 pt-1">
+        <button class="chat-chip" data-msg="¿Quién eres y de qué va este blog?">Sobre ti</button>
+        <button class="chat-chip" data-msg="¿Cómo empezaste con la IA a los 72?">IA a los 72</button>
+        <button class="chat-chip" data-msg="¿Qué artículo me recomiendas para empezar?">Por dónde empiezo</button>
+        <button class="chat-chip" data-msg="¿Qué es Viajes Scibasku?">Scibasku</button>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="shrink-0 border-t border-[#eee8dd] px-4 py-3 bg-white/80 sm:rounded-b-2xl">
+      <form id="chat-form" class="flex items-end gap-2">
+        <textarea
+          id="chat-input"
+          rows="1"
+          placeholder="Pregúntame lo que quieras..."
+          class="flex-grow bg-[#fffaf0] border border-[#eee8dd] rounded-xl px-4 py-2.5 text-[0.88rem] text-[#2d3748] placeholder-[#718096]/50 resize-none focus:outline-none focus:border-[#e8825c]/50 transition-colors"
+          style="font-family:'Lora',Georgia,serif"
+          maxlength="500"
+        ></textarea>
+        <button
+          type="button"
+          id="chat-mic"
+          class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-[#eee8dd] bg-transparent text-[#1a365d] hover:bg-[#1a365d]/5 transition-colors cursor-pointer hidden"
+          aria-label="Dictar mensaje por voz"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-14 0m7 7v4m-3 0h6m-3-11V3a3 3 0 00-6 0v8a3 3 0 006 0z" />
+          </svg>
+        </button>
+        <button
+          type="submit"
+          id="chat-send"
+          class="bg-[#e8825c] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 hover:bg-[#d4714d] transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          disabled
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+          </svg>
+        </button>
+      </form>
+      <p class="text-[0.55rem] text-[#718096]/40 mt-1.5 text-center" style="font-family:'Bricolage Grotesque',sans-serif">
+        Recableado · Blog de Giora Gilead
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chat-chip {
+    background: transparent;
+    border: 1px solid rgba(232, 130, 92, 0.3);
+    color: #e8825c;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    white-space: nowrap;
+  }
+  .chat-chip:hover {
+    background: rgba(232, 130, 92, 0.08);
+    border-color: rgba(232, 130, 92, 0.6);
+  }
+
+  #chat-mic.recording {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: rgba(239, 68, 68, 0.5) !important;
+    color: #ef4444 !important;
+    animation: mic-pulse 1.5s infinite ease-in-out;
+  }
+  @keyframes mic-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  }
+
+  .typing-dot {
+    animation: typing 1.4s infinite ease-in-out;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('chat-toggle')!;
+  const panel = document.getElementById('chat-panel')!;
+  const closeBtn = document.getElementById('chat-close')!;
+  const backdrop = document.getElementById('chat-backdrop')!;
+  const form = document.getElementById('chat-form') as HTMLFormElement;
+  const input = document.getElementById('chat-input') as HTMLTextAreaElement;
+  const sendBtn = document.getElementById('chat-send') as HTMLButtonElement;
+  const messagesEl = document.getElementById('chat-messages')!;
+  const suggestionsEl = document.getElementById('chat-suggestions')!;
+
+  let isOpen = false;
+  let messages: { role: string; content: string }[] = [];
+  let isLoading = false;
+
+  function openChat() {
+    isOpen = true;
+    backdrop.classList.remove('hidden');
+    toggle.style.display = 'none';
+    panel.classList.remove('translate-y-full', 'opacity-0', 'pointer-events-none');
+    panel.classList.add('translate-y-0', 'opacity-100');
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function closeChat() {
+    isOpen = false;
+    backdrop.classList.add('hidden');
+    panel.classList.add('translate-y-full', 'opacity-0', 'pointer-events-none');
+    panel.classList.remove('translate-y-0', 'opacity-100');
+    setTimeout(() => { toggle.style.display = ''; }, 200);
+  }
+
+  toggle.addEventListener('click', openChat);
+  closeBtn.addEventListener('click', closeChat);
+  backdrop.addEventListener('click', closeChat);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen) closeChat(); });
+
+  input.addEventListener('input', () => {
+    sendBtn.disabled = input.value.trim().length === 0 || isLoading;
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!sendBtn.disabled) form.dispatchEvent(new Event('submit'));
+    }
+  });
+
+  suggestionsEl.addEventListener('click', (e) => {
+    const chip = (e.target as HTMLElement).closest('.chat-chip') as HTMLElement;
+    if (chip) sendMessage(chip.dataset.msg || chip.textContent || '');
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || isLoading) return;
+    sendMessage(text);
+  });
+
+  async function sendMessage(text: string) {
+    suggestionsEl.style.display = 'none';
+    messages.push({ role: 'user', content: text });
+    appendMessage('user', text);
+
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+    isLoading = true;
+
+    const typingEl = showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages, page_context: window.location.pathname }),
+      });
+
+      const data = await res.json();
+      typingEl.remove();
+
+      if (data.error) {
+        appendMessage('assistant', 'Disculpa, ha habido un problema. Inténtalo de nuevo.');
+        return;
+      }
+
+      const reply = data.content?.[0]?.text || data.response || 'No he podido generar una respuesta.';
+      messages.push({ role: 'assistant', content: reply });
+      appendMessage('assistant', reply);
+    } catch {
+      typingEl.remove();
+      appendMessage('assistant', 'Error de conexión. Inténtalo de nuevo.');
+    } finally {
+      isLoading = false;
+      sendBtn.disabled = input.value.trim().length === 0;
+    }
+  }
+
+  function appendMessage(role: string, text: string) {
+    const wrapper = document.createElement('div');
+    wrapper.className = role === 'user' ? 'flex justify-end' : 'chat-msg-assistant';
+
+    const bubble = document.createElement('div');
+    if (role === 'user') {
+      bubble.className = 'bg-[#e8825c]/10 border border-[#e8825c]/20 rounded-2xl rounded-tr-md px-4 py-2.5 max-w-[85%] text-[0.88rem] leading-relaxed text-[#2d3748]';
+    } else {
+      bubble.className = 'bg-[#1a365d]/5 rounded-2xl rounded-tl-md px-4 py-2.5 max-w-[85%] text-[0.88rem] leading-relaxed text-[#2d3748]';
+    }
+    bubble.style.fontFamily = "'Lora',Georgia,serif";
+
+    var formatted = text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:#1a365d">$1</strong>')
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>');
+    bubble.innerHTML = formatted;
+    wrapper.appendChild(bubble);
+    messagesEl.appendChild(wrapper);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showTyping(): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-msg-assistant';
+    wrapper.innerHTML = `
+      <div class="bg-[#1a365d]/5 rounded-2xl rounded-tl-md px-4 py-3 flex gap-1.5 items-center">
+        <span class="typing-dot w-2 h-2 bg-[#e8825c] rounded-full inline-block"></span>
+        <span class="typing-dot w-2 h-2 bg-[#e8825c] rounded-full inline-block"></span>
+        <span class="typing-dot w-2 h-2 bg-[#e8825c] rounded-full inline-block"></span>
+      </div>`;
+    messagesEl.appendChild(wrapper);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return wrapper;
+  }
+
+  // --- Voice input (Web Speech API) ---
+  const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+  const micBtn = document.getElementById('chat-mic') as HTMLButtonElement;
+  const micIcon = '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-14 0m7 7v4m-3 0h6m-3-11V3a3 3 0 00-6 0v8a3 3 0 006 0z" /></svg>';
+  const stopIcon = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" /></svg>';
+
+  if (SpeechRecognition && micBtn) {
+    micBtn.classList.remove('hidden');
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'es-ES'; recognition.interimResults = true; recognition.continuous = false;
+    let isRecording = false; let finalTranscript = '';
+
+    micBtn.addEventListener('click', () => {
+      if (isRecording) { recognition.stop(); } else { finalTranscript = ''; recognition.start(); }
+    });
+    recognition.addEventListener('start', () => { isRecording = true; micBtn.classList.add('recording'); micBtn.innerHTML = stopIcon; input.placeholder = 'Escuchando...'; });
+    recognition.addEventListener('result', (e: any) => { let interim = ''; finalTranscript = ''; for (let i = 0; i < e.results.length; i++) { e.results[i].isFinal ? finalTranscript += e.results[i][0].transcript : interim += e.results[i][0].transcript; } input.value = finalTranscript || interim; input.dispatchEvent(new Event('input')); });
+    recognition.addEventListener('end', () => { isRecording = false; micBtn.classList.remove('recording'); micBtn.innerHTML = micIcon; input.placeholder = 'Pregúntame lo que quieras...'; if (finalTranscript.trim()) { input.value = finalTranscript.trim(); input.dispatchEvent(new Event('input')); input.focus(); } });
+    recognition.addEventListener('error', () => { isRecording = false; micBtn.classList.remove('recording'); micBtn.innerHTML = micIcon; input.placeholder = 'Pregúntame lo que quieras...'; });
+  }
+</script>
