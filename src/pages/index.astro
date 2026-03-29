@@ -8,6 +8,7 @@ import Header from '../components/Header.astro';
 import Lightbox from '../components/Lightbox.astro';
 import PostStatsLoader from '../components/PostStatsLoader.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import ChatHero from '../components/ChatHero.astro';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'es' as const;
@@ -57,6 +58,9 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 				<p class="hero-sub">42 años. 5 continentes. Esquí en Japón, buceo en Sipadan, Polinesia, Mar Rojo, los Alpes, Sierra Nevada.<br/>Y en 2025 descubrí el último continente: la inteligencia artificial.</p>
 				<div class="blk-hero-wave"></div>
 			</section>
+
+			<!-- ══ BLOQUE 1.5: CHATBOT HERO ══ -->
+			<ChatHero />
 
 			<!-- ══ BLOQUE 2: CARDS CLARO ══ -->
 			<section class="blk-cards">
