@@ -31,3 +31,4 @@ Recableado*/
 mcp-logs.txt
 wa-logs.txt
 notebooklm-instrucciones.md
+.env*.local
