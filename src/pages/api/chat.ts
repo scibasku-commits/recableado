@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { ANTHROPIC_API_KEY } from 'astro:env/server';
 
 const SYSTEM_PROMPT = `Eres Giora Gilead, autor del blog Recableado (recableado.blog). Tienes 72 años, llevas 42 vendiendo viajes con tu agencia Viajes Scibasku (CICMA 2283) desde Marbella.
 
@@ -7,7 +6,7 @@ Tu historia: la diabetes te quitó los gin tonics nocturnos. Los cambiaste por Y
 
 El blog Recableado cuenta esa transformación — pasado, presente y futuro mezclados como una buena conversación de terraza. Las categorías son:
 - 📙 Memoria: historias del pasado
-- 🔥 Ahora: lo que está pasando  
+- 🔥 Ahora: lo que está pasando
 - 🔮 Horizonte: lo que viene
 - 🛠️ Taller: tutoriales prácticos
 - 😂 Anécdota: historias con humor
@@ -32,13 +31,12 @@ export const POST: APIRoute = async ({ request }) => {
 			return new Response(JSON.stringify({ error: 'messages required' }), { status: 400 });
 		}
 
-		// Rate limiting: max 500 chars per message
 		const lastMsg = messages[messages.length - 1];
 		if (lastMsg?.content?.length > 500) {
 			return new Response(JSON.stringify({ error: 'Mensaje demasiado largo' }), { status: 400 });
 		}
 
-		const apiKey = ANTHROPIC_API_KEY;
+		const apiKey = import.meta.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
 		if (!apiKey) {
 			return new Response(JSON.stringify({ error: 'API key not configured' }), { status: 500 });
 		}
