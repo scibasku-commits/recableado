@@ -1,6 +1,9 @@
-import type { APIRoute } from 'astro';
+export default async function handler(req, res) {
+	if (req.method !== 'POST') {
+		return res.status(405).json({ error: 'Method not allowed' });
+	}
 
-const SYSTEM_PROMPT = `Eres Giora Gilead, autor del blog Recableado (recableado.blog). Tienes 72 años, llevas 42 vendiendo viajes con tu agencia Viajes Scibasku (CICMA 2283) desde Marbella.
+	const SYSTEM_PROMPT = `Eres Giora Gilead, autor del blog Recableado (recableado.blog). Tienes 72 años, llevas 42 vendiendo viajes con tu agencia Viajes Scibasku (CICMA 2283) desde Marbella.
 
 Tu historia: la diabetes te quitó los gin tonics nocturnos. Los cambiaste por YouTube. YouTube te llevó a la IA. Y la IA te rejuveneció la mente 30 años. Ahora automatizas lo que antes te llevaba un equipo entero con Claude, Mac Mini M4 Pro, y mucha cafeína a las 3am.
 
@@ -23,30 +26,29 @@ REGLAS:
 - Si no sabes algo, dilo — nunca inventes
 - Usa **negritas** para énfasis`;
 
-export const POST: APIRoute = async ({ request }) => {
 	try {
-		const { messages, page_context } = await request.json();
+		const { messages, page_context } = req.body;
 
 		if (!messages || !Array.isArray(messages) || messages.length === 0) {
-			return new Response(JSON.stringify({ error: 'messages required' }), { status: 400 });
+			return res.status(400).json({ error: 'messages required' });
 		}
 
 		const lastMsg = messages[messages.length - 1];
 		if (lastMsg?.content?.length > 500) {
-			return new Response(JSON.stringify({ error: 'Mensaje demasiado largo' }), { status: 400 });
+			return res.status(400).json({ error: 'Mensaje demasiado largo' });
 		}
 
-		const apiKey = import.meta.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+		const apiKey = process.env.ANTHROPIC_API_KEY;
 		if (!apiKey) {
-			return new Response(JSON.stringify({ error: 'API key not configured' }), { status: 500 });
+			return res.status(500).json({ error: 'API key not configured' });
 		}
 
 		let systemPrompt = SYSTEM_PROMPT;
 		if (page_context && page_context !== '/') {
-			systemPrompt += `\n\nEl usuario está leyendo la página: ${page_context}`;
+			systemPrompt += '\n\nEl usuario está leyendo la página: ' + page_context;
 		}
 
-		const res = await fetch('https://api.anthropic.com/v1/messages', {
+		const response = await fetch('https://api.anthropic.com/v1/messages', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -57,25 +59,23 @@ export const POST: APIRoute = async ({ request }) => {
 				model: 'claude-haiku-4-5-20251001',
 				max_tokens: 300,
 				system: systemPrompt,
-				messages: messages.slice(-10).map((m: any) => ({
+				messages: messages.slice(-10).map((m) => ({
 					role: m.role,
 					content: m.content,
 				})),
 			}),
 		});
 
-		if (!res.ok) {
-			const err = await res.text();
+		if (!response.ok) {
+			const err = await response.text();
 			console.error('Anthropic API error:', err);
-			return new Response(JSON.stringify({ error: 'Error del asistente' }), { status: 502 });
+			return res.status(502).json({ error: 'Error del asistente' });
 		}
 
-		const data = await res.json();
-		return new Response(JSON.stringify(data), {
-			headers: { 'Content-Type': 'application/json' },
-		});
+		const data = await response.json();
+		return res.status(200).json(data);
 	} catch (err) {
 		console.error('Chat API error:', err);
-		return new Response(JSON.stringify({ error: String(err) }), { status: 500 });
+		return res.status(500).json({ error: String(err) });
 	}
-};
+}
