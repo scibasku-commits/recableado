@@ -14,6 +14,13 @@ const t = useTranslations(lang);
 <footer>
 	<div class="footer-inner">
 		<p>{t('footer.tagline') as string}</p>
+		<p class="footer-links">
+			<a href="https://viajesscibasku.com" target="_blank" rel="noopener">Viajes Scibasku</a>
+			<span class="sep">&middot;</span>
+			<a href="https://lujosinartificios.com" target="_blank" rel="noopener">Lujo Sin Artificios</a>
+			<span class="sep">&middot;</span>
+			<a href="https://crucerobuceo.com" target="_blank" rel="noopener">Crucero Buceo</a>
+		</p>
 	</div>
 </footer>
 <style>
@@ -34,5 +41,24 @@ const t = useTranslations(lang);
 		color: rgba(255, 250, 240, 0.7);
 		font-size: 0.85em;
 		margin: 0;
+	}
+	.footer-links {
+		margin-top: 0.8em;
+		font-style: normal;
+		font-size: 0.75em;
+		opacity: 0.5;
+	}
+	.footer-links a {
+		color: rgba(255, 250, 240, 0.6);
+		text-decoration: none;
+		transition: opacity 0.3s;
+	}
+	.footer-links a:hover {
+		opacity: 1;
+		color: #d4af37;
+	}
+	.sep {
+		margin: 0 0.4em;
+		color: rgba(255, 250, 240, 0.3);
 	}
 </style>
