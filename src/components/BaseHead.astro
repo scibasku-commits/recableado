@@ -91,6 +91,15 @@ const rssPath = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
   plausible.init()
 </script>
 
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DGR650XRRX"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DGR650XRRX');
+</script>
+
 <!-- Vercel Analytics -->
 <script>
 	import { inject } from '@vercel/analytics';
