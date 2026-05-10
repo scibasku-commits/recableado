@@ -1,6 +1,35 @@
 ---
 // ChatHero — Embedded prominent chatbot on homepage
 // Positioned between hero and milestone cards, dark background
+import type { Lang } from '../i18n/languages';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const badge = t('chat.hero.badge') as string;
+const tagline = t('chat.hero.tagline') as string;
+const greeting = t('chat.hero.greeting') as string;
+const placeholder = t('chat.hero.placeholder') as string;
+const ariaMic = t('chat.aria.mic') as string;
+const ariaSend = t('chat.aria.send') as string;
+const errConnection = t('chat.error.connection') as string;
+const errGeneric = t('chat.error.generic') as string;
+const fallback = t('chat.fallback') as string;
+const pillFive = t('chat.pill.fiveBrains') as string;
+const pillNoCode = t('chat.pill.noCoding') as string;
+const pillAgents = t('chat.pill.agents') as string;
+const pillGin = t('chat.pill.ginTonic') as string;
+const msgFive = t('chat.msg.fiveBrains') as string;
+const msgNoCode = t('chat.msg.noCoding') as string;
+const msgAgents = t('chat.msg.agents') as string;
+const msgGin = t('chat.msg.ginTonic') as string;
+const listening = t('chat.hero.listening') as string;
+const speechLang = lang === 'en' ? 'en-US' : 'es-ES';
 ---
 
 <section class="chat-hero-section">
@@ -9,9 +38,9 @@
     <div class="chat-hero-intro">
       <div class="chat-hero-badge">
         <span class="chat-hero-dot"></span>
-        <span>Pregúntale a Giora</span>
+        <span>{badge}</span>
       </div>
-      <p class="chat-hero-tagline">De gin tonics a prompts. 5 IAs, 0 programadores, 1 agencia de viajes.<br/>Pregúntame cómo.</p>
+      <p class="chat-hero-tagline" set:html={tagline.replace('\n', '<br/>')} />
     </div>
 
     <!-- Chat container -->
@@ -20,16 +49,16 @@
       <div id="hero-chat-messages" class="chat-hero-messages">
         <div class="hcm-bot">
           <div class="hcm-avatar">G</div>
-          <div class="hcm-bubble">Buenas. 72 años, 5 IAs y un negocio que se gestiona casi solo. No programo — pido. Y funciona. Dispara.</div>
+          <div class="hcm-bubble">{greeting}</div>
         </div>
       </div>
 
       <!-- Pills -->
       <div id="hero-chat-pills" class="chat-hero-pills">
-        <button class="hc-pill" data-msg="¿Qué son los Cinco Cerebros y cómo los usas?">🧠 Los 5 cerebros</button>
-        <button class="hc-pill" data-msg="¿De verdad construiste todo sin saber programar? ¿Cómo?">🔧 Sin programar</button>
-        <button class="hc-pill" data-msg="¿Tienes agentes de IA que trabajan solos mientras duermes?">🤖 Agentes autónomos</button>
-        <button class="hc-pill" data-msg="¿Cómo pasaste de no saber nada de IA a construir todo esto en 6 meses?">🍸 De gin tonic a prompt</button>
+        <button class="hc-pill" data-msg={msgFive}>{pillFive}</button>
+        <button class="hc-pill" data-msg={msgNoCode}>{pillNoCode}</button>
+        <button class="hc-pill" data-msg={msgAgents}>{pillAgents}</button>
+        <button class="hc-pill" data-msg={msgGin}>{pillGin}</button>
       </div>
 
       <!-- Input -->
@@ -37,15 +66,15 @@
         <textarea
           id="hero-chat-input"
           rows="1"
-          placeholder="Escríbeme algo..."
+          placeholder={placeholder}
           maxlength="500"
         ></textarea>
-        <button type="button" id="hero-chat-mic" class="hc-mic-btn hidden" aria-label="Dictar por voz">
+        <button type="button" id="hero-chat-mic" class="hc-mic-btn hidden" aria-label={ariaMic}>
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-14 0m7 7v4m-3 0h6m-3-11V3a3 3 0 00-6 0v8a3 3 0 006 0z" />
           </svg>
         </button>
-        <button type="submit" id="hero-chat-send" class="hc-send-btn" disabled aria-label="Enviar">
+        <button type="submit" id="hero-chat-send" class="hc-send-btn" disabled aria-label={ariaSend}>
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
           </svg>
@@ -324,14 +353,14 @@
   }
 </style>
 
-<script>
-  const form = document.getElementById('hero-chat-form') as HTMLFormElement;
-  const input = document.getElementById('hero-chat-input') as HTMLTextAreaElement;
-  const sendBtn = document.getElementById('hero-chat-send') as HTMLButtonElement;
-  const messagesEl = document.getElementById('hero-chat-messages')!;
-  const pillsEl = document.getElementById('hero-chat-pills')!;
+<script define:vars={{ lang, errConnection, errGeneric, fallback, placeholder, listening, speechLang }}>
+  const form = document.getElementById('hero-chat-form');
+  const input = document.getElementById('hero-chat-input');
+  const sendBtn = document.getElementById('hero-chat-send');
+  const messagesEl = document.getElementById('hero-chat-messages');
+  const pillsEl = document.getElementById('hero-chat-pills');
 
-  let messages: { role: string; content: string }[] = [];
+  let messages = [];
   let isLoading = false;
 
   input.addEventListener('input', () => {
@@ -348,7 +377,7 @@
   });
 
   pillsEl.addEventListener('click', (e) => {
-    const pill = (e.target as HTMLElement).closest('.hc-pill') as HTMLElement;
+    const pill = e.target.closest('.hc-pill');
     if (pill) sendMessage(pill.dataset.msg || pill.textContent || '');
   });
 
@@ -359,7 +388,7 @@
     sendMessage(text);
   });
 
-  async function sendMessage(text: string) {
+  async function sendMessage(text) {
     pillsEl.style.display = 'none';
     messages.push({ role: 'user', content: text });
     appendMessage('user', text);
@@ -375,30 +404,30 @@
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages, page_context: '/' }),
+        body: JSON.stringify({ messages, page_context: '/', lang }),
       });
 
       const data = await res.json();
       typingEl.remove();
 
       if (data.error) {
-        appendMessage('assistant', 'Error — inténtalo de nuevo.');
+        appendMessage('assistant', errGeneric);
         return;
       }
 
-      const reply = data.content?.[0]?.text || data.response || 'No he podido responder.';
+      const reply = data.content?.[0]?.text || data.response || fallback;
       messages.push({ role: 'assistant', content: reply });
       appendMessage('assistant', reply);
     } catch {
       typingEl.remove();
-      appendMessage('assistant', 'Error de conexión.');
+      appendMessage('assistant', errConnection);
     } finally {
       isLoading = false;
       sendBtn.disabled = input.value.trim().length === 0;
     }
   }
 
-  function appendMessage(role: string, text: string) {
+  function appendMessage(role, text) {
     const wrapper = document.createElement('div');
     wrapper.className = role === 'user' ? 'hcm-user' : 'hcm-bot';
 
@@ -440,20 +469,20 @@
 
   // --- Voice input ---
   const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-  const micBtn = document.getElementById('hero-chat-mic') as HTMLButtonElement;
+  const micBtn = document.getElementById('hero-chat-mic');
   const micSvg = '<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-14 0m7 7v4m-3 0h6m-3-11V3a3 3 0 00-6 0v8a3 3 0 006 0z" /></svg>';
   const stopSvg = '<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" /></svg>';
 
   if (SpeechRecognition && micBtn) {
     micBtn.classList.remove('hidden');
     const rec = new SpeechRecognition();
-    rec.lang = 'es-ES'; rec.interimResults = true; rec.continuous = false;
+    rec.lang = speechLang; rec.interimResults = true; rec.continuous = false;
     let isRec = false; let ft = '';
 
     micBtn.addEventListener('click', () => { isRec ? rec.stop() : (ft='', rec.start()); });
-    rec.addEventListener('start', () => { isRec=true; micBtn.classList.add('recording'); micBtn.innerHTML=stopSvg; input.placeholder='Escuchando...'; });
-    rec.addEventListener('result', (e: any) => { let im=''; ft=''; for(let i=0;i<e.results.length;i++){e.results[i].isFinal?ft+=e.results[i][0].transcript:im+=e.results[i][0].transcript;} input.value=ft||im; input.dispatchEvent(new Event('input')); });
-    rec.addEventListener('end', () => { isRec=false; micBtn.classList.remove('recording'); micBtn.innerHTML=micSvg; input.placeholder='Escríbeme algo...'; if(ft.trim()){input.value=ft.trim();input.dispatchEvent(new Event('input'));input.focus();} });
-    rec.addEventListener('error', () => { isRec=false; micBtn.classList.remove('recording'); micBtn.innerHTML=micSvg; input.placeholder='Escríbeme algo...'; });
+    rec.addEventListener('start', () => { isRec=true; micBtn.classList.add('recording'); micBtn.innerHTML=stopSvg; input.placeholder=listening; });
+    rec.addEventListener('result', (e) => { let im=''; ft=''; for(let i=0;i<e.results.length;i++){e.results[i].isFinal?ft+=e.results[i][0].transcript:im+=e.results[i][0].transcript;} input.value=ft||im; input.dispatchEvent(new Event('input')); });
+    rec.addEventListener('end', () => { isRec=false; micBtn.classList.remove('recording'); micBtn.innerHTML=micSvg; input.placeholder=placeholder; if(ft.trim()){input.value=ft.trim();input.dispatchEvent(new Event('input'));input.focus();} });
+    rec.addEventListener('error', () => { isRec=false; micBtn.classList.remove('recording'); micBtn.innerHTML=micSvg; input.placeholder=placeholder; });
   }
 </script>

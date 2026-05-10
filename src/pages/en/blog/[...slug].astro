@@ -5,19 +5,21 @@ import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blogEn');
+	const esPosts = await getCollection('blogEs');
+	const esByKey = new Map(esPosts.map(p => [p.data.translationKey, p.id]));
 	return posts.map((post) => ({
 		params: { slug: post.id },
-		props: post,
+		props: { post, alternateSlug: esByKey.get(post.data.translationKey) ?? null },
 	}));
 }
-type Props = CollectionEntry<'blogEn'>;
 
-const post = Astro.props;
+const { post, alternateSlug } = Astro.props as { post: CollectionEntry<'blogEn'>; alternateSlug: string | null };
 const { Content } = await render(post);
 const words = post.body?.split(/\s+/).length || 0;
 const readingTime = Math.max(1, Math.ceil(words / 200));
+const alternateUrl = alternateSlug ? `/blog/${alternateSlug}/` : '/blog/';
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} lang="en">
+<BlogPost {...post.data} readingTime={readingTime} lang="en" alternateUrl={alternateUrl}>
 	<Content />
 </BlogPost>

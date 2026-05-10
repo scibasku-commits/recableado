@@ -6,9 +6,10 @@ import LanguageToggle from './LanguageToggle.astro';
 
 interface Props {
 	lang?: Lang;
+	alternateUrl?: string;
 }
 
-const { lang = 'es' } = Astro.props;
+const { lang = 'es', alternateUrl } = Astro.props;
 const t = useTranslations(lang);
 ---
 
@@ -22,7 +23,7 @@ const t = useTranslations(lang);
 			<HeaderLink href={getLocalizedPath(lang, '/ejercicios')} lang={lang}>{t('nav.exercises') as string}</HeaderLink>
 			<HeaderLink href={getLocalizedPath(lang, '/cheatsheet')} lang={lang}>{t('nav.cheatsheet') as string}</HeaderLink>
 			<HeaderLink href={getLocalizedPath(lang, '/about')} lang={lang}>{t('nav.about') as string}</HeaderLink>
-			<LanguageToggle lang={lang} />
+			<LanguageToggle lang={lang} alternateUrl={alternateUrl} />
 		</nav>
 	</div>
 	<hr />

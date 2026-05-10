@@ -4,10 +4,11 @@ import { getAlternateUrl } from '../i18n/utils';
 
 interface Props {
 	lang: Lang;
+	alternateUrl?: string;
 }
 
-const { lang } = Astro.props;
-const alternateUrl = getAlternateUrl(lang, Astro.url.pathname);
+const { lang, alternateUrl: alternateUrlOverride } = Astro.props;
+const alternateUrl = alternateUrlOverride ?? getAlternateUrl(lang, Astro.url.pathname);
 const label = lang === 'es' ? 'EN' : 'ES';
 const flag = lang === 'es' ? '🇬🇧' : '🇪🇸';
 ---

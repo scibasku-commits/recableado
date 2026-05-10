@@ -20,14 +20,15 @@ interface Props {
 	updatedDate?: Date;
 	tags?: string[];
 	slug?: string;
+	alternateUrl?: string;
 }
 
-const { title, description, image = FallbackImage, ogImage, lang = 'es', type = 'home', pubDate, updatedDate, tags, slug } = Astro.props;
+const { title, description, image = FallbackImage, ogImage, lang = 'es', type = 'home', pubDate, updatedDate, tags, slug, alternateUrl: alternateUrlOverride } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL(image.src, Astro.url);
 
-const alternatePath = getAlternateUrl(lang, Astro.url.pathname);
+const alternatePath = alternateUrlOverride ?? getAlternateUrl(lang, Astro.url.pathname);
 const alternateURL = new URL(alternatePath, Astro.site);
 const esURL = lang === 'es' ? canonicalURL : alternateURL;
 const enURL = lang === 'en' ? canonicalURL : alternateURL;

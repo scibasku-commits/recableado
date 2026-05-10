@@ -10,9 +10,9 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import ChatDrawer from '../components/ChatDrawer.astro';
 
-type Props = CollectionEntry<'blogEs'>['data'] & { readingTime?: number; lang?: Lang };
+type Props = CollectionEntry<'blogEs'>['data'] & { readingTime?: number; lang?: Lang; alternateUrl?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, tags, readingTime, lang = 'es' } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, readingTime, lang = 'es', alternateUrl } = Astro.props;
 const t = useTranslations(lang);
 
 const tagStyles: Record<string, { background: string; color: string }> = {
@@ -36,7 +36,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 
 <html lang={lang}>
 	<head>
-		<BaseHead title={title} description={description} ogImage={`/og/${slug}.png`} lang={lang} type="blogPost" pubDate={pubDate} updatedDate={updatedDate} tags={tags} slug={slug} />
+		<BaseHead title={title} description={description} ogImage={`/og/${slug}.png`} lang={lang} type="blogPost" pubDate={pubDate} updatedDate={updatedDate} tags={tags} slug={slug} alternateUrl={alternateUrl} />
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -231,7 +231,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 	</head>
 
 	<body>
-		<Header lang={lang} />
+		<Header lang={lang} alternateUrl={alternateUrl} />
 		<FloatingShare url={pageUrl} title={title} lang={lang} />
 		<main>
 			<article>
@@ -349,7 +349,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 			</article>
 		</main>
 		<Footer lang={lang} />
-		<ChatDrawer />
+		<ChatDrawer lang={lang} />
 		<script>
 			// View counter
 			(function() {
