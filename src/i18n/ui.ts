@@ -81,6 +81,7 @@ export const ui = {
 		'chat.error.connection': 'Error de conexión. Inténtalo de nuevo.',
 		'chat.error.generic': 'Disculpa, ha habido un problema. Inténtalo de nuevo.',
 		'chat.fallback': 'No he podido generar una respuesta.',
+		'chat.drawer.signature': 'Recableado · Blog de Giora Gilead',
 	},
 	en: {
 		// Nav
@@ -164,5 +165,6 @@ export const ui = {
 		'chat.error.connection': 'Connection error. Try again.',
 		'chat.error.generic': 'Sorry, something went wrong. Try again.',
 		'chat.fallback': 'I couldn\'t generate a response.',
+		'chat.drawer.signature': 'Recableado · Giora Gilead\'s blog',
 	},
 } as const;
