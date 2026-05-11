@@ -147,8 +147,8 @@ const blogBase = usingFallback ? '/blog' : '/en/blog';
 
 	.post-thumb {
 		flex-shrink: 0;
-		width: 200px;
-		height: 130px;
+		width: 260px;
+		aspect-ratio: 1200 / 630;
 		border-radius: 8px;
 		overflow: hidden;
 	}
@@ -224,7 +224,8 @@ const blogBase = usingFallback ? '/blog' : '/en/blog';
 		}
 		.post-thumb {
 			width: 100%;
-			height: 180px;
+			height: auto;
+			aspect-ratio: 1200 / 630;
 		}
 	}
 </style>

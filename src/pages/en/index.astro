@@ -12,7 +12,7 @@ import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
-const SITE_DESCRIPTION_EN = 'A 72-year-old travel agent discovers AI and rewires his mind. Real stories, real mistakes, real automation. No tech degree required.';
+const SITE_DESCRIPTION_EN = 'A 73-year-old travel agent discovers AI and rewires his mind. Real stories, real mistakes, real automation. No tech degree required.';
 
 let posts = (await getCollection('blogEn')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -48,7 +48,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="Rewired at 72: A Travel Agent Learning AI | Recableado" description={SITE_DESCRIPTION_EN} lang={lang} />
+		<BaseHead title="Rewired at 73: A Travel Agent Learning AI | Recableado" description={SITE_DESCRIPTION_EN} lang={lang} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -59,8 +59,8 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 
 			<!-- ══ BLOQUE 1: HERO OSCURO ══ -->
 			<section class="blk-hero">
-				<h1 class="hero-title">Rewired<br/>at 72</h1>
-				<p class="hero-sub">42 years. 5 continents. Skiing in Japan, diving in Sipadan, Polynesia, the Red Sea, the Alps, Sierra Nevada.<br/>And in 2025 I discovered the last continent: artificial intelligence.</p>
+				<h1 class="hero-title">Rewired<br/>at 73</h1>
+				<p class="hero-sub">42 years selling trips. 5 continents explored.<br/>Skiing in Japan, the US and Canada. Liveaboard diving in Polynesia, Indonesia and the Red Sea.<br/>And in 2025 I discovered the last continent: artificial intelligence.</p>
 				<div class="blk-hero-wave"></div>
 			</section>
 
@@ -89,7 +89,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 						<div class="mc-icon">&#128640;</div>
 						<div class="mc-date">2025–2026</div>
 						<div class="mc-title">The Present</div>
-						<div class="mc-desc">recableado.blog &middot; 20 posts &middot; 2 languages &middot; 0 IT employees &middot; 0 gin tonics</div>
+						<div class="mc-desc">recableado.blog &middot; 22 posts &middot; 2 languages &middot; 0 IT employees &middot; 0 gin tonics</div>
 					</div>
 				</div>
 				<div class="blk-cards-wave"></div>
@@ -99,7 +99,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 			<section class="blk-stats">
 				<div class="stats-board">
 					<div class="stat-flip">
-						<div class="stat-num" data-target="72">0</div>
+						<div class="stat-num" data-target="73">0</div>
 						<div class="stat-lbl">{t('home.years') as string}</div>
 					</div>
 					<div class="stat-flip">
@@ -154,7 +154,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 					<div class="bp-perf"></div>
 					<div class="bp-strip">
 						<span class="bp-strip-text">Rewired &middot; Boarding Pass</span>
-						<span class="bp-strip-seat">72A</span>
+						<span class="bp-strip-seat">73A</span>
 						<span class="bp-strip-seat-label">Seat</span>
 					</div>
 				</div>
@@ -532,7 +532,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
-	.featured-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; }
+	.featured-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1200 / 630; }
 	.featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
 	.featured-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
 	.featured-title {
@@ -555,7 +555,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
 		border-color: var(--naranja);
 	}
-	.grid-thumb { aspect-ratio: 16/9; overflow: hidden; }
+	.grid-thumb { aspect-ratio: 1200 / 630; overflow: hidden; }
 	.grid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
 	.grid-card:hover .grid-thumb img { transform: scale(1.05); }
 	.grid-content { padding: 0.8em 1em 1em; }
