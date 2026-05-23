@@ -42,11 +42,6 @@ function parseFrontmatter(content) {
   return { title, description, tags };
 }
 
-// Strip accents for OG text (SVG/librsvg can't render all diacritics reliably)
-function stripAccents(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
 function discoverPosts() {
   const posts = [];
   const seen = new Set();
@@ -70,8 +65,8 @@ function discoverPosts() {
       posts.push({
         slug,
         tag,
-        title: stripAccents(fm.title),
-        description: stripAccents(fm.description),
+        title: fm.title,
+        description: fm.description,
       });
     }
   }
@@ -175,7 +170,7 @@ function generateSvg(post) {
   </text>
 
   <!-- Footer -->
-  <text x="${padLeft}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="white">Giora Gilead, 72 anos</text>
+  <text x="${padLeft}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="white">Giora Gilead, 72 años</text>
   <text x="${padLeft + 218}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="400" font-size="18" fill="#a0aec0">  ·  </text>
   <text x="${padLeft + 252}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="#e8825c" font-style="italic">Recableado</text>
 </svg>`;
