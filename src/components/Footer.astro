@@ -1,6 +1,16 @@
 ---
+// Footer — patrón "constelación de ecosistema"
+// Referencia: scibasku-commits/hummingbird-web, src/components/Footer.astro
+// (commits 5bfd815 PR#17 + 0fc0101 PR#18, live en lujosinartificios.com).
+//
+// Adaptaciones para recableado:
+//   - Paleta híbrida: fondo var(--heading) navy del repo + acentos dorado/cian
+//     hard-coded en el <style> scoped (sin tokens nuevos en global.css)
+//   - "Filas de destinos" sustituidas por badges de tags reales del blog
+//   - CTA → WhatsApp en vez de /cotizar/
+//   - Logo bottom: recableado.svg + matriz Scibasku
+
 import type { Lang } from '../i18n/languages';
-import { useTranslations } from '../i18n/utils';
 
 interface Props {
 	lang?: Lang;
@@ -8,57 +18,619 @@ interface Props {
 
 const { lang = 'es' } = Astro.props;
 
-const t = useTranslations(lang);
+interface EcosystemSite {
+	domain: string;
+	href: string;
+	tagline: string;
+	x: number;  // viewBox 0..1280
+	y: number;  // viewBox 0..520
+	active?: boolean;
+}
+
+const ecosystemSites: EcosystemSite[] = [
+	{ domain: 'lujosinartificios.com', href: 'https://lujosinartificios.com', tagline: 'Resorts de lujo',      x: 220,  y: 90  },
+	{ domain: 'recableado.blog',       href: '/',                              tagline: 'El blog de Giora',     x: 640,  y: 60,  active: true },
+	{ domain: 'crucerobuceo.com',      href: 'https://crucerobuceo.com',       tagline: 'Liveaboards de buceo', x: 1060, y: 90  },
+	{ domain: 'viajaraegipto.es',      href: 'https://viajaraegipto.es',       tagline: 'Egipto',               x: 160,  y: 260 },
+	{ domain: 'ilovecanada.travel',    href: 'https://ilovecanada.travel',     tagline: 'Canadá',               x: 1120, y: 260 },
+	{ domain: 'america-motorhome.com', href: 'https://america-motorhome.com',  tagline: 'Autocaravanas USA',    x: 220,  y: 430 },
+	{ domain: 'skialpes.es',           href: 'https://skialpes.es',            tagline: 'Esquí en los Alpes',   x: 470,  y: 470 },
+	{ domain: 'viajesdeski.es',        href: 'https://viajesdeski.es',         tagline: 'Pases Ikon / Epic',    x: 810,  y: 470 },
+	{ domain: 'aspenski.es',           href: 'https://aspenski.es',            tagline: 'Aspen, Colorado',      x: 1060, y: 430 },
+];
+
+// Tags reales presentes en posts (frontmatter de src/content/blog/es/*.mdx).
+// Colores tomados de tagStyles en src/pages/blog/index.astro — no se inventan.
+const blogTags = [
+	{ label: '📙 Memoria',     bg: '#1a365d', fg: 'white' },
+	{ label: '🔥 Ahora',        bg: '#e8825c', fg: 'white' },
+	{ label: '🧠 Proceso',      bg: '#319795', fg: 'white' },
+	{ label: '🛠️ Taller',       bg: '#a0aec0', fg: 'white' },
+	{ label: '😂 Anécdota',     bg: '#fbd38d', fg: '#2d3748' },
+	{ label: '🌍 Reflexión',    bg: '#6b46c1', fg: 'white' },
+	{ label: '🔧 Herramientas', bg: '#2b6cb0', fg: 'white' },
+	{ label: '🤖 Littlebird',   bg: '#2d3748', fg: 'white' },
+];
+
+const year = new Date().getFullYear();
 ---
 
-<footer>
-	<div class="footer-inner">
-		<p>{t('footer.tagline') as string}</p>
-		<p class="footer-links">
-			<a href="https://viajesscibasku.com" target="_blank" rel="noopener">Viajes Scibasku</a>
-			<span class="sep">&middot;</span>
-			<a href="https://lujosinartificios.com" target="_blank" rel="noopener">Lujo Sin Artificios</a>
-			<span class="sep">&middot;</span>
-			<a href="https://crucerobuceo.com" target="_blank" rel="noopener">Crucero Buceo</a>
-		</p>
+<footer class="rec-footer">
+	<div class="rec-footer-wrap">
+
+		{/* === 1. STORYTELLING === */}
+		<p class="rec-footer-eyebrow">La agencia</p>
+		<h2 class="rec-footer-headline"><em>Una agencia. Un destino para cada viajero.</em></h2>
+		<p class="rec-footer-sub">Skialpes para esquí, Crucerobuceo para buceo, Lujo Sin Artificios para resorts. Mismo equipo, mismo criterio, especialización por destino.</p>
+
+		{/* === 2. CONSTELACIÓN === */}
+		<div class="rec-constellation" aria-label="Mapa del ecosistema Viajes Scibasku">
+			<svg viewBox="0 0 1280 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+				<defs>
+					<radialGradient id="rec-footer-glow" cx="50%" cy="50%" r="50%">
+						<stop offset="0%"   stop-color="#F2CA50" stop-opacity="0.55" />
+						<stop offset="60%"  stop-color="#D4AF37" stop-opacity="0.10" />
+						<stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+					</radialGradient>
+					<radialGradient id="rec-footer-here" cx="50%" cy="50%" r="50%">
+						<stop offset="0%"   stop-color="#55D6F4" stop-opacity="0.45" />
+						<stop offset="100%" stop-color="#55D6F4" stop-opacity="0" />
+					</radialGradient>
+				</defs>
+
+				{/* líneas hub-and-spoke desde el centro */}
+				<g stroke="rgba(242, 202, 80, 0.20)" stroke-width="1" fill="none">
+					{ecosystemSites.map((s) => (
+						<line x1="640" y1="260" x2={s.x} y2={s.y} />
+					))}
+				</g>
+
+				{/* halo nodo activo */}
+				{ecosystemSites.filter(s => s.active).map((s) => (
+					<circle cx={s.x} cy={s.y} r="60" fill="url(#rec-footer-here)" />
+				))}
+
+				{/* glow del centro */}
+				<circle cx="640" cy="260" r="110" fill="url(#rec-footer-glow)" class="rec-pulse" />
+			</svg>
+
+			{/* nodo central — la matriz */}
+			<a class="rec-node rec-node-center" href="https://viajesscibasku.com" target="_blank" rel="noopener noreferrer" style="left:50%; top:50%;">
+				<span class="rec-node-domain">Viajes Scibasku</span>
+				<small>La agencia matriz · CICMA 2283</small>
+			</a>
+
+			{/* satélites */}
+			{ecosystemSites.map((s) => (
+				<a
+					class:list={["rec-node", s.active && "rec-node-active"]}
+					href={s.href}
+					style={`left:${(s.x / 1280) * 100}%; top:${(s.y / 520) * 100}%;`}
+					aria-current={s.active ? "page" : undefined}
+					target={s.active ? undefined : "_blank"}
+					rel={s.active ? undefined : "noopener noreferrer"}
+				>
+					<span class="rec-node-domain">{s.domain}</span>
+					<small>{s.tagline}{s.active ? " · AQUÍ ESTÁS" : ""}</small>
+				</a>
+			))}
+		</div>
+
+		{/* === Mobile fallback nav === */}
+		<nav class="rec-mobile-eco" aria-label="Ecosistema Viajes Scibasku">
+			<a class="rec-mobile-matrix" href="https://viajesscibasku.com" target="_blank" rel="noopener noreferrer">
+				<span>Viajes Scibasku</span>
+				<small>La agencia matriz · CICMA 2283</small>
+			</a>
+			{ecosystemSites.map((s) => (
+				<a
+					class:list={[s.active && "rec-mobile-active"]}
+					href={s.href}
+					aria-current={s.active ? "page" : undefined}
+					target={s.active ? undefined : "_blank"}
+					rel={s.active ? undefined : "noopener noreferrer"}
+				>
+					<span>{s.domain}</span>
+					<small>{s.tagline}{s.active ? " · AQUÍ ESTÁS" : ""}</small>
+				</a>
+			))}
+		</nav>
+
+		{/* === 3. POR TEMA + CTA === */}
+		<div class="rec-footer-tags-row">
+			<div class="rec-footer-tags-block">
+				<p class="rec-footer-kicker">Por tema en el blog</p>
+				<div class="rec-footer-tags">
+					{blogTags.map(t => (
+						<span class="rec-tag" style={`background:${t.bg}; color:${t.fg};`}>{t.label}</span>
+					))}
+				</div>
+				<p class="rec-footer-tags-note">Los temas que se repiten en estos {25 /* posts hoy */}+ posts.</p>
+			</div>
+			<div class="rec-footer-cta">
+				<p class="rec-footer-kicker">¿Charlamos?</p>
+				<p class="rec-footer-cta-text">Si has llegado hasta aquí abajo, igual quieres preguntar algo. WhatsApp directo a Giora — sin formularios, sin filtros.</p>
+				<a class="rec-footer-cta-link" href="https://wa.me/34619401041" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <span aria-hidden="true">→</span></a>
+			</div>
+		</div>
+
+		{/* === 4. BOTTOM: branding + contacto + social + confianza === */}
+		<div class="rec-footer-bottom">
+
+			<div class="rec-footer-logos">
+				<a href="/" class="rec-footer-logo-link" aria-label="Recableado — Inicio">
+					<img class="rec-footer-logo-recableado" src="/logo-recableado.svg" alt="Recableado" width="220" height="62" loading="lazy" />
+					<p class="rec-footer-tag">CICMA 2283 · Marbella · En ruta desde 1954</p>
+				</a>
+				<a href="https://viajesscibasku.com" class="rec-footer-logo-link" target="_blank" rel="noopener noreferrer">
+					<img class="rec-footer-logo-scibasku" src="https://xktxzffdosqyxarigfpi.supabase.co/storage/v1/object/public/travel-wallets/img/logo-scibasku.png" alt="Viajes Scibasku" width="260" height="120" loading="lazy" />
+					<p class="rec-footer-tag">Parte del ecosistema Viajes Scibasku · CICMA 2283</p>
+				</a>
+			</div>
+
+			<div>
+				<p class="rec-footer-kicker">Contacto</p>
+				<address class="rec-footer-contact">
+					<p class="rec-footer-name">Giora Gilead Elenberg</p>
+					<p><a href="tel:+34619401041">+34 619 40 10 41</a></p>
+					<p><a href="mailto:scibasku@gmail.com">scibasku@gmail.com</a></p>
+					<p class="rec-footer-addr">Marbella · España</p>
+				</address>
+			</div>
+
+			<div>
+				<p class="rec-footer-kicker">Síguenos</p>
+				<div class="rec-footer-social">
+					<a href="https://instagram.com/viajesscibasku" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg>
+					</a>
+					<a href="https://facebook.com/viajesscibasku" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.6V4.6c-.3 0-1.3-.1-2.4-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7V14h2.7v8h3.1z" /></svg>
+					</a>
+					<a href="https://youtube.com/@viajesscibasku" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C15.9 4 12 4 12 4s-3.9 0-6.8.3c-.4.1-1.3.1-2 .9-.6.6-.8 2-.8 2S2.2 8.8 2.2 10.5v1.6c0 1.6.2 3.3.2 3.3s.2 1.4.8 2c.8.8 1.8.8 2.3.9 1.7.2 6.5.3 6.5.3s3.9 0 6.8-.3c.4-.1 1.3-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.6c0-1.7-.2-3.3-.2-3.3zM9.9 14V8.8l5 2.6-5 2.6z" /></svg>
+					</a>
+					<a href="https://wa.me/34619401041" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1c-1.7-.8-2.8-1.5-4-3.3-.3-.5.3-.5.9-1.7.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1.1 1.1-1.1 2.7 1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9.9 3.9.8.6-.1 1.7-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2A10 10 0 0 0 3.6 17.3L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20z" /></svg>
+					</a>
+				</div>
+			</div>
+
+			<div>
+				<p class="rec-footer-kicker">Confianza</p>
+				<div class="rec-footer-trust">
+					<span class="rec-footer-cicma">CICMA 2283</span>
+					<span class="rec-footer-since">Desde 2006</span>
+					<a class="rec-footer-review" href="https://g.page/r/viajesscibasku/review" target="_blank" rel="noopener noreferrer">
+						<span class="rec-footer-star" aria-hidden="true">★</span>
+						<span>Déjanos tu opinión en Google</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		{/* === 5. LEGAL === */}
+		<div class="rec-footer-legal">
+			<div class="rec-footer-legal-links">
+				<a href="https://viajesscibasku.com/aviso-legal" target="_blank" rel="noopener noreferrer">Aviso legal</a>
+				<a href="https://viajesscibasku.com/privacidad" target="_blank" rel="noopener noreferrer">Privacidad</a>
+				<a href="https://viajesscibasku.com/cookies" target="_blank" rel="noopener noreferrer">Cookies</a>
+			</div>
+			<div class="rec-footer-copy">&copy; {year} Viajes Scibasku · CICMA 2283</div>
+			<p class="rec-footer-disclaimer">Recableado es el blog de Giora dentro del ecosistema Viajes Scibasku.</p>
+		</div>
 	</div>
+
+	<style>
+		.rec-footer {
+			background:
+				radial-gradient(ellipse at top, rgba(242, 202, 80, 0.06) 0%, transparent 60%),
+				linear-gradient(180deg, var(--heading) 0%, #0f223d 100%);
+			color: rgba(255, 250, 240, 0.92);
+			padding: 80px 0 32px;
+			border-top: 1px solid rgba(242, 202, 80, 0.18);
+			font-family: 'Lora', Georgia, serif;
+		}
+		.rec-footer a { color: inherit; text-decoration: none; }
+
+		.rec-footer-wrap {
+			max-width: 1320px;
+			margin: 0 auto;
+			padding: 0 32px;
+		}
+
+		/* ---- Storytelling ---- */
+		.rec-footer-eyebrow {
+			color: #F2CA50;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 11px;
+			letter-spacing: 0.4em;
+			margin: 0 0 10px;
+			text-align: center;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+		.rec-footer-headline {
+			color: #fff;
+			font-family: 'Lora', Georgia, serif;
+			font-size: clamp(26px, 2.6vw, 38px);
+			font-style: italic;
+			font-weight: 400;
+			letter-spacing: -0.01em;
+			margin: 0 0 12px;
+			text-align: center;
+		}
+		.rec-footer-headline em { font-style: italic; }
+		.rec-footer-sub {
+			color: rgba(255, 250, 240, 0.72);
+			font-size: 14px;
+			text-align: center;
+			max-width: 580px;
+			margin: 0 auto 56px;
+			line-height: 1.6;
+		}
+
+		/* ---- Constelación ---- */
+		.rec-constellation {
+			aspect-ratio: 16 / 7;
+			border-top:    1px solid rgba(242, 202, 80, 0.10);
+			border-bottom: 1px solid rgba(242, 202, 80, 0.10);
+			margin: 0 auto 56px;
+			max-height: 560px;
+			position: relative;
+			width: 100%;
+		}
+		.rec-constellation svg {
+			height: 100%;
+			inset: 0;
+			position: absolute;
+			width: 100%;
+		}
+		@keyframes rec-pulse {
+			0%, 100% { opacity: 0.85; transform: scale(1); }
+			50%      { opacity: 1;    transform: scale(1.08); }
+		}
+		.rec-pulse {
+			animation: rec-pulse 4s ease-in-out infinite;
+			transform-box: fill-box;
+			transform-origin: center;
+		}
+
+		.rec-node {
+			pointer-events: auto;
+			position: absolute;
+			text-align: center;
+			transform: translate(-50%, -50%);
+			transition: transform .25s ease;
+		}
+		.rec-node:hover { transform: translate(-50%, -50%) scale(1.04); }
+		.rec-node-domain {
+			background: rgba(10, 22, 42, 0.85);
+			backdrop-filter: blur(6px);
+			border: 1px solid rgba(242, 202, 80, 0.22);
+			border-radius: 999px;
+			color: rgba(255, 250, 240, 0.92);
+			display: inline-block;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 12px;
+			font-weight: 600;
+			padding: 7px 14px;
+			transition: all .25s ease;
+			white-space: nowrap;
+		}
+		.rec-node:hover .rec-node-domain {
+			border-color: rgba(242, 202, 80, 0.6);
+			color: #F2CA50;
+		}
+		.rec-node small {
+			color: rgba(255, 250, 240, 0.6);
+			display: block;
+			font-size: 10px;
+			letter-spacing: 0.08em;
+			margin-top: 6px;
+			text-transform: uppercase;
+		}
+
+		.rec-node-center .rec-node-domain {
+			background: linear-gradient(135deg, #1a1206 0%, #2a1d0a 100%);
+			border: 1px solid rgba(242, 202, 80, 0.6);
+			color: #F2CA50;
+			font-family: 'Lora', Georgia, serif;
+			font-size: 16px;
+			font-style: italic;
+			font-weight: 400;
+			padding: 12px 22px;
+		}
+		.rec-node-center small {
+			color: #F2CA50;
+			opacity: 0.75;
+			letter-spacing: 0.16em;
+		}
+
+		.rec-node-active .rec-node-domain {
+			background: rgba(85, 214, 244, 0.10);
+			border-color: rgba(85, 214, 244, 0.55);
+			color: #55D6F4;
+			box-shadow: 0 0 24px rgba(85, 214, 244, 0.18);
+		}
+		.rec-node-active small {
+			color: #55D6F4;
+			opacity: 0.95;
+			font-weight: 700;
+		}
+
+		/* ---- Mobile ecosystem ---- */
+		.rec-mobile-eco {
+			display: none;
+			flex-direction: column;
+			gap: 10px;
+			margin: 0 0 48px;
+		}
+		.rec-mobile-eco a {
+			background: rgba(10, 22, 42, 0.55);
+			border: 1px solid rgba(242, 202, 80, 0.10);
+			border-radius: 12px;
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			padding: 14px 18px;
+			transition: all .2s ease;
+		}
+		.rec-mobile-eco a:hover {
+			border-color: rgba(242, 202, 80, 0.4);
+			background: rgba(10, 22, 42, 0.75);
+		}
+		.rec-mobile-eco a span {
+			color: rgba(255, 250, 240, 0.95);
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 14px;
+			font-weight: 600;
+		}
+		.rec-mobile-eco a small {
+			color: rgba(255, 250, 240, 0.65);
+			font-size: 11px;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+		.rec-mobile-matrix {
+			background: linear-gradient(135deg, #1a1206 0%, #2a1d0a 100%) !important;
+			border-color: rgba(242, 202, 80, 0.45) !important;
+		}
+		.rec-mobile-matrix span {
+			color: #F2CA50 !important;
+			font-family: 'Lora', Georgia, serif !important;
+			font-style: italic;
+			font-size: 17px !important;
+		}
+		.rec-mobile-matrix small { color: #F2CA50 !important; opacity: 0.8; }
+		.rec-mobile-active {
+			background: rgba(85, 214, 244, 0.08) !important;
+			border-color: rgba(85, 214, 244, 0.45) !important;
+		}
+		.rec-mobile-active span  { color: #55D6F4 !important; }
+		.rec-mobile-active small { color: #55D6F4 !important; opacity: 0.9; font-weight: 700; }
+
+		/* ---- Tags + CTA ---- */
+		.rec-footer-tags-row {
+			display: grid;
+			grid-template-columns: 1.6fr 1fr;
+			gap: 40px;
+			padding: 0 0 56px;
+			border-bottom: 1px solid rgba(242, 202, 80, 0.10);
+		}
+		.rec-footer-kicker {
+			color: #F2CA50;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.18em;
+			margin: 0 0 16px;
+			text-transform: uppercase;
+		}
+		.rec-footer-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 0 0 12px;
+		}
+		.rec-tag {
+			border-radius: 999px;
+			padding: 4px 12px;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 1.5;
+			white-space: nowrap;
+		}
+		.rec-footer-tags-note {
+			color: rgba(255, 250, 240, 0.55);
+			font-size: 12px;
+			margin: 0;
+			font-style: italic;
+		}
+		.rec-footer-cta-text {
+			color: rgba(255, 250, 240, 0.78);
+			font-size: 13px;
+			line-height: 1.6;
+			margin: 0 0 14px;
+		}
+		.rec-footer-cta-link {
+			color: #F2CA50;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			padding: 10px 16px;
+			border: 1px solid rgba(242, 202, 80, 0.4);
+			border-radius: 999px;
+			transition: all .2s ease;
+		}
+		.rec-footer-cta-link:hover {
+			background: rgba(242, 202, 80, 0.10);
+			border-color: #F2CA50;
+		}
+		.rec-footer-cta-link span { transition: transform .2s ease; }
+		.rec-footer-cta-link:hover span { transform: translateX(3px); }
+
+		/* ---- Bottom ---- */
+		.rec-footer-bottom {
+			display: grid;
+			grid-template-columns: 1.6fr 1fr 1fr 1.1fr;
+			gap: 40px;
+			padding: 48px 0;
+			border-bottom: 1px solid rgba(242, 202, 80, 0.10);
+		}
+		.rec-footer-logos {
+			display: flex;
+			flex-direction: column;
+			gap: 26px;
+		}
+		.rec-footer-logo-link { display: block; }
+		.rec-footer-logo-recableado {
+			height: 62px;
+			width: auto;
+			max-width: 220px;
+			filter: brightness(0) invert(1);
+			opacity: 0.95;
+		}
+		.rec-footer-logo-scibasku {
+			height: 38px;
+			width: auto;
+			opacity: 0.85;
+		}
+		.rec-footer-tag {
+			color: rgba(255, 250, 240, 0.65);
+			font-size: 12px;
+			letter-spacing: 0.02em;
+			margin: 6px 0 0;
+		}
+		.rec-footer-contact { font-style: normal; }
+		.rec-footer-name {
+			color: #fff;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 14px;
+			font-weight: 600;
+			margin: 0 0 8px;
+		}
+		.rec-footer-contact p {
+			color: rgba(255, 250, 240, 0.78);
+			font-size: 13px;
+			margin: 0 0 6px;
+		}
+		.rec-footer-contact p a:hover { color: #F2CA50; }
+		.rec-footer-addr {
+			opacity: 0.65 !important;
+			font-size: 12px !important;
+			margin-top: 8px !important;
+		}
+
+		.rec-footer-social {
+			display: flex;
+			gap: 10px;
+		}
+		.rec-footer-social a {
+			align-items: center;
+			background: rgba(10, 22, 42, 0.55);
+			border: 1px solid rgba(242, 202, 80, 0.18);
+			border-radius: 999px;
+			color: rgba(255, 250, 240, 0.7);
+			display: inline-flex;
+			height: 38px;
+			justify-content: center;
+			transition: all .2s ease;
+			width: 38px;
+		}
+		.rec-footer-social a:hover {
+			background: rgba(242, 202, 80, 0.10);
+			border-color: #F2CA50;
+			color: #F2CA50;
+			transform: translateY(-2px);
+		}
+		.rec-footer-social svg { height: 16px; width: 16px; }
+
+		.rec-footer-trust {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			align-items: flex-start;
+		}
+		.rec-footer-cicma, .rec-footer-since {
+			background: rgba(10, 22, 42, 0.55);
+			border: 1px solid rgba(242, 202, 80, 0.30);
+			border-radius: 6px;
+			color: #F2CA50;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			padding: 5px 10px;
+			text-transform: uppercase;
+		}
+		.rec-footer-since {
+			color: rgba(255, 250, 240, 0.7);
+			border-color: rgba(194, 208, 225, 0.22);
+		}
+		.rec-footer-review {
+			align-items: center;
+			color: rgba(255, 250, 240, 0.78);
+			display: inline-flex;
+			font-size: 12px;
+			gap: 6px;
+			transition: color .2s ease;
+		}
+		.rec-footer-review:hover { color: #fff; }
+		.rec-footer-star { color: #F2CA50; font-size: 14px; }
+
+		/* ---- Legal ---- */
+		.rec-footer-legal {
+			align-items: center;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 16px 32px;
+			justify-content: space-between;
+			padding-top: 28px;
+		}
+		.rec-footer-legal-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 18px;
+		}
+		.rec-footer-legal-links a {
+			color: rgba(255, 250, 240, 0.55);
+			font-size: 12px;
+			transition: color .15s ease;
+		}
+		.rec-footer-legal-links a:hover { color: #fff; }
+		.rec-footer-copy {
+			color: rgba(255, 250, 240, 0.55);
+			font-size: 12px;
+		}
+		.rec-footer-disclaimer {
+			color: rgba(255, 250, 240, 0.4);
+			font-size: 11px;
+			margin: 0;
+			text-align: right;
+			max-width: 360px;
+		}
+
+		/* ---- Responsive ---- */
+		@media (max-width: 1024px) {
+			.rec-footer-tags-row { grid-template-columns: 1fr; gap: 32px; }
+			.rec-footer-bottom   { grid-template-columns: 1fr 1fr; gap: 32px; }
+		}
+		@media (max-width: 720px) {
+			.rec-footer { padding: 56px 0 24px; }
+			.rec-footer-wrap { padding: 0 20px; }
+			.rec-constellation { display: none; }
+			.rec-mobile-eco    { display: flex; }
+			.rec-footer-tags-row { gap: 28px; padding-bottom: 36px; }
+			.rec-footer-bottom   { grid-template-columns: 1fr; gap: 32px; padding: 36px 0; }
+			.rec-footer-logos    { flex-direction: row; flex-wrap: wrap; gap: 32px; }
+			.rec-footer-legal    { flex-direction: column; align-items: flex-start; }
+			.rec-footer-disclaimer { text-align: left; }
+		}
+	</style>
 </footer>
-<style>
-	footer {
-		padding: 0;
-		margin: 0;
-		background: var(--heading);
-	}
-	.footer-inner {
-		max-width: 680px;
-		margin: 0 auto;
-		padding: 2em 1em;
-		text-align: center;
-	}
-	p {
-		font-family: 'Lora', Georgia, serif;
-		font-style: italic;
-		color: rgba(255, 250, 240, 0.7);
-		font-size: 0.85em;
-		margin: 0;
-	}
-	.footer-links {
-		margin-top: 0.8em;
-		font-style: normal;
-		font-size: 0.75em;
-		opacity: 0.5;
-	}
-	.footer-links a {
-		color: rgba(255, 250, 240, 0.6);
-		text-decoration: none;
-		transition: opacity 0.3s;
-	}
-	.footer-links a:hover {
-		opacity: 1;
-		color: #d4af37;
-	}
-	.sep {
-		margin: 0 0.4em;
-		color: rgba(255, 250, 240, 0.3);
-	}
-</style>
