@@ -1,6 +1,6 @@
 ---
 title: "Claude Without the Bleeding: How We Closed a 24/7 Token Leak"
-description: "A technical field report on the Claude Quota Crisis: a vampire process, 14,000 startup tokens, 40 subagents in one day, and the intervention that turned chaos into a control cockpit."
+description: "A technical field report on the Claude Quota Crisis: a vampire process, 14,000 startup tokens, 40 subagents in one day, token-audit, a 95% cache hit rate, and the intervention that turned chaos into a control cockpit."
 pubDate: 2026-05-29
 tags: ["🧠 Process", "🔧 Tools", "🔥 Now"]
 translationKey: "crisis-cuota-claude"
@@ -103,12 +103,49 @@ Because the real problem was never Claude.
 
 The problem was confusing power with absolute freedom.
 
+## Final Act: The Speedometer
+
+The real victory was not turning things off.
+
+It was measuring.
+
+After killing background processes, pruning MCPs and cleaning old worktrees, we built the missing instrument: `token-audit`.
+
+We did not want guesses. We wanted data.
+
+Now we have a command that tells us how much context we are using, what percentage that represents of the **1 million token** window, what the **cache hit** is, and what the real spend looks like. It is the system's speedometer. The panel that turns anxiety into telemetry.
+
+The workshop law is now written:
+
+**If you cannot measure it, you cannot govern it.**
+
+Then came the invisible error.
+
+The system was not only heavy because of too many tools. There was a bug hidden in `.zshrc`: a recursive `source`. A configuration calling itself like a staircase with no final step.
+
+The metaphor was too perfect to ignore. Sometimes a machine is not slow because it lacks power. It is slow because it is trapped inside an infinite loop of its own configuration.
+
+That discovery closed the circle: killing the vampire process was not enough. We had to clean the electrical house from the inside.
+
+The number that changed the mood was this:
+
+**95% Cache Hit.**
+
+That means that after pruning and cleanup, the AI stopped throwing tokens on the floor. It started reusing context intelligently. We were no longer burning credits to repeat ourselves. We were investing them to move forward.
+
+For a **72-year-old Vibe Coder**, there could not be a better ending: we survived a quota crisis and came out with infrastructure more professional, more measurable and more governable than what many younger developers would love to have.
+
+This was not a retreat.
+
+It was a command upgrade.
+
 ## Copyable Technical Summary
 
 ```bash
 #!/usr/bin/env bash
 # Recableado Claude Quota Crisis - technical summary
-# Goal: stop background leaks, reduce startup overhead, and limit agent floods.
+# Goal: stop background leaks, reduce startup overhead, limit agent floods,
+# and measure the system instead of guessing.
 
 set -euo pipefail
 
@@ -184,7 +221,23 @@ now="$(date +%s)"
 EOF
 
 chmod +x agent-parallel-limit.sh
-echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out."
+
+
+### 4. Token Speedometer: measure before governing
+
+# Command contract for token-audit:
+#   - context used as % of the 1M token window
+#   - cache hit rate
+#   - real credit/token spend signal
+#
+# Example output target:
+#   context_window_used: 8.7% / 1M
+#   cache_hit: 95%
+#   startup_overhead: down 60-70%
+
+token-audit
+
+echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out, measured spend."
 ```
 
 ## Closing
@@ -193,6 +246,6 @@ A serious AI system is not measured only by what it can do when everything goes 
 
 It is measured by what it stops doing when nobody is watching.
 
-Today Claude is useful again because the architecture has governance again.
+Today Claude is useful again because the architecture has governance, a speedometer, and clean memory.
 
-And that, in the end, is the difference between using AI and truly rewiring yourself.
+And that, in the end, is the difference between using AI and truly rewiring yourself: not leaving the crisis more cautious, but leaving it with better instruments.

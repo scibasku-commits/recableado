@@ -1,6 +1,6 @@
 ---
 title: "Claude sin hemorragias: cómo cerramos una fuga de tokens 24/7"
-description: "Anatomía técnica de la Crisis de Cuota de Claude: un proceso vampiro, 14.000 tokens de arranque, 40 subagentes en un día y la intervención que convirtió el caos en una cabina de control."
+description: "Anatomía técnica de la Crisis de Cuota de Claude: un proceso vampiro, 14.000 tokens de arranque, 40 subagentes en un día, token-audit, 95% de cache hit y la intervención que convirtió el caos en una cabina de control."
 pubDate: 2026-05-29
 tags: ["🧠 Proceso", "🔧 Herramientas", "🔥 Ahora"]
 translationKey: "crisis-cuota-claude"
@@ -101,12 +101,49 @@ Porque el problema real nunca fue Claude.
 
 El problema era haber confundido potencia con libertad absoluta.
 
+## Acto final: el velocímetro
+
+La victoria real no fue apagar cosas.
+
+Fue medir.
+
+Después de cerrar procesos, podar MCPs y limpiar worktrees, construimos la herramienta que faltaba: `token-audit`.
+
+No queríamos suposiciones. Queríamos datos.
+
+Ahora tenemos un comando que nos dice cuánto contexto estamos usando, qué porcentaje representa sobre la ventana de **1 millón de tokens**, cuál es el **cache hit** y cuál es el gasto real. Es el velocímetro del sistema. El panel que convierte ansiedad en telemetría.
+
+La frase queda escrita como ley de taller:
+
+**Si no puedes medirlo, no puedes gobernarlo.**
+
+Y entonces apareció el error invisible.
+
+El sistema no solo estaba pesado por exceso de herramientas. Había un bug escondido en el `.zshrc`: un `source` recursivo. Una configuración llamándose a sí misma como una escalera que no termina nunca.
+
+La metáfora era demasiado perfecta para dejarla pasar. A veces una máquina no va lenta por falta de potencia. Va lenta porque está atrapada en un bucle infinito de su propia configuración.
+
+Ese hallazgo cerró el círculo: no bastaba con matar al proceso vampiro. Había que limpiar la casa eléctrica por dentro.
+
+El número que cambió el ánimo fue este:
+
+**95% de Cache Hit.**
+
+Eso significa que, tras la poda y la limpieza, la IA dejó de tirar tokens al suelo. Empezó a reutilizar contexto con inteligencia. Ya no estábamos quemando créditos para repetirnos. Estábamos invirtiéndolos en avanzar.
+
+Para un **Vibe Coder de 72 años**, el cierre no podía ser mejor: sobrevivimos a una crisis de cuota y salimos con una infraestructura más profesional, más medible y más gobernable que la de muchos equipos que aún confunden entusiasmo con arquitectura.
+
+No fue una retirada.
+
+Fue una mejora de mando.
+
 ## Resumen técnico copiable
 
 ```bash
 #!/usr/bin/env bash
 # Recableado Claude Quota Crisis - technical summary
-# Goal: stop background leaks, reduce startup overhead, and limit agent floods.
+# Goal: stop background leaks, reduce startup overhead, limit agent floods,
+# and measure the system instead of guessing.
 
 set -euo pipefail
 
@@ -182,7 +219,23 @@ now="$(date +%s)"
 EOF
 
 chmod +x agent-parallel-limit.sh
-echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out."
+
+
+### 4. Token Speedometer: measure before governing
+
+# Command contract for token-audit:
+#   - context used as % of the 1M token window
+#   - cache hit rate
+#   - real credit/token spend signal
+#
+# Example output target:
+#   context_window_used: 8.7% / 1M
+#   cache_hit: 95%
+#   startup_overhead: down 60-70%
+
+token-audit
+
+echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out, measured spend."
 ```
 
 ## Cierre
@@ -191,6 +244,6 @@ Un sistema de IA serio no se mide solo por lo que puede hacer cuando todo va bie
 
 Se mide por lo que deja de hacer cuando nadie le está mirando.
 
-Hoy Claude vuelve a ser útil porque la arquitectura volvió a tener gobierno.
+Hoy Claude vuelve a ser útil porque la arquitectura volvió a tener gobierno, velocímetro y memoria limpia.
 
-Y esa, al final, es la diferencia entre usar IA y recablearse de verdad.
+Y esa, al final, es la diferencia entre usar IA y recablearse de verdad: no salir de la crisis más prudente, sino salir con mejores instrumentos.
