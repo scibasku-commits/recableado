@@ -1,0 +1,198 @@
+---
+title: "Claude Without the Bleeding: How We Closed a 24/7 Token Leak"
+description: "A technical field report on the Claude Quota Crisis: a vampire process, 14,000 startup tokens, 40 subagents in one day, and the intervention that turned chaos into a control cockpit."
+pubDate: 2026-05-29
+tags: ["🧠 Process", "🔧 Tools", "🔥 Now"]
+translationKey: "crisis-cuota-claude"
+lang: "en"
+---
+
+Some crises do not begin with an explosion.
+
+They begin with a counter falling too fast.
+
+The **Claude Quota Crisis** was not an epic disaster. It was something more dangerous: a quiet, ordinary, perfectly technical leak. The kind of problem that does not feel urgent until you realize your AI system has been breathing through invisible holes for hours, maybe days.
+
+The symptom was simple: quota was disappearing.
+
+The cause was not.
+
+It was a system with too many open doors.
+
+## The Leak
+
+First came the vampire process.
+
+`ClaudeClaw` was still alive on the Mac Mini, consuming in the background as if it had a permanent chair inside the machine. It was not producing visible work. It was not creating value. It was simply there, attached to the neck of the quota, 24/7.
+
+Then we found the second hole: startup overhead.
+
+Every Claude turn was born with an absurd backpack: around **14,000 tokens of overhead** before the real thinking even started. The reason was obvious once we looked: too many active MCPs, more than 18 tools breathing at the same time, all entering the room even when most of them were irrelevant to the job.
+
+And then came the third front.
+
+The `Conductor` launched **40 subagents in a single day**.
+
+That was no longer automation.
+
+That was a flood.
+
+The AI was not lazy. It was too obedient inside an architecture without enough valves.
+
+---
+
+![Technical infographic for the Claude Quota Crisis: from leak to valve-controlled system](/images/blog/028-claude-quota-crisis-en.png)
+
+---
+
+## The Intervention
+
+The solution was not asking Claude to "spend less."
+
+That would have been like asking a broken pipe to be polite.
+
+The solution was to redesign the system.
+
+### 1. Kill Switch
+
+First, we closed the visible leak.
+
+Background processes that kept consuming without doing real work were killed. Not gently suspended. Killed.
+
+In an operational AI system, a zombie process is not a nuisance. It is a ghost subscription.
+
+### 2. Pruning
+
+Then came the least glamorous and most important part: cleaning.
+
+Redundant MCPs out. Worktrees older than seven days out. Configurations that had accumulated through enthusiasm, experiments and urgency, out of the default startup path.
+
+Pruning does not reduce capability.
+
+It reduces noise.
+
+And in AI, noise is paid twice: first in tokens, then in judgement.
+
+### 3. The Global Gate
+
+The final piece was a valve.
+
+`agent-parallel-limit.sh`: maximum **5 agents every 60 seconds**.
+
+Not to prevent the system from working. To prevent it from overflowing. There is a large difference between granting autonomy and letting an architecture launch subagents as if the credit counter were decorative.
+
+AI can still run.
+
+But now it runs on a track.
+
+## The Result
+
+The system became lean.
+
+Lighter. More governable. More serious.
+
+Startup overhead dropped by **60 to 70%**. Every turn began cleaner. Context became a tool again, not ballast. And most importantly: credit spend stopped feeling like weather.
+
+Now it is a panel.
+
+Switches. Valves. Limits. Traceability.
+
+That is the Recableado philosophy: do not shut the machine down out of fear. Teach it to breathe with discipline.
+
+Because the real problem was never Claude.
+
+The problem was confusing power with absolute freedom.
+
+## Copyable Technical Summary
+
+```bash
+#!/usr/bin/env bash
+# Recableado Claude Quota Crisis - technical summary
+# Goal: stop background leaks, reduce startup overhead, and limit agent floods.
+
+set -euo pipefail
+
+### 1. Kill Switch: stop vampire background processes
+
+echo "[kill-switch] Looking for ClaudeClaw background processes..."
+
+pkill -f "ClaudeClaw" 2>/dev/null || true
+pkill -f "claude.*background" 2>/dev/null || true
+
+echo "[kill-switch] Background leak sweep complete."
+
+
+### 2. Pruning: reduce default context load
+
+echo "[prune] Manual MCP audit:"
+echo "  - Disable redundant MCPs"
+echo "  - Keep only high-value tools in the default startup path"
+echo "  - Avoid loading 18+ tools when the task does not need them"
+
+echo "[prune] Worktrees older than 7 days:"
+find . -maxdepth 3 -type d -name ".git" -mtime +7 \
+  | sed 's#/.git##' \
+  | sort
+
+# Optional deletion pattern, only after review:
+# find ./worktrees -maxdepth 1 -type d -mtime +7 -print -exec rm -rf {} \;
+
+
+### 3. Global Gate: limit agent launches
+
+# Save as: agent-parallel-limit.sh
+# Policy: max 5 launches per 60 seconds.
+
+cat > agent-parallel-limit.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+LIMIT=5
+WINDOW_SECONDS=60
+STATE_DIR="${TMPDIR:-/tmp}/recableado-agent-gate"
+STATE_FILE="$STATE_DIR/launches.log"
+LOCK_FILE="$STATE_DIR/gate.lock"
+
+mkdir -p "$STATE_DIR"
+
+now="$(date +%s)"
+
+(
+  flock -x 200
+  touch "$STATE_FILE"
+
+  awk -v now="$now" -v window="$WINDOW_SECONDS" \
+    '$1 >= now - window { print $0 }' "$STATE_FILE" > "$STATE_FILE.tmp"
+
+  mv "$STATE_FILE.tmp" "$STATE_FILE"
+
+  count="$(wc -l < "$STATE_FILE" | tr -d ' ')"
+
+  if [ "$count" -ge "$LIMIT" ]; then
+    echo "[agent-gate] Blocked: $count launches in the last ${WINDOW_SECONDS}s."
+    echo "[agent-gate] Limit is ${LIMIT}/${WINDOW_SECONDS}s. Try again shortly."
+    exit 42
+  fi
+
+  echo "$now ${*:-agent}" >> "$STATE_FILE"
+  echo "[agent-gate] Allowed: $((count + 1))/${LIMIT} in current window."
+
+) 200>"$LOCK_FILE"
+
+# Put the real agent command here, for example:
+# exec claude-agent "$@"
+EOF
+
+chmod +x agent-parallel-limit.sh
+echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out."
+```
+
+## Closing
+
+A serious AI system is not measured only by what it can do when everything goes well.
+
+It is measured by what it stops doing when nobody is watching.
+
+Today Claude is useful again because the architecture has governance again.
+
+And that, in the end, is the difference between using AI and truly rewiring yourself.

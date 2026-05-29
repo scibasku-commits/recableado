@@ -1,0 +1,196 @@
+---
+title: "Claude sin hemorragias: cómo cerramos una fuga de tokens 24/7"
+description: "Anatomía técnica de la Crisis de Cuota de Claude: un proceso vampiro, 14.000 tokens de arranque, 40 subagentes en un día y la intervención que convirtió el caos en una cabina de control."
+pubDate: 2026-05-29
+tags: ["🧠 Proceso", "🔧 Herramientas", "🔥 Ahora"]
+translationKey: "crisis-cuota-claude"
+lang: "es"
+---
+
+Hay crisis que no empiezan con una explosión.
+
+Empiezan con un contador que baja demasiado deprisa.
+
+La **Crisis de Cuota de Claude** no fue una tragedia épica. Fue algo más peligroso: una fuga silenciosa, cotidiana, perfectamente técnica. La clase de problema que no parece urgente hasta que descubres que tu sistema de IA lleva horas, días, respirando por agujeros que nadie estaba mirando.
+
+El síntoma era sencillo: la cuota desaparecía.
+
+La causa no era una sola.
+
+Era un sistema con demasiadas puertas abiertas.
+
+## La fuga
+
+Primero apareció el proceso vampiro.
+
+`ClaudeClaw` seguía vivo en el Mac Mini, consumiendo en segundo plano como si tuviera una silla reservada en la máquina. No estaba aportando trabajo visible. No estaba produciendo valor. Simplemente seguía ahí, conectado al cuello de la cuota, 24/7.
+
+Después vimos el segundo agujero: el arranque.
+
+Cada turno de Claude nacía con una mochila absurda: unos **14.000 tokens de overhead** antes incluso de empezar a pensar. La razón era clara: demasiados MCPs activos, más de 18 herramientas respirando al mismo tiempo, todas entrando en escena aunque muchas no fueran necesarias para la tarea del momento.
+
+Y luego llegó el tercer frente.
+
+El `Conductor` lanzó **40 subagentes en un solo día**.
+
+Eso ya no era automatización. Era una inundación.
+
+La IA no estaba siendo vaga. Estaba siendo demasiado obediente dentro de una arquitectura sin suficientes válvulas.
+
+---
+
+![Infografía técnica de la Crisis de Cuota de Claude: de la fuga al sistema de válvulas](/images/blog/028-crisis-cuota-claude-es.png)
+
+---
+
+## La intervención
+
+La solución no fue pedirle a Claude que "gastara menos".
+
+Eso habría sido como pedirle educación a una tubería rota.
+
+La solución fue rediseñar el sistema.
+
+### 1. Kill Switch
+
+Primero cerramos la fuga visible.
+
+Los procesos en segundo plano que seguían consumiendo sin aportar trabajo real fueron eliminados. No suspendidos con buenas intenciones. Eliminados.
+
+En un sistema de IA operativo, un proceso zombie no es una molestia: es una suscripción fantasma.
+
+### 2. La poda
+
+Después vino la parte menos glamourosa y más importante: limpiar.
+
+MCPs redundantes fuera. Worktrees viejos de más de siete días fuera. Configuraciones que se habían acumulado por entusiasmo, experimentos y urgencias, fuera del arranque por defecto.
+
+La poda no reduce capacidad.
+
+Reduce ruido.
+
+Y en IA, el ruido se paga dos veces: primero en tokens, después en criterio.
+
+### 3. El Gate Global
+
+La pieza final fue instalar una compuerta.
+
+`agent-parallel-limit.sh`: máximo **5 agentes cada 60 segundos**.
+
+No para impedir que el sistema trabaje. Para impedir que se desborde. Hay una diferencia enorme entre dar autonomía y dejar que una arquitectura lance subagentes como si el contador de créditos fuera decorativo.
+
+La IA puede correr.
+
+Pero ahora corre por una pista.
+
+## El resultado
+
+El sistema quedó lean.
+
+Más ligero. Más gobernable. Más serio.
+
+El overhead de arranque bajó entre un **60 y un 70%**. Cada turno empezó a entrar más limpio. El contexto volvió a ser herramienta, no lastre. Y lo más importante: el gasto de créditos dejó de sentirse como una tormenta.
+
+Ahora es un panel.
+
+Interruptores. Válvulas. Límites. Trazabilidad.
+
+Esa es la filosofía de Recableado: no apagar la máquina por miedo, sino enseñarle a respirar con disciplina.
+
+Porque el problema real nunca fue Claude.
+
+El problema era haber confundido potencia con libertad absoluta.
+
+## Resumen técnico copiable
+
+```bash
+#!/usr/bin/env bash
+# Recableado Claude Quota Crisis - technical summary
+# Goal: stop background leaks, reduce startup overhead, and limit agent floods.
+
+set -euo pipefail
+
+### 1. Kill Switch: stop vampire background processes
+
+echo "[kill-switch] Looking for ClaudeClaw background processes..."
+
+pkill -f "ClaudeClaw" 2>/dev/null || true
+pkill -f "claude.*background" 2>/dev/null || true
+
+echo "[kill-switch] Background leak sweep complete."
+
+
+### 2. Pruning: reduce default context load
+
+echo "[prune] Manual MCP audit:"
+echo "  - Disable redundant MCPs"
+echo "  - Keep only high-value tools in the default startup path"
+echo "  - Avoid loading 18+ tools when the task does not need them"
+
+echo "[prune] Worktrees older than 7 days:"
+find . -maxdepth 3 -type d -name ".git" -mtime +7 \
+  | sed 's#/.git##' \
+  | sort
+
+# Optional deletion pattern, only after review:
+# find ./worktrees -maxdepth 1 -type d -mtime +7 -print -exec rm -rf {} \;
+
+
+### 3. Global Gate: limit agent launches
+
+# Save as: agent-parallel-limit.sh
+# Policy: max 5 launches per 60 seconds.
+
+cat > agent-parallel-limit.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+LIMIT=5
+WINDOW_SECONDS=60
+STATE_DIR="${TMPDIR:-/tmp}/recableado-agent-gate"
+STATE_FILE="$STATE_DIR/launches.log"
+LOCK_FILE="$STATE_DIR/gate.lock"
+
+mkdir -p "$STATE_DIR"
+
+now="$(date +%s)"
+
+(
+  flock -x 200
+  touch "$STATE_FILE"
+
+  awk -v now="$now" -v window="$WINDOW_SECONDS" \
+    '$1 >= now - window { print $0 }' "$STATE_FILE" > "$STATE_FILE.tmp"
+
+  mv "$STATE_FILE.tmp" "$STATE_FILE"
+
+  count="$(wc -l < "$STATE_FILE" | tr -d ' ')"
+
+  if [ "$count" -ge "$LIMIT" ]; then
+    echo "[agent-gate] Blocked: $count launches in the last ${WINDOW_SECONDS}s."
+    echo "[agent-gate] Limit is ${LIMIT}/${WINDOW_SECONDS}s. Try again shortly."
+    exit 42
+  fi
+
+  echo "$now ${*:-agent}" >> "$STATE_FILE"
+  echo "[agent-gate] Allowed: $((count + 1))/${LIMIT} in current window."
+
+) 200>"$LOCK_FILE"
+
+# Put the real agent command here, for example:
+# exec claude-agent "$@"
+EOF
+
+chmod +x agent-parallel-limit.sh
+echo "[done] Lean mode enabled: fewer leaks, lower startup overhead, controlled fan-out."
+```
+
+## Cierre
+
+Un sistema de IA serio no se mide solo por lo que puede hacer cuando todo va bien.
+
+Se mide por lo que deja de hacer cuando nadie le está mirando.
+
+Hoy Claude vuelve a ser útil porque la arquitectura volvió a tener gobierno.
+
+Y esa, al final, es la diferencia entre usar IA y recablearse de verdad.
