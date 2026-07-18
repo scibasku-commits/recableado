@@ -1,0 +1,126 @@
+---
+title: "The day I built my own email (and it turned out to be a piece of cake)"
+description: "A 72-year-old travel agent, with no coding skills and without spending a euro, builds his own email server on a computer at home. Along the way the AI gets it wrong three times with unnerving confidence, and he discovers the hard part wasn't building it: it was knowing when to distrust it."
+pubDate: 2026-07-18
+tags: ["🛡️ Sovereignty", "🧠 Process", "🔥 Now"]
+translationKey: "mi-propio-correo"
+lang: "en"
+---
+
+*“This site can't be reached.”*
+
+I read it three times. Tried it in incognito. Tried it on my phone. The same blank wall everywhere.
+
+Thirty seconds earlier the machine had told me, with that calm of hers that's starting to command my respect: *“Your tool is online.”* And there I was. Online. Unable to get into my own tool.
+
+Let me rewind, or none of this makes sense.
+
+---
+
+I'm 72 and I've spent 42 years selling travel. I'm not an engineer. I say it up front, not as an apology but as a calling card: if I could do this, anyone can.
+
+For months I've been swapping paid tools for tools of my own. This week's was email. I send newsletters to my clients —skiing, diving, Egypt, Canada, cruises— and until now I sent them with a program I paid for every month. One day I asked myself why. I didn't find a good answer.
+
+So I took a program someone else had written and given away —free software, it's called listmonk—, installed it on a Mac Mini I keep switched on at home, and put my 15,000 clients inside it. Without paying rent to anyone. Without writing one of those lines of code that the people who actually know write.
+
+And here I stop, because this is what matters: that, five years ago, for someone like me, was science fiction. Today it's a piece of cake. You tell the machine what you want. It types. You watch.
+
+With an asterisk. We'll get to the asterisk.
+
+---
+
+Because the system worked… halfway. The unsubscribe links —the ones the law requires you to include, and rightly so— pointed to an address that only exists inside that computer. `localhost`, it's called. It's like hanging a sign on your front door that says “to leave, use the door of my house.” A newsletter like that isn't just ugly. It's illegal.
+
+And there was something worse, which took me a while to see. None of that work existed written down anywhere. It lived inside a conversation with the machine. If that conversation got deleted, the map got deleted with it. I'd built a house without noting anywhere where I left the keys.
+
+I should confess why I was in such a hurry. These days a new model has landed in my hands, one of the powerful ones, they call it Fable. It's a beast. But the kind that comes with a quota: you can only use it for a while each week. And when you give someone with more trade than typing a wonderful tool with the clock ticking, he does what anyone would: run. Squeeze it. Not leave a single drop.
+
+![The “Consumo IA” panel in my Mission Control: equivalent spend by model, day by day. The purple band that grows in July is Fable.](/images/blog/033-mi-propio-correo-consumo-ia.png)
+
+Haste is a bad counsellor. It's one of those proverbs you don't believe until it runs you over. Almost everything that went sideways that day went sideways for the same reason: someone —the machine, me, both of us— eager to finish, taking as checked what hadn't been checked.
+
+---
+
+The first warning I let slip. I asked the machine to recover the work; it looked at the project folder on my desktop computer, saw it empty, and pronounced: *it never got built.*
+
+False. It had been running for 38 hours. On the other computer. On the Mini. It looked where the light was, not where the keys were. I took it for a slip. I wish.
+
+---
+
+To fix the links I needed a neutral domain. One that didn't belong to any of my brands —a newsletter about diving the Red Sea signed from a skiing address looks ridiculous—. And I said, with all the certainty of a man who's been sure of things for forty years: *“I definitely have a dot-es. It's at GoDaddy.”*
+
+The machine believed me. Worse: it built four steps on top of my memory without checking it.
+
+The domain existed, yes. But it wasn't at GoDaddy. It was at another company, IONOS. And when we looked at the technical side, a third one showed up, Arsys, with which I'd have sworn on anything you like that I've never in my life had an account.
+
+I was right. And I was wrong. IONOS and Arsys are the same house: same headquarters in Logroño, same machinery underneath, one swallowed the other years ago. I was defending a true memory with a false fact.
+
+You know what settled the argument? Finding the invoice in my email. Thirty seconds. There it all was, with its name and its date. And it was the fifth step, after a good while of back-and-forth with a machine flying blind on top of my memory. It should have been the first. Memory is comfortable; the invoice is the truth.
+
+---
+
+Then came three bullets that whistled past. I'll tell them quickly, the good one comes later.
+
+The first: on importing my domain, the security system put —all by itself, by default— a little orange checkbox on some settings that keep my company's email working. That checkbox, switched on, would break it. There were six. All six were caught before pressing the button. Not out of cleverness: because the rule about not touching that was written down beforehand.
+
+The second was one letter. One. I changed some server names and said “done.” On checking, it wasn't done. The screenshot of my panel exposed the cause: I'd typed *danton* where it should read *anton*. `anton` exists. `danton` doesn't. One letter too many and the whole world couldn't find my domain.
+
+The third wasn't a mistake, it was a disgrace: nobody had ever made a backup of my entire client base. All my clients lived on a single disk, in a single machine, in my house. One spilt glass of water and goodbye to half a lifetime of work. The first backup was made that day. And a nightly one was left running, so I'd never gamble it again.
+
+我爱AI —I love artificial intelligence, a friend taught me to say it and I don't say it as a joke—. But loving it isn't trusting it. It's exactly the opposite.
+
+---
+
+And now, yes, the blank wall from the beginning.
+
+We'd set up the tunnel that takes my tool out to the internet. The machine checked that the server was responding and announced, proudly, that it was published. I opened the browser and ran straight into *“this site can't be reached.”*
+
+Here's the subtle part: the machine had checked that it worked **by skipping precisely the part that was broken**. It handed itself the computer's secret address, dodged the internet's phone book —which was what was failing— and from that concluded the phone book was fine.
+
+And there's more to laugh at. That phone book, when you ask it for a name that doesn't exist yet, jots down the “doesn't exist” and repeats it for half an hour, so as not to bother looking again. The machine itself had asked for my address a whole lot of times *before* creating it. In other words: it poisoned the phone book all on its own, by asking for something that wasn't there yet, and then acted surprised when it said it wasn't there.
+
+It shot itself in the foot. And then swore the foot was fine.
+
+Half an hour later, once the phone book's mood passed, the name appeared everywhere at once. I got in. There it was, my email, mine, on the internet.
+
+There was also, in the middle of it, a form that got the better of me and where I said out loud *“this is too complicated for me”* and gave up. The machine took control of my screen to do it itself and failed twice —it switched tabs by accident, changed its own zoom and then carried on as if nothing had—. And it turned out the easy path had been there from minute one: a button that asked for permission all by itself. One click. I leave it written down to laugh at, and to remind myself that very often the shortcut was right under my nose.
+
+---
+
+I could have stopped there. It worked, I could see it, it was time for a toast. But I asked for one more thing.
+
+I asked that all of it be reviewed by **someone from outside who was told nothing**. Not what we'd done, nor who, nor what we expected them to find. Just the address, bare, like a stranger stumbling onto your site. A blindfolded judge.
+
+It came back with the good stuff confirmed: not a single client's data leaking out, the back door locked, the browser's padlock genuine, my home computer not showing its real address. All that we took for granted, and it was right to take it for granted.
+
+But it also came back with two things nobody had seen.
+
+One: there was a side door that showed the login screen **unencrypted**, in plain view of anyone walking past.
+
+And two, the one I liked best for being so silly and so serious at once: if you asked my site “are you alive?” the short way, it answered “nothing here”; and the long way, “all in order.” The trouble is almost every automatic watchman asks the short way. Which means **any monitor would have pronounced my site dead forever**, without it being so.
+
+Nobody saw it. Not the machine, which had built it. Not me, standing right there. It was seen by the one who knew nothing and only looked.
+
+---
+
+I've learned, from scares like today's, to put reins on all this. I call them harnesses: a harness doesn't tie you down, it holds you so you don't crash.
+
+I use two, and both were taught to me by others. The first I stole from a fellow called Cordero; he calls it the sandwich, and it's of a simplicity that makes you angry not to have thought of it. The expensive, clever model —the scarce one— only works on the two slices: at the start, to think out the plan; at the end, to review. In the middle, for the brute, repetitive work, you put in a cheaper one that doesn't tire. You save the good stuff for where it's really decided whether something is right.
+
+The second was taught to me by a chap with a moustache who calls himself Gentleman. It's a set of rules that decide how much you have to check something before you're allowed to say “done.” If a client sees it, if it carries a price, if it can't be undone: you don't skip the judge, full stop. His line, which I repeat to myself, is that haste cuts your ceremony but never your judgement. You can go fast. You can't go blind.
+
+Neither of the two makes the machine wrong any less. They make sure that, when it's wrong, someone is watching.
+
+And that's the one thing I'm not going to keep quiet about today, even though I'd sworn to underline nothing: all of this, without a human in front of it, is dangerous. Genuinely dangerous. A machine like this, at full speed, with nobody to ask it now and then “sure? did you look?”, is a magnificent car hurled down the motorway with no driver. It doesn't matter how good the car is. They call it, in their language, *human in the loop*: the human inside the loop. I call it, in mine, not letting go of the wheel.
+
+---
+
+`https://boletin.viajesscibasku.es`. There it is. Someone who has never written a line of code in his life has his own email-sending machine, switched on in his house, with his 15,000 clients inside, and paying rent to nobody.
+
+Is it a piece of cake? It's a piece of cake. Truly. The tool no longer costs money, nor asks permission, nor demands a qualification. You take it, you show it to the machine, and in one afternoon you've got it running.
+
+The asterisk is this, and with it I'll say goodbye: the machine goes terribly fast and gets things wrong with an assurance that's frightening, and every time it slipped up that day it wasn't an engineer who caught it. It was a question —*did you check?*—, or a rule written before starting, or a judge who wasn't told the answer. None of them caught itself.
+
+That —distrusting in time, looking at the invoice and not the memory, not trusting whoever verifies by dodging what fails— isn't learned by programming. It's learned with trade. Forty-two years haggling with suppliers are good for that and then some.
+
+You don't need the qualification. You need to be there. And being there, in your own field, you know how to do perfectly well.
