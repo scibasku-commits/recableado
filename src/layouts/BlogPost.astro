@@ -398,6 +398,8 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 				fetch(`/api/reactions?slug=${encodeURIComponent(slug)}`)
 					.then(r => r.json())
 					.then(counts => {
+						// Incluye las copias de la barra flotante (FloatingShare):
+						// mismo data-emoji, misma clase, así que se pintan a la vez.
 						document.querySelectorAll('.reaction-btn').forEach(btn => {
 							const emoji = (btn as HTMLElement).dataset.emoji!;
 							const countEl = btn.querySelector('.count')!;
@@ -426,13 +428,21 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 								body: JSON.stringify({ slug, emoji, action }),
 							});
 							const data = await res.json();
-							btn.querySelector('.count')!.textContent = String(data.count);
+
+							// El mismo emoji está en dos sitios (final del post y barra
+							// flotante). Se actualizan los dos, o el lector ve un 1 arriba
+							// y un 0 abajo y piensa que no ha funcionado.
+							const gemelos = document.querySelectorAll(
+								`.reaction-btn[data-emoji="${emoji}"]`,
+							);
+							gemelos.forEach(b => {
+								b.querySelector('.count')!.textContent = String(data.count);
+								b.classList.toggle('active', action === 'add');
+							});
 
 							if (action === 'add') {
-								btn.classList.add('active');
 								voted.push(emoji);
 							} else {
-								btn.classList.remove('active');
 								voted = voted.filter(e => e !== emoji);
 							}
 							localStorage.setItem(storageKey, JSON.stringify(voted));
