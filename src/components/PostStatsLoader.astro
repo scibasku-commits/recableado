@@ -12,7 +12,7 @@
 		const slugs = Array.from(cards).map(el => (el as HTMLElement).dataset.slug).filter(Boolean);
 		if (slugs.length === 0) return;
 
-		fetch(`/api/post-stats?slugs=${slugs.join(',')}`)
+		fetch(`/post-stats?slugs=${slugs.join(',')}`)
 			.then(r => r.json())
 			.then((stats: Record<string, { views: number; reactions: number }>) => {
 				cards.forEach(card => {

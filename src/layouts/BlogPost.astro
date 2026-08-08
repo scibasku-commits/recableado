@@ -354,7 +354,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 			// View counter
 			(function() {
 				const slug = window.location.pathname.replace(/^\/(?:en\/)?blog\//, '').replace(/\/$/, '');
-				fetch('/api/views', {
+				fetch('/views', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({ slug }),
@@ -395,7 +395,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 				let voted: string[] = JSON.parse(localStorage.getItem(storageKey) || '[]');
 
 				// Load counts
-				fetch(`/api/reactions?slug=${encodeURIComponent(slug)}`)
+				fetch(`/reactions?slug=${encodeURIComponent(slug)}`)
 					.then(r => r.json())
 					.then(counts => {
 						// Incluye las copias de la barra flotante (FloatingShare):
@@ -422,7 +422,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 						setTimeout(() => btn.classList.remove('bounce'), 300);
 
 						try {
-							const res = await fetch('/api/reactions', {
+							const res = await fetch('/reactions', {
 								method: 'POST',
 								headers: { 'Content-Type': 'application/json' },
 								body: JSON.stringify({ slug, emoji, action }),

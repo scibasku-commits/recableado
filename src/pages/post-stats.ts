@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getSupabase } from '../../lib/supabase';
+import { getSupabase } from '../lib/supabase';
 import { Redis } from '@upstash/redis';
 
 const VALID_EMOJIS = ['\u{1F525}', '\u{1F602}', '\u{1F92F}', '\u{1F4AA}', '\u{1F9E0}'];
