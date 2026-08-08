@@ -147,6 +147,22 @@ const year = new Date().getFullYear();
 				</div>
 				<p class="rec-footer-tags-note">Los temas que se repiten en estos {25 /* posts hoy */}+ posts.</p>
 			</div>
+			<div class="rec-footer-tags-block">
+				<p class="rec-footer-kicker">Mis herramientas</p>
+				<p class="rec-footer-tags-note" style="margin-top:0">
+					Las dos nacieron aquí, en el blog. Se compran una vez y funcionan sin nube.
+				</p>
+				<div class="rec-footer-tools">
+					<a class="rec-footer-tool" href="https://hablame.blog" target="_blank" rel="noopener noreferrer">
+						<strong>Háblame</strong>
+						<span>Dicta y se escribe. Tu voz no sale del ordenador.</span>
+					</a>
+					<a class="rec-footer-tool" href="https://ricordo.blog" target="_blank" rel="noopener noreferrer">
+						<strong>Ricordo</strong>
+						<span>Tu segundo cerebro. Lo que ves, recordado.</span>
+					</a>
+				</div>
+			</div>
 			<div class="rec-footer-cta">
 				<p class="rec-footer-kicker">¿Charlamos?</p>
 				<p class="rec-footer-cta-text">Si has llegado hasta aquí abajo, igual quieres preguntar algo. WhatsApp directo a Giora — sin formularios, sin filtros.</p>
@@ -450,6 +466,37 @@ const year = new Date().getFullYear();
 			font-size: 12px;
 			margin: 0;
 			font-style: italic;
+		}
+		.rec-footer-tools {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-top: 12px;
+		}
+		.rec-footer-tool {
+			display: block;
+			text-decoration: none;
+			padding: 10px 12px;
+			border-radius: 8px;
+			background: rgba(255, 250, 240, 0.05);
+			transition: background 0.2s ease;
+		}
+		.rec-footer-tool:hover {
+			background: rgba(255, 250, 240, 0.1);
+		}
+		.rec-footer-tool strong {
+			display: block;
+			color: #f2ca50;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 14px;
+			font-weight: 700;
+		}
+		.rec-footer-tool span {
+			display: block;
+			color: rgba(255, 250, 240, 0.7);
+			font-size: 12px;
+			line-height: 1.5;
+			margin-top: 2px;
 		}
 		.rec-footer-cta-text {
 			color: rgba(255, 250, 240, 0.78);
