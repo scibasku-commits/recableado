@@ -12,8 +12,9 @@ import ChatDrawer from '../components/ChatDrawer.astro';
 
 type Props = CollectionEntry<'blogEs'>['data'] & { readingTime?: number; lang?: Lang; alternateUrl?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, tags, readingTime, lang = 'es', alternateUrl } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, translationKey, readingTime, lang = 'es', alternateUrl } = Astro.props;
 const t = useTranslations(lang);
+const isCinematic = lang === 'es' && translationKey === 'ia-leia-como-adolescente';
 
 const tagStyles: Record<string, { background: string; color: string }> = {
 	'📙 Memoria': { background: '#1a365d', color: 'white' },
@@ -219,27 +220,434 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 				font-weight: 600;
 				min-width: 1.2em;
 			}
-			@keyframes bounce {
-				0% { transform: scale(1); }
-				50% { transform: scale(1.2); }
-				100% { transform: scale(1); }
+			@keyframes reaction-feedback {
+				from { filter: brightness(1.35); }
+				to { filter: brightness(1); }
 			}
 			.reaction-btn.bounce {
-				animation: bounce 0.3s ease;
+				animation: reaction-feedback 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+		</style>
+		<style is:global>
+			body.cinematic-post {
+				--bg: #08090a;
+				--text: #e9e6df;
+				--heading: #fffdf7;
+				--azul-medio: #b6b2aa;
+				--link: #ff7540;
+				--link-hover: #ffa07d;
+				--naranja: #ff5e24;
+				--gray: #aaa69e;
+				--gray-light: #1b1d1f;
+				--border: #303235;
+				background:
+					radial-gradient(circle at 14% -8%, rgba(255, 255, 255, 0.06), transparent 34rem),
+					#08090a;
+				color: var(--text);
+				font-size: 18px;
+			}
+
+			.cinematic-post header {
+				position: relative;
+				z-index: 10;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.cinematic-post header hr {
+				display: none;
+			}
+
+			body.cinematic-post main {
+				width: 100%;
+				max-width: none;
+				margin: 0;
+				padding: 0;
+				overflow: clip;
+			}
+
+			body.cinematic-post .cinematic-article .hero-image {
+				position: relative;
+				display: grid;
+				min-height: min(840px, calc(100svh - 148px));
+				isolation: isolate;
+				overflow: hidden;
+				background: #0b0c0d;
+			}
+
+			body.cinematic-post .cinematic-article .hero-image > picture,
+			body.cinematic-post .cinematic-article .hero-image > img,
+			body.cinematic-post .cinematic-article .hero-fallback,
+			body.cinematic-post .cinematic-article .hero-shade,
+			body.cinematic-post .cinematic-article .title--hero {
+				grid-area: 1 / 1;
+			}
+
+			body.cinematic-post .cinematic-article .hero-image > picture,
+			body.cinematic-post .cinematic-article .hero-image > picture > img,
+			body.cinematic-post .cinematic-article .hero-image > img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				min-height: inherit;
+				margin: 0;
+				object-fit: cover;
+				object-position: center 48%;
+				border-radius: 0;
+				filter: grayscale(0.92) saturate(0.3) contrast(1.08) brightness(0.7);
+			}
+
+			body.cinematic-post .cinematic-article .hero-shade {
+				position: relative;
+				z-index: 1;
+				background:
+					linear-gradient(90deg, rgba(3, 4, 5, 0.84) 0%, rgba(3, 4, 5, 0.28) 60%, rgba(3, 4, 5, 0.08) 100%),
+					linear-gradient(0deg, rgba(3, 4, 5, 0.94) 0%, transparent 65%);
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero {
+				position: relative;
+				z-index: 2;
+				align-self: end;
+				box-sizing: border-box;
+				width: min(100%, 1440px);
+				margin: 0 auto;
+				padding: clamp(2rem, 5vw, 5rem) clamp(1.25rem, 6vw, 6rem);
+				text-align: left;
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero h1 {
+				max-width: 13ch;
+				margin: 0;
+				color: #fffdf7;
+				font-size: clamp(3.2rem, 7vw, 6rem);
+				line-height: 0.96;
+				letter-spacing: -0.035em;
+				text-wrap: balance;
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero .date-line {
+				margin: 0 0 1rem;
+				color: #ffb093;
+				font-family: 'Bricolage Grotesque', sans-serif;
+				font-size: 0.86rem;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero .reading-time,
+			body.cinematic-post .cinematic-article .title.title--hero .view-count {
+				color: inherit;
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero .post-tags {
+				justify-content: flex-start;
+				margin: 0 0 1rem;
+			}
+
+			body.cinematic-post .cinematic-article .title.title--hero .post-tag {
+				padding: 0.18rem 0.55rem;
+				border: 1px solid rgba(255, 117, 64, 0.55);
+				border-radius: 3px;
+				background: rgba(8, 9, 10, 0.5) !important;
+				color: #ffd0be !important;
+			}
+
+			.hero-fallback {
+				position: relative;
+				display: flex;
+				align-items: flex-start;
+				width: 100%;
+				min-height: 510px;
+				padding: clamp(1.5rem, 5vw, 4rem);
+				background:
+					radial-gradient(circle at 82% 16%, rgba(255, 94, 36, 0.16), transparent 15rem),
+					#111315;
+				color: #ff8a5e;
+				font-family: 'Bricolage Grotesque', sans-serif;
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+			}
+
+			.hero-fallback::after {
+				content: '';
+				position: absolute;
+				inset: auto 0 0;
+				height: 1px;
+				background: #ff5e24;
+			}
+
+			.cinematic-article .hero-fallback {
+				min-height: inherit;
+			}
+
+			body.cinematic-post .cinematic-article .prose {
+				width: min(100%, 74ch);
+				max-width: calc(100% - 2rem);
+				padding: clamp(3rem, 8vw, 7rem) 1rem clamp(5rem, 10vw, 9rem);
+				color: #e9e6df;
+				font-size: clamp(1.125rem, 1.08rem + 0.18vw, 1.25rem);
+				line-height: 1.78;
+			}
+
+			.cinematic-article .prose > p,
+			.cinematic-article .prose > ul,
+			.cinematic-article .prose > ol {
+				max-width: 70ch;
+			}
+
+			.cinematic-article .prose h2 {
+				counter-increment: darkroom-scene;
+				margin: clamp(5rem, 10vw, 9rem) 0 1.5rem;
+				color: #fffdf7;
+				font-size: clamp(2rem, 4.5vw, 4rem);
+				line-height: 1.04;
+				letter-spacing: -0.03em;
+				text-wrap: balance;
+			}
+
+			.cinematic-article .prose h2::before {
+				content: 'Escena ' counter(darkroom-scene, decimal-leading-zero);
+				display: block;
+				margin-bottom: 0.85rem;
+				color: #ff8a5e;
+				font-size: 0.76rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			body.cinematic-post .cinematic-article .prose {
+				counter-reset: darkroom-scene;
+			}
+
+			.cinematic-article .prose > hr {
+				width: min(100vw, 1440px);
+				height: 1px;
+				margin: clamp(4rem, 9vw, 8rem) 0 clamp(4rem, 9vw, 8rem) 50%;
+				transform: translateX(-50%);
+				background: linear-gradient(90deg, transparent, #ff5e24 24%, #303235 24%, #303235 76%, #ff5e24 76%, transparent);
+				opacity: 0.72;
+			}
+
+			.cinematic-article .prose blockquote {
+				width: min(900px, calc(100vw - 2rem));
+				margin: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5rem) 50%;
+				padding: clamp(1.5rem, 4vw, 3rem);
+				transform: translateX(-50%);
+				border: 0;
+				border-top: 1px solid #ff5e24;
+				border-bottom: 1px solid #303235;
+				border-radius: 0;
+				background: #101214;
+				color: #fff6ee;
+				font-size: clamp(1.3rem, 2.5vw, 2rem);
+				font-style: normal;
+				line-height: 1.45;
+				text-align: center;
+			}
+
+			.cinematic-article .prose code {
+				background: #1b1d1f;
+				color: #fff1eb;
+			}
+
+			.cinematic-article .prose pre {
+				width: min(900px, calc(100vw - 2rem));
+				margin-left: 50%;
+				transform: translateX(-50%);
+				border: 1px solid #303235;
+				background: #0c0e0f !important;
+				overflow-x: auto;
+			}
+
+			.cinematic-article .share-section,
+			.cinematic-article .reactions-section {
+				border-top: 1px solid #303235;
+				border-image: none;
+			}
+
+			.cinematic-article .share-btn,
+			.cinematic-article .reaction-btn {
+				background: #17191b;
+				color: #fffdf7;
+				border: 1px solid #3a3c3e;
+			}
+
+			.cinematic-article .share-btn:hover,
+			.cinematic-article .share-btn:focus-visible,
+			.cinematic-article .reaction-btn:hover,
+			.cinematic-article .reaction-btn:focus-visible,
+			.cinematic-article .reaction-btn.active {
+				border-color: #ff5e24;
+				background: #ff5e24;
+				color: #08090a;
+			}
+
+			body.cinematic-post .floating-share {
+				left: max(24px, calc(50% - 560px)) !important;
+				gap: 0.45rem !important;
+				padding: 0.55rem !important;
+				border: 1px solid #303235;
+				border-radius: 12px;
+				background: rgba(13, 15, 16, 0.94);
+				box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+			}
+
+			body.cinematic-post .floating-share .float-btn {
+				background: #17191b;
+				color: #fffdf7;
+				border: 1px solid #3a3c3e;
+			}
+
+			body.cinematic-post .floating-share .float-btn:hover,
+			body.cinematic-post .floating-share .float-btn:focus-visible,
+			body.cinematic-post .floating-share .float-reaction.active {
+				background: #ff5e24;
+				border-color: #ff5e24;
+				color: #08090a;
+			}
+
+			body.cinematic-post .floating-share .float-reaction .count,
+			body.cinematic-post .floating-share .float-reaction.active .count {
+				color: inherit;
+			}
+
+			body.cinematic-post .floating-share .float-sep {
+				background: #3a3c3e;
+			}
+
+			body.cinematic-post .cd-toggle {
+				background: #111315 !important;
+				color: #fffdf7 !important;
+				border-color: #ff5e24 !important;
+			}
+
+			body.cinematic-post .cd-card,
+			body.cinematic-post .cd-messages,
+			body.cinematic-post .cd-input-wrap {
+				background: #101214 !important;
+				border-color: #303235 !important;
+				color: #e9e6df !important;
+			}
+
+			body.cinematic-post .cd-header {
+				background: #0b0c0d !important;
+			}
+
+			body.cinematic-post .cd-bubble-bot,
+			body.cinematic-post .chat-chip,
+			body.cinematic-post .cd-textarea {
+				background: #17191b !important;
+				border-color: #303235 !important;
+				color: #fffdf7 !important;
+			}
+
+			.cinematic-post :focus-visible {
+				outline: 2px solid #ff7a48;
+				outline-offset: 5px;
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				body.cinematic-post .cinematic-article .title.title--hero {
+					animation: article-lead-reveal 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+				}
+
+				@keyframes article-lead-reveal {
+					from { clip-path: inset(0 0 22% 0); filter: blur(5px); }
+					to { clip-path: inset(0); filter: blur(0); }
+				}
+			}
+
+			@media (max-width: 820px) {
+				body.cinematic-post .cinematic-article .hero-image {
+					min-height: 76svh;
+				}
+
+				body.cinematic-post .cinematic-article .title.title--hero {
+					padding-bottom: 7rem;
+				}
+
+				body.cinematic-post .cinematic-article .hero-image > picture > img,
+				body.cinematic-post .cinematic-article .hero-image > img {
+					object-position: 61% center;
+				}
+
+				body.cinematic-post .cinematic-article .hero-shade {
+					background: linear-gradient(0deg, rgba(3, 4, 5, 0.96) 0%, rgba(3, 4, 5, 0.4) 78%, rgba(3, 4, 5, 0.12) 100%);
+				}
+
+				body.cinematic-post .cinematic-article .title.title--hero h1 {
+					font-size: clamp(2.4rem, 11.5vw, 4.6rem);
+				}
+
+				body.cinematic-post .cinematic-article .title.title--hero .date-line {
+					font-size: 0.74rem;
+					line-height: 1.6;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.cinematic-post *,
+				.cinematic-post *::before,
+				.cinematic-post *::after {
+					scroll-behavior: auto !important;
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+				}
 			}
 		</style>
 	</head>
 
-	<body>
+	<body class:list={{ 'cinematic-post': isCinematic }}>
+		<!--
+		DARKROOM ARTICLE CONTRACT: applies when body has cinematic-post.
+		THESIS: el articulo se lee como una secuencia editada, no como una columna identica de principio a fin.
+		OWN-WORLD: negro tinta, imagen casi monocroma, marfil para lectura y naranja brasa como unico acento.
+		STORY: el lector entra por una escena real, entiende la promesa del titulo y avanza por cambios de plano sin perder legibilidad.
+		FIRST VIEWPORT: imagen a sangre, metadatos y titulo abajo a la izquierda; el texto comienza despues de un corte limpio.
+		FORM: Sala oscura fijada por el usuario; seed eac30581.
+		FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+		-->
 		<Header lang={lang} alternateUrl={alternateUrl} />
 		<FloatingShare url={pageUrl} title={title} lang={lang} />
 		<main>
-			<article>
+			<article class:list={{ 'cinematic-article': isCinematic }}>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{heroImage ? (
+						isCinematic ? (
+							<Image src={heroImage} alt="" loading="eager" fetchpriority="high" />
+						) : (
+							<Image width={1020} height={510} src={heroImage} alt="" />
+						)
+					) : (
+						<div class="hero-fallback" aria-hidden="true"><span>Recableado</span></div>
+					)}
+					{isCinematic && (
+						<>
+							<div class="hero-shade" aria-hidden="true"></div>
+							<div class="title title--hero">
+								<div class="date-line">
+									<FormattedDate date={pubDate} lang={lang} />
+									{readingTime && <span class="reading-time"> · {readingTime} {t('blog.minRead') as string}</span>}
+									<span class="view-count" style="display:none"> · <span class="view-number">0</span> {t('post.views') as string}</span>
+								</div>
+								{tags && tags.length > 0 && (
+									<div class="post-tags">
+										{tags.map((tag: string) => <span class="post-tag">{tag}</span>)}
+									</div>
+								)}
+								<h1>{title}</h1>
+							</div>
+						</>
+					)}
 				</div>
 				<div class="prose">
-					<div class="title">
+					{!isCinematic && (
+						<div class="title">
 						<div class="date-line">
 							<FormattedDate date={pubDate} lang={lang} />
 							{readingTime && <span class="reading-time"> · {readingTime} {t('blog.minRead') as string}</span>}
@@ -268,8 +676,9 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 							</div>
 						)}
 						<h1>{title}</h1>
-						<hr />
-					</div>
+							<hr />
+						</div>
+					)}
 					<slot />
 
 					<div class="share-section">

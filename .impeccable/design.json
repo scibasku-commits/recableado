@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-19T20:20:57Z",
+  "title": "Design System: Recableado — Sala oscura",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Negro tinta",
+        "canonical": "#08090a",
+        "tonalRamp": ["oklch(15% 0.004 250)", "oklch(25% 0.004 250)", "oklch(35% 0.004 250)", "oklch(45% 0.004 250)", "oklch(60% 0.004 250)", "oklch(75% 0.004 250)", "oklch(85% 0.004 250)", "oklch(95% 0.004 250)"]
+      },
+      "stage": {
+        "role": "neutral",
+        "displayName": "Escenario",
+        "canonical": "#0b0c0d",
+        "tonalRamp": ["oklch(15% 0.004 250)", "oklch(25% 0.004 250)", "oklch(35% 0.004 250)", "oklch(45% 0.004 250)", "oklch(60% 0.004 250)", "oklch(75% 0.004 250)", "oklch(85% 0.004 250)", "oklch(95% 0.004 250)"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie carbón",
+        "canonical": "#111315",
+        "tonalRamp": ["oklch(15% 0.006 250)", "oklch(25% 0.006 250)", "oklch(35% 0.006 250)", "oklch(45% 0.006 250)", "oklch(60% 0.006 250)", "oklch(75% 0.006 250)", "oklch(85% 0.006 250)", "oklch(95% 0.006 250)"]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Superficie elevada",
+        "canonical": "#17191b",
+        "tonalRamp": ["oklch(15% 0.006 250)", "oklch(25% 0.006 250)", "oklch(35% 0.006 250)", "oklch(45% 0.006 250)", "oklch(60% 0.006 250)", "oklch(75% 0.006 250)", "oklch(85% 0.006 250)", "oklch(95% 0.006 250)"]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Marfil de proyección",
+        "canonical": "#fffdf7",
+        "tonalRamp": ["oklch(15% 0.018 88)", "oklch(25% 0.018 88)", "oklch(35% 0.018 88)", "oklch(45% 0.018 88)", "oklch(60% 0.018 88)", "oklch(75% 0.018 88)", "oklch(85% 0.018 88)", "oklch(95% 0.018 88)"]
+      },
+      "body-text": {
+        "role": "neutral",
+        "displayName": "Texto cálido",
+        "canonical": "#e9e6df",
+        "tonalRamp": ["oklch(15% 0.012 82)", "oklch(25% 0.012 82)", "oklch(35% 0.012 82)", "oklch(45% 0.012 82)", "oklch(60% 0.012 82)", "oklch(75% 0.012 82)", "oklch(85% 0.012 82)", "oklch(95% 0.012 82)"]
+      },
+      "muted-text": {
+        "role": "neutral",
+        "displayName": "Texto apagado",
+        "canonical": "#aaa69e",
+        "tonalRamp": ["oklch(15% 0.012 80)", "oklch(25% 0.012 80)", "oklch(35% 0.012 80)", "oklch(45% 0.012 80)", "oklch(60% 0.012 80)", "oklch(75% 0.012 80)", "oklch(85% 0.012 80)", "oklch(95% 0.012 80)"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Borde carbón",
+        "canonical": "#303235",
+        "tonalRamp": ["oklch(15% 0.006 250)", "oklch(25% 0.006 250)", "oklch(35% 0.006 250)", "oklch(45% 0.006 250)", "oklch(60% 0.006 250)", "oklch(75% 0.006 250)", "oklch(85% 0.006 250)", "oklch(95% 0.006 250)"]
+      },
+      "ember": {
+        "role": "primary",
+        "displayName": "Naranja brasa",
+        "canonical": "#ff5e24",
+        "tonalRamp": ["oklch(15% 0.12 37)", "oklch(25% 0.12 37)", "oklch(35% 0.12 37)", "oklch(45% 0.12 37)", "oklch(60% 0.12 37)", "oklch(75% 0.12 37)", "oklch(85% 0.12 37)", "oklch(95% 0.12 37)"]
+      },
+      "ember-action": {
+        "role": "primary",
+        "displayName": "Brasa de acción",
+        "canonical": "#ff7a48",
+        "tonalRamp": ["oklch(15% 0.10 39)", "oklch(25% 0.10 39)", "oklch(35% 0.10 39)", "oklch(45% 0.10 39)", "oklch(60% 0.10 39)", "oklch(75% 0.10 39)", "oklch(85% 0.10 39)", "oklch(95% 0.10 39)"]
+      },
+      "ember-soft": {
+        "role": "primary",
+        "displayName": "Brasa suave",
+        "canonical": "#ff8a5e",
+        "tonalRamp": ["oklch(15% 0.085 42)", "oklch(25% 0.085 42)", "oklch(35% 0.085 42)", "oklch(45% 0.085 42)", "oklch(60% 0.085 42)", "oklch(75% 0.085 42)", "oklch(85% 0.085 42)", "oklch(95% 0.085 42)"]
+      },
+      "ember-pale": {
+        "role": "primary",
+        "displayName": "Brasa pálida",
+        "canonical": "#ffb093",
+        "tonalRamp": ["oklch(15% 0.06 43)", "oklch(25% 0.06 43)", "oklch(35% 0.06 43)", "oklch(45% 0.06 43)", "oklch(60% 0.06 43)", "oklch(75% 0.06 43)", "oklch(85% 0.06 43)", "oklch(95% 0.06 43)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and the largest closing statements." },
+      "headline": { "displayName": "Headline", "purpose": "Numbered scene openings and manifesto headings." },
+      "title": { "displayName": "Title", "purpose": "Subordinate story headlines." },
+      "body": { "displayName": "Body", "purpose": "Long-form reading at 18px or larger within a 70–74ch measure." },
+      "label": { "displayName": "Label", "purpose": "Navigation, metadata, tags and compact controls." }
+    },
+    "shadows": [
+      { "name": "panel-deep", "value": "0 24px 70px rgba(0, 0, 0, 0.3)", "purpose": "Conversation panel above the ink stage." },
+      { "name": "floating-utility", "value": "0 18px 50px rgba(0, 0, 0, 0.35)", "purpose": "Floating share and reaction tools above the reading column." }
+    ],
+    "motion": [
+      { "name": "opening-reveal", "value": "680ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Single restrained reveal for opening copy when motion is allowed." },
+      { "name": "image-response", "value": "260ms ease-out", "purpose": "Small luminance and desaturation shift on story-card hover or focus." },
+      { "name": "reduced-motion", "value": "0.01ms", "purpose": "Neutralizes animations and transitions under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "520px" },
+      { "name": "editorial-stack", "value": "820px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Quiet 44px navigation link; ember marks hover and the active route.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Archivo</a>",
+      "css": ".ds-nav-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--text, #e9e6df); font: 600 0.9rem/1.4 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: 0.02em; text-decoration: none; } .ds-nav-link:hover, .ds-nav-link[aria-current='page'] { color: var(--naranja, #ff5e24); } .ds-nav-link:focus-visible { outline: 2px solid #ff7a48; outline-offset: 5px; }"
+    },
+    {
+      "name": "Language Toggle",
+      "kind": "button",
+      "refersTo": "language-toggle",
+      "description": "Compact bilingual switch with a pill reserved for utility controls.",
+      "html": "<a class=\"ds-language-toggle\" href=\"#\" aria-label=\"Cambiar a inglés\"><span aria-hidden=\"true\">🇬🇧</span><span>EN</span></a>",
+      "css": ".ds-language-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 0.3em; min-height: 44px; padding: 0.2em 0.7em; border: 1px solid var(--border, #303235); border-radius: 999px; background: var(--bg, #08090a); color: var(--text, #e9e6df); font: 600 0.8rem/1.4 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: 0.03em; text-decoration: none; transition: border-color 200ms, background 200ms; } .ds-language-toggle:hover { border-color: var(--naranja, #ff5e24); background: rgba(255, 94, 36, 0.08); } .ds-language-toggle:focus-visible { outline: 2px solid #ff7a48; outline-offset: 5px; }"
+    },
+    {
+      "name": "Story Action",
+      "kind": "button",
+      "refersTo": "story-action",
+      "description": "Unfilled editorial call to action; text and arrow carry the emphasis.",
+      "html": "<a class=\"ds-story-action\" href=\"#\">Leer el artículo <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" /></svg></a>",
+      "css": ".ds-story-action { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 44px; color: #ff7a48; font: 700 1rem/1.4 'Bricolage Grotesque', Arial, sans-serif; text-decoration: underline; text-underline-offset: 0.3em; } .ds-story-action svg { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 1.7; transition: transform 200ms ease-out; } .ds-story-action:hover { color: #ff8a5e; } .ds-story-action:hover svg { transform: translateX(3px); } .ds-story-action:focus-visible { outline: 2px solid #ff7a48; outline-offset: 5px; }"
+    },
+    {
+      "name": "Story Card",
+      "kind": "card",
+      "refersTo": "story-card",
+      "description": "A flat editorial story unit separated by a hairline rather than a container.",
+      "html": "<a class=\"ds-story-card\" href=\"#\"><span class=\"ds-story-card-visual\">RECABLEADO</span><span class=\"ds-story-card-meta\">19 AGO 2026 · 6 MIN</span><strong>Una historia contada desde dentro</strong><span class=\"ds-story-card-copy\">Experiencia real, criterio y humor sin lenguaje de ingeniero.</span></a>",
+      "css": ".ds-story-card { display: grid; gap: 0.8rem; padding-top: 1rem; border-top: 1px solid #393b3d; color: var(--text, #e9e6df); text-decoration: none; } .ds-story-card-visual { display: flex; align-items: flex-end; aspect-ratio: 4 / 3; padding: 1.25rem; background: radial-gradient(circle at 82% 16%, rgba(255,94,36,0.16), transparent 13rem), #111315; color: #ff8a5e; font: 700 0.76rem/1.4 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: 0.12em; } .ds-story-card-meta { color: #ffb093; font: 600 0.76rem/1.4 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: 0.04em; } .ds-story-card strong { color: #fffdf7; font: 700 clamp(1.35rem, 2vw, 1.9rem)/1.08 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: -0.02em; } .ds-story-card-copy { color: #c5c1b9; font: 400 1rem/1.6 Lora, Georgia, serif; } .ds-story-card:hover .ds-story-card-visual { filter: brightness(1.1); } .ds-story-card:focus-visible { outline: 2px solid #ff7a48; outline-offset: 5px; }"
+    },
+    {
+      "name": "Article Tag",
+      "kind": "chip",
+      "refersTo": "article-tag",
+      "description": "A low-profile metadata chip over the opening image.",
+      "html": "<span class=\"ds-article-tag\">🧠 Proceso</span>",
+      "css": ".ds-article-tag { display: inline-flex; align-items: center; padding: 0.18rem 0.55rem; border: 1px solid rgba(255, 117, 64, 0.55); border-radius: 3px; background: rgba(8, 9, 10, 0.5); color: #ffd0be; font: 600 0.8rem/1.4 'Bricolage Grotesque', Arial, sans-serif; white-space: nowrap; }"
+    },
+    {
+      "name": "Scene Heading",
+      "kind": "custom",
+      "description": "Numbered editorial heading that marks a clean change of scene.",
+      "html": "<h2 class=\"ds-scene-heading\"><span>Escena 02</span>¿Y funcionó a la primera?</h2>",
+      "css": ".ds-scene-heading { margin: 5rem 0 1.5rem; color: #fffdf7; font: 700 clamp(2rem, 4.5vw, 4rem)/1.04 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: -0.03em; text-wrap: balance; } .ds-scene-heading span { display: block; margin-bottom: 0.85rem; color: #ff8a5e; font-size: 0.76rem; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Editorial Quote",
+      "kind": "custom",
+      "description": "Wide, centered pause in the reading rhythm with square edges and ember hairline.",
+      "html": "<blockquote class=\"ds-editorial-quote\">¿Esta solución funciona aunque nadie se acuerde de cumplirla?</blockquote>",
+      "css": ".ds-editorial-quote { max-width: 900px; margin: 3rem auto; padding: clamp(1.5rem, 4vw, 3rem); border: 0; border-top: 1px solid #ff5e24; border-bottom: 1px solid #303235; border-radius: 0; background: #101214; color: #fff6ee; font: 400 clamp(1.3rem, 2.5vw, 2rem)/1.45 Lora, Georgia, serif; text-align: center; }"
+    },
+    {
+      "name": "Reaction Button",
+      "kind": "button",
+      "refersTo": "reaction-button",
+      "description": "Accessible compact reaction control; active state becomes the ember.",
+      "html": "<button class=\"ds-reaction-button\" type=\"button\"><span aria-hidden=\"true\">🔥</span><span>12</span></button>",
+      "css": ".ds-reaction-button { display: inline-flex; align-items: center; gap: 0.4em; min-height: 44px; padding: 0.5em 1em; border: 1px solid #3a3c3e; border-radius: 999px; background: #17191b; color: #fffdf7; font: 600 1rem/1.4 'Bricolage Grotesque', Arial, sans-serif; cursor: pointer; transition: background 200ms, border-color 200ms; } .ds-reaction-button:hover, .ds-reaction-button:active, .ds-reaction-button[aria-pressed='true'] { border-color: #ff5e24; background: #ff5e24; color: #08090a; } .ds-reaction-button:focus-visible { outline: 2px solid #ff7a48; outline-offset: 5px; }"
+    },
+    {
+      "name": "Missing-image Frame",
+      "kind": "custom",
+      "description": "Deliberate placeholder that keeps the darkroom composition intact until a real image arrives.",
+      "html": "<div class=\"ds-image-fallback\"><span>Recableado</span><strong>Una historia todavía sin retrato</strong></div>",
+      "css": ".ds-image-fallback { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4 / 3; padding: clamp(1.25rem, 3vw, 2.5rem); background: radial-gradient(circle at 82% 16%, rgba(255, 94, 36, 0.16), transparent 13rem), #111315; color: #fffdf7; } .ds-image-fallback::after { content: ''; position: absolute; inset: auto 0 0; height: 1px; background: #ff5e24; } .ds-image-fallback span { color: #ff8a5e; font: 700 0.76rem/1.4 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; } .ds-image-fallback strong { max-width: 22ch; font: 700 clamp(1.2rem, 1.55vw, 1.55rem)/1.05 'Bricolage Grotesque', Arial, sans-serif; letter-spacing: -0.025em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Sala oscura",
+    "overview": "Recableado se presenta como una sala de montaje editorial: negro tinta, textura mínima y fotografías reales tratadas como fotogramas casi monocromos. El marfil sostiene la lectura y una única brasa naranja señala lo que importa sin convertir el blog en un espectáculo tecnológico.\n\nLa composición crea los cambios de plano con escala, encuadre, espacio y cortes limpios. El movimiento es excepcional y prescindible; la voz personal, el humor y el texto largo siguen siendo el producto.",
+    "keyCharacteristics": [
+      "Ink-black surfaces with restrained texture and no decorative spectacle.",
+      "Near-monochrome real imagery framed like selected editorial stills.",
+      "Ivory long-form type at 18 px or larger.",
+      "Ember orange as the sole chromatic accent.",
+      "Scene-cut rhythm created by composition, spacing and rules rather than effects."
+    ],
+    "rules": [
+      { "name": "The One Ember Rule", "body": "Ember orange is the only chromatic accent; keep imagery nearly monochrome and never introduce a competing hue.", "section": "colors" },
+      { "name": "The Reading First Rule", "body": "Article body text never drops below 18 px, keeps a generous 1.78 line height and stays within about 70–74 characters.", "section": "typography" },
+      { "name": "The Flat Stage Rule", "body": "Content stays flat; elevation is reserved for floating tools and the chat panel, where it clarifies overlap.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do protect long-form reading with warm high-contrast text, an 18px minimum and a 70–74ch measure.",
+      "Do start from verified photographs of Giora; AI treatment may stylize the frame, but identity and authorship must stay anchored in the real source.",
+      "Do create scene changes with scale, whitespace, hairlines and composition.",
+      "Do preserve 44px touch targets, visible focus and a complete reduced-motion path."
+    ],
+    "donts": [
+      "Don't introduce a second accent color, bright card palette or blue software-dashboard language.",
+      "Don't round editorial frames or turn the archive into a generic grid of floating cards.",
+      "Don't fabricate a documentary-looking hotel, room, route, device or workspace that the reader may compare with reality.",
+      "Don't add scroll-tied video, particles, trailer bands or decorative motion that competes with reading."
+    ]
+  }
+}

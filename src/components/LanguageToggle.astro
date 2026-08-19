@@ -13,7 +13,11 @@ const label = lang === 'es' ? 'EN' : 'ES';
 const flag = lang === 'es' ? '🇬🇧' : '🇪🇸';
 ---
 
-<a href={alternateUrl} class="lang-toggle" aria-label={`Switch to ${label}`}>
+<a
+	href={alternateUrl}
+	class="lang-toggle"
+	aria-label={lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'}
+>
 	<span class="lang-flag">{flag}</span>
 	<span class="lang-label">{label}</span>
 </a>
@@ -21,8 +25,10 @@ const flag = lang === 'es' ? '🇬🇧' : '🇪🇸';
 	.lang-toggle {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		gap: 0.3em;
-		padding: 0.2em 0.6em;
+		min-height: 44px;
+		padding: 0.2em 0.7em;
 		border-radius: 999px;
 		border: 1px solid var(--border);
 		background: var(--bg);

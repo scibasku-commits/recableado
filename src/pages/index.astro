@@ -1,640 +1,686 @@
 ---
 export const prerender = true;
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import ChatHero from '../components/ChatHero.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Lightbox from '../components/Lightbox.astro';
 import PostStatsLoader from '../components/PostStatsLoader.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import ChatHero from '../components/ChatHero.astro';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'es' as const;
 const t = useTranslations(lang);
-
 const posts = (await getCollection('blogEs')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const featuredPost = posts[0];
-const gridPosts = posts.slice(1, 4);
+const recentPosts = posts.slice(1, 4);
 
 function getReadingTime(body: string | undefined): number {
 	return body ? Math.max(1, Math.ceil(body.split(/\s+/).length / 200)) : 5;
 }
-
-const tagStyles: Record<string, { background: string; color: string }> = {
-	'📙 Memoria': { background: '#1a365d', color: 'white' },
-	'🔥 Ahora': { background: '#e8825c', color: 'white' },
-	'🔮 Horizonte': { background: 'linear-gradient(135deg, #1a365d, #e8825c)', color: 'white' },
-	'🛠️ Taller': { background: '#a0aec0', color: 'white' },
-	'😂 Anécdota': { background: '#fbd38d', color: '#2d3748' },
-	'🎿 Vida': { background: '#48bb78', color: 'white' },
-	'⭐ Reseña': { background: '#d69e2e', color: 'white' },
-	'🧠 Proceso': { background: '#319795', color: 'white' },
-	'🧠 Process': { background: '#319795', color: 'white' },
-	'🌍 Reflexión': { background: '#5a67d8', color: 'white' },
-	'🔧 Herramientas': { background: '#718096', color: 'white' },
-};
-
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={lang} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 	</head>
-	<body>
+	<body class="darkroom-page">
+		<!--
+		THESIS: Recableado abre como una secuencia de planos elegidos, no como una plantilla de blog ni un tablero de tarjetas.
+		OWN-WORLD: negro tinta con luz de sala, imagen casi monocroma, marfil para lectura y naranja brasa como unico acento.
+		STORY: el lector reconoce a Giora, entra en la historia mas reciente y descubre las anteriores sin perder orientacion.
+		FIRST VIEWPORT: el ultimo articulo ocupa el encuadre completo; imagen a sangre, titulo grande abajo a la izquierda y acceso de lectura junto a el.
+		FORM: Sala oscura fijada por el usuario; seed eac30581.
+		FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+		-->
 		<Header lang={lang} />
-		<main>
+		<main class="darkroom-home">
+			{featuredPost && (
+				<a
+					href={`/blog/${featuredPost.id}/`}
+					class="lead-story"
+					data-slug={featuredPost.id}
+					aria-label={`Leer: ${featuredPost.data.title}`}
+				>
+					<div class="lead-visual" aria-hidden="true">
+						{featuredPost.data.heroImage ? (
+							<Image
+								src={featuredPost.data.heroImage}
+								alt=""
+								loading="eager"
+								fetchpriority="high"
+							/>
+						) : (
+							<div class="story-fallback story-fallback--lead">
+								<span>Recableado</span>
+							</div>
+						)}
+					</div>
+					<div class="lead-shade" aria-hidden="true"></div>
+					<div class="lead-copy">
+						<p class="story-meta">
+							<FormattedDate date={featuredPost.data.pubDate} lang={lang} />
+							<span aria-hidden="true"> · </span>
+							{getReadingTime(featuredPost.body)} {t('blog.minRead') as string}
+						</p>
+						<h1>{featuredPost.data.title}</h1>
+						<p class="lead-description">{featuredPost.data.description}</p>
+						<span class="story-action">
+							Leer el artículo
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h13M13 6l6 6-6 6" />
+							</svg>
+						</span>
+					</div>
+				</a>
+			)}
 
-			<!-- ══ BLOQUE 1: HERO OSCURO ══ -->
-			<section class="blk-hero">
-				<h1 class="hero-title">Recableado<br/>a los 73</h1>
-				<p class="hero-sub">42 años vendiendo viajes. 5 continentes recorridos.<br/>Esquí en Japón, Estados Unidos y Canadá. Cruceros de vida a bordo en Polinesia, Indonesia y Mar Rojo.<br/>Y en 2025 descubrí el último continente: la inteligencia artificial.</p>
-				<div class="blk-hero-wave"></div>
-			</section>
-
-			<!-- ══ BLOQUE 1.5: CHATBOT HERO ══ -->
-			<ChatHero />
-
-			<!-- ══ BLOQUE 2: CARDS CLARO ══ -->
-			<section class="blk-cards">
-				<div class="cards-grid">
-					<div class="milestone-card">
-						<div class="mc-icon">&#127864;</div>
-						<div class="mc-date">Primavera 2025</div>
-						<div class="mc-title">El Catalizador</div>
-						<div class="mc-desc">La diabetes cancela los gin tonics. YouTube &rarr; IA.</div>
-					</div>
-					<div class="milestone-card">
-						<div class="mc-icon">&#128218;</div>
-						<div class="mc-date">Verano 2025</div>
-						<div class="mc-title">La Inmersión</div>
-						<div class="mc-desc">Curso DOMINA ChatGPT. Nota: 95/100. &laquo;Nativo digital de 30 años.&raquo;</div>
-					</div>
-					<div class="milestone-card">
-						<div class="mc-icon">&#129302;</div>
-						<div class="mc-date">Otoño 2025</div>
-						<div class="mc-title">El Gran Hito</div>
-						<div class="mc-desc">ClawdBot: Mac Mini 24/7 + 5 agentes IA trabajando mientras duerme.</div>
-					</div>
-					<div class="milestone-card">
-						<div class="mc-icon">&#128640;</div>
-						<div class="mc-date">2025–2026</div>
-						<div class="mc-title">El Presente</div>
-						<div class="mc-desc">recableado.blog &middot; 22 posts &middot; 2 idiomas &middot; 0 empleados IT &middot; 0 gin tonics</div>
-					</div>
+			<section class="edit-strip" aria-labelledby="edit-strip-title">
+				<div class="section-heading">
+					<h2 id="edit-strip-title">La historia continúa</h2>
+					<a href="/blog/">Ver todos los artículos</a>
 				</div>
-				<div class="blk-cards-wave"></div>
-			</section>
-
-			<!-- ══ BLOQUE 3: STATS OSCURO ══ -->
-			<section class="blk-stats">
-				<div class="stats-board">
-					<div class="stat-flip">
-						<div class="stat-num" data-target="73">0</div>
-						<div class="stat-lbl">{t('home.years') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num" data-target="42">0</div>
-						<div class="stat-lbl">{t('home.sellingTrips') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num" data-target="95">0</div>
-						<div class="stat-lbl">{t('home.finalGrade') as string}</div>
-					</div>
-					<div class="stat-flip">
-						<div class="stat-num" data-target="0">0</div>
-						<div class="stat-lbl">{t('home.itEmployees') as string}</div>
-					</div>
-				</div>
-				<div class="blk-stats-wave"></div>
-			</section>
-
-			<!-- ══ BLOQUE 4: BOARDING PASS + TIMELINE CLARO ══ -->
-			<section class="blk-itinerary">
-				<div class="itinerary-label">El itinerario</div>
-
-				<div class="boarding-pass">
-					<div class="bp-main">
-						<div class="bp-top-row">
-							<div class="bp-label">Pasajero</div>
-							<div class="bp-flight">SC-1954</div>
-						</div>
-						<div class="bp-name">Giora Gilead<br/>Elenberg</div>
-						<div class="bp-route">
-							<div class="bp-route-block">
-								<div class="bp-route-label">Origen</div>
-								<div class="bp-route-city">Marbella</div>
-								<div class="bp-route-year">1954</div>
-							</div>
-							<div class="bp-arrow">&rarr;</div>
-							<div class="bp-route-block">
-								<div class="bp-route-label">Destino</div>
-								<div class="bp-route-city">El Último</div>
-								<div class="bp-route-year">Continente</div>
-							</div>
-						</div>
-						<div class="bp-class">Clase: Premium sin artificios</div>
-						<div class="bp-barcode" aria-hidden="true">
-							<span></span><span></span><span></span><span></span><span></span><span></span>
-							<span></span><span></span><span></span><span></span><span></span><span></span>
-							<span></span><span></span><span></span><span></span><span></span><span></span>
-							<span></span><span></span><span></span><span></span><span></span><span></span>
-							<span></span><span></span><span></span><span></span><span></span><span></span>
-						</div>
-					</div>
-					<div class="bp-perf"></div>
-					<div class="bp-strip">
-						<span class="bp-strip-text">Recableado &middot; Boarding Pass</span>
-						<span class="bp-strip-seat">73A</span>
-						<span class="bp-strip-seat-label">Seat</span>
-					</div>
-				</div>
-
-
-			</section>
-
-			<!-- ══ BLOQUE 5: POSTS ══ -->
-			<section class="posts-section">
-				<h2 class="section-title">{t('home.latestStories') as string}</h2>
-				{featuredPost && (
-					<a href={`/blog/${featuredPost.id}/`} class="featured-card" data-slug={featuredPost.id}>
-						<div class="featured-thumb">
-							<img src={`/og/${featuredPost.id}.png`} alt="" loading="lazy" />
-						</div>
-						<div class="featured-content">
-							{featuredPost.data.tags && (
-								<div class="post-tags">
-									{featuredPost.data.tags.map((tag: string) => {
-										const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
-										return <span class="tag" style={`background:${style.background};color:${style.color};`}>{tag}</span>;
-									})}
-								</div>
-							)}
-							<h3 class="featured-title">{featuredPost.data.title}</h3>
-							<p class="featured-excerpt">{featuredPost.data.description}</p>
-							<div class="post-meta">
-								<FormattedDate date={featuredPost.data.pubDate} lang={lang} />
-								<span class="post-reading">&middot; {getReadingTime(featuredPost.body)} {t('blog.minRead') as string}</span>
-							</div>
-							<span class="post-link">{t('blog.read') as string} &rarr;</span>
-						</div>
-					</a>
-				)}
-				<div class="posts-grid">
-					{gridPosts.map((post) => (
-						<a href={`/blog/${post.id}/`} class="grid-card" data-slug={post.id}>
-							<div class="grid-thumb">
-								<img src={`/og/${post.id}.png`} alt="" loading="lazy" />
-							</div>
-							<div class="grid-content">
-								{post.data.tags && (
-									<div class="post-tags">
-										{post.data.tags.slice(0, 2).map((tag: string) => {
-											const style = tagStyles[tag] || { background: '#a0aec0', color: 'white' };
-											return <span class="tag" style={`background:${style.background};color:${style.color};`}>{tag}</span>;
-										})}
+				<div class="edit-grid">
+					{recentPosts.map((post) => (
+						<a href={`/blog/${post.id}/`} class="story-card" data-slug={post.id}>
+							<div class="card-visual" aria-hidden="true">
+								{post.data.heroImage ? (
+									<Image src={post.data.heroImage} alt="" loading="lazy" />
+								) : (
+									<div class="story-fallback">
+										<span>Recableado</span>
+										<strong>{post.data.title}</strong>
 									</div>
 								)}
-								<h3 class="grid-title">{post.data.title}</h3>
-								<div class="post-meta">
+							</div>
+							<div class="card-copy">
+								<p class="story-meta">
 									<FormattedDate date={post.data.pubDate} lang={lang} />
-									<span class="post-reading">&middot; {getReadingTime(post.body)} {t('blog.minRead') as string}</span>
-								</div>
+									<span aria-hidden="true"> · </span>
+									{getReadingTime(post.body)} {t('blog.minRead') as string}
+								</p>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
 							</div>
 						</a>
 					))}
 				</div>
-				<div class="view-all">
-					<a href="/blog/" class="btn-secondary">{t('home.viewAll') as string}</a>
+			</section>
+
+			<section class="manifest" aria-labelledby="manifest-title">
+				<div class="manifest-frame" aria-hidden="true">
+					<span>1954</span>
+					<span>2006</span>
+					<span>2025</span>
+					<span>Ahora</span>
+				</div>
+				<div class="manifest-copy">
+					<h2 id="manifest-title">No aprendí inteligencia artificial para parecer más joven.</h2>
+					<p class="manifest-answer">La aprendí porque todavía me quedaban cosas por hacer.</p>
+					<p>Tengo 73 años, llevo más de cuarenta vendiendo viajes y sigo entrando en cada herramienta nueva como quien llega a un país sin mapa. Aquí cuento lo que funciona, lo que rompo y lo que aprendo por el camino.</p>
+					<a href="/about/" class="text-link">La historia completa</a>
 				</div>
 			</section>
 
-			<!-- ══ BLOQUE 6: QUOTE + CTA ══ -->
-			<section class="quote-section">
-				<blockquote>
-					<p>{t('home.quote') as string}</p>
-					<footer class="quote-attribution">&mdash; {(t('home.quoteAttribution') as string).replace('— ', '')}</footer>
-				</blockquote>
+			<section class="darkroom-chat" aria-label="Habla con el asistente de Giora">
+				<ChatHero lang={lang} />
 			</section>
-			<section class="cta-section">
-				<p class="cta-text">{t('home.cta') as string}</p>
-				<a href="/blog/la-noche-del-gin-tonic-y-el-prompt/" class="btn-primary">{t('home.ctaButton') as string}</a>
+
+			<section class="closing-frame">
+				<p>Los descubrimientos, los desastres y las noches en que una máquina volvió a darme una idea.</p>
+				<a href="/blog/" class="closing-link">
+					Entrar en el archivo
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+				</a>
 			</section>
 		</main>
 		<Footer lang={lang} />
 		<Lightbox />
 		<PostStatsLoader />
-
-		<script>
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.querySelectorAll('.stat-num').forEach((el) => {
-							const target = parseInt(el.getAttribute('data-target') || '0');
-							if (target === 0) { el.textContent = '0'; return; }
-							let current = 0;
-							const step = Math.max(1, Math.floor(target / 40));
-							const interval = setInterval(() => {
-								current += step;
-								if (current >= target) { current = target; clearInterval(interval); }
-								el.textContent = String(current);
-							}, 30);
-						});
-						observer.unobserve(entry.target);
-					}
-				});
-			}, { threshold: 0.3 });
-			const sb = document.querySelector('.stats-board');
-			if (sb) observer.observe(sb);
-		</script>
 	</body>
 </html>
+
 <style is:global>
-	/* ══════ BLOCK SYSTEM: alternating dark/light ══════ */
+	.darkroom-page {
+		--bg: #08090a;
+		--text: #ece9e2;
+		--heading: #fffdf7;
+		--azul-medio: #b6b2aa;
+		--link: #ff5e24;
+		--link-hover: #ff8a5e;
+		--naranja: #ff5e24;
+		--gray: #aaa69e;
+		--gray-light: #1b1d1f;
+		--border: #2e3032;
+		background:
+			radial-gradient(circle at 14% -8%, rgba(255, 255, 255, 0.06), transparent 34rem),
+			#08090a;
+		color: var(--text);
+	}
 
-	/* ── BLOQUE 1: HERO OSCURO ── */
-	.blk-hero {
-		background: #0a0a1a;
-		padding: 80px 28px 100px;
-		text-align: center;
-		position: relative;
-		animation: fadeIn 0.8s ease;
-		margin-left: calc(-50vw + 50%);
-		margin-right: calc(-50vw + 50%);
-		margin-top: -2em;
-	}
-	.hero-title {
-		font-family: 'Playfair Display', serif;
-		font-size: 4.5rem;
-		font-weight: 700;
-		color: #f0ede6;
-		line-height: 1.0;
-		margin: 0 0 20px;
-	}
-	.hero-sub {
-		font-family: 'Inter', sans-serif;
-		font-size: 1.15rem;
-		color: #ff6b35;
-		font-style: italic;
+	.darkroom-page main.darkroom-home {
+		width: 100%;
+		max-width: none;
 		margin: 0;
-		letter-spacing: 0.5px;
-	}
-	.blk-hero-wave {
-		position: absolute;
-		bottom: 0; left: 0; right: 0;
-		height: 40px;
-		background: #f5f0e8;
-		clip-path: ellipse(55% 100% at 50% 100%);
+		padding: 0;
+		overflow: clip;
 	}
 
-	/* ── BLOQUE 2: CARDS CLARO ── */
-	.blk-cards {
-		background: #f5f0e8;
-		padding: 48px 28px 80px;
+	.darkroom-page header {
 		position: relative;
-		margin-left: calc(-50vw + 50%);
-		margin-right: calc(-50vw + 50%);
+		z-index: 10;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
-	.cards-grid {
+
+	.darkroom-page header hr {
+		display: none;
+	}
+
+	.lead-story {
+		position: relative;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 16px;
-		max-width: 680px;
+		min-height: min(840px, calc(100svh - 148px));
+		isolation: isolate;
+		color: #fffdf7;
+		text-decoration: none;
+		background: #0b0c0d;
+		overflow: hidden;
+	}
+
+	.lead-visual,
+	.lead-shade,
+	.lead-copy {
+		grid-area: 1 / 1;
+	}
+
+	.lead-visual,
+	.lead-visual picture,
+	.lead-visual img {
+		width: 100%;
+		height: 100%;
+		min-height: inherit;
+	}
+
+	.lead-visual img {
+		display: block;
+		object-fit: cover;
+		object-position: center 48%;
+		border-radius: 0;
+		filter: grayscale(0.92) saturate(0.3) contrast(1.08) brightness(0.72);
+	}
+
+	.lead-shade {
+		z-index: 1;
+		background:
+			linear-gradient(90deg, rgba(3, 4, 5, 0.82) 0%, rgba(3, 4, 5, 0.3) 58%, rgba(3, 4, 5, 0.08) 100%),
+			linear-gradient(0deg, rgba(3, 4, 5, 0.92) 0%, transparent 62%);
+	}
+
+	.lead-copy {
+		position: relative;
+		z-index: 2;
+		align-self: end;
+		box-sizing: border-box;
+		width: min(100%, 1440px);
+		margin: 0 auto;
+		padding: clamp(2rem, 5vw, 5rem) clamp(1.25rem, 6vw, 6rem);
+	}
+
+	.story-meta {
+		margin: 0 0 1rem;
+		color: #ffb093;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.86rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.lead-copy h1 {
+		max-width: 13ch;
+		margin: 0;
+		color: #fffdf7;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(3.2rem, 7vw, 6rem);
+		line-height: 0.96;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	.lead-description {
+		max-width: 63ch;
+		margin: 1.5rem 0 1.75rem;
+		color: #e7e2d9;
+		font-size: clamp(1.06rem, 1rem + 0.3vw, 1.25rem);
+		line-height: 1.55;
+	}
+
+	.story-action,
+	.closing-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		min-height: 44px;
+		color: #ff7a48;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-weight: 700;
+	}
+
+	.story-action svg,
+	.closing-link svg {
+		width: 1.35rem;
+		height: 1.35rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.7;
+	}
+
+	.edit-strip {
+		padding: clamp(4.5rem, 9vw, 9rem) clamp(1.25rem, 6vw, 6rem);
+		background: #0b0c0d;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 2rem;
+		width: min(100%, 1320px);
+		margin: 0 auto 2rem;
+	}
+
+	.section-heading h2 {
+		margin: 0;
+		color: #fffdf7;
+		font-size: clamp(2rem, 4vw, 4.4rem);
+		letter-spacing: -0.025em;
+	}
+
+	.section-heading a,
+	.text-link {
+		color: #ff7a48;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-weight: 700;
+		text-underline-offset: 0.25em;
+	}
+
+	.edit-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1.25rem, 2.5vw, 2.75rem);
+		width: min(100%, 1320px);
 		margin: 0 auto;
 	}
-	.milestone-card {
-		background: #fffdf7;
-		border: 1px solid rgba(212,168,67,0.2);
-		border-radius: 14px;
-		padding: 24px;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
-	.milestone-card:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-	}
-	.mc-icon { font-size: 2.4rem; margin-bottom: 10px; }
-	.mc-date {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.65rem; font-weight: 700; color: #ff6b35;
-		letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
-	}
-	.mc-title {
-		font-family: 'Playfair Display', serif;
-		font-size: 1.15rem; font-weight: 700; color: #1a1a2e;
-		margin-bottom: 8px; line-height: 1.2;
-	}
-	.mc-desc {
-		font-family: 'Inter', sans-serif;
-		font-size: 0.85rem; color: #555; line-height: 1.55;
-	}
-	.blk-cards-wave {
-		position: absolute;
-		bottom: 0; left: 0; right: 0;
-		height: 40px;
-		background: #11111f;
-		clip-path: ellipse(55% 100% at 50% 100%);
+
+	.story-card {
+		display: block;
+		min-width: 0;
+		color: var(--text);
+		text-decoration: none;
+		border-top: 1px solid #393b3d;
+		padding-top: 1rem;
 	}
 
-	/* ── BLOQUE 3: STATS OSCURO ── */
-	.blk-stats {
-		background: #11111f;
-		padding: 48px 28px 80px;
+	.card-visual {
 		position: relative;
-		margin-left: calc(-50vw + 50%);
-		margin-right: calc(-50vw + 50%);
+		aspect-ratio: 4 / 3;
+		overflow: hidden;
+		background: #111315;
 	}
-	.stats-board {
-		display: grid; grid-template-columns: repeat(4, 1fr);
-		gap: 12px; max-width: 680px; margin: 0 auto;
+
+	.card-visual picture,
+	.card-visual img {
+		display: block;
+		width: 100%;
+		height: 100%;
 	}
-	.stat-flip {
-		background: #181828; border: 1px solid rgba(255,255,255,0.08);
-		border-radius: 10px; padding: 22px 8px; text-align: center;
-		position: relative; overflow: hidden;
+
+	.card-visual img {
+		object-fit: cover;
+		border-radius: 0;
+		filter: grayscale(1) contrast(1.05) brightness(0.72);
+		transition: filter 260ms ease-out;
 	}
-	.stat-flip::before {
-		content: ''; position: absolute; top: 50%; left: 0; right: 0;
-		height: 1px; background: rgba(255,255,255,0.06);
+
+	.story-card:hover .card-visual img,
+	.story-card:focus-visible .card-visual img {
+		filter: grayscale(0.72) contrast(1.06) brightness(0.82);
 	}
-	.stat-num {
-		font-family: 'Playfair Display', serif;
-		font-size: 2.8rem; font-weight: 700; color: #ff6b35;
-		line-height: 1; position: relative; z-index: 1;
+
+	.card-copy {
+		padding: 1.25rem 0 0;
 	}
-	.stat-lbl {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.6rem; color: #d4a843; letter-spacing: 1.5px;
-		text-transform: uppercase; margin-top: 10px; position: relative; z-index: 1;
+
+	.card-copy h3 {
+		margin: 0 0 0.75rem;
+		color: #fffdf7;
+		font-size: clamp(1.35rem, 2vw, 1.9rem);
+		line-height: 1.08;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
 	}
-	.blk-stats-wave {
+
+	.card-copy > p:last-child {
+		display: -webkit-box;
+		margin: 0;
+		overflow: hidden;
+		color: #c5c1b9;
+		font-size: 1rem;
+		line-height: 1.6;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+	}
+
+	.story-fallback {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		padding: clamp(1.25rem, 3vw, 2.5rem);
+		background:
+			radial-gradient(circle at 82% 16%, rgba(255, 94, 36, 0.16), transparent 13rem),
+			#111315;
+		color: #fffdf7;
+	}
+
+	.story-fallback::after {
+		content: '';
 		position: absolute;
-		bottom: 0; left: 0; right: 0;
-		height: 40px;
-		background: #f5f0e8;
-		clip-path: ellipse(55% 100% at 50% 100%);
+		inset: auto 0 0;
+		height: 1px;
+		background: #ff5e24;
 	}
 
-	/* ── BLOQUE 4: ITINERARY CLARO ── */
-	.blk-itinerary {
-		background: #f5f0e8;
-		padding: 48px 28px 56px;
-		margin-left: calc(-50vw + 50%);
-		margin-right: calc(-50vw + 50%);
-	}
-	.blk-itinerary > * {
-		max-width: 680px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.itinerary-label {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.7rem; font-weight: 700; color: #ff6b35;
-		letter-spacing: 3px; text-transform: uppercase;
-		margin-bottom: 20px;
-	}
-
-	/* Boarding pass — paper style */
-	.boarding-pass {
-		display: flex; background: #fffdf7;
-		border: 1px solid #d4a843;
-		border-radius: 16px; overflow: hidden; margin-bottom: 32px;
-		box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-	}
-	.bp-main { flex: 1; padding: 28px 32px 20px; }
-	.bp-top-row {
-		display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;
-	}
-	.bp-label {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.6rem; color: #8b8a99; letter-spacing: 3px; text-transform: uppercase;
-	}
-	.bp-flight {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.7rem; font-weight: 700; color: #ff6b35; letter-spacing: 2px;
-	}
-	.bp-name {
-		font-family: 'Playfair Display', serif;
-		font-size: 2.2rem; font-weight: 700; color: #1a1a2e;
-		line-height: 1.05; margin-bottom: 24px;
-	}
-	.bp-route { display: flex; gap: 36px; margin-bottom: 20px; align-items: flex-end; }
-	.bp-route-label {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.55rem; color: #8b8a99; letter-spacing: 3px;
-		text-transform: uppercase; margin-bottom: 2px;
-	}
-	.bp-route-city {
-		font-family: 'Space Mono', monospace;
-		font-size: 1rem; font-weight: 700; color: #1a1a2e; letter-spacing: 1px;
-	}
-	.bp-route-year {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.8rem; color: #d4a843;
-	}
-	.bp-arrow { font-size: 1.3rem; color: #ff6b35; padding-bottom: 4px; }
-	.bp-class {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.65rem; color: #d4a843; letter-spacing: 2px;
-		text-transform: uppercase; padding-top: 14px;
-		border-top: 1px solid rgba(0,0,0,0.08);
-	}
-	.bp-barcode {
-		display: flex; gap: 2px; margin-top: 16px; height: 24px;
-		align-items: flex-end; opacity: 0.15;
-	}
-	.bp-barcode span { display: block; width: 2px; background: #1a1a2e; border-radius: 1px; }
-	.bp-barcode span:nth-child(odd) { height: 100%; }
-	.bp-barcode span:nth-child(even) { height: 60%; }
-	.bp-barcode span:nth-child(3n) { height: 80%; width: 3px; }
-	.bp-barcode span:nth-child(5n) { height: 45%; }
-	.bp-barcode span:nth-child(7n) { height: 90%; width: 1px; }
-	.bp-perf {
-		width: 1px; border-left: 2px dashed rgba(0,0,0,0.12); position: relative;
-	}
-	.bp-perf::before, .bp-perf::after {
-		content: ''; position: absolute; left: -11px;
-		width: 20px; height: 20px; background: #f5f0e8; border-radius: 50%;
-	}
-	.bp-perf::before { top: -10px; }
-	.bp-perf::after { bottom: -10px; }
-	.bp-strip {
-		width: 72px; background: #f0ebe0; display: flex;
-		flex-direction: column; align-items: center; justify-content: center; padding: 20px 0;
-	}
-	.bp-strip-text {
-		font-family: 'Space Mono', monospace;
-		writing-mode: vertical-rl; text-orientation: mixed;
-		letter-spacing: 3px; font-size: 0.6rem; font-weight: 700;
-		color: #ff6b35; text-transform: uppercase;
-	}
-	.bp-strip-seat {
-		font-family: 'Space Mono', monospace;
-		font-size: 1.4rem; font-weight: 700; color: #1a1a2e;
-		margin-top: 12px; writing-mode: vertical-rl;
-	}
-	.bp-strip-seat-label {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.5rem; color: #8b8a99; letter-spacing: 2px;
-		writing-mode: vertical-rl; margin-top: 6px;
-	}
-
-	/* Timeline — light version */
-	.timeline { position: relative; padding-left: 28px; }
-	.timeline::before {
-		content: ''; position: absolute; top: 6px; left: 5px; bottom: 6px;
-		width: 2px; background: #ff6b35; opacity: 0.35;
-	}
-	.tl-item {
-		position: relative; padding: 10px 12px 10px 0;
-		border-radius: 8px; transition: background 0.2s ease;
-	}
-	.tl-item:hover { background: #fff3e8; }
-	.tl-dot {
-		position: absolute; left: -28px; top: 16px;
-		width: 12px; height: 12px; border-radius: 50%;
-		background: #f5f0e8; border: 2px solid #ff6b35;
-	}
-	.tl-last .tl-dot {
-		background: #ff6b35; animation: pulse 2s ease infinite;
-	}
-	.tl-content { padding-left: 4px; }
-	.tl-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-	.tl-year {
-		font-family: 'Space Mono', monospace;
-		font-size: 0.8rem; font-weight: 700; color: #ff6b35; letter-spacing: 1px;
-	}
-	.tl-place {
-		font-family: 'Inter', sans-serif;
-		font-size: 0.85rem; font-weight: 600; color: #1a1a2e;
-		text-transform: uppercase; letter-spacing: 0.5px;
-	}
-	.tl-desc {
-		font-family: 'Inter', sans-serif;
-		font-size: 0.82rem; color: #555; margin-top: 3px; line-height: 1.5;
-	}
-
-	@keyframes fadeIn {
-		from { opacity: 0; transform: translateY(16px); }
-		to { opacity: 1; transform: translateY(0); }
-	}
-	@keyframes pulse {
-		0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); }
-		50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); }
-	}
-
-	/* ══════ POSTS (unchanged) ══════ */
-	.posts-section { margin-bottom: 3em; }
-	.featured-card {
-		display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em;
-		text-decoration: none; padding: 1.2em; border-radius: 12px;
-		border: 1px solid var(--border); background: white;
-		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-		margin-bottom: 1em;
-	}
-	.featured-card:hover {
-		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
-		border-color: var(--naranja);
-	}
-	.featured-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1200 / 630; }
-	.featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
-	.featured-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-	.featured-title {
+	.story-fallback span {
+		color: #ff8a5e;
 		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--heading); font-size: 1.35em; margin: 0 0 0.5em; line-height: 1.3;
-	}
-	.featured-excerpt {
-		color: var(--text); font-size: 0.9em; margin: 0 0 0.6em; line-height: 1.6;
-		display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-	}
-	.posts-grid {
-		display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; margin-bottom: 1.5em;
-	}
-	.grid-card {
-		text-decoration: none; border-radius: 12px; border: 1px solid var(--border);
-		background: white; overflow: hidden;
-		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-	}
-	.grid-card:hover {
-		transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,54,93,0.1);
-		border-color: var(--naranja);
-	}
-	.grid-thumb { aspect-ratio: 1200 / 630; overflow: hidden; }
-	.grid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-	.grid-card:hover .grid-thumb img { transform: scale(1.05); }
-	.grid-content { padding: 0.8em 1em 1em; }
-	.grid-title {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--heading); font-size: 0.95em; margin: 0 0 0.4em; line-height: 1.3;
-		display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-	}
-	.post-tags { display: flex; gap: 0.4em; margin-bottom: 0.5em; flex-wrap: wrap; }
-	.post-tags .tag {
-		border-radius: 999px; padding: 2px 10px; font-size: 0.72em;
-		font-family: 'Bricolage Grotesque', sans-serif; white-space: nowrap;
-	}
-	.post-meta { font-size: 0.8em; color: var(--gray); margin-bottom: 0.5em; }
-	.post-reading { margin-left: 0.2em; }
-	.post-link {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		color: var(--link); font-weight: 600; font-size: 0.9em;
-	}
-	.featured-card:hover .post-link { color: var(--naranja); }
-	.view-all { text-align: center; }
-	.quote-section { margin-bottom: 3em; }
-	.quote-attribution {
-		display: block; font-size: 0.85em; color: var(--gray); margin-top: 0.8em; font-style: normal;
-	}
-	.cta-section {
-		text-align: center; padding: 2.5em 1em; background: white;
-		border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2em;
-	}
-	.cta-text {
-		font-family: 'Bricolage Grotesque', sans-serif;
-		font-size: 1.4em; color: var(--heading); font-weight: 600;
-		margin-bottom: 1em; line-height: 1.3;
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
 	}
 
-	/* ══════ RESPONSIVE ══════ */
-	@media (max-width: 720px) {
-		.blk-hero { padding: 48px 20px 72px; }
-		.hero-title { font-size: 3rem; }
-		.hero-sub { font-size: 0.95rem; }
-		.blk-cards { padding: 36px 20px 64px; }
-		.cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-		.milestone-card { padding: 16px; }
-		.mc-icon { font-size: 1.8rem; }
-		.mc-title { font-size: 1rem; }
-		.mc-desc { font-size: 0.78rem; }
-		.blk-stats { padding: 36px 20px 64px; }
-		.stats-board { grid-template-columns: repeat(2, 1fr); }
-		.stat-num { font-size: 2rem; }
-		.blk-itinerary { padding: 36px 20px 40px; }
-		.boarding-pass { flex-direction: column; }
-		.bp-main { padding: 20px; }
-		.bp-name { font-size: 1.6rem; }
-		.bp-route { flex-wrap: wrap; gap: 12px; }
-		.bp-perf {
-			width: 100%; height: 1px;
-			border-left: none; border-top: 2px dashed rgba(0,0,0,0.12);
+	.story-fallback strong {
+		max-width: 22ch;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(1.2rem, 1.55vw, 1.55rem);
+		line-height: 1.05;
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	.story-fallback--lead {
+		justify-content: flex-start;
+		min-height: inherit;
+		padding: clamp(2rem, 6vw, 6rem);
+	}
+
+	.manifest {
+		display: grid;
+		grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+		width: min(calc(100% - 2.5rem), 1320px);
+		margin: 0 auto;
+		padding: clamp(5rem, 11vw, 11rem) 0;
+		border-top: 1px solid #282a2c;
+	}
+
+	.manifest-frame {
+		display: grid;
+		align-content: space-between;
+		min-height: 30rem;
+		padding-right: clamp(2rem, 6vw, 7rem);
+		color: #686a6b;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(1rem, 1.5vw, 1.45rem);
+		font-weight: 600;
+	}
+
+	.manifest-frame span:last-child {
+		color: #ff7a48;
+	}
+
+	.manifest-copy {
+		align-self: center;
+		max-width: 780px;
+	}
+
+	.manifest-copy h2 {
+		margin: 0;
+		color: #fffdf7;
+		font-size: clamp(2.6rem, 5.7vw, 5.8rem);
+		line-height: 0.98;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	.manifest-answer {
+		margin: 2rem 0 2.5rem;
+		color: #ff7a48;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.manifest-copy > p:not(.manifest-answer) {
+		max-width: 62ch;
+		color: #d3cfc7;
+		font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem);
+		line-height: 1.75;
+	}
+
+	.darkroom-chat {
+		width: min(calc(100% - 2.5rem), 1040px);
+		margin: 0 auto;
+		padding: clamp(4rem, 8vw, 8rem) 0;
+		border-top: 1px solid #282a2c;
+	}
+
+	.darkroom-chat .chat-hero-section {
+		margin: 0 !important;
+		padding: 0 !important;
+		background: transparent !important;
+	}
+
+	.darkroom-chat .chat-hero-section::before,
+	.darkroom-chat .chat-hero-section::after {
+		display: none !important;
+	}
+
+	.darkroom-chat .chat-hero-box {
+		background: #101214 !important;
+		border: 1px solid #303235 !important;
+		border-radius: 12px !important;
+		box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3) !important;
+	}
+
+	.darkroom-chat .chat-hero-tagline,
+	.darkroom-chat .hcm-bot .hcm-bubble {
+		color: #e5e1d9 !important;
+	}
+
+	.darkroom-chat .hcm-bot .hcm-bubble,
+	.darkroom-chat .chat-hero-input {
+		background: #17191b !important;
+	}
+
+	.darkroom-chat .chat-hero-input textarea {
+		background: #0d0f10 !important;
+		color: #fffdf7 !important;
+	}
+
+	.darkroom-chat .hc-pill {
+		color: #fffdf7 !important;
+	}
+
+	.closing-frame {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 3rem;
+		width: min(calc(100% - 2.5rem), 1320px);
+		margin: 0 auto;
+		padding: clamp(5rem, 10vw, 10rem) 0;
+		border-top: 1px solid #282a2c;
+	}
+
+	.closing-frame p {
+		max-width: 24ch;
+		margin: 0;
+		color: #fffdf7;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(2rem, 4.5vw, 4.8rem);
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: -0.035em;
+	}
+
+	.closing-link {
+		flex: 0 0 auto;
+		font-size: 1.1rem;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.3em;
+	}
+
+	.darkroom-page :focus-visible {
+		outline: 2px solid #ff7a48;
+		outline-offset: 5px;
+	}
+
+	.darkroom-page .rec-footer {
+		border-top-color: #282a2c;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.lead-copy {
+			animation: lead-reveal 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
 		}
-		.bp-perf::before { top: -10px; left: -10px; }
-		.bp-perf::after { top: -10px; left: auto; right: -10px; bottom: auto; }
-		.bp-strip {
-			width: 100%; height: 44px; flex-direction: row; gap: 12px;
+
+		.edit-grid {
+			animation: strip-reveal 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+			animation-range: entry 0% cover 28%;
+			animation-timeline: view();
 		}
-		.bp-strip-text, .bp-strip-seat, .bp-strip-seat-label { writing-mode: horizontal-tb; }
-		.bp-strip-seat { margin-top: 0; }
-		.bp-strip-seat-label { margin-top: 0; }
-		.featured-card { grid-template-columns: 1fr; }
-		.posts-grid { grid-template-columns: 1fr; }
-		.cta-text { font-size: 1.2em; }
+
+		@keyframes lead-reveal {
+			from { clip-path: inset(0 0 22% 0); filter: blur(5px); }
+			to { clip-path: inset(0); filter: blur(0); }
+		}
+
+		@keyframes strip-reveal {
+			from { opacity: 0.55; transform: translateY(18px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+	}
+
+	@media (max-width: 820px) {
+		.lead-story {
+			min-height: 76svh;
+		}
+
+		.lead-visual img {
+			object-position: 61% center;
+		}
+
+		.lead-shade {
+			background: linear-gradient(0deg, rgba(3, 4, 5, 0.96) 0%, rgba(3, 4, 5, 0.38) 78%, rgba(3, 4, 5, 0.12) 100%);
+		}
+
+		.lead-copy h1 {
+			max-width: 12ch;
+			font-size: clamp(2.65rem, 12vw, 4.6rem);
+		}
+
+		.lead-description {
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+		}
+
+		.section-heading {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+
+		.edit-grid {
+			grid-template-columns: repeat(3, minmax(78vw, 1fr));
+			width: calc(100% + 1.25rem);
+			overflow-x: auto;
+			overflow-y: hidden;
+			padding: 0 1.25rem 1rem 0;
+			scroll-snap-type: x mandatory;
+			scrollbar-color: #ff5e24 #191b1d;
+		}
+
+		.story-card {
+			scroll-snap-align: start;
+		}
+
+		.manifest {
+			grid-template-columns: 1fr;
+		}
+
+		.manifest-frame {
+			grid-template-columns: repeat(4, auto);
+			min-height: 0;
+			padding: 0 0 3rem;
+			font-size: 0.82rem;
+		}
+
+		.closing-frame {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.edit-strip {
+			padding-inline: 1.25rem;
+		}
+
+		.story-meta {
+			font-size: 0.72rem;
+		}
+
+		.lead-copy {
+			padding-bottom: 2rem;
+		}
+
+		.lead-copy h1 {
+			font-size: clamp(2.35rem, 11.7vw, 3.5rem);
+		}
+
+		.manifest-copy h2,
+		.closing-frame p {
+			font-size: clamp(2.2rem, 11vw, 3.4rem);
+		}
+
+		.darkroom-chat,
+		.manifest,
+		.closing-frame {
+			width: calc(100% - 2rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.darkroom-page *,
+		.darkroom-page *::before,
+		.darkroom-page *::after {
+			scroll-behavior: auto !important;
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
 	}
 </style>
