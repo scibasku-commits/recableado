@@ -232,7 +232,7 @@ const year = new Date().getFullYear();
 		<div class="rec-footer-legal">
 			<div class="rec-footer-legal-links">
 				<a href="https://viajesscibasku.com/aviso-legal" target="_blank" rel="noopener noreferrer">Aviso legal</a>
-				<a href="https://viajesscibasku.com/privacidad" target="_blank" rel="noopener noreferrer">Privacidad</a>
+				<a href={lang === 'en' ? '/en/privacy' : '/privacidad'}>{lang === 'en' ? 'Privacy' : 'Privacidad'}</a>
 				<a href="https://viajesscibasku.com/cookies" target="_blank" rel="noopener noreferrer">Cookies</a>
 			</div>
 			<div class="rec-footer-copy">&copy; {year} Viajes Scibasku · CICMA 2283</div>

@@ -118,7 +118,7 @@ const copy = lang === 'en'
 		</div>
 
 		<p class="subscribe__privacy">
-			{copy.privacyPrefix} <a href="https://viajesscibasku.com/privacidad">{copy.privacyLink}</a>.
+			{copy.privacyPrefix} <a href={lang === 'en' ? '/en/privacy' : '/privacidad'}>{copy.privacyLink}</a>.
 		</p>
 		<p
 			class="subscribe__status"

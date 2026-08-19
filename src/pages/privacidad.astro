@@ -1,0 +1,108 @@
+---
+export const prerender = true;
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`Privacidad - ${SITE_TITLE}`}
+			description="Cómo trata Recableado los datos de quienes se apuntan para recibir avisos de nuevas publicaciones."
+			lang="es"
+			alternateUrl="/en/privacy"
+		/>
+	</head>
+	<body>
+		<Header lang="es" alternateUrl="/en/privacy" />
+		<main class="privacy-page">
+			<p class="eyebrow">Privacidad de Recableado</p>
+			<h1>Tus datos no son la tarifa de entrada</h1>
+			<p class="lead">
+				Esta política se refiere exclusivamente a los datos que facilitas para recibir avisos de Recableado.
+				Apuntarte al blog no autoriza a Viajes Scibasku a enviarte ofertas de viajes.
+			</p>
+
+			<section>
+				<h2>Quién es responsable</h2>
+				<p>El responsable del tratamiento es <strong>Giora Gilead Elenberg</strong>, autor de Recableado.</p>
+				<p>Puedes contactar o ejercer tus derechos escribiendo a <a href="mailto:reca@viajesscibasku.com">reca@viajesscibasku.com</a>.</p>
+			</section>
+
+			<section>
+				<h2>Qué datos recojo</h2>
+				<p>El formulario pide tu nombre y correo electrónico. De forma opcional, puedes indicar si te interesa cómo uso la IA, lo que construyo o ambas cosas.</p>
+				<p>El servidor también procesa temporalmente datos técnicos, como la dirección IP, para limitar abusos y proteger el formulario. La IP no se añade a la lista de suscriptores.</p>
+			</section>
+
+			<section>
+				<h2>Para qué los uso y con qué base</h2>
+				<p>Uso tu nombre, correo e interés únicamente para gestionar la suscripción y avisarte cuando publique un artículo o construya algo que merezca la pena enseñar. La base jurídica es tu consentimiento.</p>
+				<p>Antes de activar la suscripción recibirás un correo de confirmación. Si no confirmas, no recibirás los avisos de Recableado.</p>
+				<p>El control técnico de abusos se basa en el interés legítimo de mantener el formulario seguro y disponible. No se toman decisiones automatizadas ni se elaboran perfiles con efectos jurídicos.</p>
+			</section>
+
+			<section>
+				<h2>Cuánto tiempo los conservo</h2>
+				<p>Los datos de una suscripción confirmada se conservan mientras quieras recibir los avisos. Cuando te des de baja o retires el consentimiento, dejarán de usarse para enviártelos y solo se conservará, debidamente bloqueada, la información mínima necesaria para atender posibles responsabilidades legales.</p>
+				<p>Las solicitudes que no lleguen a confirmarse se conservarán solo durante el tiempo necesario para completar el doble opt-in y resolver incidencias técnicas.</p>
+			</section>
+
+			<section>
+				<h2>Con quién se comparten</h2>
+				<p>Los datos se guardan en listas específicas de Recableado. No se mezclan con la segmentación comercial de Viajes Scibasku, no se usan para enviar ofertas de viajes y no se venden ni ceden a terceros para sus propios fines.</p>
+				<p>Para operar el formulario, gestionar las altas y enviar los correos pueden acceder proveedores técnicos de alojamiento, gestión de suscripciones y correo electrónico. Lo hacen por cuenta del responsable y únicamente para prestar esos servicios.</p>
+			</section>
+
+			<section>
+				<h2>Cómo darte de baja y ejercer tus derechos</h2>
+				<p>Puedes darte de baja desde el enlace incluido en cada correo o escribir a <a href="mailto:reca@viajesscibasku.com">reca@viajesscibasku.com</a>. Retirar el consentimiento no afecta a los tratamientos realizados antes de retirarlo.</p>
+				<p>También puedes solicitar acceso, rectificación, supresión, limitación, oposición o portabilidad de tus datos. Si consideras que no se han respetado tus derechos, puedes reclamar ante la <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos</a>.</p>
+			</section>
+
+			<p class="updated">Última actualización: 19 de agosto de 2026.</p>
+		</main>
+		<Footer lang="es" />
+	</body>
+</html>
+
+<style>
+	.privacy-page {
+		box-sizing: border-box;
+		width: min(760px, 100%);
+		max-width: 760px;
+		margin: 0 auto;
+		padding: clamp(3rem, 7vw, 6rem) 1.5rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--naranja);
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+	h1 { margin-top: 0; }
+	.lead {
+		font-size: clamp(1.15rem, 2vw, 1.35rem);
+		line-height: 1.65;
+	}
+	section {
+		margin-top: 2.5rem;
+	}
+	section h2 {
+		margin-bottom: 0.75rem;
+		font-size: clamp(1.35rem, 2vw, 1.65rem);
+	}
+	section p { margin: 0.65rem 0; }
+	a { text-underline-offset: 0.16em; }
+	.updated {
+		margin-top: 3.5rem;
+		color: var(--text-light);
+		font-size: 0.9rem;
+	}
+</style>

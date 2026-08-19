@@ -12,8 +12,15 @@ const LIST_NAMES = {
 type Interest = keyof typeof LIST_NAMES;
 type Payload = { name?: unknown; email?: unknown; interest?: unknown; website?: unknown };
 type PublicList = { uuid: string; name: string };
+type RateLimitEntry = { count: number; resetAt: number };
 
 let publicListsCache: { expires: number; lists: PublicList[] } | null = null;
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+// Immediate application guard. This map is not shared across Vercel instances;
+// production still needs an authorised WAF rule or another atomic shared store.
+const rateLimits = new Map<string, RateLimitEntry>();
+let nextRateLimitCleanup = 0;
 
 function escapeHTML(value: string) {
 	return value.replace(/[&<>'"]/g, (character) => ({
@@ -25,21 +32,52 @@ function escapeHTML(value: string) {
 	})[character] || character);
 }
 
-function fallbackPage(message: string, status: number) {
+function fallbackPage(message: string, status: number, extraHeaders: HeadersInit = {}) {
 	const title = status < 400 ? 'Revisa tu correo' : 'No he podido guardarlo';
 	return new Response(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>body{margin:0;padding:2rem;background:#fffaf0;color:#2d3748;font:18px/1.7 Georgia,serif}.box{max-width:42rem;margin:10vh auto;padding:2rem;border-radius:14px;background:#11111f;color:#fffaf0}.box h1{margin-top:0;font-family:system-ui,sans-serif}.box a{color:#ff9a76}</style></head><body><main class="box"><h1>${title}</h1><p>${escapeHTML(message)}</p><p><a href="/">Volver a Recableado</a></p></main></body></html>`, {
 		status,
-		headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
+		headers: {
+			'Content-Type': 'text/html; charset=utf-8',
+			'Cache-Control': 'no-store',
+			...extraHeaders,
+		},
 	});
 }
 
-function respond(request: Request, message: string, status = 200) {
+function respond(request: Request, message: string, status = 200, extraHeaders: HeadersInit = {}) {
 	const acceptsJSON = request.headers.get('accept')?.includes('application/json');
-	if (!acceptsJSON) return fallbackPage(message, status);
+	if (!acceptsJSON) return fallbackPage(message, status, extraHeaders);
 	return new Response(JSON.stringify({ ok: status < 400, message }), {
 		status,
-		headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+		headers: {
+			'Content-Type': 'application/json; charset=utf-8',
+			'Cache-Control': 'no-store',
+			...extraHeaders,
+		},
 	});
+}
+
+function checkRateLimit(clientAddress: string, now = Date.now()) {
+	if (now >= nextRateLimitCleanup) {
+		for (const [key, entry] of rateLimits) {
+			if (entry.resetAt <= now) rateLimits.delete(key);
+		}
+		nextRateLimitCleanup = now + RATE_LIMIT_WINDOW_MS;
+	}
+
+	const key = clientAddress.split(',')[0]?.trim() || 'unknown';
+	const existing = rateLimits.get(key);
+	const entry = !existing || existing.resetAt <= now
+		? { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS }
+		: existing;
+
+	if (entry.count >= RATE_LIMIT_MAX) {
+		return { allowed: false, retryAfter: Math.max(1, Math.ceil((entry.resetAt - now) / 1000)) };
+	}
+
+	entry.count += 1;
+	rateLimits.set(key, entry);
+	return { allowed: true, retryAfter: 0 };
 }
 
 async function readPayload(request: Request): Promise<Payload> {
@@ -72,10 +110,17 @@ async function getPublicLists() {
 	return lists;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
 	const origin = request.headers.get('origin');
-	if (origin && origin !== new URL(request.url).origin) {
+	if (!origin || origin !== new URL(request.url).origin) {
 		return respond(request, 'Solicitud no válida.', 403);
+	}
+
+	const rateLimit = checkRateLimit(clientAddress);
+	if (!rateLimit.allowed) {
+		return respond(request, 'Demasiados intentos. Espera un minuto antes de volver a probar.', 429, {
+			'Retry-After': String(rateLimit.retryAfter),
+		});
 	}
 
 	let payload: Payload;
