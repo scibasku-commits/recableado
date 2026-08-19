@@ -1,0 +1,453 @@
+---
+type Lang = 'es' | 'en';
+
+interface Props {
+	lang?: Lang;
+	placement?: 'home' | 'post';
+}
+
+const { lang = 'es', placement = 'post' } = Astro.props;
+const id = `subscribe-${placement}-${lang}`;
+
+const copy = lang === 'en'
+	? {
+			title: 'Want me to tell you when there is something new?',
+			intro: 'I will only write when I publish an article or build something worth showing you. No daily newsletter. No noise.',
+			name: 'Your name',
+			namePlaceholder: 'How should I address you?',
+			email: 'Your email',
+			emailPlaceholder: 'you@example.com',
+			interest: 'What are you most interested in? (optional)',
+			interests: [
+				['day-to-day', 'How I use AI day to day'],
+				['building', 'What I am building'],
+				['both', 'Both'],
+			],
+			doubleOptin: 'I will send you one email so you can confirm it is really you.',
+			submit: 'Tell me when it is ready',
+			loading: 'Saving…',
+			privacyPrefix: 'I will use these details only for Recableado updates. They will never be mixed with Viajes Scibasku commercial lists.',
+			privacyLink: 'Privacy',
+			success: 'Check your inbox. I have sent you a link to confirm it is you.',
+			invalid: 'Check your name and email, then try again.',
+			error: 'I could not save your subscription right now. Please try again in a little while.',
+		}
+	: {
+			title: '¿Te aviso cuando haya algo nuevo?',
+			intro: 'Solo te escribiré cuando publique un artículo o construya algo que merezca la pena enseñar. Nada de boletín diario. Nada de ruido.',
+			name: 'Tu nombre',
+			namePlaceholder: '¿Cómo quieres que te llame?',
+			email: 'Tu email',
+			emailPlaceholder: 'tu@ejemplo.com',
+			interest: '¿Qué te interesa más? (opcional)',
+			interests: [
+				['day-to-day', 'Cómo uso la IA en mi día a día'],
+				['building', 'Lo que estoy construyendo'],
+				['both', 'Los dos'],
+			],
+			doubleOptin: 'Te enviaré un correo para confirmar que eres tú.',
+			submit: 'Quiero que me avises',
+			loading: 'Guardando…',
+			privacyPrefix: 'Usaré estos datos solo para avisarte de novedades de Recableado. Nunca se mezclarán con las listas comerciales de Viajes Scibasku.',
+			privacyLink: 'Privacidad',
+			success: 'Revisa tu correo. Te he enviado un enlace para confirmar que eres tú.',
+			invalid: 'Revisa tu nombre y tu email, y vuelve a intentarlo.',
+			error: 'Ahora mismo no he podido guardar tu suscripción. Inténtalo un poco más tarde.',
+		};
+---
+
+<section class:list={['subscribe', `subscribe--${placement}`]} aria-labelledby={`${id}-title`}>
+	<div class="subscribe__signal" aria-hidden="true"><span></span></div>
+	<div class="subscribe__heading">
+		<h2 id={`${id}-title`}>{copy.title}</h2>
+		<p>{copy.intro}</p>
+	</div>
+
+	<form class="subscribe__form" method="post" action="/subscribe" data-subscribe novalidate>
+		<div class="subscribe__fields">
+			<label>
+				<span>{copy.name}</span>
+				<input
+					type="text"
+					name="name"
+					placeholder={copy.namePlaceholder}
+					autocomplete="name"
+					minlength="2"
+					maxlength="80"
+					required
+				/>
+			</label>
+			<label>
+				<span>{copy.email}</span>
+				<input
+					type="email"
+					name="email"
+					placeholder={copy.emailPlaceholder}
+					autocomplete="email"
+					maxlength="254"
+					inputmode="email"
+					required
+				/>
+			</label>
+		</div>
+
+		<div class="subscribe__trap" aria-hidden="true">
+			<label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+		</div>
+
+		<fieldset class="subscribe__interests">
+			<legend>{copy.interest}</legend>
+			<div class="subscribe__choices">
+				{copy.interests.map(([value, label]) => (
+					<div>
+						<input type="radio" name="interest" id={`${id}-${value}`} value={value} checked={value === 'both'} />
+						<label for={`${id}-${value}`}>{label}</label>
+					</div>
+				))}
+			</div>
+		</fieldset>
+
+		<div class="subscribe__action">
+			<button type="submit" data-idle={copy.submit} data-loading={copy.loading}>
+				<span>{copy.submit}</span>
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M5 12h13M13 6l6 6-6 6" />
+				</svg>
+			</button>
+			<p>{copy.doubleOptin}</p>
+		</div>
+
+		<p class="subscribe__privacy">
+			{copy.privacyPrefix} <a href="https://viajesscibasku.com/privacidad">{copy.privacyLink}</a>.
+		</p>
+		<p
+			class="subscribe__status"
+			role="status"
+			aria-live="polite"
+			data-success={copy.success}
+			data-invalid={copy.invalid}
+			data-error={copy.error}
+		></p>
+	</form>
+</section>
+
+<script>
+	document.querySelectorAll<HTMLFormElement>('[data-subscribe]').forEach((form) => {
+		if (form.dataset.ready === 'true') return;
+		form.dataset.ready = 'true';
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const status = form.querySelector<HTMLElement>('.subscribe__status');
+			const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+			const buttonText = button?.querySelector('span');
+			if (!status || !button || !buttonText) return;
+
+			status.textContent = '';
+			status.dataset.state = '';
+			if (!form.reportValidity()) return;
+
+			button.disabled = true;
+			form.setAttribute('aria-busy', 'true');
+			buttonText.textContent = button.dataset.loading || '';
+
+			try {
+				const fields = new FormData(form);
+				const response = await fetch(form.action, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+					body: JSON.stringify(Object.fromEntries(fields.entries())),
+				});
+				const result = await response.json().catch(() => ({}));
+
+				if (!response.ok) {
+					const key = response.status === 400 ? 'invalid' : 'error';
+					throw Object.assign(new Error(key), { key, result });
+				}
+
+				form.reset();
+				status.dataset.state = 'success';
+				status.textContent = status.dataset.success || '';
+			} catch (error) {
+				const key = error instanceof Error && error.message === 'invalid' ? 'invalid' : 'error';
+				status.dataset.state = 'error';
+				status.textContent = key === 'invalid' ? status.dataset.invalid || '' : status.dataset.error || '';
+			} finally {
+				button.disabled = false;
+				form.removeAttribute('aria-busy');
+				buttonText.textContent = button.dataset.idle || '';
+			}
+		});
+	});
+</script>
+
+<style>
+	.subscribe {
+		--subscribe-canvas: #11111f;
+		--subscribe-panel: #1a1a2e;
+		--subscribe-cream: #fffaf0;
+		--subscribe-muted: #c9c5bd;
+		--subscribe-accent: #ff6b35;
+		position: relative;
+		isolation: isolate;
+		margin: 3rem auto;
+		padding: clamp(1.5rem, 4vw, 2.75rem);
+		max-width: 760px;
+		border-radius: 18px;
+		background:
+			radial-gradient(circle at 92% 8%, rgba(255, 107, 53, 0.12), transparent 31%),
+			var(--subscribe-canvas);
+		color: var(--subscribe-cream);
+		box-shadow: 0 18px 48px rgba(17, 17, 31, 0.18);
+		overflow: hidden;
+	}
+
+	.subscribe__signal {
+		display: flex;
+		align-items: center;
+		gap: 0;
+		width: min(11rem, 38%);
+		margin-bottom: 1.4rem;
+	}
+
+	.subscribe__signal::before,
+	.subscribe__signal::after {
+		content: '';
+		height: 1px;
+		background: rgba(255, 250, 240, 0.34);
+	}
+
+	.subscribe__signal::before { width: 1.5rem; }
+	.subscribe__signal::after { flex: 1; }
+
+	.subscribe__signal span {
+		width: 9px;
+		height: 9px;
+		border: 2px solid var(--subscribe-accent);
+		border-radius: 50%;
+		box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+	}
+
+	.subscribe__heading h2 {
+		max-width: 17ch;
+		margin: 0 0 0.6rem;
+		color: var(--subscribe-cream);
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		line-height: 1.08;
+		text-wrap: balance;
+	}
+
+	.subscribe__heading > p {
+		max-width: 62ch;
+		margin: 0 0 1.8rem;
+		color: var(--subscribe-muted);
+		font-size: 1rem;
+		line-height: 1.65;
+	}
+
+	.subscribe__fields {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.subscribe__fields label > span,
+	.subscribe__interests legend {
+		display: block;
+		margin-bottom: 0.45rem;
+		color: var(--subscribe-cream);
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.86rem;
+		font-weight: 600;
+	}
+
+	.subscribe__fields input {
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 48px;
+		padding: 0.75rem 0.9rem;
+		border: 1px solid rgba(255, 250, 240, 0.34);
+		border-radius: 8px;
+		background: var(--subscribe-panel);
+		color: var(--subscribe-cream);
+		font: inherit;
+		font-size: 1rem;
+		transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+	}
+
+	.subscribe__fields input::placeholder { color: #aaa7a1; }
+	.subscribe__fields input:hover { border-color: rgba(255, 250, 240, 0.62); }
+	.subscribe__fields input:focus-visible {
+		outline: 3px solid rgba(255, 107, 53, 0.38);
+		outline-offset: 2px;
+		border-color: var(--subscribe-accent);
+		background: #202038;
+	}
+
+	.subscribe__trap {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.subscribe__interests {
+		margin: 1.25rem 0 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.subscribe__choices {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+	}
+
+	.subscribe__choices input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.subscribe__choices label {
+		display: inline-flex;
+		align-items: center;
+		min-height: 42px;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid rgba(255, 250, 240, 0.3);
+		border-radius: 999px;
+		color: #e8e4dc;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.82rem;
+		font-weight: 600;
+		line-height: 1.25;
+		cursor: pointer;
+		transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease;
+	}
+
+	.subscribe__choices label:hover {
+		border-color: var(--subscribe-accent);
+		transform: translateY(-1px);
+	}
+
+	.subscribe__choices input:checked + label {
+		border-color: var(--subscribe-accent);
+		background: var(--subscribe-accent);
+		color: #11111f;
+	}
+
+	.subscribe__choices input:focus-visible + label {
+		outline: 3px solid rgba(255, 107, 53, 0.42);
+		outline-offset: 3px;
+	}
+
+	.subscribe__action {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 1.45rem;
+	}
+
+	.subscribe__action button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.65rem;
+		min-height: 48px;
+		padding: 0.75rem 1.1rem;
+		border: 0;
+		border-radius: 8px;
+		background: var(--subscribe-accent);
+		color: #11111f;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 0.95rem;
+		font-weight: 700;
+		cursor: pointer;
+		box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
+		transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+	}
+
+	.subscribe__action button:hover:not(:disabled) {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+	}
+
+	.subscribe__action button:focus-visible {
+		outline: 3px solid var(--subscribe-cream);
+		outline-offset: 3px;
+	}
+
+	.subscribe__action button:disabled {
+		cursor: wait;
+		opacity: 0.68;
+	}
+
+	.subscribe__action svg {
+		width: 20px;
+		height: 20px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.subscribe__action p {
+		max-width: 30ch;
+		margin: 0;
+		color: var(--subscribe-muted);
+		font-size: 0.78rem;
+		line-height: 1.45;
+	}
+
+	.subscribe__privacy,
+	.subscribe__status {
+		max-width: 72ch;
+		font-size: 0.74rem;
+		line-height: 1.5;
+	}
+
+	.subscribe__privacy {
+		margin: 1rem 0 0;
+		color: #aaa7a1;
+	}
+
+	.subscribe__privacy a {
+		color: #f0ede6;
+		text-underline-offset: 3px;
+	}
+
+	.subscribe__status {
+		min-height: 1.5em;
+		margin: 0.75rem 0 0;
+		font-weight: 700;
+	}
+
+	.subscribe__status[data-state='success'] { color: #a7e3bc; }
+	.subscribe__status[data-state='error'] { color: #ffb29a; }
+
+	@media (max-width: 620px) {
+		.subscribe {
+			margin-block: 2.2rem;
+			padding: 1.35rem 1rem 1.45rem;
+			border-radius: 14px;
+		}
+
+		.subscribe__fields { grid-template-columns: 1fr; }
+		.subscribe__choices { display: grid; }
+		.subscribe__choices label { min-height: 44px; }
+		.subscribe__action { align-items: stretch; flex-direction: column; }
+		.subscribe__action button { width: 100%; min-height: 50px; }
+		.subscribe__action p { max-width: none; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.subscribe *,
+		.subscribe *::before,
+		.subscribe *::after {
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+</style>

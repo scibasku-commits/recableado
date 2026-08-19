@@ -9,6 +9,7 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import ChatDrawer from '../components/ChatDrawer.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
 
 type Props = CollectionEntry<'blogEs'>['data'] & { readingTime?: number; lang?: Lang; alternateUrl?: string };
 
@@ -271,6 +272,7 @@ const slug = Astro.url.pathname.replace(new RegExp(`^${blogPrefix}`), '').replac
 						<hr />
 					</div>
 					<slot />
+					<SubscribeForm lang={lang} placement="post" />
 
 					<div class="share-section">
 						<p class="share-intro">{t('post.share') as string}</p>

@@ -7,6 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import Lightbox from '../components/Lightbox.astro';
 import PostStatsLoader from '../components/PostStatsLoader.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import ChatHero from '../components/ChatHero.astro';
 import { useTranslations } from '../i18n/utils';
@@ -215,6 +216,7 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 					<a href="/blog/" class="btn-secondary">{t('home.viewAll') as string}</a>
 				</div>
 			</section>
+			<SubscribeForm lang={lang} placement="home" />
 
 			<!-- ══ BLOQUE 6: QUOTE + CTA ══ -->
 			<section class="quote-section">
