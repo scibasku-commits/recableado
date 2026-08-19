@@ -1,0 +1,125 @@
+---
+title: "The day I found out my AI read like a teenager"
+description: "I spent months writing manuals so my AI assistant would stop skipping instructions. The problem wasn't the assistant: it was where the instructions were written. What I did instead, from someone who's 72 and can't code."
+pubDate: 2026-08-19
+heroImage: "../../../assets/038-ia-leia-como-adolescente.png"
+tags: ["🧠 Process", "🛠️ Workshop", "😂 Anecdote"]
+translationKey: "ia-leia-como-adolescente"
+lang: "en"
+---
+
+**I spent months writing manuals so my artificial intelligence assistant would stop getting things wrong, and the more I warned it, the worse it got.** It wasn't reading badly out of laziness. It was reading badly because of where the thing it had to read was written.
+
+> **In short.** A long document isn't a reminder: it's a library. If something has to be followed every time, don't write it inside the long document — take it out to somewhere it can't be walked past. It took me months to work that out, and I still had the silly part ahead of me.
+
+I'm 72 and I spend my days explaining things to a machine. This week I had to explain that things get read all the way through. You see what I've come to.
+
+---
+
+## Why does my assistant skip what I write for it?
+
+My hunch had been the same for months. I'd write it a manual — I've ended up with about fifty — and it would read the opening, form an impression, and act. Like the brother-in-law who skims the contents page and comes down to the pub to hold forth on the book.
+
+I had the symptom right and the diagnosis wrong.
+
+There's a study with a name that points at the right spot: **[«Lost in the Middle»](https://arxiv.org/abs/2307.03172)**. Here's what it actually measures, and it's worth being precise about: when you give a language model a long document and ask it to find a fact inside, it does well if the fact sits near the start or the end, and it **loses accuracy badly if the fact sits in the middle**. That isn't character. It's the shape of the tool, the way a hammer is no good for screws.
+
+That's what the study says. What comes next isn't the study, it's me — so I'll flag it as what it is: my experience with my fifty manuals.
+
+**Every time I added a warning in capitals at the top, I pushed everything I'd already written further down.** And what I'd written didn't disappear: it moved to the middle. The same middle where the study says accuracy drops. I spent months pressing a button convinced it went up, without once checking whether it went down.
+
+I don't have a measured before and after, and I'm not going to sell you one. What I have is a hunch that held up and two fixes I can actually describe.
+
+---
+
+## What was the trick that finally worked?
+
+I didn't ask it to read more carefully. That's asking someone to remember, and **nobody remembers**.
+
+I did two things, and both are plumbing, not psychology.
+
+**First: I emptied the index.** Everything that has to be carried out came out of the main document and went into separate files. The index no longer holds instructions: it holds the address where they live. So skipping an instruction stops being a question of attention — where you walk past, there's nothing left to skip. You have to go and fetch it.
+
+**Second: I put a four-letter code on the last line of every file.** When the work is done, it has to quote the code back to me. Whoever didn't reach the end doesn't have it. It's the old teacher's trick of burying an absurd sentence on page 40 to find out who read the material and who's going on hearsay.
+
+And here I should put the obvious objection to myself, because otherwise you'll put it to me: **the code proves it reached the end, not that it understood.** It's a ticket barrier, not an exam. It weeds out the ones who never went through at all, which turned out to be most of the time.
+
+---
+
+## Did it work first time?
+
+No. And this is where it turns comic.
+
+The next day another assistant told me, with a frankness that does it credit, that it had applied *the idea* but not *the method*, because **it couldn't find the files**. I went and looked. It was entirely right: the files existed on one computer. Mine.
+
+I had built a mechanism whose whole purpose was to force the instructions to be read, and I'd forgotten to hand out the instructions.
+
+A beautiful fire extinguisher. Locked in a cupboard.
+
+That, incidentally, is the proof that the first version wasn't «physically impossible» to skip, which is how I'd written it in my head. It was impossible on my computer. Off my computer it was simply invisible.
+
+---
+
+## How do I know my fix is actually a fix?
+
+I took one sentence away from all this, and it's the one I want you to take too. I use it for everything now, not just the AI.
+
+> **Does this fix work even if nobody remembers to follow it?**
+> If it depends on memory, goodwill or effort, it isn't a fix.
+
+«Remembering to read the whole manual» isn't a fix. «Being more careful» isn't a fix: it's a New Year's resolution in a suit.
+
+A fix changes where things are, and then the problem can't come back even when we're all having a bad day. Which is what we're mostly having.
+
+---
+
+## What can I do with this today?
+
+One concrete thing, and it takes two minutes. It isn't an analysis: it's a house move.
+
+Take some instructions of yours that the AI keeps skipping — the long document where you've explained how you want things done. Open ChatGPT, paste the document, and ask it this:
+
+```
+I'm giving you a long document of my own instructions. Don't summarise
+it and don't give me advice.
+
+Do only this:
+
+1. Split the sentences into INSTRUCTIONS TO BE CARRIED OUT
+   (something to do) and CONTEXT OR EXPLANATION (something to know).
+   Two lists.
+
+2. From the first list, tell me which ones sit in the middle third of
+   the document. Those are the likeliest to get lost.
+
+3. Rewrite the document like this: the actionable instructions go out,
+   into a short separate list. What stays inside is context and
+   nothing else.
+
+4. Tell me which instruction costs me most if it gets skipped. I want
+   that one first on the list.
+```
+
+Then use that short list as a document of its own, and keep the long one for reference. The first time I did it I found that nearly half of what I'd been calling «instructions» were actually me explaining myself. That's a good sign. An uncomfortable one, but good.
+
+---
+
+## Frequently asked questions
+
+**Does this happen with any AI?**
+The lost-in-the-middle effect has been measured across several language models, not just one, to varying degrees. I haven't tested everything on the market, so I won't tell you it will behave exactly the same on yours. What you can do with any of them is the exercise above, and see what comes out.
+
+**So there's no point writing long instructions?**
+There is, just not the way you think. A long document works as a library, not as a reminder. If something has to be followed every time, take it out of the long document and put it somewhere it can't be walked past.
+
+**Do I need to know how to code?**
+No. I don't. Everything here is done by typing plain sentences into a text box.
+
+**How long before I notice a difference?**
+Separating instructions from explanations shows up the same day — it's a list, it's right there in front of you. Getting the AI to stop skipping them is another matter and depends on what you work with; I'm a few weeks in, and I'm telling you what I have, not a closed result.
+
+---
+
+## About the author
+
+**Giora Gilead**, 72. I've spent more than forty years arranging travel and about two wrestling with artificial intelligence during office hours. In Recableado I write down what I learn by getting it wrong, without translating it into engineer, because I don't speak that either. If something here saves you the afternoon I lost, we're even.

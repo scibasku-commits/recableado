@@ -1,0 +1,125 @@
+---
+title: "El día que descubrí que mi IA leía como un adolescente"
+description: "Llevaba meses escribiendo manuales para que mi asistente de IA dejara de saltarse las instrucciones. El problema no era él: era dónde estaban escritas. Lo que hice en su lugar, contado por alguien de 72 años que no sabe programar."
+pubDate: 2026-08-19
+heroImage: "../../../assets/038-ia-leia-como-adolescente.png"
+tags: ["🧠 Proceso", "🛠️ Taller", "😂 Anécdota"]
+translationKey: "ia-leia-como-adolescente"
+lang: "es"
+---
+
+**Llevaba meses escribiendo manuales para que mi asistente de inteligencia artificial dejara de equivocarse, y cuanto más avisaba, peor iba.** No leía mal por vaguería. Leía mal por dónde estaba escrito lo que tenía que leer.
+
+> **En corto.** Un texto largo no es un recordatorio: es una biblioteca. Si algo tiene que cumplirse siempre, no lo escribas dentro del documento largo — sácalo a donde no se pueda pasar de largo. Yo tardé meses en entenderlo, y todavía me quedaba la parte tonta.
+
+Tengo 72 años y me paso el día explicándole cosas a una máquina. Esta semana me tocó explicarle que las cosas se leen enteras. Ya ven ustedes a qué he llegado.
+
+---
+
+## ¿Por qué mi asistente se salta lo que le escribo?
+
+Mi sospecha llevaba meses siendo la misma. Yo le escribía un manual —he acabado con unos cincuenta— y él leía el principio, se hacía una idea, y actuaba. Como el cuñado que mira el índice del libro y baja a la tertulia a opinar del libro.
+
+Me equivoqué en el diagnóstico, no en el síntoma.
+
+Hay un estudio con nombre que apunta al sitio: **[«Lost in the Middle»](https://arxiv.org/abs/2307.03172)**, perdidos en el medio. Lo que está medido es esto, y conviene decirlo con precisión: cuando a un modelo de lenguaje le das un documento largo y le pides que encuentre un dato dentro, acierta bien si el dato está al principio o al final, y **pierde precisión de forma severa si está en la zona central**. No es carácter. Es la forma de la herramienta, como que un martillo no sirve para atornillar.
+
+Eso es lo que dice el estudio. Lo que viene ahora ya no lo dice el estudio, lo digo yo, y por eso lo cuento como lo que es: mi experiencia con mis cincuenta manuales.
+
+**Cada vez que añadía un aviso en mayúsculas al principio, empujaba hacia abajo todo lo que ya había escrito.** Y lo que había escrito no desaparecía: se iba al centro. Al mismo centro donde el estudio dice que se pierde precisión. Llevaba meses apretando un botón convencido de que subía, sin comprobar nunca si bajaba.
+
+No tengo un antes y un después medido, y no se lo voy a vender como si lo tuviera. Tengo una intuición que se sostuvo y dos arreglos que sí puedo contar.
+
+---
+
+## ¿Cuál fue el truco que por fin funcionó?
+
+No le pedí que leyera con más atención. Eso es pedirle a alguien que se acuerde, y **nadie se acuerda**.
+
+Hice dos cosas, y las dos son de fontanería, no de psicología.
+
+**Primera: vacié el índice.** Todo lo que hay que ejecutar salió del documento principal y se fue a ficheros aparte. El índice ya no contiene instrucciones: contiene la dirección donde están. Así, saltarse la instrucción deja de ser una cuestión de atención — en el sitio por donde se pasa ya no hay nada que saltarse. Hay que ir a buscarla.
+
+**Segunda: puse un código de cuatro letras en la última línea de cada fichero.** Al terminar el trabajo tiene que citármelo. Quien no llegó al final, no lo tiene. Es el truco del profesor que mete una frase absurda en la página 40 del temario para saber quién se lo leyó y quién viene de oídas.
+
+Y aquí conviene que yo mismo me ponga una pega, porque si no me la pondrán ustedes: **el código demuestra que llegó al final, no que lo entendiera.** Es un torno de metro, no un examen. Descarta al que ni pasó por allí, que resultó ser la mayoría de las veces.
+
+---
+
+## ¿Y funcionó a la primera?
+
+No. Y aquí es donde el asunto se pone cómico.
+
+Al día siguiente, otro asistente me dijo, con una honestidad que le honra, que había aplicado *la idea* pero no *el método*, porque **no encontraba los ficheros**. Fui a mirar. Tenía toda la razón: los ficheros existían solo en un ordenador. En el mío.
+
+Había construido un mecanismo cuya función entera era obligar a leer las instrucciones, y se me había olvidado repartir las instrucciones.
+
+Un extintor precioso. Guardado bajo llave.
+
+Eso, por cierto, es la prueba de que la primera versión no era «materialmente imposible» de saltarse, que es como yo lo había escrito en mi cabeza. Era imposible en mi ordenador. Fuera de mi ordenador era, sencillamente, invisible.
+
+---
+
+## ¿Cómo sé si mi solución es de verdad una solución?
+
+Me llevé de todo esto una sola frase, y es la que quiero que se lleven ustedes. La uso ya para todo, no solo para la IA.
+
+> **¿Esta solución funciona aunque nadie se acuerde de cumplirla?**
+> Si depende de la memoria, la buena voluntad o el esfuerzo, no es una solución.
+
+«Acordarse de leer el manual entero» no es una solución. «Poner más cuidado» no es una solución: es un propósito de Año Nuevo con corbata.
+
+Una solución cambia dónde están las cosas, y entonces el problema no puede volver aunque todos tengamos un mal día. Que es lo que tenemos, casi siempre.
+
+---
+
+## ¿Qué puedo hacer yo hoy con esto?
+
+Una cosa concreta, y le cuesta dos minutos. No es un análisis: es una mudanza.
+
+Coja unas instrucciones suyas que la IA se salte — el documento largo donde le ha explicado cómo quiere las cosas. Abra ChatGPT, pegue el documento, y pídale esto:
+
+```
+Te paso un documento largo de instrucciones mías. No me lo resumas
+ni me des consejos.
+
+Haz solo esto:
+
+1. Sepárame las frases que son INSTRUCCIONES QUE HAY QUE EJECUTAR
+   (algo que se hace) de las que son CONTEXTO O EXPLICACIÓN
+   (algo que se sabe). Dos listas.
+
+2. De la primera lista, dime cuáles están en el tercio central del
+   documento. Esas son las que más papeletas tienen de perderse.
+
+3. Reescríbeme el documento así: las instrucciones ejecutables, fuera,
+   en una lista corta y aparte. Lo que quede dentro, que sea contexto
+   y nada más.
+
+4. Dime qué instrucción, si se salta, me sale más cara. Esa la quiero
+   la primera de la lista.
+```
+
+Luego use esa lista corta como documento aparte, y deje el largo para consultar. La primera vez que lo hice descubrí que casi la mitad de lo que yo llamaba «instrucciones» eran en realidad explicaciones mías justificándome. Es buena señal. Incómoda, pero buena.
+
+---
+
+## Preguntas frecuentes
+
+**¿Esto pasa en cualquier IA?**
+El efecto de perderse en el medio está medido en varios modelos de lenguaje y no en uno solo, con más o menos gravedad según cuál. No he probado todos los que hay en el mercado, así que no le voy a decir que le pasará exactamente igual con el suyo. Lo que sí puede hacer con cualquiera es la prueba de arriba y ver qué sale.
+
+**¿Entonces no sirve de nada escribir instrucciones largas?**
+Sirven, pero no como usted cree. Un documento largo funciona como biblioteca, no como recordatorio. Si algo tiene que cumplirse siempre, sáquelo del documento largo y póngalo donde sea imposible pasar de largo.
+
+**¿Hace falta saber programar?**
+No. Yo no sé. Todo lo que cuento aquí se hace escribiendo en castellano dentro de una caja de texto.
+
+**¿Cuánto tarda en notarse?**
+Separar instrucciones de explicaciones se ve el mismo día — es una lista, la tiene delante. Que la IA deje de saltárselas es otra cosa y depende de con qué trabaje usted; yo llevo pocas semanas y le estoy contando lo que llevo, no un resultado cerrado.
+
+---
+
+## Sobre el autor
+
+**Giora Gilead**, 72 años. Llevo más de cuarenta organizando viajes y unos dos peleándome con la inteligencia artificial en horario de oficina. Escribo en Recableado lo que voy aprendiendo a base de equivocarme, sin traducirlo a lenguaje de ingeniero, porque yo tampoco lo hablo. Si algo aquí le sirve para no perder la tarde que yo perdí, ya estamos en paz.
