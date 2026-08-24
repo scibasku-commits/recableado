@@ -1,0 +1,32 @@
+# Recableado inherits Gitleaks' maintained default rules and keeps the two
+# additional high-risk detectors enforced by Giora's global pre-push policy.
+[extend]
+useDefault = true
+
+[[rules]]
+id = "airtable-pat-real"
+description = "Personal Access Token de Airtable"
+regex = '''\bpat[A-Za-z0-9]{14}\.[a-f0-9]{64}\b'''
+keywords = ["pat"]
+
+[[rules]]
+id = "supabase-secret-real"
+description = "Clave secreta de Supabase (sb_secret_ o service_role)"
+regex = '''(\bsb_secret_[A-Za-z0-9_\-]{20,}\b|"role"\s*:\s*"service_role")'''
+keywords = ["sb_secret_", "service_role"]
+
+[[allowlists]]
+# This exact catalogue sentence describes a traffic-strategy document. The
+# detector mistakes prose following the word LinkedIn for a client identifier.
+description = "Prose mention of LinkedIn in the Recableado strategy catalogue"
+targetRules = ["linkedin-client-id"]
+regexTarget = "line"
+regexes = ['''\| `guia-trafico-recableado\.md` \| Estrategia completa de trafico: SEO, AEO, newsletter, LinkedIn, colaboraciones \(19 KB\) \|''']
+
+[[allowlists]]
+# These two exact frontmatter values are an ES/EN article-pair identifier. The
+# detector interprets the field name plus slug as a generic API credential.
+description = "Bilingual article translation key, not an API credential"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+regexes = ['''translationKey: "10-prompts-claude"''']
