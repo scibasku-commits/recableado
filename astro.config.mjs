@@ -21,6 +21,10 @@ export default defineConfig({
 		},
 	},
 	redirects: {
+		'/sitemap.xml': {
+			status: 301,
+			destination: '/sitemap-index.xml',
+		},
 		'/en/blog/019-dos-caras-misma-moneda/': '/en/blog/019-two-sides-same-coin-ai-agents-safety/',
 		'/en/blog/018-limpieza-linkedin-ia/': '/en/blog/018-ai-cleaned-my-linkedin-identity-30-minutes/',
 		'/en/blog/017-skill-creator-agencia-viajes/': '/en/blog/017-15-ai-skills-travel-agency-claude/',
