@@ -55,7 +55,7 @@ Spoiler: la rueda sigue pinchada.
 
 Fondo: #0a0e27. Texto: blanco. Nombre del cerebro en su color.
 
-1. **GIORA** (dorado #d4af37) — "Decisión. 42 años verificados. No puede estar en 5 sitios a la vez."
+1. **GIORA** (dorado #d4af37) — "Decisión. Más de 40 años verificados. No puede estar en 5 sitios a la vez."
 2. **CLAUDE** (verde #00cc66) — "Análisis brutal. Le pides la hora, te explica la historia de Suiza."
 3. **NOTEBOOKLM** (magenta #cc00cc) — "Narra el caos como si fuera la Ilíada. Precioso. Inútil."
 4. **CONDUCTOR** (cian #00ccdd) — "Precisión suiza ejecutando la instrucción equivocada."

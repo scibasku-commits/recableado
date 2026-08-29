@@ -58,7 +58,7 @@
 - Comparación: lo que sugirió la IA vs lo que corregí yo (expertise humano)
 
 ### CTA del formulario
-> "He sido agente de viajes 42 años. Ahora uso la IA para planificar mis escapadas. Copia mi plantilla exacta para viajar como un marqués pagando lo justo."
+> "He sido agente de viajes más de 40 años. Ahora uso la IA para planificar mis escapadas. Copia mi plantilla exacta para viajar como un marqués pagando lo justo."
 
 ### Keywords que sirve
 - planificar viaje a europa sin caminar mucho con ia

@@ -45,7 +45,7 @@
 >
 > Hola [nombre],
 >
-> Soy Giora Gilead Elenberg, fundador de Viajes Scibasku (1982) y autor de recableado.blog, donde documento mi adopción de la IA a los 72 años.
+> Soy Giora Gilead Elenberg, fundador de Viajes Scibasku (2006) y autor de recableado.blog, donde documento mi adopción de la IA a los 72 años.
 >
 > He leído tu artículo sobre [tema específico] y me gustaría proponerte un artículo invitado sobre [tema concreto] desde mi experiencia como empresario senior. No es teoría: incluyo datos de mis pruebas reales con Claude y ChatGPT.
 >

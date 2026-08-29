@@ -49,6 +49,7 @@ export const ui = {
 		// Chat — hero (homepage)
 		'chat.hero.badge': 'Pregúntale a Giora',
 		'chat.hero.tagline': 'De gin tonics a prompts. 5 IAs, 0 programadores, 1 agencia de viajes.\nPregúntame cómo.',
+		'chat.hero.aiNotice': 'Asistente de IA. Responde con el criterio de Giora, pero no es Giora. Para hablar con una persona: +34 619 40 10 41.',
 		'chat.hero.greeting': 'Buenas. 72 años, 5 IAs y un negocio que se gestiona casi solo. No programo — pido. Y funciona. Dispara.',
 		'chat.hero.placeholder': 'Escríbeme algo...',
 		'chat.hero.listening': 'Escuchando...',
@@ -133,6 +134,7 @@ export const ui = {
 		// Chat — hero (homepage)
 		'chat.hero.badge': 'Ask Giora',
 		'chat.hero.tagline': 'From gin tonics to prompts. 5 AIs, 0 developers, 1 travel agency.\nAsk me how.',
+		'chat.hero.aiNotice': 'AI assistant. It answers with Giora\'s judgement, but it is not Giora. To talk to a person: +34 619 40 10 41.',
 		'chat.hero.greeting': 'Hi. 72 years old, 5 AIs and a business that runs itself. I don\'t code — I ask. And it works. Fire away.',
 		'chat.hero.placeholder': 'Type something...',
 		'chat.hero.listening': 'Listening...',

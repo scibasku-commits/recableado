@@ -44,7 +44,7 @@
       "https://www.linkedin.com/in/giora-gilead/",
       "https://recableado.blog"
     ],
-    "description": "Viajero de 72 años y empresario desde 1982, documentando la adopción de la Inteligencia Artificial desde la experiencia vivida."
+    "description": "Viajero de 72 años y empresario desde los años 80, documentando la adopción de la Inteligencia Artificial desde la experiencia vivida."
   },
   "publisher": {
     "@type": "Organization",
@@ -142,7 +142,7 @@ faq:
     "Protocolos MCP",
     "Silver Economy"
   ],
-  "description": "Empresario de viajes premium desde 1982 reconvertido en explorador digital. Ayudo a la generación 'Silver' a perder el miedo a la tecnología mediante la experimentación práctica y el humor."
+  "description": "Empresario de viajes premium desde los años 80 reconvertido en explorador digital. Ayudo a la generación 'Silver' a perder el miedo a la tecnología mediante la experimentación práctica y el humor."
 }
 </script>
 {{ end }}

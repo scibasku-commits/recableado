@@ -12,7 +12,7 @@
 |-----|--------|---------|-------------------|-----------------|
 | **1** | **La noche del Gin Tonic y el Prompt: Cómo un "Boomer" decidió colonizar la IA** | Legado y Memoria | cómo perder el miedo a la inteligencia artificial a los 60 | Historia de origen. El momento "eureka" tras 40 años en turismo, mezclando nostalgia con epifanía digital. |
 | **2** | **Mi Mayordomo Digital no pide vacaciones: Automatizando lo que odio hacer** | Mayordomo Digital | usar inteligencia artificial para trámites burocráticos y correos | Cómo configuraste Claude/ChatGPT para responder emails tediosos. El contraste entre tener empleados y tener bots. |
-| **3** | **Zermatt vs. La Máquina: Puse a prueba a la IA contra 42 años de experiencia viajera** | Viajar en la Edad de Oro | planificar viaje a medida de lujo con inteligencia artificial | Comparativa real: presupuesto humano vs Claude. Dónde ganó la máquina y dónde falló estrepitosamente. |
+| **3** | **Zermatt vs. La Máquina: Puse a prueba a la IA contra más de 40 años de experiencia viajera** | Viajar en la Edad de Oro | planificar viaje a medida de lujo con inteligencia artificial | Comparativa real: presupuesto humano vs Claude. Dónde ganó la máquina y dónde falló estrepitosamente. |
 | **4** | **El Pasaporte Digital: Guía de supervivencia para no ser estafado por un robot** | Mayordomo Digital | guía de seguridad y privacidad en ia para no expertos | Seguridad desde la "astucia de la calle" aplicada a datos y privacidad. |
 
 ---

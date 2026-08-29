@@ -29,6 +29,7 @@ const msgNoCode = t('chat.msg.noCoding') as string;
 const msgAgents = t('chat.msg.agents') as string;
 const msgGin = t('chat.msg.ginTonic') as string;
 const listening = t('chat.hero.listening') as string;
+const aiNotice = t('chat.hero.aiNotice') as string;
 const speechLang = lang === 'en' ? 'en-US' : 'es-ES';
 ---
 
@@ -52,6 +53,9 @@ const speechLang = lang === 'en' ? 'en-US' : 'es-ES';
           <div class="hcm-bubble">{greeting}</div>
         </div>
       </div>
+
+      <!-- AI Act art. 50 - transparencia: el visitante debe saber que habla con una IA -->
+      <p class="chat-hero-ai-notice">{aiNotice}</p>
 
       <!-- Pills -->
       <div id="hero-chat-pills" class="chat-hero-pills">
@@ -150,6 +154,13 @@ const speechLang = lang === 'en' ? 'en-US' : 'es-ES';
     50% { opacity: 0.4; transform: scale(0.8); }
   }
 
+  .chat-hero-ai-notice {
+    margin: 0.6rem 0 0;
+    padding: 0 0.25rem;
+    font-size: 0.7rem;
+    line-height: 1.45;
+    opacity: 0.6;
+  }
   .chat-hero-tagline {
     font-family: 'Lora', Georgia, serif;
     font-size: 1.15rem;

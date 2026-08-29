@@ -7,7 +7,7 @@
 
 ## 1. Resumen Ejecutivo
 
-recableado.blog opera en un océano azul: el 44% de los españoles tiene conocimiento nulo o limitado de la IA, y el uso entre mayores de 55 años cae al 19%. Hay millones de usuarios potenciales buscando una puerta de entrada accesible, pero el contenido existente es demasiado técnico o condescendiente. La ventaja competitiva de Giora (72 años, empresario desde 1982, viajero) es irrepetible: la IA no puede tener experiencias vitales. Google y los motores de respuesta (ChatGPT, Perplexity) priorizan en 2026 el E-E-A-T con énfasis en Experiencia real. La estrategia ganadora es: 1 post semanal de calidad basado en experiencia personal, distribución en LinkedIn (canal #1 para +50), newsletter como activo propio, y estructura AEO para ser citado por IAs. Objetivo realista: 2.000-3.000 visitas/mes a los 6 meses, 10.000-15.000 a los 12 meses.
+recableado.blog opera en un océano azul: el 44% de los españoles tiene conocimiento nulo o limitado de la IA, y el uso entre mayores de 55 años cae al 19%. Hay millones de usuarios potenciales buscando una puerta de entrada accesible, pero el contenido existente es demasiado técnico o condescendiente. La ventaja competitiva de Giora (72 años, empresario desde los años 80, viajero) es irrepetible: la IA no puede tener experiencias vitales. Google y los motores de respuesta (ChatGPT, Perplexity) priorizan en 2026 el E-E-A-T con énfasis en Experiencia real. La estrategia ganadora es: 1 post semanal de calidad basado en experiencia personal, distribución en LinkedIn (canal #1 para +50), newsletter como activo propio, y estructura AEO para ser citado por IAs. Objetivo realista: 2.000-3.000 visitas/mes a los 6 meses, 10.000-15.000 a los 12 meses.
 
 ---
 
