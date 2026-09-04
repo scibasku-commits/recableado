@@ -8,13 +8,19 @@
 ## Alcance actual
 
 - Mantener las portadas existentes en español e inglés.
-- Publicar el taller AI Costa en `/ai-costa/` y `/en/ai-costa/`, con tres bloques, fuentes,
-  precios fechados, aviso de Sites, FAQ, notas ocultables y ocho ejemplos copiables entre ambos idiomas.
+- Publicar el curso autónomo AI Costa en `/ai-costa/` y `/en/ai-costa/`, con tres recorridos y
+  ocho prácticas copiables por idioma: inicio con IA, voz, encargos, Método SELLO,
+  documentos/oficina, creación, Codex para trabajo real y repetición con skills, hooks, MCP y
+  automatizaciones explicados sin jerga.
+- Hacer del Método SELLO el control central del curso: salida definida, ejecución acotada,
+  lectura de pruebas, luz verde humana para acciones reales y observación final en el destino.
+- Explicar de forma inequívoca la diferencia entre borrador, revisado y terminado con evidencia.
 - Servir una portada social 1200×630, con fuentes incrustadas, para WhatsApp y Facebook.
 - Medir las dos rutas con el Umami ya usado por Recableado, sin añadir otra analítica a estas páginas.
-- Acreditar a Jon Hernández y enlazar recableado.blog, ricordo.blog y hablame.blog como proyectos
-  construidos con Claude y Codex.
-- No incluir ni distribuir los PDF, transcripciones o párrafos literales del curso de origen.
+- No incluir ni enlazar prompts, vídeos, PDF, cursos o materiales de terceros. Los únicos enlaces
+  externos de profundización permitidos son páginas comprobadas de `learn.chatgpt.com`,
+  `developers.openai.com` o `platform.openai.com`.
+- No publicar precios, planes, fechas de lanzamiento, secretos ni configuración privada.
 
 ## Rutas críticas
 
@@ -26,9 +32,9 @@
 ## Jornadas críticas
 
 - `J1-ai-costa-bilingue` — abrir cada ruta, comprobar el idioma y recorrer sus tres bloques; los
-  enlaces ES/EN llevan a la otra ruta.
-- `J2-copiar-notas-y-faq` — copiar los cuatro ejemplos visibles de cada idioma y compararlos byte a
-  byte con su prompt; apagar y encender notas; desplegar una FAQ.
+  enlaces ES/EN llevan a la otra ruta y los contenidos equivalentes existen en ambos idiomas.
+- `J2-copiar-progreso-pistas-y-faq` — copiar las ocho prácticas visibles de cada idioma y
+  compararlas byte a byte con su texto; apagar y encender pistas, marcar un bloque y desplegar una FAQ.
 - `J3-movil-sin-desbordes` — en 390×844 y 360×800, ningún bloque desborda y todos los controles
   visibles miden al menos 44×44 píxeles.
 - `J4-portada-social` — las dos rutas publican título, descripción e imagen absoluta; el PNG se abre
@@ -39,6 +45,9 @@
 ## Criterios de aceptación
 
 - Alcance completo, sin `[PENDIENTE]`, `TODO` ni contenido provisional en las páginas públicas.
+- Los ocho módulos, SELLO y los tres estados de trabajo son localizables en ES y EN.
+- Cero referencias o enlaces a material de terceros; cualquier URL externa pertenece a la lista
+  oficial de dominios de OpenAI declarada arriba.
 - `node scripts/verify-ai-costa.mjs` y `npm run build` verdes para el mismo árbol.
 - QA local con Ego Lite en escritorio y emulación móvil real, más apertura visual de las páginas y del PNG.
 - Revisión independiente aprobada para el candidato exacto.

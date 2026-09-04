@@ -25,12 +25,12 @@ const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http:/
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
   <path d="M80 88H1120" stroke="#d4af37" stroke-width="3"/>
-  <text x="80" y="67" font-family="Bricolage" font-weight="700" font-size="23" letter-spacing="5" fill="#d4af37">AI COSTA · GPT-6 ASTRA</text>
-  <text x="80" y="226" font-family="Bricolage" font-weight="700" font-size="78" fill="#ffffff">FROM ASKING</text>
-  <text x="80" y="316" font-family="Bricolage" font-weight="700" font-size="78" fill="#1fb4d1">TO BUILDING</text>
-  <text x="84" y="384" font-family="Bricolage" font-weight="400" font-size="30" fill="#b8c5d6">De preguntar a construir</text>
+  <text x="80" y="67" font-family="Bricolage" font-weight="700" font-size="23" letter-spacing="5" fill="#d4af37">AI COSTA · CURSO A TU RITMO</text>
+  <text x="80" y="226" font-family="Bricolage" font-weight="700" font-size="78" fill="#ffffff">USEFUL AI.</text>
+  <text x="80" y="316" font-family="Bricolage" font-weight="700" font-size="78" fill="#1fb4d1">CHECKED WORK.</text>
+  <text x="84" y="384" font-family="Bricolage" font-weight="400" font-size="30" fill="#b8c5d6">IA útil. Trabajo comprobado.</text>
   <rect x="80" y="441" width="548" height="70" rx="8" fill="#ffffff" fill-opacity=".08" stroke="#d4af37"/>
-  <text x="110" y="485" font-family="Bricolage" font-weight="700" font-size="24" fill="#ffffff">A practical ChatGPT workshop · EN + ES</text>
+  <text x="110" y="485" font-family="Bricolage" font-weight="700" font-size="24" fill="#ffffff">A practical, self-paced course · EN + ES</text>
   <circle cx="1018" cy="462" r="96" fill="none" stroke="#1fb4d1" stroke-width="2" opacity=".45"/>
   <circle cx="1018" cy="462" r="62" fill="none" stroke="#d4af37" stroke-width="2" opacity=".7"/>
   <path d="M977 462h82M1018 421v82" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
