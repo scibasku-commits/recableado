@@ -1,0 +1,35 @@
+{
+  "schema": "scibasku.terminar-web/v1",
+  "contract": "docs/TERMINADA.md",
+  "authorizationAuthority": "giora",
+  "productionUrl": "https://recableado.blog",
+  "deliveryMode": "manual-cli",
+  "protectedBranches": [
+    "main"
+  ],
+  "commands": {
+    "test": [
+      "node",
+      "scripts/verify-ai-costa.mjs"
+    ],
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ]
+  },
+  "criticalRoutes": [
+    "/",
+    "/en/",
+    "/ai-costa/",
+    "/en/ai-costa/",
+    "/ai-costa-social.png"
+  ],
+  "criticalJourneys": [
+    "J1-ai-costa-bilingue",
+    "J2-copiar-notas-y-faq",
+    "J3-movil-sin-desbordes",
+    "J4-portada-social",
+    "J5-umami-sin-analytics-adicional"
+  ]
+}
