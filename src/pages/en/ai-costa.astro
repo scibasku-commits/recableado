@@ -9,8 +9,8 @@ export const prerender = true;
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0a1628">
 <meta name="robots" content="index,follow">
-<title>AI Costa · From asking to building</title>
-<meta name="description" content="A practical bilingual ChatGPT workshop: learn to delegate with sources, boundaries and final proof, build with Sites and save reusable assignments.">
+<title>AI Costa · ChatGPT course and workshop</title>
+<meta name="description" content="All three El Nuevo ChatGPT sessions with replays, official PDFs and certificate, plus a practical bilingual workshop for moving from asking to building.">
 <link rel="canonical" href="https://recableado.blog/en/ai-costa/">
 <link rel="alternate" hreflang="es" href="https://recableado.blog/ai-costa/">
 <link rel="alternate" hreflang="en" href="https://recableado.blog/en/ai-costa/">
@@ -18,8 +18,8 @@ export const prerender = true;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://recableado.blog/en/ai-costa/">
-<meta property="og:title" content="AI Costa · From asking to building">
-<meta property="og:description" content="A practical workshop for moving from asking to delegating, building and repeating with ChatGPT.">
+<meta property="og:title" content="AI Costa · ChatGPT course and workshop">
+<meta property="og:description" content="Three sessions with replays, PDFs and certificate, plus a practical workshop for moving from asking to building.">
 <meta property="og:image" content="https://recableado.blog/ai-costa-social.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,8 +27,8 @@ export const prerender = true;
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Costa · From asking to building">
-<meta name="twitter:description" content="A practical workshop for moving from asking to delegating, building and repeating with ChatGPT.">
+<meta name="twitter:title" content="AI Costa · ChatGPT course and workshop">
+<meta name="twitter:description" content="Three sessions with replays, PDFs and certificate, plus a practical workshop for moving from asking to building.">
 <meta name="twitter:image" content="https://recableado.blog/ai-costa-social.png">
 
 <style is:inline>
@@ -238,6 +238,21 @@ td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink)}
 .opening .source-note a{color:var(--hero-text);text-decoration-color:var(--flag)}
 a{color:var(--accent-text);text-underline-offset:3px}
 a:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.course-library{padding:34px 0 42px;border-bottom:2px solid var(--ink)}
+.course-library .lede{margin-bottom:22px}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.course-card{display:flex;flex-direction:column;min-width:0;padding:20px;border:1px solid var(--rule-strong);border-top:4px solid var(--accent);background:var(--surface)}
+.course-day{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:8px}
+.course-card h3{font-family:var(--display);font-size:1.2rem;line-height:1.2;letter-spacing:-.015em;margin:0 0 10px}
+.course-card p{font-size:.94rem;line-height:1.52;color:var(--ink-2);margin:0 0 18px}
+.course-links{display:grid;gap:8px;margin-top:auto}
+.course-link{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 12px;border:1px solid var(--rule-strong);background:var(--paper);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.course-link:hover{border-color:var(--accent);color:var(--ink)}
+.certificate{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:14px;padding:18px 20px;border:1px solid var(--flag);border-left:4px solid var(--flag);background:var(--flag-soft)}
+.certificate strong{display:block;font-family:var(--display);font-size:1.08rem}
+.certificate span{display:block;color:var(--ink-2);font-size:.92rem}
+.certificate .course-link{flex:0 0 auto}
+@media(max-width:760px){.course-grid{grid-template-columns:1fr}.certificate{align-items:stretch;flex-direction:column}.certificate .course-link{justify-content:center}}
 .maker-signoff{margin-top:28px;padding:24px;border:1px solid var(--rule-strong);border-left:4px solid var(--rule-strong);background:var(--surface)}
 .maker-signoff h2{font-size:1.25rem;margin-bottom:6px}
 .maker-signoff>p{margin:0;color:var(--ink-2)}
@@ -256,7 +271,7 @@ a:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 <div class="wrap lang-en ses-1 hide-notes" id="root">
 
 <div class="topbar">
-  <span class="brand"><span class="t" data-lang="es">AI Costa · Taller práctico de ChatGPT</span><span class="t" data-lang="en">AI Costa · Practical ChatGPT workshop</span></span>
+  <span class="brand"><span class="t" data-lang="es">AI Costa · Curso y taller de ChatGPT</span><span class="t" data-lang="en">AI Costa · ChatGPT course and workshop</span></span>
   <div class="ctrls">
     <div class="langsw" role="group" aria-label="Idioma / Language">
       <a href="/ai-costa/" lang="es">ES</a>
@@ -271,42 +286,96 @@ a:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
 
 <div class="pane always" data-lang="es">
   <header class="mast">
-    <div class="kicker"><span>AI Costa</span><span class="dot">◆</span><span>Tres bloques</span><span class="dot">◆</span><span>ES + EN</span></div>
+    <div class="kicker"><span>AI Costa</span><span class="dot">◆</span><span>Curso completo + taller</span><span class="dot">◆</span><span>ES + EN</span></div>
     <h1>De preguntar<br>a <em>construir</em></h1>
-    <p class="standfirst">Una idea sencilla para trabajar con el ChatGPT actual: deja de coleccionar respuestas y empieza a definir encargos con fuentes, límites y una prueba final.</p>
+    <p class="standfirst">Aquí tienes las tres clases del curso «El Nuevo ChatGPT», sus materiales oficiales y un taller propio para convertir las ideas en encargos verificables.</p>
   </header>
-  <aside class="opening">
-    <div class="date">Edición 4 de septiembre de 2026 · ES + EN</div>
-    <h2>GPT-6 Astra llegó el 3 de septiembre</h2>
-    <p>OpenAI lo está desplegando por fases. El cambio que importa para este taller es su capacidad para <strong>manejar el ordenador y completar trabajo</strong>. Por eso aprender a encargar vale más que memorizar botones.</p>
-    <div class="pricebar" aria-label="Precios de ChatGPT en España, 4 de septiembre de 2026">
-      <div><b>Gratis · 0 €</b><span>Acceso de entrada</span></div>
-      <div><b>Go · 8 €</b><span>Puede incluir anuncios</span></div>
-      <div><b>Plus · 23 €</b><span>Incluye Sites</span></div>
-      <div><b>Pro · desde 103 €</b><span>Precio mensual desde</span></div>
+  <section class="course-library" aria-labelledby="course-title-es">
+    <div class="sec-label">El curso original · 1–3 de septiembre de 2026</div>
+    <h2 id="course-title-es">Las tres clases, sus replays y los PDF oficiales</h2>
+    <p class="lede">Empieza por la clase 1 y avanza en orden. Cada jornada incluye el vídeo completo y sus apuntes oficiales; al terminar puedes solicitar el certificado.</p>
+    <div class="course-grid">
+      <article class="course-card">
+        <div class="course-day">Clase 1</div>
+        <h3>De conversar a delegar</h3>
+        <p>Aprende a definir un trabajo con contexto, objetivo, entregables, límites y una prueba de que está terminado.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/Wlyiydx6cD4" target="_blank" rel="noopener noreferrer" aria-label="Ver replay de la clase 1: De conversar a delegar; abre en una pestaña nueva">Ver replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Apuntes-Curso-IA-2026-Dia1.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF oficial de la clase 1: De conversar a delegar; abre en una pestaña nueva">Abrir PDF oficial</a>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-day">Clase 2</div>
+        <h3>De idea a primera versión</h3>
+        <p>Lleva ese método a la creación de prototipos, páginas, paneles y herramientas mediante vibe coding, Sites y agentes.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/cVe0icmwH_4" target="_blank" rel="noopener noreferrer" aria-label="Ver replay de la clase 2: De idea a primera versión; abre en una pestaña nueva">Ver replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Dia-2-De-Idea-a-Primera-Version-1.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF oficial de la clase 2: De idea a primera versión; abre en una pestaña nueva">Abrir PDF oficial</a>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-day">Clase 3</div>
+        <h3>ChatGPT en modo ejecución</h3>
+        <p>Aplica lo anterior a siete trabajos reales y convierte los pasos que funcionan en procedimientos reutilizables.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/gw8NugDjQfY" target="_blank" rel="noopener noreferrer" aria-label="Ver replay de la clase 3: ChatGPT en modo ejecución; abre en una pestaña nueva">Ver replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Dia-3-ChatGPT-en-modo-ejecucion.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir PDF oficial de la clase 3: ChatGPT en modo ejecución; abre en una pestaña nueva">Abrir PDF oficial</a>
+        </div>
+      </article>
     </div>
-    <p class="source-note">Fuentes medidas el 4-sep-2026: <a href="https://openai.com/index/gpt-6-astra/">anuncio de GPT-6 Astra</a> y <a href="https://chatgpt.com/es-ES/pricing/">precios de ChatGPT en España</a>.</p>
-  </aside>
+    <div class="certificate">
+      <div><strong>¿Has terminado las tres clases?</strong><span>Abre el formulario de BIG school para solicitar el certificado.</span></div>
+      <a class="course-link" href="https://form.typeform.com/to/u14EIkG4" target="_blank" rel="noopener noreferrer" aria-label="Solicitar el certificado; abre en una pestaña nueva">Solicitar certificado</a>
+    </div>
+    <p class="source-note">Curso y materiales creados por BIG school y presentados por Jon Hernández. Los resúmenes de esta página están redactados para AI Costa; no reproducen los prompts del curso.</p>
+  </section>
 </div>
 
 <div class="pane always" data-lang="en">
   <header class="mast">
-    <div class="kicker"><span>AI Costa</span><span class="dot">◆</span><span>Three blocks</span><span class="dot">◆</span><span>EN + ES</span></div>
+    <div class="kicker"><span>AI Costa</span><span class="dot">◆</span><span>Full course + workshop</span><span class="dot">◆</span><span>EN + ES</span></div>
     <h1>From asking<br>to <em>building</em></h1>
-    <p class="standfirst">One practical idea for working with today's ChatGPT: stop collecting answers and start defining assignments with sources, boundaries and final proof.</p>
+    <p class="standfirst">Here are all three sessions of “El Nuevo ChatGPT”, their official materials and our own workshop for turning the ideas into verifiable assignments.</p>
   </header>
-  <aside class="opening">
-    <div class="date">4 September 2026 edition · EN + ES</div>
-    <h2>GPT-6 Astra arrived on 3 September</h2>
-    <p>OpenAI is rolling it out in stages. The change that matters for this workshop is its ability to <strong>operate a computer and complete work</strong>. Learning how to delegate matters more than memorising buttons.</p>
-    <div class="pricebar" aria-label="ChatGPT prices in Spain, 4 September 2026">
-      <div><b>Free · €0</b><span>Entry access</span></div>
-      <div><b>Go · €8</b><span>May include ads</span></div>
-      <div><b>Plus · €23</b><span>Includes Sites</span></div>
-      <div><b>Pro · from €103</b><span>Monthly price from</span></div>
+  <section class="course-library" aria-labelledby="course-title-en">
+    <div class="sec-label">The original course · 1–3 September 2026</div>
+    <h2 id="course-title-en">All three sessions, their replays and official PDFs</h2>
+    <p class="lede">Start with session 1 and follow them in order. Each day includes the full video and official notes; once finished, you can request the certificate. The original replays and PDFs are in Spanish.</p>
+    <div class="course-grid">
+      <article class="course-card">
+        <div class="course-day">Session 1</div>
+        <h3>From conversation to delegation</h3>
+        <p>Learn to define a job through context, an objective, deliverables, boundaries and proof that the work is finished.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/Wlyiydx6cD4" target="_blank" rel="noopener noreferrer" aria-label="Watch the session 1 replay: From conversation to delegation; opens in a new tab">Watch replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Apuntes-Curso-IA-2026-Dia1.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the official PDF for session 1: From conversation to delegation; opens in a new tab">Open official PDF</a>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-day">Session 2</div>
+        <h3>From idea to first version</h3>
+        <p>Apply the method to prototypes, pages, dashboards and tools through vibe coding, Sites and agents.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/cVe0icmwH_4" target="_blank" rel="noopener noreferrer" aria-label="Watch the session 2 replay: From idea to first version; opens in a new tab">Watch replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Dia-2-De-Idea-a-Primera-Version-1.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the official PDF for session 2: From idea to first version; opens in a new tab">Open official PDF</a>
+        </div>
+      </article>
+      <article class="course-card">
+        <div class="course-day">Session 3</div>
+        <h3>ChatGPT in execution mode</h3>
+        <p>Apply the previous lessons to seven real jobs and turn the steps that work into reusable procedures.</p>
+        <div class="course-links">
+          <a class="course-link" href="https://youtube.com/live/gw8NugDjQfY" target="_blank" rel="noopener noreferrer" aria-label="Watch the session 3 replay: ChatGPT in execution mode; opens in a new tab">Watch replay</a>
+          <a class="course-link" href="https://thebigschool.com/wp-content/uploads/2026/09/Dia-3-ChatGPT-en-modo-ejecucion.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the official PDF for session 3: ChatGPT in execution mode; opens in a new tab">Open official PDF</a>
+        </div>
+      </article>
     </div>
-    <p class="source-note">Sources checked on 4 Sep 2026: <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra announcement</a> and <a href="https://chatgpt.com/es-ES/pricing/">ChatGPT pricing in Spain</a>.</p>
-  </aside>
+    <div class="certificate">
+      <div><strong>Finished all three sessions?</strong><span>Open BIG school's form to request your certificate.</span></div>
+      <a class="course-link" href="https://form.typeform.com/to/u14EIkG4" target="_blank" rel="noopener noreferrer" aria-label="Request the certificate; opens in a new tab">Request certificate</a>
+    </div>
+    <p class="source-note">Course and materials created by BIG school and presented by Jon Hernández. The summaries on this page were written for AI Costa; they do not reproduce the course prompts.</p>
+  </section>
 </div>
 
 <nav class="sesnav" aria-label="Bloques / Blocks">
@@ -582,13 +651,6 @@ Do not change any criterion without flagging it. Return a dated version and a su
 </section>
 </div>
 
-<div class="outro">
-  <span class="t" data-lang="es">AI Costa · De preguntar a construir · Edición 4-sep-2026</span>
-  <span class="t" data-lang="en">AI Costa · From asking to building · 4 Sep 2026 edition</span>
-  <span class="t" data-lang="es">Inspirado en el curso gratuito «El Nuevo ChatGPT», de Jon Hernández.</span>
-  <span class="t" data-lang="en">Inspired by Jon Hernández's free course “El Nuevo ChatGPT”.</span>
-</div>
-
 <section class="maker-signoff" aria-labelledby="maker-title">
   <h2 id="maker-title"><span class="t" data-lang="es">Proyectos construidos con Claude y Codex</span><span class="t" data-lang="en">Projects built with Claude and Codex</span></h2>
   <p><span class="t" data-lang="es">Tres formas de convertir la IA en herramientas útiles y trabajo compartido.</span><span class="t" data-lang="en">Three ways of turning AI into useful tools and shared work.</span></p>
@@ -610,6 +672,43 @@ Do not change any criterion without flagging it. Return a dated version and a su
     </a>
   </div>
 </section>
+
+<div class="pane always" data-lang="es">
+  <aside class="opening">
+    <div class="date">Nota de actualidad · 4 de septiembre de 2026</div>
+    <h2>GPT-6 Astra llegó el 3 de septiembre</h2>
+    <p>OpenAI lo está desplegando por fases. El cambio que importa para este taller es su capacidad para <strong>manejar el ordenador y completar trabajo</strong>. Por eso aprender a encargar vale más que memorizar botones.</p>
+    <div class="pricebar" aria-label="Precios de ChatGPT en España, 4 de septiembre de 2026">
+      <div><b>Gratis · 0 €</b><span>Acceso de entrada</span></div>
+      <div><b>Go · 8 €</b><span>Puede incluir anuncios</span></div>
+      <div><b>Plus · 23 €</b><span>Incluye Sites</span></div>
+      <div><b>Pro · desde 103 €</b><span>Precio mensual desde</span></div>
+    </div>
+    <p class="source-note">Fuentes medidas el 4-sep-2026: <a href="https://openai.com/index/gpt-6-astra/">anuncio de GPT-6 Astra</a> y <a href="https://chatgpt.com/es-ES/pricing/">precios de ChatGPT en España</a>.</p>
+  </aside>
+</div>
+
+<div class="pane always" data-lang="en">
+  <aside class="opening">
+    <div class="date">Current note · 4 September 2026</div>
+    <h2>GPT-6 Astra arrived on 3 September</h2>
+    <p>OpenAI is rolling it out in stages. The change that matters for this workshop is its ability to <strong>operate a computer and complete work</strong>. Learning how to delegate matters more than memorising buttons.</p>
+    <div class="pricebar" aria-label="ChatGPT prices in Spain, 4 September 2026">
+      <div><b>Free · €0</b><span>Entry access</span></div>
+      <div><b>Go · €8</b><span>May include ads</span></div>
+      <div><b>Plus · €23</b><span>Includes Sites</span></div>
+      <div><b>Pro · from €103</b><span>Monthly price from</span></div>
+    </div>
+    <p class="source-note">Sources checked on 4 Sep 2026: <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra announcement</a> and <a href="https://chatgpt.com/es-ES/pricing/">ChatGPT pricing in Spain</a>.</p>
+  </aside>
+</div>
+
+<div class="outro">
+  <span class="t" data-lang="es">AI Costa · De preguntar a construir · Edición 4-sep-2026</span>
+  <span class="t" data-lang="en">AI Costa · From asking to building · 4 Sep 2026 edition</span>
+  <span class="t" data-lang="es">Curso original de BIG school, presentado por Jon Hernández.</span>
+  <span class="t" data-lang="en">Original BIG school course, presented by Jon Hernández.</span>
+</div>
 
 </div>
 
