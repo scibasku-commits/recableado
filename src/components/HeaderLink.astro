@@ -17,7 +17,9 @@ const isActive = hrefClean === pathname || hrefClean === '/' + (subpath?.[0] || 
 </a>
 <style>
 	a {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 		text-decoration: none;
 	}
 	a.active {

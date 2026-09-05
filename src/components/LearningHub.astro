@@ -1,0 +1,338 @@
+---
+import type { Lang } from '../i18n/languages';
+import BaseHead from './BaseHead.astro';
+import Header from './Header.astro';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const es = lang === 'es';
+const alternateUrl = es ? '/en/learn/' : '/aprender/';
+const courseUrl = es ? '/ai-costa/' : '/en/ai-costa/';
+const cheatsheetUrl = es ? '/cheatsheet/' : '/en/cheatsheet/';
+const exercisesUrl = es ? '/ejercicios/' : '/en/exercises/';
+
+const copy = es ? {
+	title: 'Aprende con GPT',
+	description: 'Curso, guía rápida y ejercicios reales para aprender inteligencia artificial haciendo trabajo útil, sin jerga y a tu ritmo.',
+	intro: 'No hace falta volver al colegio. Hace falta una situación real, una conversación clara y una prueba de que el trabajo está hecho.',
+	courseName: 'AI Costa',
+	courseTitle: 'Ocho episodios para poner la IA a trabajar contigo',
+	courseText: 'Empieza conversando, aprende a pensar por voz y termina construyendo trabajo real con límites, revisión y pruebas visibles.',
+	courseMeta: '8 episodios · a tu ritmo · progreso guardado',
+	courseAction: 'Empezar el curso',
+	resourcesTitle: 'Continúa con tus propias herramientas',
+	cheatsheetTitle: 'Cheat Sheet de Claude Code',
+	cheatsheetText: 'La guía de consulta rápida que reúne comandos, skills, conexiones y el método que uso cada día.',
+	cheatsheetAction: 'Abrir el Cheat Sheet',
+	exercisesTitle: 'Mis 22 ejercicios',
+	exercisesText: 'Los trabajos y correcciones del curso con el que empezó mi recableado. La prueba, no el diploma.',
+	exercisesAction: 'Ver los ejercicios',
+	closingTitle: 'Aprender haciendo',
+	closingText: 'Aquí no hay teoría para memorizar. Hay episodios que puedes probar, herramientas que puedes consultar y resultados reales que puedes examinar.',
+	footerText: 'Recableado · Aprender inteligencia artificial desde el trabajo real.',
+	homeLabel: 'Volver al blog',
+} : {
+	title: 'Learn with GPT',
+	description: 'A course, quick-reference guide and real exercises for learning AI through useful work, without jargon and at your own pace.',
+	intro: 'You do not need to go back to school. You need a real situation, a clear conversation and proof that the work is done.',
+	courseName: 'AI Costa',
+	courseTitle: 'Eight episodes to put AI to work with you',
+	courseText: 'Start with conversation, learn to think by voice and finish by creating real work with boundaries, review and visible evidence.',
+	courseMeta: '8 episodes · self-paced · progress saved',
+	courseAction: 'Start the course',
+	resourcesTitle: 'Continue with your own tools',
+	cheatsheetTitle: 'Claude Code Cheat Sheet',
+	cheatsheetText: 'The quick-reference guide that brings together commands, skills, connections and the method I use every day.',
+	cheatsheetAction: 'Open the Cheat Sheet',
+	exercisesTitle: 'My 22 exercises',
+	exercisesText: 'The assignments and feedback from the course that started my rewiring. The evidence, not the certificate.',
+	exercisesAction: 'See the exercises',
+	closingTitle: 'Learn by doing',
+	closingText: 'There is no theory to memorise here. There are episodes you can try, tools you can consult and real results you can examine.',
+	footerText: 'Recableado · Learning artificial intelligence through real work.',
+	homeLabel: 'Back to the blog',
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<BaseHead title={`${copy.title} | Recableado`} description={copy.description} lang={lang} alternateUrl={alternateUrl} />
+		<script defer src="https://umami-scibasku.vercel.app/script.js" data-website-id="9b2bc6f2-f7a4-4099-8296-42091c2ba4bf"></script>
+	</head>
+	<body>
+		<!--
+		THESIS: Aprender IA empieza con trabajo real; rechaza el catálogo de recursos sin jerarquía.
+		OWN-WORLD: Recableado en navy, dorado y turquesa; tipografía editorial, líneas precisas y superficies limpias.
+		STORY: El visitante descubre el curso, entra en él y conserva el Cheat Sheet y los ejercicios como apoyo y prueba.
+		FIRST VIEWPORT: Título y promesa a la izquierda; AI Costa domina debajo como puerta principal con ocho episodios y una acción inequívoca.
+		FORM: Hub editorial de aprendizaje aprobado por Giora el 5-sep-2026; extensión precisa, sin torneo de conceptos.
+		FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+		-->
+		<Header lang={lang} alternateUrl={alternateUrl} />
+		<main class="learn-main">
+			<section class="learn-intro" aria-labelledby="learn-title">
+				<h1 id="learn-title">{copy.title}</h1>
+				<p>{copy.intro}</p>
+			</section>
+
+			<a class="course-door" href={courseUrl}>
+				<div class="course-copy">
+					<strong class="course-name">{copy.courseName}</strong>
+					<h2>{copy.courseTitle}</h2>
+					<p>{copy.courseText}</p>
+					<span class="course-action">{copy.courseAction} <span aria-hidden="true">→</span></span>
+				</div>
+				<div class="episode-count" aria-label={copy.courseMeta}>
+					<strong>8</strong>
+					<span>{es ? 'episodios' : 'episodes'}</span>
+					<small>{copy.courseMeta}</small>
+				</div>
+			</a>
+
+			<section class="resource-section" aria-labelledby="resources-title">
+				<h2 id="resources-title">{copy.resourcesTitle}</h2>
+				<div class="resource-list">
+					<a class="resource-row" href={cheatsheetUrl}>
+						<span class="resource-index">A</span>
+						<span class="resource-copy"><strong>{copy.cheatsheetTitle}</strong><span>{copy.cheatsheetText}</span></span>
+						<span class="resource-action">{copy.cheatsheetAction} <span aria-hidden="true">→</span></span>
+					</a>
+					<a class="resource-row" href={exercisesUrl}>
+						<span class="resource-index">B</span>
+						<span class="resource-copy"><strong>{copy.exercisesTitle}</strong><span>{copy.exercisesText}</span></span>
+						<span class="resource-action">{copy.exercisesAction} <span aria-hidden="true">→</span></span>
+					</a>
+				</div>
+			</section>
+
+			<section class="learn-close">
+				<h2>{copy.closingTitle}</h2>
+				<p>{copy.closingText}</p>
+			</section>
+			</main>
+			<footer class="learning-footer">
+				<p>{copy.footerText}</p>
+				<a href={es ? '/' : '/en/'}>{copy.homeLabel} →</a>
+			</footer>
+	</body>
+</html>
+
+<style is:global>
+	.learn-main {
+		width: min(1040px, calc(100% - 2rem));
+		max-width: none;
+		padding: clamp(3.5rem, 7vw, 6.5rem) 0 5rem;
+	}
+	.learn-intro {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+		gap: clamp(2rem, 6vw, 6rem);
+		align-items: end;
+		margin-bottom: clamp(2.5rem, 6vw, 5rem);
+	}
+	.learn-intro h1 {
+		font-size: clamp(3.4rem, 8vw, 6rem);
+		letter-spacing: -0.04em;
+		line-height: 0.93;
+		margin: 0;
+	}
+	.learn-intro p {
+		font-size: clamp(1.08rem, 2vw, 1.32rem);
+		line-height: 1.62;
+		margin: 0;
+		max-width: 42ch;
+	}
+	.course-door {
+		display: grid;
+		grid-template-columns: minmax(0, 1.55fr) minmax(220px, 0.55fr);
+		background: linear-gradient(135deg, #0a1628, #0d2847);
+		border: 1px solid #d4af37;
+		border-radius: 16px;
+		color: #ffffff;
+		text-decoration: none;
+		overflow: hidden;
+		box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+		transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+	}
+	.course-door:hover {
+		color: #ffffff;
+		transform: translateY(-3px);
+		box-shadow: 0 24px 54px rgba(0, 0, 0, 0.28);
+	}
+		.course-door:focus-visible {
+			outline: 3px solid #1fb4d1;
+			outline-offset: 4px;
+		}
+		.resource-row:focus-visible {
+			outline: 3px solid #0d2847;
+			outline-offset: 4px;
+		}
+	.course-copy {
+		padding: clamp(2rem, 5vw, 4rem);
+	}
+	.course-name {
+		display: block;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+		color: #d4af37;
+		margin-bottom: 1.6rem;
+	}
+	.course-copy h2 {
+		color: #ffffff;
+		font-size: clamp(2.15rem, 5vw, 4.35rem);
+		letter-spacing: -0.035em;
+		line-height: 0.98;
+		max-width: 13ch;
+		margin-bottom: 1.5rem;
+	}
+	.course-copy p {
+		color: #b8c5d6;
+		max-width: 57ch;
+		line-height: 1.65;
+		margin-bottom: 2rem;
+	}
+	.course-action {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		min-height: 48px;
+		padding: 0 1.25rem;
+		border-radius: 12px;
+		background: #1fb4d1;
+		color: #0a1628;
+		font: 700 0.95rem/1 'Bricolage Grotesque', sans-serif;
+	}
+	.episode-count {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 2.5rem 2rem;
+		text-align: center;
+		border-left: 1px solid rgba(212, 175, 55, 0.55);
+		background: rgba(13, 40, 71, 0.72);
+	}
+	.episode-count strong {
+		font: 700 clamp(5rem, 12vw, 8.5rem)/0.8 'Bricolage Grotesque', sans-serif;
+		color: #1fb4d1;
+		font-variant-numeric: tabular-nums;
+	}
+	.episode-count > span {
+		font: 700 1rem/1.2 'Bricolage Grotesque', sans-serif;
+		color: #ffffff;
+		margin-top: 1rem;
+	}
+	.episode-count small {
+		color: #b8c5d6;
+		font-size: 0.74rem;
+		line-height: 1.5;
+		margin-top: 1rem;
+	}
+	.resource-section {
+		margin-top: clamp(4.5rem, 9vw, 8rem);
+	}
+	.resource-section h2,
+	.learn-close h2 {
+		font-size: clamp(2rem, 4vw, 3.3rem);
+		letter-spacing: -0.03em;
+		margin-bottom: 2rem;
+	}
+	.resource-list {
+		border-top: 1px solid #d4af37;
+	}
+	.resource-row {
+		display: grid;
+		grid-template-columns: 44px minmax(0, 1fr) auto;
+		gap: 1.4rem;
+		align-items: center;
+		padding: 2rem 0;
+		border-bottom: 1px solid #e2e8f0;
+		color: #2d3748;
+		text-decoration: none;
+	}
+	.resource-row:hover {
+		color: #2d3748;
+	}
+		.resource-index {
+			font: 700 1rem/1 'Bricolage Grotesque', sans-serif;
+			color: #0d2847;
+	}
+	.resource-copy {
+		display: grid;
+		gap: 0.35rem;
+	}
+	.resource-copy strong {
+		font: 700 clamp(1.25rem, 2.4vw, 1.65rem)/1.2 'Bricolage Grotesque', sans-serif;
+		color: #0d2847;
+	}
+	.resource-copy > span {
+		max-width: 66ch;
+		line-height: 1.55;
+	}
+	.resource-action {
+		font: 700 0.9rem/1.3 'Bricolage Grotesque', sans-serif;
+		color: #0d2847;
+		text-align: right;
+	}
+		.resource-row:hover .resource-action { text-decoration: underline; }
+	.learn-close {
+		margin-top: clamp(4rem, 8vw, 7rem);
+		padding: clamp(2.2rem, 5vw, 4rem);
+		background: #f8f9fa;
+		border: 1px solid #e2e8f0;
+		border-radius: 16px;
+	}
+		.learn-close p {
+		max-width: 67ch;
+		font-size: 1.08rem;
+		line-height: 1.68;
+			margin: 0;
+		}
+		.learning-footer {
+			width: min(1040px, calc(100% - 2rem));
+			margin: 0 auto;
+			padding: 1.5rem 0 2.5rem;
+			border-top: 1px solid #d4af37;
+			display: flex;
+			justify-content: space-between;
+			gap: 1rem;
+			font-family: 'Bricolage Grotesque', sans-serif;
+			font-size: 0.9rem;
+		}
+		.learning-footer p { margin: 0; }
+		.learning-footer a {
+			min-height: 44px;
+			display: inline-flex;
+			align-items: center;
+			color: #0d2847;
+			font-weight: 700;
+		}
+	::selection {
+		background: #1fb4d1;
+		color: #0a1628;
+	}
+		@media (max-width: 760px) {
+		.learn-main { padding-top: 2.5rem; }
+		.learn-intro,
+		.course-door { grid-template-columns: 1fr; }
+		.learn-intro { gap: 1.25rem; }
+		.episode-count {
+			border-left: 0;
+			border-top: 1px solid rgba(212, 175, 55, 0.55);
+			padding-block: 2rem;
+		}
+		.episode-count strong { font-size: 5rem; }
+		.resource-row {
+			grid-template-columns: 32px minmax(0, 1fr);
+			gap: 1rem;
+			align-items: start;
+		}
+			.resource-action {
+			grid-column: 2;
+				text-align: left;
+			}
+			.learning-footer { flex-direction: column; }
+		}
+</style>

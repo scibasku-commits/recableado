@@ -20,8 +20,7 @@ const t = useTranslations(lang);
 		<nav>
 			<HeaderLink href={getLocalizedPath(lang, '/')} lang={lang}>{t('nav.home') as string}</HeaderLink>
 			<HeaderLink href={getLocalizedPath(lang, '/blog')} lang={lang}>{t('nav.blog') as string}</HeaderLink>
-			<HeaderLink href={getLocalizedPath(lang, '/ejercicios')} lang={lang}>{t('nav.exercises') as string}</HeaderLink>
-			<HeaderLink href={getLocalizedPath(lang, '/cheatsheet')} lang={lang}>{t('nav.cheatsheet') as string}</HeaderLink>
+			<HeaderLink href={getLocalizedPath(lang, '/aprender')} lang={lang}>{t('nav.learn') as string}</HeaderLink>
 			<HeaderLink href={getLocalizedPath(lang, '/about')} lang={lang}>{t('nav.about') as string}</HeaderLink>
 			<LanguageToggle lang={lang} alternateUrl={alternateUrl} />
 		</nav>
@@ -41,6 +40,9 @@ const t = useTranslations(lang);
 		text-align: center;
 	}
 	.site-title {
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
 		font-family: 'Bricolage Grotesque', sans-serif;
 		font-size: 1.8em;
 		font-weight: 700;
@@ -59,9 +61,14 @@ const t = useTranslations(lang);
 	}
 	nav {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: 2em;
+		column-gap: 2em;
+		row-gap: 0.25em;
+	}
+	@media (max-width: 420px) {
+		nav { column-gap: 1.1em; }
 	}
 	nav a {
 		color: var(--text);

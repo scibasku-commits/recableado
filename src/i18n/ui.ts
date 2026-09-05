@@ -3,8 +3,7 @@ export const ui = {
 		// Nav
 		'nav.home': 'Home',
 		'nav.blog': 'Blog',
-		'nav.exercises': 'Ejercicios',
-		'nav.cheatsheet': 'Cheat Sheet',
+		'nav.learn': 'Aprende',
 		'nav.about': 'About',
 
 		// Footer
@@ -87,8 +86,7 @@ export const ui = {
 		// Nav
 		'nav.home': 'Home',
 		'nav.blog': 'Blog',
-		'nav.exercises': 'Exercises',
-		'nav.cheatsheet': 'Cheat Sheet',
+		'nav.learn': 'Learn',
 		'nav.about': 'About',
 
 		// Footer

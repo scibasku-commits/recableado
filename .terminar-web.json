@@ -21,13 +21,16 @@
   "criticalRoutes": [
     "/",
     "/en/",
+    "/aprender/",
+    "/en/learn/",
     "/ai-costa/",
     "/en/ai-costa/",
     "/ai-costa-social.png"
   ],
   "criticalJourneys": [
     "J1-ai-costa-bilingue",
-    "J2-copiar-notas-y-faq",
+    "J0-aprende-con-gpt",
+    "J2-copiar-y-progresar",
     "J3-movil-sin-desbordes",
     "J4-portada-social",
     "J5-umami-sin-analytics-adicional"

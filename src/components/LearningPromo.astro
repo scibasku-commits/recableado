@@ -1,0 +1,45 @@
+---
+import type { Lang } from '../i18n/languages';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+---
+
+<a class="learning-promo" href={es ? '/aprender/' : '/en/learn/'}>
+	<span class="learning-promo-title">{es ? 'Aprende con GPT' : 'Learn with GPT'}</span>
+	<span class="learning-promo-copy">{es ? 'Ocho episodios para dejar de estudiar la IA y ponerla a trabajar contigo.' : 'Eight episodes to stop studying AI and put it to work with you.'}</span>
+	<span class="learning-promo-action">{es ? 'Entrar' : 'Enter'} <span aria-hidden="true">→</span></span>
+</a>
+
+<style>
+	.learning-promo {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: clamp(1rem, 3vw, 2rem);
+		margin: 0 calc(-50vw + 50%);
+		padding: 1.35rem max(1.25rem, calc((100vw - 680px) / 2));
+		background: linear-gradient(135deg, #0a1628, #0d2847);
+		border-top: 1px solid #d4af37;
+		border-bottom: 1px solid #d4af37;
+		color: #ffffff;
+		text-decoration: none;
+	}
+	.learning-promo:hover { color: #ffffff; }
+	.learning-promo:focus-visible { outline: 3px solid #1fb4d1; outline-offset: -5px; }
+	.learning-promo-title {
+		font: 700 1.05rem/1.2 'Bricolage Grotesque', sans-serif;
+		color: #d4af37;
+		white-space: nowrap;
+	}
+	.learning-promo-copy { color: #b8c5d6; line-height: 1.45; }
+	.learning-promo-action {
+		font: 700 0.9rem/1.2 'Bricolage Grotesque', sans-serif;
+		color: #1fb4d1;
+		white-space: nowrap;
+	}
+	@media (max-width: 720px) {
+		.learning-promo { grid-template-columns: 1fr auto; }
+		.learning-promo-copy { grid-column: 1 / -1; grid-row: 2; }
+	}
+</style>

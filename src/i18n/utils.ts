@@ -18,6 +18,8 @@ export function useTranslations(lang: Lang) {
 const routeMap: Record<string, string> = {
 	ejercicios: 'exercises',
 	exercises: 'ejercicios',
+	aprender: 'learn',
+	learn: 'aprender',
 };
 
 export function getLocalizedPath(lang: Lang, path: string): string {

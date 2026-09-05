@@ -1,0 +1,595 @@
+---
+interface Props { lang: 'es' | 'en' }
+
+interface VoiceCaseStudy {
+  label: string;
+  title: string;
+  ways: Array<{ title: string; text: string }>;
+  builderNote: string;
+  storyLabel: string;
+  storyUrl: string;
+  productLabel: string;
+  productUrl: string;
+}
+
+interface CourseModule {
+  title: string;
+  short: string;
+  aim: string;
+  why: string;
+  guidance: string;
+  prompt: string;
+  proof: string;
+  links: Array<{ label: string; href: string }>;
+  caseStudy?: VoiceCaseStudy;
+}
+
+const { lang } = Astro.props;
+const es = lang === 'es';
+const path = es ? '/ai-costa/' : '/en/ai-costa/';
+const alternatePath = es ? '/en/ai-costa/' : '/ai-costa/';
+const learnPath = es ? '/aprender/' : '/en/learn/';
+const canonical = `https://recableado.blog${path}`;
+
+const ui = es ? {
+  title: 'AI Costa · IA útil, a tu ritmo',
+  description: 'Un curso práctico y autónomo de Recableado para aprender a conversar, crear y terminar trabajo real con IA.',
+  brand: 'AI Costa · por Recableado',
+  hero: 'No estudies la IA. Ponla a trabajar contigo.',
+  intro: 'Ocho episodios breves para pasar de la primera conversación a un trabajo terminado con pruebas. Sin jerga, sin prisa y con ejemplos que puedes copiar.',
+  start: 'Empezar por el primer episodio',
+  continue: 'Continuar donde lo dejé',
+  gift: 'Un curso autónomo para hacerlo a tu ritmo',
+  route: 'Episodio',
+  progress: 'Tu progreso',
+  completed: 'completadas',
+  theme: 'Cambiar tema',
+  guidance: 'Mostrar ayudas',
+  hideGuidance: 'Ocultar ayudas',
+  menu: 'Índice de episodios',
+  learn: 'Lo que vas a conseguir',
+  why: 'Por qué importa',
+  practice: 'Pruébalo ahora',
+  copy: 'Copiar ejercicio',
+  copied: 'Copiado',
+  copyError: 'Selecciona y copia el texto',
+  proof: 'La prueba de que está hecho',
+  official: 'Profundiza en OpenAI Docs',
+  mark: 'Marcar como completada',
+  unmark: 'Completada · desmarcar',
+  previous: 'Episodio anterior',
+  next: 'Siguiente episodio',
+  finish: 'Volver al principio',
+  coach: 'Una ayuda, por si te atascas',
+  statusDraft: 'Borrador',
+  statusReviewed: 'Revisado',
+  statusFinished: 'Terminado',
+  closeTitle: 'La IA no termina el trabajo. Tú decides cuándo está terminado.',
+  closeText: 'Quédate con una sola costumbre: pide siempre una prueba visible. Así la velocidad de la IA se convierte en trabajo en el que puedes confiar.',
+  restart: 'Repasar desde el principio',
+  footer: 'Curso original de AI Costa en Recableado',
+} : {
+  title: 'AI Costa · Useful AI, at your own pace',
+  description: 'A practical, self-paced Recableado course for learning how to discuss, create and finish real work with AI.',
+  brand: 'AI Costa · by Recableado',
+  hero: 'Do not study AI. Put it to work with you.',
+  intro: 'Eight short episodes from your first conversation to finished work with evidence. No jargon, no rush, and examples you can copy.',
+  start: 'Start with the first episode',
+  continue: 'Continue where I left off',
+  gift: 'A self-paced course to follow at your own pace',
+  route: 'Episode',
+  progress: 'Your progress',
+  completed: 'completed',
+  theme: 'Change theme',
+  guidance: 'Show guidance',
+  hideGuidance: 'Hide guidance',
+  menu: 'Episode guide',
+  learn: 'What you will achieve',
+  why: 'Why it matters',
+  practice: 'Try it now',
+  copy: 'Copy exercise',
+  copied: 'Copied',
+  copyError: 'Select and copy the text',
+  proof: 'Evidence that it is done',
+  official: 'Go deeper in OpenAI Docs',
+  mark: 'Mark as completed',
+  unmark: 'Completed · unmark',
+  previous: 'Previous episode',
+  next: 'Next episode',
+  finish: 'Back to the beginning',
+  coach: 'A little help if you get stuck',
+  statusDraft: 'Draft',
+  statusReviewed: 'Reviewed',
+  statusFinished: 'Finished',
+  closeTitle: 'AI does not finish the work. You decide when it is finished.',
+  closeText: 'Keep one habit: always ask for visible evidence. That is how the speed of AI becomes work you can trust.',
+  restart: 'Review from the beginning',
+  footer: 'An original AI Costa course on Recableado',
+};
+
+const modules: CourseModule[] = es ? [
+  {
+    title: 'Empieza con una conversación real',
+    short: 'Empezar',
+    aim: 'Abrir ChatGPT y convertir una situación de tu trabajo en una conversación útil, sin aprender una fórmula.',
+    why: 'La mejor primera prueba no es preguntar qué puede hacer la IA. Es traerle algo que ya ocupa espacio en tu cabeza: una decisión, un correo difícil o una idea a medio formar.',
+    guidance: 'Habla como hablarías con una persona nueva en tu equipo. Si la respuesta no te sirve, no empieces de cero: señala qué falta y continúa.',
+    prompt: `Estoy trabajando en [describe la situación real en dos frases].\n\nAntes de proponer nada, hazme tres preguntas, de una en una, para entender qué resultado necesito y qué límites no debemos cruzar.\n\nCuando tengas mis respuestas, resume el problema en lenguaje sencillo y propón un primer paso pequeño que pueda revisar hoy.`,
+    proof: 'Puedes explicar en una frase qué decisión o siguiente paso salió de la conversación.',
+    links: [{ label: 'Cómo empezar con ChatGPT', href: 'https://learn.chatgpt.com/docs/quickstart' }],
+  },
+  {
+    title: 'Piensa y trabaja por voz',
+    short: 'Voz',
+    aim: 'Usar la voz para desarrollar una idea, dar contexto y corregir el rumbo sin tener que redactarlo todo.',
+    why: 'Hablar libera detalle que muchas veces desaparece al escribir deprisa. La voz funciona especialmente bien para ordenar una situación, ensayar un mensaje o comentar un trabajo mientras lo miras.',
+    guidance: 'Usa conversación por voz si quieres ida y vuelta; usa dictado si prefieres revisar el texto antes de enviarlo. La disponibilidad puede variar según cuenta y espacio de trabajo.',
+    prompt: `Quiero pensar en voz alta contigo sobre [tema].\n\nEscucha primero. No me des una solución hasta que diga «ya está». Entonces devuélveme:\n1. lo que parece decidido;\n2. lo que sigue abierto;\n3. la pregunta que más conviene responder ahora.\n\nSi me contradigo, señálalo con calma y cita las dos ideas en conflicto.`,
+    proof: 'Al terminar tienes un resumen con decisiones, dudas abiertas y un siguiente paso.',
+    links: [{ label: 'Voz en ChatGPT', href: 'https://learn.chatgpt.com/docs/features/voice' }],
+    caseStudy: {
+      label: 'Dos formas de trabajar por voz',
+      title: 'Conversar con ChatGPT. Dictar con Háblame.',
+      ways: [
+        {
+          title: 'ChatGPT por voz',
+          text: 'Mantienes una conversación con la IA: piensas en voz alta, recibes preguntas y corriges el rumbo. La conversación utiliza el servicio de ChatGPT.',
+        },
+        {
+          title: 'Háblame, en local',
+          text: 'Mantienes una tecla pulsada, hablas y el texto aparece donde tengas el cursor. El audio del dictado se procesa en tu PC o Mac. Si después envías ese texto a ChatGPT, el texto sí sale del equipo.',
+        },
+      ],
+      builderNote: 'Yo construí Háblame con ayuda de la IA sin escribir el código desde cero. Partí de Handy, un proyecto abierto con licencia MIT. Yo decidí el nombre, la privacidad, el funcionamiento y las pruebas; la IA ayudó a planificar, transformar y revisar. La lección no es «la IA hace aplicaciones»: hablar, decidir y comprobar también es construir.',
+      storyLabel: 'Leer cómo construí Háblame',
+      storyUrl: '/blog/033-hablame-mi-app-de-dictado/',
+      productLabel: 'Ver Háblame',
+      productUrl: 'https://hablame.blog/',
+    },
+  },
+  {
+    title: 'Encarga trabajo, no pidas magia',
+    short: 'Encargar',
+    aim: 'Dar a la IA un resultado, fuentes, límites y una definición clara de “hecho”.',
+    why: '“Hazme algo bonito” obliga a adivinar. Un buen encargo deja claro qué verdad puede usar, qué debe entregar, qué está prohibido y cómo se comprobará.',
+    guidance: 'No necesitas escribir un tratado. Para un trabajo importante, incluye contexto, objetivo, entregable, límites y comprobación.',
+    prompt: `Contexto: [qué está pasando y para quién].\nFuente de verdad: usa solo [documento, notas o datos que adjunto].\nResultado: necesito [resultado concreto].\nEntregable: dame [formato que puedas revisar].\nLímites: no inventes datos y no envíes, publiques, compres ni cambies nada sin mi autorización.\nComprobación: termina con una lista que demuestre qué has verificado y qué queda pendiente.`,
+    proof: 'Otra persona puede leer el encargo y saber qué entregar, qué no hacer y cómo comprobarlo.',
+    links: [{ label: 'Guía oficial de prompting', href: 'https://learn.chatgpt.com/docs/prompting' }],
+  },
+  {
+    title: 'Trabaja con documentos y oficina',
+    short: 'Oficina',
+    aim: 'Convertir archivos reales en un documento, una hoja, una presentación o un PDF que puedas revisar.',
+    why: 'La IA aporta más cuando parte de tu material y termina en un objeto útil. El archivo final importa tanto como la respuesta en el chat.',
+    guidance: 'Adjunta solo material que puedas compartir. Indica tipo de archivo, estructura y criterios de revisión. Comprueba nombres, cifras, fórmulas y páginas antes de usar el resultado.',
+    prompt: `Usa únicamente el archivo que adjunto.\n\nCrea un resumen ejecutivo de una página para una persona que no conoce el tema. Incluye: situación, tres hallazgos, decisiones necesarias y próximos pasos.\n\nConserva nombres y cifras exactamente como aparecen. Si dos datos no cuadran, no elijas uno: crea una sección «Por comprobar» con ambos y su ubicación.\n\nEntrégalo en un formato editable y revisa que no haya texto cortado ni páginas vacías.`,
+    proof: 'El archivo abre, se puede editar y cada cifra importante se rastrea hasta el material original.',
+    links: [{ label: 'Trabajar con archivos', href: 'https://learn.chatgpt.com/docs/artifacts-viewer' }],
+  },
+  {
+    title: 'Crea algo que se pueda ver',
+    short: 'Crear',
+    aim: 'Pasar de una idea a una imagen o pieza visual y mejorarla mediante instrucciones concretas.',
+    why: 'La primera versión sirve para descubrir lo que en realidad querías. Describe propósito, público, composición y restricciones; después corrige una cosa cada vez.',
+    guidance: 'No inventes logotipos, premios, testimonios ni rostros de clientes. Si una imagen representa un producto real, compara los detalles antes de publicarla.',
+    prompt: `Crea una imagen horizontal para explicar [idea] a [público].\n\nDebe mostrar [elemento principal] en [entorno], con una composición clara y espacio limpio para un título breve. El tono es [tres adjetivos concretos].\n\nNo incluyas logotipos, texto pequeño, marcas, premios ni personas reconocibles.\n\nAntes de generar, resume en una frase la composición que vas a crear.`,
+    proof: 'La imagen comunica la idea sin explicación adicional y no contiene texto, marcas o detalles inventados.',
+    links: [{ label: 'Generación de imágenes', href: 'https://learn.chatgpt.com/docs/image-generation' }],
+  },
+  {
+    title: 'Usa Codex para trabajo real',
+    short: 'Codex',
+    aim: 'Dar a Codex una carpeta o proyecto, pedir un resultado concreto y exigir que pruebe lo que ha hecho.',
+    why: 'Codex no es solo para programadores. Puede investigar un proyecto, ordenar información y construir entregables, siempre dentro de los permisos que le des.',
+    guidance: 'Empieza con un trabajo reversible. Dile qué puede leer, qué puede cambiar y qué acción real necesita tu permiso. Nunca pegues contraseñas ni secretos en el chat o en los archivos.',
+    prompt: `Trabaja en este proyecto para conseguir [resultado].\n\nPrimero localiza las normas y los archivos que ya existen. Dime qué vas a usar como fuente de verdad.\n\nPuedes leer y preparar cambios dentro del proyecto. No puedes enviar, borrar, comprar, desplegar ni publicar sin preguntarme.\n\nAl terminar, ejecuta las comprobaciones adecuadas y entrégame: archivos cambiados, resultado de las pruebas y cualquier limitación real.`,
+    proof: 'Puedes abrir el resultado, ver los archivos cambiados y leer la salida de una comprobación ejecutada.',
+    links: [{ label: 'Elegir entre Chat, Work y Codex', href: 'https://learn.chatgpt.com/docs/use-chatgpt' }],
+  },
+  {
+    title: 'Haz que lo bueno se pueda repetir',
+    short: 'Repetir',
+    aim: 'Entender skills, hooks, MCP y automatizaciones como cuatro formas sencillas de repetir, vigilar o conectar trabajo.',
+    why: 'Una skill guarda una forma de trabajar; un hook comprueba algo en un momento concreto; MCP conecta herramientas y contexto; una automatización vuelve a ejecutar un encargo cuando toca.',
+    guidance: 'No empieces por la tecnología. Elige primero una tarea que ya hayas hecho bien dos veces. Guárdala, pruébala con un caso normal y con una excepción, y solo después piensa en automatizarla.',
+    prompt: `Convierte el trabajo que acabamos de aprobar en un procedimiento reutilizable.\n\nGuarda: objetivo, fuentes, pasos, límites, prueba final y situaciones en las que debes parar y preguntarme.\n\nAñade dos casos de prueba: uno normal y uno con un dato esencial ausente.\n\nDespués dime, sin jerga, si esto conviene guardarlo como una instrucción, ejecutarlo en un horario, conectarlo a otra herramienta o añadirle una comprobación automática. No configures nada todavía.`,
+    proof: 'El procedimiento resuelve el caso normal y se detiene correctamente cuando falta un dato esencial.',
+    links: [
+      { label: 'Skills', href: 'https://learn.chatgpt.com/docs/build-skills' },
+      { label: 'MCP', href: 'https://learn.chatgpt.com/docs/extend/mcp' },
+      { label: 'Hooks', href: 'https://learn.chatgpt.com/docs/hooks' },
+      { label: 'Tareas programadas', href: 'https://learn.chatgpt.com/docs/automations' },
+    ],
+  },
+  {
+    title: 'Método SELLO: termina con evidencia',
+    short: 'SELLO',
+    aim: 'Separar lo que parece correcto de lo que está comprobado y reservar las acciones reales para una autorización explícita.',
+    why: 'El Método SELLO de Giora convierte el final del trabajo en una serie de puertas: definir el resultado, hacer, comprobar, pedir permiso antes de una acción real y verificar después el resultado público.',
+    guidance: 'Un borrador existe. Un trabajo revisado ha recibido una mirada crítica. Solo está terminado cuando cumple los criterios y la evidencia está delante de ti.',
+    prompt: `Aplica el Método SELLO a este trabajo: [describe el trabajo].\n\n1. Define conmigo el resultado y las pruebas antes de actuar.\n2. Haz solo el trabajo reversible autorizado.\n3. Comprueba el resultado con evidencia visible.\n4. Si el siguiente paso envía, publica, compra, reserva o cambia algo real, detente y pide mi autorización explícita.\n5. Después de esa acción, vuelve a verificar el resultado real.\n\nAl final etiqueta el estado como BORRADOR, REVISADO o TERMINADO. No uses TERMINADO si falta una prueba o una autorización.`,
+    proof: 'Hay una evidencia para cada criterio, la autorización precede a cualquier acción real y el resultado final se ha vuelto a comprobar.',
+    links: [{ label: 'Permisos y control en Codex', href: 'https://learn.chatgpt.com/docs/permissions' }],
+  },
+] : [
+  {
+    title: 'Start with a real conversation', short: 'Start',
+    aim: 'Open ChatGPT and turn a real work situation into a useful conversation without learning a formula.',
+    why: 'The best first experiment is not asking what AI can do. Bring something that already occupies your mind: a decision, a difficult email, or a half-formed idea.',
+    guidance: 'Speak as you would to a new person on your team. If the answer is not useful, do not start over: point out what is missing and continue.',
+    prompt: `I am working on [describe the real situation in two sentences].\n\nBefore suggesting anything, ask me three questions, one at a time, to understand the outcome I need and the boundaries we must not cross.\n\nWhen you have my answers, summarise the problem in plain language and suggest one small first step I can review today.`,
+    proof: 'You can explain in one sentence which decision or next step came out of the conversation.',
+    links: [{ label: 'Getting started with ChatGPT', href: 'https://learn.chatgpt.com/docs/quickstart' }],
+  },
+  {
+    title: 'Think and work by voice', short: 'Voice',
+    aim: 'Use voice to develop an idea, add context and correct course without having to write everything.',
+    why: 'Speaking releases detail that often disappears when we type in a hurry. Voice is especially useful for sorting out a situation, rehearsing a message, or discussing work while looking at it.',
+    guidance: 'Use voice chat for a live exchange; use dictation when you want to review the text before sending it. Availability can vary by account and workspace.',
+    prompt: `I want to think out loud with you about [topic].\n\nListen first. Do not give me a solution until I say “that is all”. Then return:\n1. what seems decided;\n2. what remains open;\n3. the most useful question to answer next.\n\nIf I contradict myself, point it out calmly and quote the two conflicting ideas.`,
+    proof: 'You finish with a summary of decisions, open questions and one next step.',
+    links: [{ label: 'Voice in ChatGPT', href: 'https://learn.chatgpt.com/docs/features/voice' }],
+    caseStudy: {
+      label: 'Two ways to work by voice',
+      title: 'Talk with ChatGPT. Dictate with Háblame.',
+      ways: [
+        {
+          title: 'ChatGPT voice',
+          text: 'You have a conversation with AI: think out loud, receive questions and correct course. The conversation uses the ChatGPT service.',
+        },
+        {
+          title: 'Háblame, on your computer',
+          text: 'Hold a key, speak and the text appears wherever your cursor is. Dictation audio is processed on your PC or Mac. If you later send that text to ChatGPT, the text does leave your computer.',
+        },
+      ],
+      builderNote: 'I built Háblame with AI assistance without writing the code from scratch. I started from Handy, an open-source project under the MIT licence. I decided the name, privacy, behaviour and tests; AI helped plan, transform and review. The lesson is not “AI makes apps”: speaking, deciding and checking are also ways of building.',
+      storyLabel: 'Read how I built Háblame',
+      storyUrl: '/en/blog/033-i-built-my-own-dictation-app/',
+      productLabel: 'See Háblame',
+      productUrl: 'https://hablame.blog/en/',
+    },
+  },
+  {
+    title: 'Assign work instead of asking for magic', short: 'Assign',
+    aim: 'Give AI an outcome, sources, boundaries and a clear definition of “done”.',
+    why: '“Make something beautiful” forces the system to guess. A strong assignment says which truth it may use, what it must deliver, what is forbidden and how the work will be checked.',
+    guidance: 'You do not need a long document. For important work, include context, objective, deliverable, boundaries and verification.',
+    prompt: `Context: [what is happening and who it is for].\nSource of truth: use only [the document, notes or data I attach].\nOutcome: I need [specific result].\nDeliverable: give me [a format I can review].\nBoundaries: do not invent facts, and do not send, publish, buy or change anything without my approval.\nVerification: finish with a list showing what you checked and what remains open.`,
+    proof: 'Another person can read the assignment and know what to deliver, what not to do and how to check it.',
+    links: [{ label: 'Official prompting guide', href: 'https://learn.chatgpt.com/docs/prompting' }],
+  },
+  {
+    title: 'Work with documents and office files', short: 'Office',
+    aim: 'Turn real files into a document, spreadsheet, presentation or PDF that you can review.',
+    why: 'AI contributes more when it starts with your material and ends with a useful object. The final file matters as much as the answer in the chat.',
+    guidance: 'Only attach material you are allowed to share. State the file type, structure and review criteria. Check names, figures, formulas and pages before using the result.',
+    prompt: `Use only the file I attach.\n\nCreate a one-page executive summary for someone new to the topic. Include: situation, three findings, decisions needed and next steps.\n\nKeep names and figures exactly as written. If two facts conflict, do not choose one: create a “To verify” section with both and their locations.\n\nReturn it in an editable format and check for cropped text or blank pages.`,
+    proof: 'The file opens, can be edited and every important figure can be traced to the original material.',
+    links: [{ label: 'Work with files', href: 'https://learn.chatgpt.com/docs/artifacts-viewer' }],
+  },
+  {
+    title: 'Create something people can see', short: 'Create',
+    aim: 'Move from an idea to an image or visual piece and improve it through concrete instructions.',
+    why: 'The first version helps you discover what you actually wanted. Describe purpose, audience, composition and restrictions; then correct one thing at a time.',
+    guidance: 'Do not invent logos, awards, testimonials or customer faces. If an image represents a real product, compare the details before publishing it.',
+    prompt: `Create a horizontal image that explains [idea] to [audience].\n\nShow [main element] in [setting], with a clear composition and clean space for a short title. The mood is [three concrete adjectives].\n\nDo not include logos, small text, brands, awards or recognisable people.\n\nBefore generating, summarise the composition you will create in one sentence.`,
+    proof: 'The image communicates the idea without extra explanation and contains no invented text, brands or details.',
+    links: [{ label: 'Image generation', href: 'https://learn.chatgpt.com/docs/image-generation' }],
+  },
+  {
+    title: 'Use Codex for real work', short: 'Codex',
+    aim: 'Give Codex a folder or project, request a concrete outcome and require proof of what it did.',
+    why: 'Codex is not only for programmers. It can investigate a project, organise information and build deliverables within the permissions you give it.',
+    guidance: 'Start with reversible work. Say what it may read, what it may change and which real action needs your approval. Never paste passwords or secrets into a chat or file.',
+    prompt: `Work in this project to achieve [outcome].\n\nFirst find the existing rules and files. Tell me what you will use as the source of truth.\n\nYou may read and prepare changes inside the project. You may not send, delete, buy, deploy or publish without asking me.\n\nWhen finished, run the appropriate checks and return: changed files, test results and any real limitation.`,
+    proof: 'You can open the result, see the changed files and read the output of an executed check.',
+    links: [{ label: 'Choose between Chat, Work and Codex', href: 'https://learn.chatgpt.com/docs/use-chatgpt' }],
+  },
+  {
+    title: 'Make good work repeatable', short: 'Repeat',
+    aim: 'Understand skills, hooks, MCP and automations as four simple ways to repeat, watch or connect work.',
+    why: 'A skill stores a way of working; a hook checks something at a specific moment; MCP connects tools and context; an automation runs an assignment again when the time comes.',
+    guidance: 'Do not start with the technology. Choose a task you have already done well twice. Save it, test a normal case and an exception, and only then consider automating it.',
+    prompt: `Turn the work we just approved into a reusable procedure.\n\nKeep its objective, sources, steps, boundaries, final test and situations where you must stop and ask me.\n\nAdd two test cases: one normal and one with an essential fact missing.\n\nThen tell me, without jargon, whether this should be saved as an instruction, run on a schedule, connected to another tool or given an automatic check. Do not configure anything yet.`,
+    proof: 'The procedure handles the normal case and stops correctly when an essential fact is missing.',
+    links: [
+      { label: 'Skills', href: 'https://learn.chatgpt.com/docs/build-skills' },
+      { label: 'MCP', href: 'https://learn.chatgpt.com/docs/extend/mcp' },
+      { label: 'Hooks', href: 'https://learn.chatgpt.com/docs/hooks' },
+      { label: 'Scheduled tasks', href: 'https://learn.chatgpt.com/docs/automations' },
+    ],
+  },
+  {
+    title: 'The SELLO Method: finish with evidence', short: 'SELLO',
+    aim: 'Separate what looks right from what has been checked, and reserve real-world actions for explicit approval.',
+    why: 'Giora’s SELLO Method turns the end of a job into a series of gates: define the outcome, do the work, check it, ask permission before a real action, and then verify the public result.',
+    guidance: 'A draft exists. Reviewed work has received a critical look. It is only finished when every criterion is met and the evidence is in front of you.',
+    prompt: `Apply the SELLO Method to this job: [describe the job].\n\n1. Define the outcome and checks with me before acting.\n2. Do only the reversible work that is authorised.\n3. Check the result with visible evidence.\n4. If the next step sends, publishes, buys, books or changes something real, stop and ask for my explicit approval.\n5. After that action, verify the real result again.\n\nFinally label the status DRAFT, REVIEWED or FINISHED. Do not use FINISHED if evidence or approval is missing.`,
+    proof: 'There is evidence for every criterion, approval precedes any real action and the final result has been checked again.',
+    links: [{ label: 'Permissions and control in Codex', href: 'https://learn.chatgpt.com/docs/permissions' }],
+  },
+];
+---
+<!doctype html>
+<html lang={lang} data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content={ui.description} />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0a1628" />
+  <title>{ui.title}</title>
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="es" href="https://recableado.blog/ai-costa/" />
+  <link rel="alternate" hreflang="en" href="https://recableado.blog/en/ai-costa/" />
+  <link rel="alternate" hreflang="x-default" href="https://recableado.blog/en/ai-costa/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={ui.title} />
+  <meta property="og:description" content={ui.description} />
+  <meta property="og:image" content="https://recableado.blog/ai-costa-social.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ui.title} />
+  <meta name="twitter:description" content={ui.description} />
+  <meta name="twitter:image" content="https://recableado.blog/ai-costa-social.png" />
+  <script defer src="https://umami-scibasku.vercel.app/script.js" data-website-id="9b2bc6f2-f7a4-4099-8296-42091c2ba4bf"></script>
+  <style is:inline>
+    @font-face{font-family:Bricolage;src:url('/fonts/BricolageGrotesque-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:Bricolage;src:url('/fonts/BricolageGrotesque-Bold.ttf') format('truetype');font-weight:700 900;font-display:swap}
+    :root{--navy:#0a1628;--blue:#0d2847;--gold:#d4af37;--cyan:#1fb4d1;--white:#fff;--muted:#b8c5d6;--ink:#2d3748;--paper:#f8f9fa;--line:#e2e8f0;--display:Bricolage,Arial,sans-serif;--body:Charter,'Iowan Old Style',Georgia,serif;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;color-scheme:dark}
+    :root[data-theme='light']{color-scheme:light}
+    *{box-sizing:border-box}
+    html{overflow-x:hidden;scroll-behavior:smooth;background:var(--navy)}
+    body{margin:0;min-width:320px;overflow-x:hidden;background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);font-family:var(--body);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    :root[data-theme='light'] body{background:var(--paper);color:var(--ink)}
+	    ::selection{background:var(--cyan);color:var(--navy)}
+	    :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+	    :root[data-theme='light'] :focus-visible{outline-color:var(--blue)}
+    a{color:inherit;text-underline-offset:.24em}
+    button{font:inherit}
+    .shell{width:min(1180px,100%);margin:auto;padding:20px clamp(18px,4vw,48px) 80px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 0 20px;border-bottom:1px solid rgba(212,175,55,.6)}
+    .brand{min-height:44px;display:inline-flex;align-items:center;font:700 12px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+    :root[data-theme='light'] .brand,:root[data-theme='light'] .gift,:root[data-theme='light'] .module-tab span{color:var(--blue)}
+    .controls{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+    .control,.lang{min-width:44px;min-height:44px;border:1px solid var(--gold);background:transparent;color:inherit;padding:9px 13px;border-radius:12px;cursor:pointer;font:700 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .control:hover,.lang:hover{background:var(--gold);color:var(--navy)}
+    .hero{min-height:570px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:clamp(36px,7vw,100px);align-items:center;padding:clamp(64px,10vw,120px) 0}
+    .gift{font:700 13px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin:0 0 24px}
+    h1,h2,h3{font-family:var(--display);text-wrap:balance}
+    h1{font-size:clamp(3.4rem,8vw,6rem);line-height:.94;letter-spacing:-.04em;margin:0;max-width:11ch}
+    .intro{max-width:58ch;margin:28px 0;color:var(--muted);font-size:clamp(1.05rem,2vw,1.28rem)}
+    :root[data-theme='light'] .intro,:root[data-theme='light'] .muted{color:var(--ink)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .primary,.secondary{min-height:50px;padding:12px 18px;border-radius:14px;font:700 13px/1 var(--display);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;border:1px solid var(--cyan)}
+    .primary{background:var(--cyan);color:var(--navy)}
+    .secondary{background:transparent;color:inherit}
+    .route-map{border-top:1px solid var(--gold);padding-top:24px}
+    .route-map p{font:700 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+    .route-map ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;counter-reset:route}
+    .route-map li{counter-increment:route;padding:9px 0;border-bottom:1px solid rgba(184,197,214,.25);font:700 14px/1.35 var(--display)}
+	    .route-map li::before{content:counter(route,decimal-leading-zero);font:400 10px/1 var(--mono);color:var(--cyan);margin-right:8px}
+	    :root[data-theme='light'] .route-map li::before{color:var(--blue)}
+    .course{background:var(--paper);color:var(--ink);margin-inline:calc(50% - 50vw);padding:clamp(48px,8vw,96px) max(clamp(18px,4vw,48px),calc((100vw - 1180px)/2 + 48px))}
+    :root[data-theme='dark'] .course{background:var(--navy);color:var(--white);border-block:1px solid rgba(212,175,55,.35)}
+    .course-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:28px}
+    .course-head h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1;margin:0;letter-spacing:-.03em}
+    .progress-copy{font:700 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}
+    :root[data-theme='dark'] .progress-copy{color:var(--muted)}
+    .meter{height:8px;background:var(--line);margin-bottom:28px;overflow:hidden;border-radius:8px}
+    .meter span{display:block;height:100%;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .35s ease-out}
+    .module-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 40px}
+    .module-tab{min-height:64px;text-align:left;border:1px solid var(--line);border-radius:14px;background:transparent;color:inherit;padding:11px 13px;cursor:pointer;font:700 13px/1.25 var(--display)}
+    .module-tab span{display:block;font:400 10px/1 var(--mono);color:var(--cyan);margin-bottom:6px}
+    .module-tab[aria-selected='true']{background:var(--blue);color:var(--white);border-color:var(--gold)}
+    .module-tab.is-done span::after{content:' ✓';color:var(--gold)}
+    .module{display:none}
+    .module.is-active{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr);gap:clamp(36px,7vw,90px);animation:rise .4s ease-out}
+    @keyframes rise{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}
+	    .module-no{font:700 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+	    :root[data-theme='light'] .module-no{color:var(--blue)}
+    .module h3{font-size:clamp(2.2rem,5vw,4.6rem);line-height:.98;letter-spacing:-.04em;margin:0 0 34px;max-width:12ch}
+    .block{padding:24px 0;border-top:1px solid var(--line)}
+    :root[data-theme='dark'] .block{border-color:rgba(184,197,214,.25)}
+    .block h4{font:700 12px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 12px}
+    :root[data-theme='dark'] .block h4{color:var(--gold)}
+    .block p{max-width:68ch;margin:0}
+    .guidance{display:none;margin-top:18px;padding:16px 18px;border-top:1px solid var(--gold);background:var(--line);font-size:.95rem}
+    :root[data-theme='dark'] .guidance{background:var(--blue)}
+    body.show-guidance .guidance{display:block}
+    .voice-case{margin:34px 0 12px;border:1px solid var(--gold);border-radius:16px;overflow:hidden;background:var(--paper);color:var(--ink)}
+    :root[data-theme='dark'] .voice-case{background:var(--blue);color:var(--white)}
+    .voice-case-head{padding:24px clamp(20px,4vw,34px);border-bottom:1px solid var(--gold)}
+    .voice-case h4{font:700 12px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 12px}
+    :root[data-theme='dark'] .voice-case h4{color:var(--gold)}
+    .case-thesis{font:700 clamp(1.55rem,3vw,2.2rem)/1.08 var(--display);letter-spacing:-.025em;margin:0;max-width:24ch}
+    .voice-ways{display:grid;grid-template-columns:1fr 1fr}
+    .voice-way{padding:24px clamp(20px,4vw,34px)}
+    .voice-way+ .voice-way{border-left:1px solid var(--gold)}
+    .voice-way strong{display:block;font:700 1.08rem/1.25 var(--display);color:var(--blue);margin-bottom:8px}
+    :root[data-theme='dark'] .voice-way strong{color:var(--cyan)}
+    .voice-way p{font-size:.96rem;line-height:1.6;margin:0}
+    .builder-note{padding:24px clamp(20px,4vw,34px);border-top:1px solid var(--gold);background:var(--line)}
+    :root[data-theme='dark'] .builder-note{background:var(--navy)}
+    .builder-note p{margin:0;max-width:72ch}
+    .case-links{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px}
+    .case-link{min-height:44px;display:inline-flex;align-items:center;font:700 13px/1.3 var(--display);color:var(--blue);text-underline-offset:.3em}
+    :root[data-theme='dark'] .case-link{color:var(--cyan)}
+    .prompt{background:var(--blue);color:var(--white);border:1px solid var(--gold);border-radius:14px;overflow:hidden;margin-top:16px}
+    .prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-bottom:1px solid rgba(212,175,55,.5)}
+    .prompt-head span{font:700 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .copy{min-height:44px;background:var(--cyan);color:var(--navy);border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font:700 11px/1 var(--display)}
+    pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:20px;font:400 14px/1.65 var(--mono)}
+    .side{align-self:start;position:sticky;top:24px;border-top:1px solid var(--gold);padding-top:22px}
+    .side h4{font:700 12px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+    .side p{margin:0 0 24px;font-size:1rem}
+    .sources{display:flex;flex-direction:column;gap:8px;margin:0 0 28px}
+    .source{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font:700 13px/1.3 var(--display);text-decoration:none}
+    .source::after{content:'↗';color:var(--cyan)}
+    .complete{width:100%;min-height:50px;border:1px solid var(--cyan);border-radius:14px;background:transparent;color:inherit;padding:12px;cursor:pointer;font:700 13px/1.2 var(--display)}
+    .complete[aria-pressed='true']{background:var(--cyan);color:var(--navy)}
+    .module-controls{display:flex;justify-content:space-between;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line)}
+    .nav-btn{min-height:48px;border:1px solid var(--gold);border-radius:12px;background:transparent;color:inherit;padding:10px 16px;cursor:pointer;font:700 12px/1 var(--display)}
+    .nav-btn:disabled{opacity:.35;cursor:not-allowed}
+    .sello-scale{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--gold);margin:18px 0}
+    .sello-scale div{padding:14px;border-right:1px solid var(--gold)}
+    .sello-scale div:last-child{border-right:0;background:var(--cyan);color:var(--navy)}
+    .sello-scale strong{display:block;font-family:var(--display)}
+    .sello-scale span{font-size:.84rem}
+    .closing{padding:clamp(70px,10vw,130px) 0;text-align:center}
+    .closing h2{font-size:clamp(2.5rem,6vw,5rem);line-height:.98;letter-spacing:-.04em;margin:0 auto 24px;max-width:15ch}
+    .closing p{max-width:56ch;margin:0 auto 28px;color:var(--muted)}
+    footer{border-top:1px solid rgba(212,175,55,.55);padding:22px 0 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 11px/1.5 var(--mono);color:var(--muted)}
+    :root[data-theme='light'] .closing p,:root[data-theme='light'] footer{color:var(--ink)}
+    @media(max-width:780px){.hero{grid-template-columns:1fr;min-height:0;padding:72px 0}.module-nav{grid-template-columns:repeat(2,1fr)}.module.is-active{grid-template-columns:1fr}.side{position:static}.course-head{grid-template-columns:1fr}.progress-copy{text-align:left}.voice-ways{grid-template-columns:1fr}.voice-way+ .voice-way{border-left:0;border-top:1px solid var(--gold)}}
+    @media(max-width:520px){body{font-size:17px}.shell{padding-inline:18px}.top{align-items:flex-start}.brand{max-width:15ch}.controls{max-width:170px}.control{font-size:0;width:44px;padding:0}.control::after{content:'◐';font-size:17px}.control[data-guidance]::after{content:'?';font-family:var(--display);font-weight:700}.hero-actions{flex-direction:column}.primary,.secondary{width:100%;justify-content:center}.route-map ol{grid-template-columns:1fr}.module-nav{grid-template-columns:1fr 1fr}.module-tab{min-height:58px}.module h3{font-size:2.55rem}.sello-scale{grid-template-columns:1fr}.sello-scale div{border-right:0;border-bottom:1px solid var(--gold)}.sello-scale div:last-child{border-bottom:0}.module-controls{flex-direction:column}.nav-btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.module.is-active{animation:none}.meter span{transition:none}}
+  </style>
+</head>
+<body data-lang={lang}>
+  <div class="shell">
+    <header class="top">
+      <a class="brand" href={learnPath}>{ui.brand}</a>
+      <div class="controls">
+        <a class="lang" href={alternatePath} lang={es ? 'en' : 'es'} aria-label={es ? 'Read in English' : 'Leer en español'}>{es ? 'EN' : 'ES'}</a>
+        <button class="control" type="button" id="themeToggle" aria-label={ui.theme}>{ui.theme}</button>
+        <button class="control" type="button" id="guidanceToggle" data-guidance aria-pressed="false">{ui.guidance}</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="gift">{ui.gift}</p>
+          <h1>{ui.hero}</h1>
+          <p class="intro">{ui.intro}</p>
+          <div class="hero-actions">
+            <button class="primary" type="button" data-jump="0">{ui.start}</button>
+            <button class="secondary" type="button" id="continueButton">{ui.continue}</button>
+          </div>
+        </div>
+        <aside class="route-map" aria-label={ui.menu}>
+          <p>{ui.menu}</p>
+          <ol>{modules.map((module) => <li>{module.short}</li>)}</ol>
+        </aside>
+      </section>
+
+      <section class="course" id="course" aria-labelledby="course-title">
+        <div class="course-head">
+          <h2 id="course-title">{ui.menu}</h2>
+          <div class="progress-copy"><span>{ui.progress}</span> · <strong id="progressCount">0 / {modules.length}</strong> {ui.completed}</div>
+        </div>
+        <div class="meter" role="progressbar" aria-label={ui.progress} aria-valuemin="0" aria-valuemax={modules.length} aria-valuenow="0"><span></span></div>
+
+        <div class="module-nav" role="tablist" aria-label={ui.menu}>
+          {modules.map((module, index) => (
+            <button class="module-tab" type="button" role="tab" id={`tab-${index}`} aria-controls={`module-${index}`} aria-selected={index === 0 ? 'true' : 'false'} data-module-tab={index}>
+              <span>{ui.route} {String(index + 1).padStart(2, '0')}</span>{module.short}
+            </button>
+          ))}
+        </div>
+
+        {modules.map((module, index) => (
+          <article class:list={['module', { 'is-active': index === 0 }]} id={`module-${index}`} role="tabpanel" aria-labelledby={`tab-${index}`} data-module={index} hidden={index !== 0}>
+            <div>
+              <div class="module-no">{ui.route} {String(index + 1).padStart(2, '0')} · {modules.length}</div>
+              <h3>{module.title}</h3>
+              <section class="block"><h4>{ui.learn}</h4><p>{module.aim}</p></section>
+              <section class="block"><h4>{ui.why}</h4><p>{module.why}</p><div class="guidance"><strong>{ui.coach}</strong><br />{module.guidance}</div></section>
+              {module.caseStudy && (
+                <section class="voice-case" aria-labelledby={`voice-case-${index}`}>
+                  <div class="voice-case-head">
+                    <h4 id={`voice-case-${index}`}>{module.caseStudy.label}</h4>
+                    <p class="case-thesis">{module.caseStudy.title}</p>
+                  </div>
+                  <div class="voice-ways">
+                    {module.caseStudy.ways.map((way) => (
+                      <div class="voice-way"><strong>{way.title}</strong><p>{way.text}</p></div>
+                    ))}
+                  </div>
+                  <div class="builder-note">
+                    <p>{module.caseStudy.builderNote}</p>
+                    <div class="case-links">
+                      <a class="case-link" href={module.caseStudy.storyUrl}>{module.caseStudy.storyLabel} →</a>
+                      <a class="case-link" href={module.caseStudy.productUrl} target="_blank" rel="noopener noreferrer">{module.caseStudy.productLabel} ↗</a>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {index === 7 && <div class="sello-scale" aria-label={`${ui.statusDraft}, ${ui.statusReviewed}, ${ui.statusFinished}`}>
+                <div><strong>{ui.statusDraft}</strong><span>{es ? 'Existe una primera versión.' : 'A first version exists.'}</span></div>
+                <div><strong>{ui.statusReviewed}</strong><span>{es ? 'Alguien la ha examinado.' : 'Someone has examined it.'}</span></div>
+                <div><strong>{ui.statusFinished}</strong><span>{es ? 'Pruebas y permisos completos.' : 'Evidence and approvals complete.'}</span></div>
+              </div>}
+              <section class="block">
+                <h4>{ui.practice}</h4>
+                <div class="prompt"><div class="prompt-head"><span>{ui.route} {String(index + 1).padStart(2, '0')}</span><button class="copy" type="button" data-copy>{ui.copy}</button></div><pre>{module.prompt}</pre></div>
+              </section>
+              <div class="module-controls">
+                <button class="nav-btn" type="button" data-prev disabled={index === 0}>{ui.previous}</button>
+                <button class="nav-btn" type="button" data-next>{index === modules.length - 1 ? ui.finish : ui.next}</button>
+              </div>
+            </div>
+            <aside class="side">
+              <h4>{ui.proof}</h4>
+              <p>{module.proof}</p>
+              <h4>{ui.official}</h4>
+              <div class="sources">{module.links.map((link) => <a class="source" href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}</div>
+              <button class="complete" type="button" data-complete={index} aria-pressed="false">{ui.mark}</button>
+            </aside>
+          </article>
+        ))}
+      </section>
+
+      <section class="closing">
+        <h2>{ui.closeTitle}</h2>
+        <p>{ui.closeText}</p>
+        <button class="secondary" type="button" data-jump="0">{ui.restart}</button>
+      </section>
+    </main>
+    <footer><span>{ui.footer}</span><span>recableado.blog · AI Costa</span></footer>
+  </div>
+
+  <script is:inline define:vars={{ lang, total: modules.length, copiedLabel: ui.copied, copyLabel: ui.copy, copyError: ui.copyError, showGuidance: ui.guidance, hideGuidance: ui.hideGuidance, markLabel: ui.mark, unmarkLabel: ui.unmark }}>
+    (function(){
+      var key='ai-costa-course-v1-'+lang;
+      var state={active:0,done:[],guidance:false,theme:'dark'};
+      try{var saved=JSON.parse(localStorage.getItem(key)||'{}');if(Number.isInteger(saved.active)&&saved.active>=0&&saved.active<total)state.active=saved.active;if(Array.isArray(saved.done))state.done=saved.done.filter(function(n){return Number.isInteger(n)&&n>=0&&n<total});if(typeof saved.guidance==='boolean')state.guidance=saved.guidance;if(saved.theme==='light'||saved.theme==='dark')state.theme=saved.theme}catch(e){}
+      var tabs=[].slice.call(document.querySelectorAll('[data-module-tab]'));
+      var panels=[].slice.call(document.querySelectorAll('[data-module]'));
+      var completes=[].slice.call(document.querySelectorAll('[data-complete]'));
+      var meter=document.querySelector('.meter');
+      var meterBar=meter.querySelector('span');
+      var progress=document.getElementById('progressCount');
+      var guidance=document.getElementById('guidanceToggle');
+      function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
+      function render(){
+        document.documentElement.dataset.theme=state.theme;
+        document.body.classList.toggle('show-guidance',state.guidance);
+        guidance.setAttribute('aria-pressed',String(state.guidance));
+        guidance.textContent=state.guidance?hideGuidance:showGuidance;
+        tabs.forEach(function(tab,i){var active=i===state.active;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;tab.classList.toggle('is-done',state.done.indexOf(i)>-1)});
+        panels.forEach(function(panel,i){var active=i===state.active;panel.hidden=!active;panel.classList.toggle('is-active',active)});
+        completes.forEach(function(button,i){var done=state.done.indexOf(i)>-1;button.setAttribute('aria-pressed',String(done));button.textContent=done?unmarkLabel:markLabel});
+        progress.textContent=state.done.length+' / '+total;
+        meter.setAttribute('aria-valuenow',String(state.done.length));
+        meterBar.style.transform='scaleX('+(state.done.length/total)+')';
+      }
+      function go(index,scroll){state.active=Math.max(0,Math.min(total-1,index));render();save();if(scroll)document.getElementById('course').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});tabs[state.active].focus({preventScroll:true})}
+      tabs.forEach(function(tab,i){tab.addEventListener('click',function(){go(i,false)});tab.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go((i+1)%total,false)}if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go((i-1+total)%total,false)}})});
+      panels.forEach(function(panel,i){var prev=panel.querySelector('[data-prev]');var next=panel.querySelector('[data-next]');prev.addEventListener('click',function(){go(i-1,true)});next.addEventListener('click',function(){go(i===total-1?0:i+1,true)})});
+      completes.forEach(function(button,i){button.addEventListener('click',function(){var at=state.done.indexOf(i);if(at>-1)state.done.splice(at,1);else state.done.push(i);state.done.sort();render();save()})});
+      document.querySelectorAll('[data-jump]').forEach(function(button){button.addEventListener('click',function(){go(Number(button.dataset.jump),true)})});
+      document.getElementById('continueButton').addEventListener('click',function(){go(state.active,true)});
+      document.getElementById('themeToggle').addEventListener('click',function(){state.theme=state.theme==='dark'?'light':'dark';render();save()});
+      guidance.addEventListener('click',function(){state.guidance=!state.guidance;render();save()});
+      document.querySelectorAll('[data-copy]').forEach(function(button){button.addEventListener('click',function(){var text=button.closest('.prompt').querySelector('pre').textContent;var original=button.textContent;function ok(){button.textContent=copiedLabel;setTimeout(function(){button.textContent=original},1400)}function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();var worked=false;try{worked=document.execCommand('copy')}catch(e){}document.body.removeChild(area);if(worked)ok();else{button.textContent=copyError;setTimeout(function(){button.textContent=original},2200)}}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(ok,fallback);else fallback()})});
+      render();
+    })();
+  </script>
+</body>
+</html>

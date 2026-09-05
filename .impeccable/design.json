@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T11:03:10Z",
+  "title": "Design System: Recableado",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "primary",
+        "displayName": "Navy de cuaderno",
+        "canonical": "#0a1628",
+        "tonalRamp": ["oklch(15% 0.035 250)", "oklch(26% 0.035 250)", "oklch(38% 0.035 250)", "oklch(50% 0.035 250)", "oklch(62% 0.035 250)", "oklch(74% 0.035 250)", "oklch(86% 0.035 250)", "oklch(95% 0.035 250)"]
+      },
+      "deep-blue": {
+        "role": "primary",
+        "displayName": "Azul profundo",
+        "canonical": "#0d2847",
+        "tonalRamp": ["oklch(15% 0.055 250)", "oklch(26% 0.055 250)", "oklch(38% 0.055 250)", "oklch(50% 0.055 250)", "oklch(62% 0.055 250)", "oklch(74% 0.055 250)", "oklch(86% 0.055 250)", "oklch(95% 0.055 250)"]
+      },
+      "field-gold": {
+        "role": "secondary",
+        "displayName": "Dorado de anotación",
+        "canonical": "#d4af37",
+        "tonalRamp": ["oklch(15% 0.12 85)", "oklch(26% 0.12 85)", "oklch(38% 0.12 85)", "oklch(50% 0.12 85)", "oklch(62% 0.12 85)", "oklch(74% 0.12 85)", "oklch(86% 0.12 85)", "oklch(95% 0.12 85)"]
+      },
+      "signal-turquoise": {
+        "role": "tertiary",
+        "displayName": "Turquesa de señal",
+        "canonical": "#1fb4d1",
+        "tonalRamp": ["oklch(15% 0.12 215)", "oklch(26% 0.12 215)", "oklch(38% 0.12 215)", "oklch(50% 0.12 215)", "oklch(62% 0.12 215)", "oklch(74% 0.12 215)", "oklch(86% 0.12 215)", "oklch(95% 0.12 215)"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Blanco nítido",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(62% 0 0)", "oklch(74% 0 0)", "oklch(86% 0 0)", "oklch(95% 0 0)"]
+      },
+      "muted-steel": {
+        "role": "neutral",
+        "displayName": "Acero apagado",
+        "canonical": "#b8c5d6",
+        "tonalRamp": ["oklch(15% 0.025 250)", "oklch(26% 0.025 250)", "oklch(38% 0.025 250)", "oklch(50% 0.025 250)", "oklch(62% 0.025 250)", "oklch(74% 0.025 250)", "oklch(86% 0.025 250)", "oklch(95% 0.025 250)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel limpio",
+        "canonical": "#f8f9fa",
+        "tonalRamp": ["oklch(15% 0.008 250)", "oklch(26% 0.008 250)", "oklch(38% 0.008 250)", "oklch(50% 0.008 250)", "oklch(62% 0.008 250)", "oklch(74% 0.008 250)", "oklch(86% 0.008 250)", "oklch(95% 0.008 250)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta editorial",
+        "canonical": "#2d3748",
+        "tonalRamp": ["oklch(15% 0.03 250)", "oklch(26% 0.03 250)", "oklch(38% 0.03 250)", "oklch(50% 0.03 250)", "oklch(62% 0.03 250)", "oklch(74% 0.03 250)", "oklch(86% 0.03 250)", "oklch(95% 0.03 250)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Línea fría",
+        "canonical": "#e2e8f0",
+        "tonalRamp": ["oklch(15% 0.015 250)", "oklch(26% 0.015 250)", "oklch(38% 0.015 250)", "oklch(50% 0.015 250)", "oklch(62% 0.015 250)", "oklch(74% 0.015 250)", "oklch(86% 0.015 250)", "oklch(95% 0.015 250)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Títulos de entrada grandes, compactos y memorables."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección y cierres importantes."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de recursos, tarjetas y bloques."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura editorial sostenida y explicaciones."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navegación, acciones e índices breves."
+      }
+    },
+    "shadows": [
+      {
+        "name": "door-rest",
+        "value": "0 18px 44px rgba(0, 0, 0, 0.20)",
+        "purpose": "Elevación neutral de una única puerta protagonista."
+      },
+      {
+        "name": "door-hover",
+        "value": "0 24px 54px rgba(0, 0, 0, 0.28)",
+        "purpose": "Respuesta elevada de la puerta protagonista al hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-standard",
+        "value": "200ms ease",
+        "purpose": "Cambio de color, borde o elevación en controles habituales."
+      },
+      {
+        "name": "lift-responsive",
+        "value": "180ms ease-out",
+        "purpose": "Elevación breve de puertas o superficies protagonistas."
+      },
+      {
+        "name": "progress-reveal",
+        "value": "350ms ease-out",
+        "purpose": "Progreso medido; se elimina cuando el usuario prefiere movimiento reducido."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-course",
+        "value": "520px"
+      },
+      {
+        "name": "site-mobile",
+        "value": "720px"
+      },
+      {
+        "name": "gateway-collapse",
+        "value": "760px"
+      },
+      {
+        "name": "course-collapse",
+        "value": "780px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal turquesa sobre una superficie navy.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Empezar el curso <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-btn-primary { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 18px; border: 1px solid #1fb4d1; border-radius: 12px; background: #1fb4d1; color: #0a1628; font: 700 0.9rem/1.3 'Bricolage Grotesque', sans-serif; cursor: pointer; transition: transform 180ms ease-out, box-shadow 180ms ease-out; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.20); } .ds-btn-primary:focus-visible { outline: 3px solid #d4af37; outline-offset: 3px; } .ds-btn-primary:active { transform: translateY(0); box-shadow: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción secundaria transparente que conserva tamaño y precisión.",
+      "html": "<div class=\"ds-dark-canvas\"><button class=\"ds-btn-secondary\" type=\"button\">Continuar donde lo dejé</button></div>",
+      "css": ".ds-dark-canvas { padding: 20px; background: linear-gradient(135deg, #0a1628, #0d2847); } .ds-btn-secondary { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border: 1px solid #1fb4d1; border-radius: 12px; background: transparent; color: #ffffff; font: 700 0.9rem/1.3 'Bricolage Grotesque', sans-serif; cursor: pointer; transition: background 200ms ease, color 200ms ease; } .ds-btn-secondary:hover { background: #1fb4d1; color: #0a1628; } .ds-btn-secondary:focus-visible { outline: 3px solid #d4af37; outline-offset: 3px; } .ds-btn-secondary:active { background: #d4af37; color: #0a1628; }"
+    },
+    {
+      "name": "Editorial Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Navegación centrada, legible y con estado activo inequívoco.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Principal\"><a href=\"#\">Inicio</a><a href=\"#\">Blog</a><a class=\"ds-active\" href=\"#\" aria-current=\"page\">Aprende</a><a href=\"#\">Acerca de</a></nav>",
+      "css": ".ds-nav { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; padding: 8px 16px; background: #f8f9fa; border-bottom: 1px solid #e2e8f0; } .ds-nav a { min-height: 44px; display: inline-flex; align-items: center; color: #2d3748; font: 700 0.9rem/1.3 'Bricolage Grotesque', sans-serif; letter-spacing: 0.02em; text-decoration: none; } .ds-nav a:hover { color: #0d2847; text-decoration: underline; text-underline-offset: 4px; } .ds-nav a:focus-visible { outline: 3px solid #1fb4d1; outline-offset: 3px; } .ds-nav a.ds-active { color: #0d2847; text-decoration: underline; text-decoration-color: #d4af37; text-decoration-thickness: 2px; text-underline-offset: 4px; }"
+    },
+    {
+      "name": "Language Toggle",
+      "kind": "chip",
+      "refersTo": "language-toggle",
+      "description": "Selector de idioma compacto con etiqueta y foco visibles.",
+      "html": "<a class=\"ds-lang-toggle\" href=\"#\" aria-label=\"Switch to English\"><span aria-hidden=\"true\">🇬🇧</span><span>EN</span></a>",
+      "css": ".ds-lang-toggle { min-height: 44px; display: inline-flex; align-items: center; gap: 0.3em; padding: 0.2em 0.6em; border: 1px solid #e2e8f0; border-radius: 999px; background: #f8f9fa; color: #2d3748; font: 700 0.8rem/1.3 'Bricolage Grotesque', sans-serif; letter-spacing: 0.03em; text-decoration: none; transition: border-color 200ms ease, background 200ms ease; } .ds-lang-toggle:hover { border-color: #d4af37; background: #ffffff; } .ds-lang-toggle:focus-visible { outline: 3px solid #1fb4d1; outline-offset: 3px; } .ds-lang-toggle:active { background: #e2e8f0; }"
+    },
+    {
+      "name": "Course Door",
+      "kind": "card",
+      "refersTo": "course-door",
+      "description": "Puerta protagonista hacia un curso o experiencia de aprendizaje.",
+      "html": "<a class=\"ds-course-door\" href=\"#\"><span class=\"ds-course-copy\"><strong>AI Costa</strong><span class=\"ds-course-title\">Ocho episodios para poner la IA a trabajar contigo</span><span class=\"ds-course-action\">Empezar el curso →</span></span><span class=\"ds-episode-count\"><strong>8</strong><span>episodios</span></span></a>",
+      "css": ".ds-course-door { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(180px, 0.55fr); overflow: hidden; border: 1px solid #d4af37; border-radius: 16px; background: linear-gradient(135deg, #0a1628, #0d2847); color: #ffffff; text-decoration: none; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.20); transition: transform 180ms ease-out, box-shadow 180ms ease-out; } .ds-course-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: clamp(32px, 5vw, 56px); } .ds-course-copy > strong { color: #d4af37; font: 700 1rem/1.2 'Bricolage Grotesque', sans-serif; } .ds-course-title { max-width: 13ch; color: #ffffff; font: 700 clamp(2rem, 5vw, 3.7rem)/0.98 'Bricolage Grotesque', sans-serif; letter-spacing: -0.035em; } .ds-course-action { min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 12px; background: #1fb4d1; color: #0a1628; font: 700 0.95rem/1 'Bricolage Grotesque', sans-serif; } .ds-episode-count { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px 24px; border-left: 1px solid rgba(212, 175, 55, 0.55); background: rgba(13, 40, 71, 0.72); text-align: center; } .ds-episode-count strong { color: #1fb4d1; font: 700 clamp(5rem, 12vw, 7rem)/0.8 'Bricolage Grotesque', sans-serif; } .ds-episode-count span { margin-top: 16px; color: #ffffff; font: 700 1rem/1.2 'Bricolage Grotesque', sans-serif; } .ds-course-door:hover { transform: translateY(-3px); box-shadow: 0 24px 54px rgba(0, 0, 0, 0.28); } .ds-course-door:focus-visible { outline: 3px solid #1fb4d1; outline-offset: 4px; } .ds-course-door:active { transform: translateY(0); } @media (max-width: 640px) { .ds-course-door { grid-template-columns: 1fr; } .ds-episode-count { border-left: 0; border-top: 1px solid rgba(212, 175, 55, 0.55); } }"
+    },
+    {
+      "name": "Resource Row",
+      "kind": "custom",
+      "description": "Recurso secundario presentado como fila editorial, no como tarjeta competidora.",
+      "html": "<a class=\"ds-resource-row\" href=\"#\"><span class=\"ds-resource-index\">A</span><span class=\"ds-resource-copy\"><strong>Cheat Sheet de Claude Code</strong><span>Una guía rápida para consultar mientras trabajas.</span></span><span class=\"ds-resource-action\">Abrir →</span></a>",
+      "css": ".ds-resource-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 22px; align-items: center; padding: 32px 0; border-top: 1px solid #d4af37; border-bottom: 1px solid #e2e8f0; color: #2d3748; text-decoration: none; background: #ffffff; } .ds-resource-index { color: #0d2847; font: 700 1rem/1 'Bricolage Grotesque', sans-serif; } .ds-resource-copy { display: grid; gap: 6px; font: 400 1rem/1.55 Lora, Georgia, serif; } .ds-resource-copy strong { color: #0d2847; font: 700 clamp(1.25rem, 2.4vw, 1.65rem)/1.2 'Bricolage Grotesque', sans-serif; } .ds-resource-action { min-height: 44px; display: inline-flex; align-items: center; color: #0d2847; font: 700 0.9rem/1.3 'Bricolage Grotesque', sans-serif; text-align: right; } .ds-resource-row:hover .ds-resource-action { text-decoration: underline; text-underline-offset: 4px; } .ds-resource-row:focus-visible { outline: 3px solid #0d2847; outline-offset: 4px; } .ds-resource-row:active { background: #f8f9fa; } @media (max-width: 640px) { .ds-resource-row { grid-template-columns: 32px minmax(0, 1fr); gap: 16px; align-items: start; } .ds-resource-action { grid-column: 2; text-align: left; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El cuaderno de campo digital",
+    "overview": "Recableado se siente como un cuaderno de campo cuidado, abierto después de una jornada real: humano, preciso y editorial, con observaciones concretas en vez de una interfaz tecnológica genérica. La lectura manda; la tipografía de display ordena, las líneas finas clasifican y los acentos aparecen para orientar, no para decorar.\n\nEl sistema alterna papel luminoso y navy profundo para separar lectura, orientación y momentos de acción. Los contenedores permanecen limpios y legibles; el dorado dibuja estructura y el turquesa señala progreso, foco o acción. Las composiciones más expresivas del Learning Hub y AI Costa son expresiones de este mundo, no plantillas obligatorias para cada página.",
+    "keyCharacteristics": [
+      "Jerarquía editorial grande y legible.",
+      "Contraste entre papel de lectura y superficies navy.",
+      "Líneas doradas precisas y acentos turquesa funcionales.",
+      "Espacio generoso, bordes limpios y sombras neutrales.",
+      "Evidencia y orientación visual antes que ornamentación."
+    ],
+    "rules": [
+      {
+        "name": "The Two-Accent Rule",
+        "body": "El dorado construye la estructura; el turquesa pide atención o acción. No intercambies sus funciones.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper and Night Rule",
+        "body": "Toda superficie debe pertenecer con claridad al mundo papel o al mundo navy; no introduzcas grises decorativos intermedios sin una función comprobable.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Voice Rule",
+        "body": "Los párrafos hablan en serif; la sans serif organiza, titula y acciona. No compongas textos largos en Bricolage Grotesque.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Los grandes titulares usan interlineado compacto y tracking negativo; el cuerpo conserva aire y nunca hereda esa compresión.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reading Column Rule",
+        "body": "El texto corrido no se estira para llenar una superficie ancha; el ancho extra pertenece a jerarquía, navegación o evidencia lateral.",
+        "section": "layout"
+      },
+      {
+        "name": "The Collapse with Meaning Rule",
+        "body": "En móvil se conserva el orden narrativo: promesa, acción principal, apoyo y prueba.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-by-Default Rule",
+        "body": "Si una línea, un cambio tonal o el espacio bastan para separar contenido, no añadas sombra.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Measured Corner Rule",
+        "body": "El radio responde a la escala y la importancia del objeto; evita acumular radios distintos en un mismo bloque.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do usa Bricolage Grotesque para jerarquía y Lora/serif para lectura sostenida.",
+      "Do conserva el reparto semántico: dorado para estructura, turquesa para acción y foco.",
+      "Do construye primero con espacio, línea y contraste tonal; añade sombra solo si expresa una elevación real.",
+      "Do conserva foco visible, objetivos de al menos 44px y una secuencia comprensible sin hover."
+    ],
+    "donts": [
+      "Don't conviertas todas las opciones en tarjetas iguales; la jerarquía editorial debe mostrar qué es principal y qué es apoyo.",
+      "Don't introduzcas colores fuera de la paleta canónica en superficies nuevas; los valores crema y naranja de plantillas antiguas son legado, no tokens a extender.",
+      "Don't uses Bricolage Grotesque para párrafos largos ni comprimas el interlineado de lectura.",
+      "Don't eleves patrones exclusivos de AI Costa o del Learning Hub —tema, contador, pestañas o reparto de columnas— a reglas de todas las páginas."
+    ]
+  }
+}

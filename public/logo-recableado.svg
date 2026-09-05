@@ -1,0 +1,52 @@
+<svg width="900" height="280" viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- RECABLEADO LOGO — Dark version -->
+  <!-- Colors: bg #0d0d0d | cyan #1FB4D1 | gold #D4AF37 | text #f0f0f0 -->
+  <!-- For light version: bg #faf9f5 | blue #185FA5 | gold #854F0B | text #1a1a1a -->
+
+  <!-- Brain shape: two hemispheres -->
+  <g transform="translate(120,140)">
+    <!-- Left hemisphere -->
+    <path d="M0-80 C-40-80 -85-55 -85-20 C-85 20 -65 55 -35 68 C-38 78 -38 92 -30 100 C-22 108 -8 108 0 100" fill="none" stroke="#1FB4D1" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Right hemisphere -->
+    <path d="M0-80 C40-80 85-55 85-20 C85 20 65 55 35 68 C38 78 38 92 30 100 C22 108 8 108 0 100" fill="none" stroke="#1FB4D1" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Top arch connecting -->
+    <path d="M-20-80 Q0-95 20-80" fill="none" stroke="#1FB4D1" stroke-width="2.5"/>
+    <!-- Central divider -->
+    <line x1="0" y1="-80" x2="0" y2="100" stroke="#1FB4D1" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+    <!-- Sulci left -->
+    <path d="M-75-10 Q-50-20 -30-10" fill="none" stroke="#1FB4D1" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M-72 30 Q-48 20 -28 30" fill="none" stroke="#1FB4D1" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Sulci right -->
+    <path d="M75-10 Q50-20 30-10" fill="none" stroke="#1FB4D1" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M72 30 Q48 20 28 30" fill="none" stroke="#1FB4D1" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Cables + nodes LEFT (cyan) -->
+    <line x1="-82" y1="-40" x2="-106" y2="-58" stroke="#1FB4D1" stroke-width="1.8"/>
+    <circle cx="-106" cy="-58" r="6" fill="#1FB4D1"/>
+    <circle cx="-120" cy="-52" r="3" fill="#1FB4D1" opacity="0.5"/>
+    <line x1="-82" y1="15" x2="-108" y2="12" stroke="#1FB4D1" stroke-width="1.8"/>
+    <circle cx="-108" cy="12" r="6" fill="#1FB4D1"/>
+    <line x1="-55" y1="80" x2="-68" y2="102" stroke="#1FB4D1" stroke-width="1.8"/>
+    <circle cx="-68" cy="102" r="6" fill="#1FB4D1"/>
+    <circle cx="-76" cy="114" r="3" fill="#1FB4D1" opacity="0.5"/>
+    <line x1="-18" y1="-82" x2="-24" y2="-108" stroke="#1FB4D1" stroke-width="1.8"/>
+    <circle cx="-24" cy="-108" r="5" fill="#1FB4D1"/>
+    <!-- Cables + nodes RIGHT (gold) -->
+    <line x1="82" y1="-40" x2="106" y2="-58" stroke="#D4AF37" stroke-width="1.8"/>
+    <circle cx="106" cy="-58" r="6" fill="#D4AF37"/>
+    <circle cx="120" cy="-52" r="3" fill="#D4AF37" opacity="0.5"/>
+    <line x1="82" y1="15" x2="108" y2="12" stroke="#D4AF37" stroke-width="1.8"/>
+    <circle cx="108" cy="12" r="6" fill="#D4AF37"/>
+    <line x1="55" y1="80" x2="68" y2="102" stroke="#D4AF37" stroke-width="1.8"/>
+    <circle cx="68" cy="102" r="6" fill="#D4AF37"/>
+    <circle cx="76" cy="114" r="3" fill="#D4AF37" opacity="0.5"/>
+    <line x1="18" y1="-82" x2="24" y2="-108" stroke="#D4AF37" stroke-width="1.8"/>
+    <circle cx="24" cy="-108" r="5" fill="#D4AF37"/>
+    <!-- Crown -->
+    <circle cx="0" cy="-88" r="6" fill="white" opacity="0.9"/>
+  </g>
+
+  <!-- Text -->
+  <text x="255" y="168" font-family="Georgia, serif" font-size="80" font-weight="700" fill="#f0f0f0" letter-spacing="-2">re<tspan fill="#1FB4D1">cable</tspan>ado</text>
+  <line x1="255" y1="185" x2="845" y2="185" stroke="#D4AF37" stroke-width="1" opacity="0.6"/>
+  <text x="255" y="205" font-family="Georgia, serif" font-size="12" fill="#555" letter-spacing="4">UN VIAJERO EN EL ÚLTIMO CONTINENTE</text>
+</svg>

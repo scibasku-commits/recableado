@@ -10,7 +10,7 @@ export default defineConfig({
 	site: 'https://recableado.blog',
 	output: 'server',
 	adapter: vercel(),
-	integrations: [mdx(), sitemap()],
+	integrations: [mdx(), sitemap({ filter: page => page !== 'https://recableado.blog/en/aprender/' })],
 	i18n: {
 		defaultLocale: 'es',
 		locales: ['es', 'en'],
