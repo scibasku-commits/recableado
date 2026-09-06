@@ -48,7 +48,7 @@ export const ui = {
 		// Chat — hero (homepage)
 		'chat.hero.badge': 'Pregúntale a Giora',
 		'chat.hero.tagline': 'De gin tonics a prompts. 5 IAs, 0 programadores, 1 agencia de viajes.\nPregúntame cómo.',
-		'chat.hero.greeting': 'Buenas. 72 años, 5 IAs y un negocio que se gestiona casi solo. No programo — pido. Y funciona. Dispara.',
+		'chat.hero.greeting': 'Buenas. Vendo viajes desde los años 80, tengo 5 IAs y un negocio que se gestiona casi solo. No programo — pido. Y funciona. Dispara.',
 		'chat.hero.placeholder': 'Escríbeme algo...',
 		'chat.hero.listening': 'Escuchando...',
 		'chat.pill.fiveBrains': '🧠 Los 5 cerebros',
@@ -57,7 +57,7 @@ export const ui = {
 		'chat.pill.ginTonic': '🍸 De gin tonic a prompt',
 
 		// Chat — drawer (floating, all pages)
-		'chat.drawer.greeting': '72 años, 42 vendiendo viajes, y 5 IAs que hacen el trabajo de un equipo entero. Pregúntame lo que quieras — sobre el blog, mi stack, o cómo pasé de un gin tonic a un prompt.',
+		'chat.drawer.greeting': 'Vendiendo viajes desde los años 80, y 5 IAs que hacen el trabajo de un equipo entero. Pregúntame lo que quieras — sobre el blog, mi stack, o cómo pasé de un gin tonic a un prompt.',
 		'chat.drawer.placeholder': 'Pregúntame lo que quieras...',
 		'chat.drawer.listening': 'Escuchando...',
 		'chat.drawer.pill.fiveBrains': 'Los 5 cerebros',
@@ -131,7 +131,7 @@ export const ui = {
 		// Chat — hero (homepage)
 		'chat.hero.badge': 'Ask Giora',
 		'chat.hero.tagline': 'From gin tonics to prompts. 5 AIs, 0 developers, 1 travel agency.\nAsk me how.',
-		'chat.hero.greeting': 'Hi. 72 years old, 5 AIs and a business that runs itself. I don\'t code — I ask. And it works. Fire away.',
+		'chat.hero.greeting': 'Hi. Selling travel since the eighties, 5 AIs and a business that runs itself. I don\'t code — I ask. And it works. Fire away.',
 		'chat.hero.placeholder': 'Type something...',
 		'chat.hero.listening': 'Listening...',
 		'chat.pill.fiveBrains': '🧠 The five brains',
@@ -140,7 +140,7 @@ export const ui = {
 		'chat.pill.ginTonic': '🍸 From gin tonic to prompt',
 
 		// Chat — drawer (floating, all pages)
-		'chat.drawer.greeting': '72, 42 years selling travel, and 5 AIs doing the work of a whole team. Ask me anything — about the blog, my stack, or how I went from a gin tonic to a prompt.',
+		'chat.drawer.greeting': 'Selling travel since the eighties, and 5 AIs doing the work of a whole team. Ask me anything — about the blog, my stack, or how I went from a gin tonic to a prompt.',
 		'chat.drawer.placeholder': 'Ask me anything...',
 		'chat.drawer.listening': 'Listening...',
 		'chat.drawer.pill.fiveBrains': 'The five brains',

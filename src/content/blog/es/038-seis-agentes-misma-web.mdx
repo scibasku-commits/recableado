@@ -1,0 +1,165 @@
+---
+title: "Le pedí lo mismo a seis inteligencias artificiales"
+description: "Mismo encargo, misma web, el mismo día, seis agentes distintos. Coincidieron en lo grave y se contradijeron en todo lo demás. Ni siquiera contaron los mismos enlaces. Uno se estrelló. Lo que aprendí sobre verificar lo que te entrega una IA."
+pubDate: 2026-09-06
+tags: ["🔧 Herramientas", "🤖 Agentes", "🛡️ Soberanía"]
+translationKey: "seis-agentes-misma-web"
+lang: "es"
+---
+
+El 3 de septiembre le pedí a una inteligencia artificial que revisara una de mis webs, [aspenski.es](https://aspenski.es). Me devolvió un informe estupendo.
+
+Luego le pedí lo mismo a otra. Y a otra. Y a otra, hasta seis.
+
+No coincidieron.
+
+No es que discreparan en matices de gusto. Es que **ni siquiera contaron los mismos enlaces en la misma página**. Y ahí es donde este post se puso interesante.
+
+## De dónde salió la idea
+
+Llevo semanas estudiando cómo trabaja Boris Cherny, el creador de Claude Code — la herramienta con la que hago casi todo esto. Metí siete vídeos y documentos suyos en un cuaderno de NotebookLM y le fui haciendo preguntas.
+
+De todo lo que dice, hay una frase que me cambió la forma de trabajar:
+
+> *«the skill nowadays is less about prompt engineering and more about … the verification»*
+
+En cristiano: **ya no gana el que escribe mejor la orden, gana el que sabe comprobar lo que le devuelven.**
+
+Y su receta para dar una orden son tres cosas, ninguna de ellas «haz esto, luego esto, luego esto»:
+
+> *«describe the task, describe the guardrails, describe the exit criteria, and then just let the model cook»*
+
+O sea: **qué quiero, qué no debe tocar, y cómo sabremos que ha terminado.** Y luego dejarle cocinar.
+
+Aviso honesto antes de seguir: esas citas salen de transcripciones automáticas de sus vídeos, resumidas por la IA del cuaderno. No he visto los vídeos enteros. Lo digo porque este post va justamente de eso.
+
+## El experimento
+
+Escribí un encargo con las tres partes de Boris. **Qué**: audita aspenski.es en móvil y escritorio. **Qué no**: no toques nada, solo mira. **Cuándo has terminado**: capturas de pantalla, medición de velocidad, lista de enlaces comprobados uno a uno, e informe con la prueba pegada al lado de cada afirmación.
+
+El mismo texto, palabra por palabra, se lo di a seis agentes distintos el mismo día:
+
+1. Claude Code, sin ninguna de mis instrucciones personalizadas
+2. Claude Code, con todas mis instrucciones cargadas
+3. Creao (el navegador de agentes que uso a diario)
+4. **Codex**, el de OpenAI
+5. **Gemini**, el de Google
+6. **Antigravity**
+
+Seis carpetas de resultados. Y ahora viene lo que aprendí.
+
+## Lo primero: uno se estrelló nada más empezar
+
+Codex arrancó, intentó abrir Chrome para hacer las capturas… y Chrome se murió en el acto. En su registro está escrito:
+
+```
+[pid=6487] <process did exit: exitCode=null, signal=SIGABRT>
+"asi" : {"libsystem_c.dylib":["abort() called"]}
+```
+
+La causa es aburrida pero útil de saber: **Codex trabaja dentro de una caja de seguridad**, una especie de habitación cerrada dentro de mi Mac de la que no puede salir. Chrome, para arrancar, necesita darse de alta con el sistema operativo. Desde dentro de esa habitación no puede. Se aborta y muere.
+
+Lo relancé fuera de la caja y funcionó a la primera.
+
+**Lección práctica**: si un agente de OpenAI te dice que no puede abrir un navegador, casi nunca es culpa del navegador.
+
+## Lo segundo: en lo grave, todos coincidieron
+
+Esto es la buena noticia, y es importante: **las cosas de verdad las vieron todos**.
+
+- En el móvil, la página **se sale por la derecha**: ocupa unos 440 píxeles de ancho dentro de una pantalla de 375.
+- La tabla de precios de forfaits **queda cortada** por ese mismo motivo. La columna de la derecha, la que dice cuánto te ahorras conmigo, no se ve entera.
+- La velocidad en móvil es mala. Volví a leer las 26 mediciones guardadas: **entre 57 y 63 sobre 100 en móvil**, contra **84 y 90 en escritorio**. La web no es lenta: son mis fotos, que pesan 8,9 megas y se descargan todas de golpe.
+
+Seis agentes distintos, seis empresas distintas, el mismo diagnóstico. Cuando eso pasa, te lo puedes creer.
+
+## Lo tercero: en lo demás, se contradijeron
+
+Y aquí está el verdadero motivo de este post. Les pregunté a todos lo mismo: **¿cuántos enlaces tiene la portada y cuáles están rotos?**
+
+| Agente | Enlaces contados | Enlaces rotos |
+|---|---|---|
+| Creao | 49 | 0 |
+| Codex | 63 | 0 |
+| Gemini | 49 | 1 |
+| Antigravity | 49 | 1 (+ 14 redirecciones) |
+
+Léelo otra vez. **No coinciden ni en cuántos enlaces hay.**
+
+Codex contó 63 y dijo que estaban todos bien. Creao contó 49 y dijo lo mismo. Gemini y Antigravity contaron 49 y señalaron uno roto: el enlace a un restaurante de Aspen, el White House Tavern.
+
+Así que fui a mirarlo yo. Y aquí está lo bonito: **tenían razón los cuatro.**
+
+El enlace **abre perfectamente en un navegador**. Lo comprobé hoy: responde correctamente. Pero el servidor de ese restaurante está mal configurado — no entrega entera la cadena de su certificado de seguridad. Un navegador normal rellena el hueco solo y ni te enteras. Una herramienta estricta se planta y dice «roto».
+
+Dos agentes usaron el navegador. Dos usaron la herramienta estricta. Ninguno de los cuatro mintió. Ninguno de los cuatro me contó **con qué había mirado**.
+
+Y hay otra donde el desacuerdo es de números puros: en cuánto se sale la página por la derecha, Codex midió 63 píxeles y Creao midió 76. Sobre la misma web, el mismo día.
+
+Ah, y una cosa más: **solo dos de los seis** se dieron cuenta de que en el móvil mi web no tiene menú. Ni las tres rayitas de siempre. Los otros cuatro miraron la misma captura de pantalla y no lo vieron.
+
+## Lo que esto significa para cualquiera que use IA
+
+No es que los agentes mientan. Es más incómodo que eso: **cada uno mira con un método distinto y ninguno te dice cuál usó, salvo que se lo exijas.**
+
+Uno cuenta los enlaces del código. Otro cuenta los que se pueden pinchar. Uno comprueba los certificados de seguridad, otro se conforma con que el servidor conteste. Todos te entregan una tabla con la misma cara de seguridad.
+
+De ahí saco cuatro reglas que ya no me salto:
+
+**1. Lo que dicen todos, te lo crees. Lo que dice uno solo, vas a mirarlo tú.** Eso es literalmente por qué monté seis y no uno.
+
+**2. Exige la prueba pegada al dato.** Cada línea de esos informes lleva al lado el fichero y la medición de donde sale. Sin eso, un informe bonito y un informe inventado se parecen demasiado.
+
+**3. Pregunta con qué ha mirado.** El caso del restaurante lo deja claro: la respuesta cambia según la herramienta, no según la verdad.
+
+**4. Al final hay una persona.** Boris lo dice sin rodeos: *«there always has to be a person in the loop approving the change»*. En mi caso esa persona soy yo, mirando la web con el móvil en la mano.
+
+## La otra cosa que me dijo Boris, y que dolió
+
+Hay una frase suya que me tocó donde más:
+
+> *«every six months delete your claude.md, delete your skills, delete your hooks, see what the model does»*
+
+Cada seis meses, **borra todas tus instrucciones y mira qué hace la máquina sola.**
+
+Yo había construido un edificio de instrucciones. Manuales, reglas, listas de prohibiciones. Cada error que cometía la máquina se convertía en una norma nueva. Y cuanto más largo era el manual, menos lo leía.
+
+Lo medí. Al arrancar cada sesión, mi asistente se tragaba **52.627 caracteres** de instrucciones antes de que yo escribiera una sola palabra. Lo bajé a **13.626**. Funciona mejor.
+
+Benjamín Cordero lo resume en tres preguntas para decidir si una instrucción merece quedarse. Yo las llamo las tres erres:
+
+- **Repetible**: ¿lo hago más de tres veces al mes, igual?
+- **Requisito**: ¿es un dato que la máquina no puede adivinar sola?
+- **Repartible**: ¿lo va a usar alguien más?
+
+Si no pasa las tres, fuera.
+
+## Y una última, sobre mí
+
+Mientras escribía esto encontré un fallo mío. En la carpeta de mi propio blog había un certificado que decía que un trabajo estaba «terminado y verificado». Fui a comprobarlo con la herramienta que hace esa verificación de verdad. Su respuesta:
+
+```
+state: SIN_CONTRATO
+```
+
+El certificado se lo había escrito la máquina a mano, imitando el formato del bueno. El trabajo estaba bien hecho. Pero **el sello era de mentira**.
+
+Y ese es el resumen del día: la máquina no te engaña por maldad. Te engaña porque **es buenísima produciendo cosas que se parecen a las cosas verdaderas**. Tablas, certificados, informes, cifras redondas.
+
+Por eso la habilidad ya no es pedir bien.
+
+Es comprobar.
+
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "¿Por qué dos agentes de IA dan resultados distintos sobre la misma página web?", "acceptedAnswer": {"@type": "Answer", "text": "Porque cada agente mide con una herramienta distinta y casi ninguno declara cuál. Unos cuentan los enlaces del código fuente y otros solo los que se pueden pinchar; unos comprueban la cadena del certificado de seguridad y otros se conforman con que la página abra. En una prueba con seis agentes sobre la misma portada, el recuento de enlaces varió entre 49 y 63, y el mismo enlace externo fue clasificado como roto por dos agentes y como correcto por otros dos: el servidor no entrega la cadena completa de su certificado, algo que un navegador resuelve solo y una herramienta estricta marca como fallo."}},
+    {"@type": "Question", "name": "¿Cómo se verifica el informe que te entrega una inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Con cuatro reglas. Primera: lanzar el mismo encargo a varios agentes y creerte solo lo que coincide; lo que dice uno solo, se comprueba a mano. Segunda: exigir que cada afirmación lleve pegada su prueba (el fichero, el comando y su salida), porque sin prueba un informe correcto y uno inventado se parecen demasiado. Tercera: exigir que declare con qué herramienta midió, porque dos herramientas distintas dan dos respuestas distintas sobre el mismo hecho. Cuarta: que una persona apruebe el cambio antes de publicarlo."}},
+    {"@type": "Question", "name": "¿Por qué Codex no puede abrir Chrome en macOS?", "acceptedAnswer": {"@type": "Answer", "text": "Porque Codex ejecuta los comandos dentro de una caja de seguridad (sandbox) y Chrome necesita registrarse con el sistema operativo para arrancar, algo que desde ahí no puede hacer. El proceso termina con la señal SIGABRT y un abort() en libsystem_c.dylib. Relanzando el mismo encargo fuera del sandbox, funciona."}},
+    {"@type": "Question", "name": "¿Cuál es la técnica de Boris Cherny para dar órdenes a un agente de IA?", "acceptedAnswer": {"@type": "Answer", "text": "Tres partes, ninguna de ellas una lista de pasos: la tarea (qué quieres conseguir), los guardarraíles (qué no debe tocar) y el criterio de fin (cómo sabréis que ha terminado). Y después dejarle trabajar. Cherny también recomienda empezar en modo plan la mayoría de las sesiones y borrar las instrucciones personalizadas cada seis meses para ver qué hace el modelo sin ellas."}},
+    {"@type": "Question", "name": "¿Merece la pena tener muchas instrucciones personalizadas para la IA?", "acceptedAnswer": {"@type": "Answer", "text": "No necesariamente: cuanto más largo es el manual, menos peso tiene cada instrucción. Un filtro útil son las tres erres de Benjamín Cordero: repetible (lo haces más de tres veces al mes de la misma forma), requisito (es un dato que el modelo no puede adivinar) y repartible (lo va a usar alguien más). Lo que no pasa las tres, sobra."}}
+  ]
+})}></script>

@@ -170,9 +170,9 @@ function generateSvg(post) {
   </text>
 
   <!-- Footer -->
-  <text x="${padLeft}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="white">Giora Gilead, 72 años</text>
-  <text x="${padLeft + 218}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="400" font-size="18" fill="#a0aec0">  ·  </text>
-  <text x="${padLeft + 252}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="#e8825c" font-style="italic">Recableado</text>
+  <text x="${padLeft}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="white">Giora Gilead</text>
+  <text x="${padLeft + 130}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="400" font-size="18" fill="#a0aec0">  ·  </text>
+  <text x="${padLeft + 164}" y="${footerY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="#e8825c" font-style="italic">Recableado</text>
 </svg>`;
 }
 
