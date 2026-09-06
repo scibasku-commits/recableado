@@ -151,7 +151,7 @@ function generateSvg(post) {
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg)"/>
 
   <!-- Decorative quotes -->
-  <text x="${WIDTH - 140}" y="${HEIGHT / 2 + 20}" font-family="Georgia, serif" font-size="220" fill="rgba(255,255,255,0.06)" font-weight="700">&quot;&quot;</text>
+  <text x="${WIDTH - 140}" y="${HEIGHT / 2 + 20}" font-family="Bricolage, sans-serif" font-size="220" fill="rgba(255,255,255,0.06)" font-weight="700">&quot;&quot;</text>
 
   <!-- Tag -->
   <text x="${padLeft}" y="${tagY}" font-family="Bricolage, sans-serif" font-weight="700" font-size="18" fill="#e8825c" letter-spacing="3">${escapeXml(post.tag)}</text>
