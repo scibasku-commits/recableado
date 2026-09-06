@@ -1,0 +1,165 @@
+---
+title: "I asked six artificial intelligences to do the exact same thing"
+description: "Same brief, same website, same day, six different agents. They agreed on the serious stuff and contradicted each other on everything else. They didn't even count the same number of links."
+pubDate: 2026-09-06
+tags: ["🔧 Tools", "🤖 Agents", "🛡️ Sovereignty"]
+translationKey: "seis-agentes-misma-web"
+lang: "en"
+---
+
+On 3 September I asked an artificial intelligence to review one of my websites, [aspenski.es](https://aspenski.es). It handed me back a beautiful report.
+
+Then I asked another one to do the same. And another. And another, up to six.
+
+They didn't agree.
+
+Not disagreements about taste. **They didn't even count the same number of links on the same page.** And that's where this post got interesting.
+
+## Where the idea came from
+
+I've spent weeks studying how Boris Cherny works — he created Claude Code, the tool I do almost all of this with. I dropped seven of his videos and documents into a NotebookLM notebook and started asking it questions.
+
+Of everything he says, one line changed the way I work:
+
+> *«the skill nowadays is less about prompt engineering and more about … the verification»*
+
+In plain English: **the winner is no longer whoever writes the neatest instruction. It's whoever knows how to check what comes back.**
+
+And his recipe for giving an instruction is three things, none of them "do this, then this, then this":
+
+> *«describe the task, describe the guardrails, describe the exit criteria, and then just let the model cook»*
+
+That is: **what I want, what it must not touch, and how we'll know it's finished.** Then let it cook.
+
+An honest warning before we go on: those quotes come from automatic transcripts of his videos, summarised by the notebook's own AI. I haven't watched the videos end to end. I'm saying so because this post is about exactly that.
+
+## The experiment
+
+I wrote a brief with Boris's three parts. **What**: audit aspenski.es on mobile and desktop. **What not**: touch nothing, only look. **When you're done**: screenshots, a speed measurement, a list of links checked one by one, and a report with the evidence sitting next to every claim.
+
+The same text, word for word, went to six different agents on the same day:
+
+1. Claude Code, with none of my custom instructions
+2. Claude Code, with all of my instructions loaded
+3. Creao (the agent browser I use daily)
+4. **Codex**, OpenAI's
+5. **Gemini**, Google's
+6. **Antigravity**
+
+Six folders of results. And here's what I learned.
+
+## First: one of them crashed on the starting line
+
+Codex started up, tried to open Chrome to take the screenshots… and Chrome died on the spot. Its log says:
+
+```
+[pid=6487] <process did exit: exitCode=null, signal=SIGABRT>
+"asi" : {"libsystem_c.dylib":["abort() called"]}
+```
+
+The cause is boring but useful to know: **Codex works inside a security box**, a sort of locked room inside my Mac that it cannot leave. Chrome, in order to start, needs to register itself with the operating system. From inside that room it can't. It aborts and dies.
+
+I relaunched it outside the box and it worked first time.
+
+**Practical lesson**: if an OpenAI agent tells you it can't open a browser, it's almost never the browser's fault.
+
+## Second: on the serious stuff, all of them agreed
+
+This is the good news, and it matters: **the real problems, every one of them saw**.
+
+- On mobile, the page **spills off the right-hand side**: it takes up around 440 pixels of width inside a 375-pixel screen.
+- The lift-pass price table **gets cut off** for that same reason. The right-hand column, the one that says how much you save with me, isn't fully visible.
+- Mobile speed is bad. I went back through the 26 saved measurements: **between 57 and 63 out of 100 on mobile**, against **84 and 90 on desktop**. The site isn't slow: it's my photos, weighing 8.9 megabytes and downloading all at once.
+
+Six different agents, six different companies, the same diagnosis. When that happens, you can believe it.
+
+## Third: on everything else, they contradicted each other
+
+And here's the real reason for this post. I asked them all the same thing: **how many links does the homepage have, and which ones are broken?**
+
+| Agent | Links counted | Broken links |
+|---|---|---|
+| Creao | 49 | 0 |
+| Codex | 63 | 0 |
+| Gemini | 49 | 1 |
+| Antigravity | 49 | 1 (+ 14 redirects) |
+
+Read it again. **They don't even agree on how many links there are.**
+
+Codex counted 63 and said they were all fine. Creao counted 49 and said the same. Gemini and Antigravity counted 49 and flagged one broken: the link to an Aspen restaurant, the White House Tavern.
+
+So I went and looked myself. And here's the lovely part: **all four were right.**
+
+The link **opens perfectly in a browser**. I checked it today: it responds correctly. But that restaurant's server is misconfigured — it doesn't serve the full chain of its security certificate. A normal browser fills the gap on its own and you never notice. A strict tool digs its heels in and says "broken".
+
+Two agents used the browser. Two used the strict tool. None of the four lied. None of the four told me **what they had looked with**.
+
+And there's another one where the disagreement is pure numbers: on how far the page spills off the right, Codex measured 63 pixels and Creao measured 76. Same website, same day.
+
+Oh, and one more thing: **only two of the six** noticed that on mobile my site has no menu. Not even the usual three lines. The other four looked at the same screenshot and didn't see it.
+
+## What this means for anyone using AI
+
+It's not that the agents lie. It's more uncomfortable than that: **each one looks with a different method and none of them tells you which, unless you demand it.**
+
+One counts the links in the source code. Another counts the ones you can click. One checks security certificates, another is happy as long as the server answers. All of them hand you a table wearing the same confident face.
+
+Out of that I take four rules I no longer skip:
+
+**1. What all of them say, you believe. What only one says, you go and look at yourself.** That is literally why I ran six and not one.
+
+**2. Demand the evidence stuck to the claim.** Every line of those reports carries the file and the measurement it came from. Without that, a good report and an invented one look far too alike.
+
+**3. Ask what it looked with.** The restaurant case makes it plain: the answer changes with the tool, not with the truth.
+
+**4. At the end there's a person.** Boris puts it bluntly: *«there always has to be a person in the loop approving the change»*. In my case that person is me, looking at the site with the phone in my hand.
+
+## The other thing Boris said, and it stung
+
+There's a line of his that hit me where it hurts:
+
+> *«every six months delete your claude.md, delete your skills, delete your hooks, see what the model does»*
+
+Every six months, **delete all your instructions and see what the machine does on its own.**
+
+I had built a whole building of instructions. Manuals, rules, lists of prohibitions. Every mistake the machine made turned into a new rule. And the longer the manual got, the less I read it.
+
+I measured it. At the start of each session my assistant swallowed **52,627 characters** of instructions before I typed a single word. I brought it down to **13,626**. It works better.
+
+Benjamín Cordero boils it down to three questions for deciding whether an instruction earns its place. I call them the three Rs:
+
+- **Repeatable**: do I do this more than three times a month, the same way?
+- **Requirement**: is it something the machine cannot work out on its own?
+- **Redistributable**: is somebody else going to use it?
+
+If it doesn't pass all three, out.
+
+## And one last one, about me
+
+While I was writing this I found a mistake of my own. In my own blog's folder there was a certificate saying a piece of work was "finished and verified". I went to check it with the tool that does that verification for real. Its answer:
+
+```
+state: SIN_CONTRATO
+```
+
+The machine had written that certificate by hand, imitating the format of the real one. The work was fine. But **the seal was fake**.
+
+And that's the summary of the day: the machine doesn't deceive you out of malice. It deceives you because **it is extremely good at producing things that look like true things**. Tables, certificates, reports, round numbers.
+
+That's why the skill is no longer asking well.
+
+It's checking.
+
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Why do two AI agents give different results about the same web page?", "acceptedAnswer": {"@type": "Answer", "text": "Because each agent measures with a different tool and almost none of them declares which. Some count the links in the source code and others only the clickable ones; some check the security certificate chain and others are satisfied if the page opens. In a test with six agents on the same homepage, the link count ranged from 49 to 63, and the same external link was classified as broken by two agents and as fine by two others: the server does not serve the full chain of its certificate, something a browser resolves on its own and a strict tool flags as a failure."}},
+    {"@type": "Question", "name": "How do you verify a report handed to you by an artificial intelligence?", "acceptedAnswer": {"@type": "Answer", "text": "With four rules. First: send the same brief to several agents and believe only what they agree on; whatever only one says, check by hand. Second: demand that every claim carries its evidence attached (the file, the command and its output), because without evidence a correct report and an invented one look far too alike. Third: demand that it declares which tool it measured with, because two different tools give two different answers about the same fact. Fourth: have a person approve the change before it is published."}},
+    {"@type": "Question", "name": "Why can't Codex open Chrome on macOS?", "acceptedAnswer": {"@type": "Answer", "text": "Because Codex runs commands inside a security sandbox and Chrome needs to register with the operating system in order to start, which it cannot do from there. The process ends with the SIGABRT signal and an abort() in libsystem_c.dylib. Relaunching the same brief outside the sandbox works."}},
+    {"@type": "Question", "name": "What is Boris Cherny's technique for instructing an AI agent?", "acceptedAnswer": {"@type": "Answer", "text": "Three parts, none of them a list of steps: the task (what you want to achieve), the guardrails (what it must not touch) and the exit criteria (how you will both know it has finished). And then let it work. Cherny also recommends starting most sessions in plan mode and deleting your custom instructions every six months to see what the model does without them."}},
+    {"@type": "Question", "name": "Is it worth keeping a lot of custom instructions for an AI?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily: the longer the manual, the less weight each instruction carries. A useful filter is Benjamín Cordero's three Rs: repeatable (you do it more than three times a month the same way), requirement (it is something the model cannot work out on its own) and redistributable (somebody else will use it). Anything that fails all three is surplus."}}
+  ]
+})}></script>
