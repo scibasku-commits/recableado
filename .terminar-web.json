@@ -25,14 +25,17 @@
     "/en/learn/",
     "/ai-costa/",
     "/en/ai-costa/",
-    "/ai-costa-social.png"
+    "/ai-costa-social.png",
+    "/blog/",
+    "/en/blog/",
+    "/blog/039-mi-ia-clasifico-cliente-como-ruido/",
+    "/en/blog/039-my-ai-labelled-a-customer-as-noise/",
+    "/og/039-mi-ia-clasifico-cliente-como-ruido.png",
+    "/og/039-my-ai-labelled-a-customer-as-noise.png"
   ],
   "criticalJourneys": [
-    "J1-ai-costa-bilingue",
-    "J0-aprende-con-gpt",
-    "J2-copiar-y-progresar",
-    "J3-movil-sin-desbordes",
-    "J4-portada-social",
-    "J5-umami-sin-analytics-adicional"
+    "J6-blog039-bilingue",
+    "J7-blog039-lectura-y-social",
+    "J8-regresion-aprende"
   ]
 }

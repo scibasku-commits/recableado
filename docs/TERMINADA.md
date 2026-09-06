@@ -62,3 +62,38 @@
 - Los enlaces externos solo se abren por acción del visitante.
 - No se crea un proyecto Vercel: se reutiliza exclusivamente `recableado`.
 - La publicación se ejecuta solo después de la compuerta `pre-deploy` del método SELLO.
+
+## Intervención editorial 039 — 6-sep-2026
+
+El alcance duradero de aprendizaje anterior se conserva. Esta intervención añade el artículo 039
+en español e inglés, visible en ambos índices, con enlaces de idioma recíprocos y portadas sociales
+en cada idioma. No modifica el curso, su progreso ni los ejercicios. Los recorridos J0–J5 anteriores
+siguen siendo criterios del curso cuando este cambie; para este cambio editorial, la regresión se
+cubre mediante su verificación completa y comprobación de sus rutas existentes.
+
+### Rutas añadidas
+
+- `/blog/`
+- `/en/blog/`
+- `/blog/039-mi-ia-clasifico-cliente-como-ruido/`
+- `/en/blog/039-my-ai-labelled-a-customer-as-noise/`
+- `/og/039-mi-ia-clasifico-cliente-como-ruido.png`
+- `/og/039-my-ai-labelled-a-customer-as-noise.png`
+
+### Jornadas de esta intervención
+
+- `J6-blog039-bilingue`: abrir el artículo completo en cada idioma desde su índice; comprobar
+  correspondencia ES ↔ EN, idioma del cuerpo y ausencia de información personal del visitante.
+- `J7-blog039-lectura-y-social`: lectura visible en escritorio y móvil de 390 píxeles, sin
+  desbordamiento horizontal; abrir las dos imágenes OG, comprobar texto y metadatos de idioma.
+- `J8-regresion-aprende`: `node scripts/verify-ai-costa.mjs` completo en verde y respuesta correcta
+  de las rutas existentes de portada, aprendizaje y curso.
+
+### Aceptación editorial
+
+- Mantener la distinción probada: el resumen reconoció la consulta, pero la regla la clasificó
+  como ruido. No afirmar que se perdió una venta ni que se disponía del contacto del visitante.
+- Build completo verde y QA local y público ligados al mismo candidato.
+- Publicar ambas traducciones juntas en el proyecto Vercel existente `recableado`.
+- Registrar el permiso explícito de Giora con su evento y hora originales. Si el motor no admite
+  la secuencia temporal de ese permiso, conservar el bloqueo y no declarar certificado SELLO.
