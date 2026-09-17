@@ -1,0 +1,142 @@
+---
+title: "La IA ya trabaja sola hacia una meta. Por eso mando yo más que antes"
+description: "Dos vídeos muy vistos dicen cosas distintas sobre la inteligencia artificial: uno, que sin plan te lo estropea todo; otro, que ya no necesita que le des tareas, solo una meta. Los dos tienen razón. Cuento el sistema que usamos en mi agencia para que la IA trabaje sola sin equivocarse en lo que importa."
+pubDate: 2026-09-17
+tags: ["🧠 Proceso", "🤖 Agentes", "🔥 Ahora"]
+translationKey: "nuestro-metodo-para-trabajar-con-ia"
+lang: "es"
+---
+
+**La inteligencia artificial ya es capaz de trabajar sola hacia una meta, y eso no me quita trabajo: me cambia el trabajo.** Cuanto más hace ella sin que la vigile, más importa que yo decida el negocio antes y que exija pruebas después.
+
+> **En corto.** Sin plan, cada cosa nueva que le pides a la IA estropea la anterior. Con meta y sin criterio, lo estropea más deprisa. Nuestro sistema tiene dos mitades: antes de construir, el humano decide (qué, con qué datos, qué queda fuera); después de construir, nadie da nada por hecho sin una prueba real. Lo demás lo hace la máquina.
+
+Tengo una agencia de viajes. No sé programar. Y sin embargo llevo un tiempo dirigiendo a un puñado de asistentes de inteligencia artificial que escriben, revisan y publican cosas por mí. Lo que sigue es el manual que me habría gustado tener antes de romper unas cuantas.
+
+---
+
+## ¿Por qué la IA me estropeaba lo anterior cada vez que le pedía algo nuevo?
+
+Hay un vídeo que explica muy bien este fallo: se titula «The Engineering Skill AI Won't Replace», la habilidad de ingeniería que la IA no va a sustituir. Y la habilidad no es programar. Es planificar.
+
+Su tesis es sencilla y me reconocí en ella: si le vas pidiendo cosas sueltas a la IA, sin un plan escrito, cada petición nueva pisa a la anterior. No porque la máquina sea torpe, sino porque no sabe qué era importante de lo que ya había. Nadie se lo dijo.
+
+Lo que propone el vídeo es una cadena de pasos, y los traduzco a mi idioma:
+
+- **Alcance.** Antes de nada, escribir qué se va a hacer y, sobre todo, qué NO.
+- **Diseño.** Decidir cómo va a ser la cosa antes de construirla. Cada dato que aparezca tiene que tener un origen con nombre.
+- **Construir con derecho a negarse.** Si a la máquina le falta una decisión que es humana, no la inventa: se para y la devuelve.
+- **Memoria en ficheros.** Lo que se decide se apunta en un documento que la IA lee al empezar, porque de una sesión a otra no se acuerda de nada.
+- **Comprobar de verdad, y que revise otra IA.** No «parece que funciona». Funciona porque se ha probado, y otra máquina distinta lo ha mirado.
+- **Arreglar fallos reproduciéndolos primero.** Antes de tocar nada, conseguir que el fallo vuelva a ocurrir delante de ti. Si no puedes reproducirlo, no sabes qué estás arreglando.
+
+Cuando vi el vídeo ya llevaba tiempo haciendo, a trompicones, casi todo esto. Lo que no tenía era el orden.
+
+---
+
+## ¿Qué ha cambiado ahora para que la IA «trabaje hacia una meta»?
+
+El segundo vídeo es de Matt Maher y lleva un título que suena a vendedor: «Ten months ago I said AI changed. It just happened again.» Hace diez meses dije que la IA había cambiado; acaba de pasar otra vez.
+
+Lo que cuenta es esto: hasta ahora le dábamos a la IA tareas. Escribe esto, corrige aquello. Ahora le podemos dar una **meta** y una **forma de comprobar que se ha llegado**, y ella se organiza sola: monta sus propios ayudantes, se reparte el trabajo, se controla. Le describes el destino y cómo saber que has llegado, y te apartas.
+
+Según el autor, la mayoría de la gente lo adoptará en unos seis meses. No sé si acertará con el plazo. Sé que la parte de «te apartas» es la que más miedo me daba, y con razón.
+
+Porque una máquina que trabaja sola hacia una meta mal definida no falla despacio. Falla con entusiasmo.
+
+---
+
+## ¿Entonces mando menos o mando más?
+
+Aquí está mi tesis, y es la contraria de la que se lee por ahí.
+
+Que la IA pueda trabajar sola hacia una meta hace **más** importante, no menos, que el humano decida el negocio y exija pruebas. Antes, si yo definía mal una cosa, la IA hacía una tarea mal y yo la veía. Ahora, si defino mal la meta, la IA construye durante horas, con sus propios ayudantes, un edificio entero encima de mi error. Y me lo entrega con orgullo.
+
+Así que todo mi sistema se reduce a dos preguntas:
+
+1. **Antes de construir:** ¿he decidido yo lo que solo yo puedo decidir?
+2. **Después de construir:** ¿hay una prueba real de que funciona, o solo alguien diciéndome que funciona?
+
+Lo de en medio, cada vez más, lo hace la máquina.
+
+---
+
+## ¿En qué consiste nuestro sistema, pieza a pieza?
+
+Son cinco piezas. Tienen nombres un poco ridículos porque se los pusimos nosotros, y un nombre ridículo se recuerda mejor que uno serio.
+
+### Método Gentleman: la prisa reduce papeleo, nunca el juicio
+
+Cuando hay prisa, se permite saltarse formularios. No se permite saltarse el criterio. Y la pieza central es una **tabla de decisiones antes de construir**: qué dato va en cada sitio, de dónde sale, y qué pasa si falta. Si en la tabla hay un hueco que solo puede rellenar el dueño del negocio, la máquina no lo rellena. Lo pregunta. Esto encaja con el paso «diseño» del primer vídeo, y es la pieza que más errores caros me ha ahorrado.
+
+### Método MIT: bajar a la causa antes de actuar
+
+Cuando algo falla, la tentación es arreglar lo que se ve. Un aviso más, una mayúscula más, un «ten más cuidado». El método MIT prohíbe eso si el fallo ya ha ocurrido antes: hay que bajar a la causa, entender por qué la regla no se estaba aplicando, y mover algo que haga imposible que vuelva. Del primer vídeo, es el paso «reproducir antes de arreglar», llevado también a las cosas que no son código.
+
+### El Sándwich de Benjamín Cordero: el modelo caro para pensar, el barato para el volumen
+
+No todos los modelos de IA cuestan lo mismo ni piensan igual. El sándwich es esto: el modelo caro planifica al principio y revisa al final; el volumen del medio lo hace otro más barato. Las dos rebanadas de pan son las que importan. Es la forma de que trabajar con meta no se convierta en trabajar sin presupuesto.
+
+### RDD: «dos revisores que coinciden no es reproducir»
+
+Esta es la pieza que más me costó aceptar. Si dos asistentes revisan en paralelo y los dos dicen «aquí hay un fallo», lo natural es darlo por fallo. RDD dice que no: **coincidir no es reproducir**. Un hallazgo solo cuenta si lleva pegada la prueba, el comando y lo que salió. Dos opiniones iguales siguen siendo dos opiniones. Del primer vídeo, es el «comprobar de verdad» con la puerta bien cerrada.
+
+### Método SELLO: una web no está terminada sin prueba real
+
+Una web puede pasar todas las comprobaciones automáticas y estar rota para una persona con un teléfono en la mano. SELLO dice que «terminada» no lo escribe nadie hasta que se ha navegado de verdad, en un navegador real, como lo haría un cliente, y hay evidencia de ello. Y hasta que yo, en ese mismo momento, doy el visto bueno. Ni antes ni por escrito de la semana pasada.
+
+---
+
+## ¿Cómo encaja todo esto con lo de «dale una meta y apártate»?
+
+Perfectamente, y de una forma que me sorprendió. Los dos vídeos no se contradicen: son las dos mitades.
+
+El de Maher describe el motor: la IA que se organiza sola hacia una meta. El de la ingeniería describe la carrocería: el plan, la memoria, la prueba. Nuestro sistema pone al humano en dos sitios concretos de ese coche: en el volante antes de arrancar, y en la inspección técnica al llegar. En la carretera, la máquina.
+
+Lo que no hago ya es ir sentado a su lado corrigiéndole el cambio de marchas. Eso era lo que hacía antes, y era agotador para los dos.
+
+---
+
+## ¿Qué puedo hacer yo hoy con esto?
+
+No hace falta montar cinco métodos con nombre. Hace falta una hoja.
+
+La próxima vez que le pida a la IA algo que le importe, escriba antes tres cosas, en castellano, en un papel o en la misma caja de texto:
+
+```
+META: qué tiene que existir cuando termines.
+
+FUERA: qué NO quiero que toques ni decidas.
+
+PRUEBA: cómo voy a comprobar yo que está bien
+        (qué abro, qué miro, qué tiene que salir).
+
+Si para cumplir la META necesitas decidir algo que
+está en FUERA, para y pregúntame. No lo rellenes.
+```
+
+La primera línea es lo que hace la IA nueva. La segunda es el método Gentleman en una frase. La tercera es SELLO y RDD juntos. Y la última es el derecho a negarse del primer vídeo, que resulta ser el más valioso de todos.
+
+Le aviso de lo que me pasó a mí: la parte de FUERA es la que más cuesta escribir, porque uno no sabe lo que da por supuesto hasta que una máquina se lo hace al revés.
+
+---
+
+## Preguntas frecuentes
+
+**¿Hace falta saber programar para trabajar así?**
+No. Yo no sé. Los cinco métodos que cuento son reglas de trabajo escritas en castellano dentro de documentos que la IA lee al empezar. Lo que hace falta es saber qué decisiones son suyas y no quiere delegar. Eso lo sabe usted mejor que cualquier máquina.
+
+**¿Con qué herramienta hago lo de «darle una meta»?**
+Yo lo hago con Claude Code. Pero la idea de escribir meta, límites y prueba antes de pedir nada sirve en cualquier caja de texto, incluida la de ChatGPT. La herramienta cambia lo cómodo que es; no cambia el método.
+
+**¿Por qué no basta con que dos IA revisen y coincidan?**
+Porque dos opiniones iguales pueden salir del mismo malentendido. Un fallo solo cuenta cuando alguien lo reproduce: hace que vuelva a ocurrir y enseña la prueba. Si no se puede reproducir, se queda en «no concluyente», y con eso no se arregla nada. Es incómodo y es lo que nos evita arreglar fantasmas.
+
+**¿Esto no es demasiado lento para una agencia pequeña?**
+Lo lento es rehacer. Cada minuto que dedico a la tabla de decisiones antes me ahorra una tarde de deshacer un trabajo entero construido sobre un dato que nadie decidió. Y cuando hay prisa de verdad, el método Gentleman permite saltarse papeleo. Lo que no permite saltarse es el juicio.
+
+---
+
+## Sobre el autor
+
+**Giora Gilead Elenberg**. Tengo una agencia de viajes y me paso el día explicándole a un puñado de inteligencias artificiales lo que quiero y, sobre todo, lo que no. Escribo en Recableado lo que voy aprendiendo a base de equivocarme, sin traducirlo a lenguaje de ingeniero, porque yo tampoco lo hablo. Si algo aquí le sirve para no rehacer lo que yo tuve que rehacer, ya estamos en paz.
