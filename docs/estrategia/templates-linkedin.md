@@ -32,7 +32,7 @@
 
 [CONTEXTO - El pasado]
 Breve referencia a tu vida anterior.
-"Llevo 40 años organizando viajes..."
+"Llevo desde los años ochenta organizando viajes..."
 
 [CONFLICTO - La barrera]
 El miedo o escepticismo inicial.

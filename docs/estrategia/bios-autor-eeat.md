@@ -7,7 +7,7 @@
 ## Versiones Cortas (2 líneas — footers, bios de artículo)
 
 ### Opción 1: El Explorador Digital
-**Giora Gilead Elenberg.** 72 años, empresario de viajes desde 1982 y explorador residente del "último continente": la Inteligencia Artificial. Documento en tiempo real cómo un veterano de la industria turística usa Claude y ChatGPT para recablear su vida profesional, sin empleados IT y con mucha curiosidad.
+**Giora Gilead Elenberg.** 72 años, empresario de viajes desde los años ochenta y explorador residente del "último continente": la Inteligencia Artificial. Documento en tiempo real cómo un veterano de la industria turística usa Claude y ChatGPT para recablear su vida profesional, sin empleados IT y con mucha curiosidad.
 
 ### Opción 2: La Autoridad Pragmática
 **Giora Gilead Elenberg.** Fundador de Viajes Scibasku y experto en "cacharrear" con IA. A mis 72 años, he cambiado la gestión de viajes premium por la ingeniería de prompts (95/100 en certificación técnica), demostrando que la tecnología es el mejor multiplicador para la experiencia senior.
@@ -17,11 +17,11 @@
 ## Versiones Medias (1 párrafo — sidebar, LinkedIn)
 
 ### Opción 3: El "Sujeto del Experimento" (Sidebar del blog)
-Soy **Giora Gilead Elenberg**, tu conejillo de indias en el mundo de la IA. Llevo desde 1982 diseñando viajes de lujo en *Viajes Scibasku*, pero mi aventura actual es digital. A los 72 años, he decidido no jubilarme, sino recablearme. En este blog no encontrarás teoría aburrida, sino mis experimentos reales: desde planificar una escapada a Zermatt con Claude hasta arreglar una rueda de bici con visión computacional. Soy la prueba viviente de que la combinación de canas y algoritmos es invencible.
+Soy **Giora Gilead Elenberg**, tu conejillo de indias en el mundo de la IA. Llevo desde los años ochenta diseñando viajes de lujo en *Viajes Scibasku*, pero mi aventura actual es digital. A los 72 años, he decidido no jubilarme, sino recablearme. En este blog no encontrarás teoría aburrida, sino mis experimentos reales: desde planificar una escapada a Zermatt con Claude hasta arreglar una rueda de bici con visión computacional. Soy la prueba viviente de que la combinación de canas y algoritmos es invencible.
 
 ### Opción 4: El Profesional Senior (LinkedIn / Colaboraciones)
 **Giora Gilead Elenberg | Empresario & Explorador de IA.**
-Durante 42 años, mi negocio fue mover personas por el mundo físico como fundador de Viajes Scibasku. Hoy, aplico esa misma logística al mundo de los Modelos de Lenguaje (LLMs). Con una puntuación de 95/100 en formación avanzada de ChatGPT y una arquitectura técnica propia basada en Hugo y automatizaciones, me posiciono como el "sujeto del experimento". Escribo para profesionales +50 que sospechan que la IA también es para ellos, demostrando cómo la experiencia vital es el verdadero "moat" o ventaja competitiva en la era digital.
+Desde los años ochenta, mi negocio ha sido mover personas por el mundo físico como fundador de Viajes Scibasku. Hoy, aplico esa misma logística al mundo de los Modelos de Lenguaje (LLMs). Con una puntuación de 95/100 en formación avanzada de ChatGPT y una arquitectura técnica propia basada en Hugo y automatizaciones, me posiciono como el "sujeto del experimento". Escribo para profesionales +50 que sospechan que la IA también es para ellos, demostrando cómo la experiencia vital es el verdadero "moat" o ventaja competitiva en la era digital.
 
 ---
 
@@ -31,11 +31,11 @@ Durante 42 años, mi negocio fue mover personas por el mundo físico como fundad
 
 Me llamo **Giora Gilead Elenberg** y tengo 72 años.
 
-Si has llegado hasta aquí buscando a un joven de 20 años con sudadera que te explique cómo hacerse rico rápido con criptomonedas, estás en el lugar equivocado. Pero si buscas entender cómo demonios se conecta la sabiduría de cuatro décadas de negocios con la tecnología más disruptiva del siglo XXI, bienvenido a mi laboratorio.
+Si has llegado hasta aquí buscando a un joven de 20 años con sudadera que te explique cómo hacerse rico rápido con criptomonedas, estás en el lugar equivocado. Pero si buscas entender cómo demonios se conecta la sabiduría de toda una vida de negocios con la tecnología más disruptiva del siglo XXI, bienvenido a mi laboratorio.
 
 **El viajero que cambió de mapa**
 
-En 1982 fundé *Viajes Scibasku* en Marbella. Durante 42 años, mi vida ha consistido en resolver problemas complejos para clientes exigentes en el sector del turismo premium. He visto cambiar el mundo varias veces: del télex al fax, del fax al email, y del email a la nube.
+En los años ochenta empecé en este oficio en Marbella. Desde entonces, mi vida ha consistido en resolver problemas complejos para clientes exigentes en el sector del turismo premium. He visto cambiar el mundo varias veces: del télex al fax, del fax al email, y del email a la nube.
 
 Sin embargo, nada me preparó —ni me emocionó tanto— como lo que llamo **"el último continente"**: la Inteligencia Artificial.
 
