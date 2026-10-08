@@ -10,6 +10,7 @@ import PostStatsLoader from '../components/PostStatsLoader.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import ChatHero from '../components/ChatHero.astro';
 import LearningPromo from '../components/LearningPromo.astro';
+import VideoShelf from '../components/VideoShelf.astro';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'es' as const;
@@ -164,6 +165,24 @@ const tagStyles: Record<string, { background: string; color: string }> = {
 
 
 			</section>
+
+			<!-- ══ VÍDEOS ══ -->
+			<VideoShelf
+				heading="Vídeos"
+				shortsLabel="Cortos"
+				main={{
+					title: 'Trabajo solo con agentes de IA: así es mi sistema real',
+					duration: '4:29',
+					poster: '/videos/gente-no-agentes.jpg',
+					src: '/videos/gente-no-agentes.mp4',
+					href: '/blog/044-gente-no-agentes-video/',
+				}}
+				shorts={[
+					{ title: 'Un tema nuevo, un chat nuevo', duration: '0:32', poster: '/videos/short-1.jpg', src: '/videos/short-1.mp4' },
+					{ title: 'Gente, no. Agentes', duration: '0:59', poster: '/videos/short-2.jpg', src: '/videos/short-2.mp4' },
+					{ title: 'Chat, Cowork y Code: cuál es cuál', duration: '0:35', poster: '/videos/short-3.jpg', src: '/videos/short-3.mp4' },
+				]}
+			/>
 
 			<!-- ══ BLOQUE 5: POSTS ══ -->
 			<section class="posts-section">
