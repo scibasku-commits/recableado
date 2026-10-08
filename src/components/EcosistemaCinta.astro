@@ -1,0 +1,208 @@
+---
+// Bloque «La agencia» del pie: cinta infinita de fotos (02ui.com/motion/infinite-marquee).
+// Elegida por Giora el 7-oct-2026 (versión 3 de viajesdeski.es/pruebas/ecosistema).
+//
+// La frase de cada web sale de su portada, leída el 7-oct-2026. Sin cifras,
+// precios ni antigüedades. Las fotos son las que cada web (o viajesdeski.es)
+// ya publica; copiadas a public/images/ecosistema/.
+//
+// Sin JS o con «reducir movimiento» es una fila que se desliza con el dedo.
+// GSAP solo se descarga cuando el bloque se acerca a la pantalla.
+type Web = { id: string; dominio: string; href: string; frase: string; alt: string };
+
+const webs: Web[] = [
+	{ id: 'skialpes', dominio: 'skialpes.es', href: 'https://skialpes.es',
+		frase: 'Esquí en los Alpes: Francia, Suiza, Austria e Italia, con hotel, forfait y traslados.',
+		alt: 'Un esquiador traza un giro en una pista con el Cervino al fondo' },
+	{ id: 'crucerobuceo', dominio: 'crucerobuceo.com', href: 'https://crucerobuceo.com',
+		frase: 'Cruceros de buceo en todo el mundo: la ficha de cada barco y sus salidas programadas.',
+		alt: 'Una buceadora nada sobre un coral de mesa rodeado de peces amarillos' },
+	{ id: 'lujosinartificios', dominio: 'lujosinartificios.com', href: 'https://lujosinartificios.com',
+		frase: 'Resorts en Maldivas, Seychelles, Tailandia, Bali y el Caribe.',
+		alt: 'Una isla pequeña con playa de arena blanca y piscina, rodeada de laguna turquesa, vista desde el aire' },
+	{ id: 'viajesdeski', dominio: 'viajesdeski.es', href: 'https://viajesdeski.es',
+		frase: 'Ikon Pass y Epic Pass en español, al mismo precio oficial.',
+		alt: 'Un snowboarder de espaldas, con la tabla en la mano, mira una montaña nevada surcada de pistas' },
+	{ id: 'viajaraegipto', dominio: 'viajaraegipto.es', href: 'https://viajaraegipto.es',
+		frase: 'Egipto: buceo en el Mar Rojo, cruceros por el Nilo y circuitos.',
+		alt: 'Estatuas colosales en la fachada de un templo egipcio, con el sol bajo sobre el desierto' },
+	{ id: 'aspenski', dominio: 'aspenski.es', href: 'https://aspenski.es',
+		frase: 'Aspen Snowmass, en Colorado: vuelos, hotel a pie de pista y traslados desde España.',
+		alt: 'El pueblo de Aspen iluminado al anochecer, nevado, con las pistas de esquí detrás' },
+	{ id: 'america-motorhome', dominio: 'america-motorhome.com', href: 'https://america-motorhome.com',
+		frase: 'Estados Unidos y Canadá en autocaravana, con los hoteles y el itinerario montados.',
+		alt: 'Una autocaravana avanza por una carretera con mesetas de roca roja al fondo' },
+	{ id: 'ilovecanada', dominio: 'ilovecanada.travel', href: 'https://www.ilovecanada.travel',
+		frase: 'Canadá a medida: rutas en coche, circuitos con guía en español, esquí y auroras boreales.',
+		alt: 'Dos esquiadores cruzan una ladera nevada bajo las cumbres de las Rocosas canadienses' },
+	{ id: 'motorhomes', dominio: 'motorhomes.viajesscibasku.com', href: 'https://motorhomes.viajesscibasku.com',
+		frase: 'Alquiler de autocaravanas en Australia, Nueva Zelanda, EE. UU., Canadá y Europa.',
+		alt: 'Una autocaravana aparcada a la orilla de un lago de agua verde entre montañas, vista desde el aire' },
+	{ id: 'viajesscibasku', dominio: 'viajesscibasku.com', href: 'https://www.viajesscibasku.com',
+		frase: 'La agencia matriz: viajes de buceo, esquí y lunas de miel a medida.',
+		alt: 'Giora Gilead con chaqueta roja de esquí y gafas de sol, ante montañas nevadas' },
+];
+---
+<div class="eco-cab">
+	<p class="eco-nota">Estás en <strong>recableado.blog</strong>, el blog de Giora. Todo lo demás es la misma agencia: Viajes Scibasku, CICMA 2283.</p>
+	<button type="button" class="eco-boton" data-eco-cinta-boton aria-pressed="false" hidden>Parar la cinta</button>
+</div>
+<div class="eco-m" data-eco-cinta>
+	<ul class="eco-m-pista">
+		{webs.map((w) => (
+			<li class="eco-m-item">
+				<a class="eco-carta" href={w.href} target="_blank" rel="noopener noreferrer">
+					<img src={`/images/ecosistema/${w.id}.jpg`} alt={w.alt} width="640" height="800" loading="lazy" decoding="async" draggable="false" />
+					<span class="eco-carta-texto">
+						<span class="eco-carta-dominio">{w.dominio}</span>
+						<span class="eco-carta-frase">{w.frase}</span>
+					</span>
+					<span class="eco-sr"> (se abre en otra pestaña)</span>
+				</a>
+			</li>
+		))}
+	</ul>
+</div>
+
+<script>
+	// Infinite marquee de 02ui: la fila se repite y el final empalma con el principio.
+	const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	document.querySelectorAll<HTMLElement>('[data-eco-cinta]').forEach((raiz) => {
+		const pista = raiz.querySelector<HTMLElement>('.eco-m-pista');
+		const boton = document.querySelector<HTMLButtonElement>('[data-eco-cinta-boton]');
+		if (!pista || sinMovimiento) return; // fila que se desliza con el dedo
+
+		const montar = async () => {
+			const { gsap } = await import('gsap');
+			(Array.from(pista.children) as HTMLElement[]).forEach((li) => {
+				const copia = li.cloneNode(true) as HTMLElement;
+				copia.setAttribute('aria-hidden', 'true');
+				copia.querySelectorAll('a').forEach((a) => { a.tabIndex = -1; });
+				pista.appendChild(copia);
+			});
+			raiz.classList.add('eco-m-js');
+			raiz.scrollLeft = 0;
+
+			let vuelta = 0;
+			let x = 0;
+			let parada = false;   // botón
+			let encima = false;   // ratón o foco dentro
+			let arrastre: { x0: number; inicio: number; movido: boolean } | null = null;
+			const medir = () => { vuelta = pista.scrollWidth / 2; };
+			const poner = () => { if (!vuelta) return; x = ((x % vuelta) - vuelta) % vuelta; gsap.set(pista, { x }); };
+			medir();
+			window.addEventListener('resize', medir);
+			window.addEventListener('load', medir);
+
+			gsap.ticker.add((_t, delta) => {
+				if (!vuelta || parada || encima || arrastre) return;
+				x -= (delta / 1000) * 38; // px por segundo
+				poner();
+			});
+
+			raiz.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') encima = true; });
+			raiz.addEventListener('pointerleave', () => { encima = false; });
+			raiz.addEventListener('focusin', () => { encima = true; });
+			raiz.addEventListener('focusout', () => { encima = false; });
+
+			// Arrastrar con ratón o dedo.
+			raiz.addEventListener('pointerdown', (e) => { arrastre = { x0: e.clientX, inicio: x, movido: false }; });
+			window.addEventListener('pointermove', (e) => {
+				if (!arrastre) return;
+				const d = e.clientX - arrastre.x0;
+				if (Math.abs(d) > 6) arrastre.movido = true;
+				x = arrastre.inicio + d;
+				poner();
+			});
+			const soltar = () => {
+				if (!arrastre) return;
+				if (arrastre.movido) raiz.dataset.ecoArrastrado = '1';
+				arrastre = null;
+			};
+			window.addEventListener('pointerup', soltar);
+			window.addEventListener('pointercancel', soltar);
+			// Si se ha arrastrado, ese gesto no abre el enlace.
+			raiz.addEventListener('click', (e) => {
+				if (raiz.dataset.ecoArrastrado) { e.preventDefault(); delete raiz.dataset.ecoArrastrado; }
+			}, true);
+
+			if (boton) {
+				boton.hidden = false;
+				boton.addEventListener('click', () => {
+					parada = !parada;
+					boton.setAttribute('aria-pressed', parada ? 'true' : 'false');
+					boton.textContent = parada ? 'Mover la cinta' : 'Parar la cinta';
+				});
+			}
+		};
+
+		// GSAP se pide cuando el pie está a punto de entrar en pantalla.
+		new IntersectionObserver((entradas, obs) => {
+			if (entradas.some((e) => e.isIntersecting)) { obs.disconnect(); montar(); }
+		}, { rootMargin: '600px 0px' }).observe(raiz);
+	});
+</script>
+
+<style>
+	.eco-cab {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 28px;
+		justify-content: space-between;
+		margin: 0 auto 20px;
+		max-width: 1320px;
+		padding: 0 32px;
+	}
+	.eco-nota { color: rgba(255, 250, 240, 0.72); font-size: 15px; line-height: 1.5; margin: 0; }
+	.eco-nota strong { color: #55D6F4; font-weight: 600; }
+	.eco-boton {
+		background: transparent;
+		border: 1px solid rgba(242, 202, 80, 0.4);
+		border-radius: 999px;
+		color: rgba(255, 250, 240, 0.92);
+		cursor: pointer;
+		font-family: 'Bricolage Grotesque', sans-serif;
+		font-size: 14px;
+		min-height: 44px;
+		padding: 8px 20px;
+		transition: border-color 200ms ease, color 200ms ease;
+	}
+	.eco-boton:hover { border-color: #F2CA50; color: #F2CA50; }
+	.eco-boton:focus-visible, .eco-carta:focus-visible { outline: 2px solid #F2CA50; outline-offset: 4px; }
+
+	.eco-sr {
+		border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden;
+		padding: 0; position: absolute; white-space: nowrap; width: 1px;
+	}
+
+	.eco-m { margin: 0 0 72px; overflow-x: auto; scroll-snap-type: x mandatory; }
+	.eco-m-js { cursor: grab; overflow: hidden; scroll-snap-type: none; touch-action: pan-y; user-select: none; }
+	.eco-m-js:active { cursor: grabbing; }
+	.eco-m-pista { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0 9px; width: max-content; will-change: transform; }
+	.eco-m-item { aspect-ratio: 4 / 5; flex: 0 0 auto; scroll-snap-align: center; width: clamp(230px, 24vw, 330px); }
+
+	.eco-carta { background: #0f223d; border-radius: 6px; color: #fff !important; display: block; height: 100%; overflow: hidden; position: relative; text-decoration: none; }
+	.eco-carta img { display: block; height: 100%; object-fit: cover; transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
+	.eco-carta:hover img, .eco-carta:focus-visible img { transform: scale(1.05); }
+	.eco-carta::after {
+		background: linear-gradient(to top, rgba(8, 18, 34, 0.92) 0%, rgba(8, 18, 34, 0.55) 36%, rgba(8, 18, 34, 0) 64%);
+		content: "";
+		inset: 0;
+		pointer-events: none;
+		position: absolute;
+	}
+	.eco-carta-texto { bottom: 0; display: grid; gap: 6px; left: 0; padding: 20px; position: absolute; right: 0; z-index: 1; }
+	.eco-carta-dominio { font-family: 'Lora', Georgia, serif; font-size: 22px; line-height: 1.15; overflow-wrap: anywhere; }
+	.eco-carta-frase { color: rgba(255, 255, 255, 0.86); font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; line-height: 1.4; }
+
+	@media (max-width: 720px) {
+		.eco-cab { padding: 0 20px; }
+		.eco-m { margin-bottom: 48px; }
+		.eco-carta-dominio { font-size: 19px; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.eco-boton, .eco-carta img { transition: none !important; }
+	}
+</style>
