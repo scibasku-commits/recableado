@@ -29,13 +29,16 @@
     "/blog/",
     "/en/blog/",
     "/blog/039-mi-ia-clasifico-cliente-como-ruido/",
-    "/en/blog/039-my-ai-labelled-a-customer-as-noise/",
     "/og/039-mi-ia-clasifico-cliente-como-ruido.png",
-    "/og/039-my-ai-labelled-a-customer-as-noise.png"
+    "/blog/046-puedo-ser-mas-ambicioso-ia/",
+    "/og/046-puedo-ser-mas-ambicioso-ia.png",
+    "/infografias/046-ambicion-ia-es.webp",
+    "/infografias/046-ai-ambition-en.webp"
   ],
   "criticalJourneys": [
     "J6-blog039-bilingue",
     "J7-blog039-lectura-y-social",
-    "J8-regresion-aprende"
+    "J8-regresion-aprende",
+    "J9-blog046-ambicion"
   ]
 }

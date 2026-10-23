@@ -97,3 +97,32 @@ cubre mediante su verificación completa y comprobación de sus rutas existentes
 - Publicar ambas traducciones juntas en el proyecto Vercel existente `recableado`.
 - Registrar el permiso explícito de Giora con su evento y hora originales. Si el motor no admite
   la secuencia temporal de ese permiso, conservar el bloqueo y no declarar certificado SELLO.
+
+## Intervención editorial 046 — 23-oct-2026
+
+Publicar el artículo en castellano «¿Puedo ser más ambicioso con la inteligencia artificial?»,
+visible en el índice del blog, junto con dos infografías generadas en NotebookLM Studio desde el
+cuaderno de 13 fuentes: una en castellano y otra en inglés. No se añade una traducción inglesa del
+artículo ni se modifica el resto del contenido.
+
+### Rutas añadidas
+
+- `/blog/046-puedo-ser-mas-ambicioso-ia/`
+- `/og/046-puedo-ser-mas-ambicioso-ia.png`
+- `/infografias/046-ambicion-ia-es.webp`
+- `/infografias/046-ai-ambition-en.webp`
+
+### Jornada de esta intervención
+
+- `J9-blog046-ambicion`: abrir el artículo desde `/blog/`, comprobar el texto completo, la
+  infografía castellana, el desplegable de la versión inglesa, el FAQ estructurado y la lectura
+  sin desbordes en escritorio y móvil de 390 píxeles.
+
+### Aceptación editorial
+
+- Mantener separadas las afirmaciones respaldadas por las fuentes y las aplicaciones propuestas
+  para Viajes Scibasku; no presentar ejemplos propuestos como resultados medidos.
+- Las dos infografías deben ser artefactos reales del Studio del cuaderno indicado, legibles y en
+  el idioma declarado.
+- Build completo verde, QA local y público ligados al mismo candidato, y entrega exclusivamente
+  al proyecto Vercel existente `recableado`.
