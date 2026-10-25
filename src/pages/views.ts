@@ -59,11 +59,35 @@ export const POST: APIRoute = async ({ request }) => {
 		const supabase = getSupabase();
 		const { data, error } = await supabase.rpc('increment_view', { page_slug: slug } as any);
 
-		if (error) {
+		if (!error) {
+			return new Response(JSON.stringify({ views: data }), {
+				headers: { 'Content-Type': 'application/json' },
+			});
+		}
+
+		if (error.code !== 'PGRST202') {
 			return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 		}
 
-		return new Response(JSON.stringify({ views: data }), {
+		const { error: writeError } = await supabase
+			.from('page_views')
+			.insert({ post_slug: slug });
+
+		if (writeError) {
+			return new Response(JSON.stringify({ error: writeError.message }), { status: 500 });
+		}
+
+		const { data: current, error: readError } = (await supabase
+			.from('recableado_page_views')
+			.select('views')
+			.eq('slug', slug)
+			.single()) as { data: { views: number } | null; error: { message: string } | null };
+
+		if (readError) {
+			return new Response(JSON.stringify({ error: readError.message }), { status: 500 });
+		}
+
+		return new Response(JSON.stringify({ views: current?.views ?? 1 }), {
 			headers: { 'Content-Type': 'application/json' },
 		});
 	} catch (err) {
