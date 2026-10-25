@@ -100,23 +100,25 @@ cubre mediante su verificación completa y comprobación de sus rutas existentes
 
 ## Intervención editorial 046 — 23-oct-2026
 
-Publicar el artículo en castellano «¿Puedo ser más ambicioso con la inteligencia artificial?»,
-visible en el índice del blog, junto con dos infografías generadas en NotebookLM Studio desde el
-cuaderno de 13 fuentes: una en castellano y otra en inglés. No se añade una traducción inglesa del
-artículo ni se modifica el resto del contenido.
+Publicar el artículo «¿Puedo ser más ambicioso con la inteligencia artificial?» en castellano e
+inglés, visible en ambos índices del blog y con enlaces de idioma recíprocos, junto con dos
+infografías generadas en NotebookLM Studio desde el cuaderno de 13 fuentes: una en castellano y otra
+en inglés. No se modifica el resto del contenido.
 
 ### Rutas añadidas
 
 - `/blog/046-puedo-ser-mas-ambicioso-ia/`
+- `/en/blog/046-can-i-be-more-ambitious-with-ai/`
 - `/og/046-puedo-ser-mas-ambicioso-ia.png`
+- `/og/046-can-i-be-more-ambitious-with-ai.png`
 - `/infografias/046-ambicion-ia-es.webp`
 - `/infografias/046-ai-ambition-en.webp`
 
 ### Jornada de esta intervención
 
-- `J9-blog046-ambicion`: abrir el artículo desde `/blog/`, comprobar el texto completo, la
-  infografía castellana, el desplegable de la versión inglesa, el FAQ estructurado y la lectura
-  sin desbordes en escritorio y móvil de 390 píxeles.
+- `J9-blog046-ambicion`: abrir cada artículo desde su índice, comprobar el texto completo, el enlace
+  de idioma recíproco, la infografía principal del idioma, el desplegable de la otra versión, el FAQ
+  visible y estructurado y la lectura sin desbordes en escritorio y móvil de 390 píxeles.
 
 ### Aceptación editorial
 
