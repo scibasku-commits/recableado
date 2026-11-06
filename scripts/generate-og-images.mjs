@@ -13,8 +13,10 @@ const fontRegularB64 = readFileSync(join(root, 'public/fonts/BricolageGrotesque-
 // Map emoji tags from frontmatter → uppercase label for OG image
 const TAG_MAP = {
   'Memoria':  'MEMORIA',
+  'Memory':   'MEMORY',
   'Ahora':    'AHORA',
   'Horizonte':'HORIZONTE',
+  'Horizon':  'HORIZON',
   'Taller':   'TALLER',
   'Anécdota': 'ANÉCDOTA',
   'Vida':     'VIDA',
@@ -33,13 +35,14 @@ function parseFrontmatter(content) {
   const block = match[1];
 
   const title = block.match(/title:\s*"([^"]*)"/)?.[1] || '';
+  const ogTitle = block.match(/ogTitle:\s*"([^"]*)"/)?.[1] || '';
   const description = block.match(/description:\s*"([^"]*)"/)?.[1] || '';
   const tagsMatch = block.match(/tags:\s*\[([^\]]*)\]/);
   const tags = tagsMatch
     ? tagsMatch[1].match(/"([^"]*)"/g)?.map(t => t.replace(/"/g, '')) || []
     : [];
 
-  return { title, description, tags };
+  return { title, ogTitle, description, tags };
 }
 
 function discoverPosts() {
@@ -65,7 +68,7 @@ function discoverPosts() {
       posts.push({
         slug,
         tag,
-        title: fm.title,
+        title: fm.ogTitle || fm.title,
         description: fm.description,
       });
     }
@@ -180,7 +183,14 @@ async function main() {
   const outDir = join(root, 'public/og');
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-  const posts = discoverPosts();
+  const slugArg = process.argv.find(arg => arg.startsWith('--slug='));
+  const requestedSlug = slugArg?.slice('--slug='.length);
+  const posts = requestedSlug
+    ? discoverPosts().filter(post => post.slug === requestedSlug)
+    : discoverPosts();
+  if (requestedSlug && posts.length === 0) {
+    throw new Error(`Unknown post slug: ${requestedSlug}`);
+  }
   console.log(`OG: found ${posts.length} posts\n`);
 
   let generated = 0;

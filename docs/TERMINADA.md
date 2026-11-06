@@ -128,3 +128,37 @@ en inglés. No se modifica el resto del contenido.
   el idioma declarado.
 - Build completo verde, QA local y público ligados al mismo candidato, y entrega exclusivamente
   al proyecto Vercel existente `recableado`.
+
+## Intervención editorial 049 — 6-nov-2026
+
+Publicar el artículo «De CompuServe a ChatGPT: más de cuarenta años conectados y todavía no sabemos
+adónde vamos» en castellano e inglés, visible en ambos índices del blog y con enlaces de idioma
+recíprocos. La pieza debe conservar el texto final entregado por Larry y usar las cuatro infografías
+finales de su paquete: línea de tiempo y cementerio tecnológico en cada idioma. No se modifica el
+resto del contenido.
+
+### Rutas añadidas
+
+- `/blog/049-de-compuserve-a-chatgpt/`
+- `/en/blog/049-from-compuserve-to-chatgpt/`
+- `/og/049-de-compuserve-a-chatgpt.png`
+- `/og/049-from-compuserve-to-chatgpt.png`
+- `/infografias/049-compuserve-linea-tiempo-es.jpg`
+- `/infografias/049-gigantes-tecnologicos-es.jpg`
+- `/infografias/049-compuserve-timeline-en.jpg`
+- `/infografias/049-tech-giants-graveyard-en.jpg`
+
+### Jornada de esta intervención
+
+- `J10-blog049-compuserve`: abrir cada artículo desde su índice, comprobar el texto completo, el
+  enlace de idioma recíproco, las dos infografías del idioma correspondiente y la lectura sin
+  desbordes en escritorio y móvil de 390 píxeles; abrir además las cuatro imágenes a tamaño completo.
+
+### Aceptación editorial
+
+- Mantener las fechas, hechos históricos, memoria personal y tono del texto final de Larry sin
+  introducir datos nuevos durante la integración o la traducción.
+- Las cuatro infografías deben coincidir byte a byte con los JPG finales del paquete de Larry,
+  conservar su marca «Gemini Notebook» y ser legibles en el idioma declarado.
+- Build completo verde, QA local y público ligados al mismo candidato, y entrega exclusivamente
+  al proyecto Vercel existente `recableado`.

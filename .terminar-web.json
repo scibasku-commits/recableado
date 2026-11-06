@@ -37,12 +37,21 @@
     "/og/046-puedo-ser-mas-ambicioso-ia.png",
     "/og/046-can-i-be-more-ambitious-with-ai.png",
     "/infografias/046-ambicion-ia-es.webp",
-    "/infografias/046-ai-ambition-en.webp"
+    "/infografias/046-ai-ambition-en.webp",
+    "/blog/049-de-compuserve-a-chatgpt/",
+    "/en/blog/049-from-compuserve-to-chatgpt/",
+    "/og/049-de-compuserve-a-chatgpt.png",
+    "/og/049-from-compuserve-to-chatgpt.png",
+    "/infografias/049-compuserve-linea-tiempo-es.jpg",
+    "/infografias/049-gigantes-tecnologicos-es.jpg",
+    "/infografias/049-compuserve-timeline-en.jpg",
+    "/infografias/049-tech-giants-graveyard-en.jpg"
   ],
   "criticalJourneys": [
     "J6-blog039-bilingue",
     "J7-blog039-lectura-y-social",
     "J8-regresion-aprende",
-    "J9-blog046-ambicion"
+    "J9-blog046-ambicion",
+    "J10-blog049-compuserve"
   ]
 }
